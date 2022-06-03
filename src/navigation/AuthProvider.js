@@ -3,9 +3,8 @@ import auth from "@react-native-firebase/auth";
 
 
 export const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
-    console.log("children",children)
+    // console.log("children",children)
     const [user, setUser] = useState(null);
     return (
         <AuthContext.Provider
@@ -24,6 +23,7 @@ export const AuthProvider = ({ children }) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password);
                     } catch (error) {
+                        alert("error occurred",error)
                         console.log(error)
 
                     }

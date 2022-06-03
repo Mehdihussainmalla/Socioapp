@@ -38,7 +38,7 @@ export default TextInputComponent
 
 const styles = StyleSheet.create({
     input: {
-        height: moderateScale(48),
+        height: moderateScale(40),
         // backgroundColor: colors.matterhorn,
         marginRight: moderateScale(20),
         marginLeft: moderateScale(2),

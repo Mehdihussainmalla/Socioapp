@@ -1,14 +1,19 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { AuthContext } from '../../navigation/AuthProvider';
 
 const Home = () => {
+    const {user,logout}=useContext(AuthContext);
     return (
         <View style={styles.container}>
             <View style={{ flex: 0.4 }}>
-                <Text style={{ fontSize: 25, color: "white" }}>Home</Text>
+                <Text style={{ fontSize: 20, color: "white" }}>{user.uid}</Text>
 
             </View>
-            <TouchableOpacity style={{
+            <TouchableOpacity 
+            onPress={()=>logout()}
+            
+            style={{
                 justifyContent: 'center',
                 alignItems: "center",
                 alignSelf: "center"

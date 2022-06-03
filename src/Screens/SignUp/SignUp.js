@@ -5,23 +5,50 @@ import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import { AuthContext } from '../../navigation/AuthProvider';
+import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
+
+    const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{8,})");
+
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [confirmPassword, setConfirmpassword]= useState();
     const { register } = useContext(AuthContext);
-    // console.log(register, "register is")
-    return (
-        // <Wrappercontainer>
-        // < > 
-        // <View style={{flex:1, backgroundColor:'red', justifyContent:'center'}}>
-        // <Text>Hello</Text>
-        // </View>
 
-        // </>
+    const handleSignup = () => {
+
+    if (email === "") {
+      console.log('please enter email')
+    }
+
+    else if (!emailRegex.test(email)) {
+      console.log('Invalid email')
+    }
+
+    else if (password === "") {
+      console.log('please enter password')
+    }
+
+    else if (password.length<8) {
+      console.log('please enter correct password')
+    }
+
+    else if (!strongRegex.test(password)) {
+      console.log('please enter valid password')
+    }
+    else {
+        navigation.navigate(navigationStrings.HOME,register(email,password))
+        //  alert("error occurred")
+        }
+    }
+
+    
+    return (
         <SafeAreaView style={{ height: "100%", width: "100%", }}>
             <View style={{
                 marginTop: moderateVerticalScale(50),
@@ -40,13 +67,13 @@ const SignUp = () => {
                 <Text style={{
                     color: colors.blue,
                     fontSize: textScale(20)
-                }} > SignUp </Text>
+                }} > SignUp Here</Text>
             </View>
             <View style={{
                 // alignItems: 'center',
                 borderWidth: 0.5,
-                marginLeft: moderateScaleVertical(20),
-                marginRight: moderateScaleVertical(20),
+                marginLeft: moderateScaleVertical(30),
+                marginRight: moderateScaleVertical(30),
                 marginTop: moderateScaleVertical(45),
                 backgroundColor: colors.greyA
             }}>
@@ -58,9 +85,9 @@ const SignUp = () => {
             </View>
             <View style={{
 
-                borderWidth: 0.5,
-                marginLeft: moderateScaleVertical(20),
-                marginRight: moderateScaleVertical(20),
+                borderWidth: 0.4,
+                marginLeft: moderateScaleVertical(30),
+                marginRight: moderateScaleVertical(30),
                 marginTop: moderateScaleVertical(12),
                 backgroundColor: colors.greyA
             }}>
@@ -73,28 +100,30 @@ const SignUp = () => {
             <View style={{
                 // alignItems: 'center',
                 borderWidth: 0.5,
-                marginLeft: moderateScaleVertical(20),
-                marginRight: moderateScaleVertical(20),
+                marginLeft: moderateScaleVertical(30),
+                marginRight: moderateScaleVertical(30),
                 marginTop: moderateScaleVertical(12),
                 backgroundColor: colors.greyA
             }}>
                 <TextInputComponent
-                    value={password}
-                    onChangeText={(password) => setPassword(password)}
+                    value={confirmPassword}
+                    onChangeText={(confirmPassword) => setConfirmpassword(confirmPassword)}
                     input={{ fontSize: textScale(13), color: colors.black }}
                     placeholder='confirm password' />
             </View>
             <ButtonComp
-                onPress={() => register(email, password)}
+            //  onPress={()=>navigation.navigate(navigationStrings.LOGIN,register(email,password))}
+            onPress={handleSignup}
+            
                 btnStyle={{ marginTop: moderateScaleVertical(50) }}
-                ButtonText='Login' />
-            <ButtonComp btnStyle={{ marginTop: moderateScaleVertical(20) }}
+                ButtonText='SignUp' />
+            <ButtonComp 
+            onPress={()=>navigation.navigate(navigationStrings.LOGIN)}
+            btnStyle={{ marginTop: moderateScaleVertical(20) }}
                 ButtonText='Login with Google' />
             <ButtonComp btnStyle={{ marginTop: moderateScaleVertical(20) }}
                 ButtonText='Login with facebook' />
         </SafeAreaView>
-
-        // </Wrappercontainer>
     );
 };
 
