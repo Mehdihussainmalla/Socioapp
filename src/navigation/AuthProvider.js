@@ -23,7 +23,6 @@ export const AuthProvider = ({ children }) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password);
                     } catch (error) {
-                        alert("error occurred",error)
                         console.log(error)
 
                     }

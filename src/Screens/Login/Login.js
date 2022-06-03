@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
+import imagePath from '../../constants/imagePath';
 import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
@@ -17,7 +18,6 @@ const Login = ({ navigation, route }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const { login } = useContext(AuthContext);
-
     const handleLogin = () => {
 
         if (email === "") {
@@ -41,82 +41,98 @@ const Login = ({ navigation, route }) => {
         }
         else {
             login(email, password)
-            alert("login Sucessfully")
+
         }
     }
     return (
-        // <Wrappercontainer>
-        <SafeAreaView style={{ height: "100%", width: "100%", }}>
-            <View style={{
-                marginTop: moderateVerticalScale(50),
-                justifyContent: 'center',
-                alignItems: "center"
-            }}>
-                <Text style={{
-                    color: colors.blue
-                    , fontSize: textScale(20)
-                }}>Welcome to Social App</Text>
-            </View>
-            <View style={{
-                marginTop: moderateVerticalScale(50),
-                justifyContent: 'center', alignItems: "center"
-            }}>
-                <Text style={{
-                    color: colors.blue,
-                    fontSize: textScale(20)
-                }} > Login</Text>
-            </View>
-            <View style={{
-                alignItems: 'center',
-                borderWidth: 0.5,
-                marginLeft: moderateScaleVertical(30),
-                marginRight: moderateScaleVertical(30),
-                marginTop: moderateScaleVertical(45),
-                backgroundColor: colors.greyA
-            }}>
-                <TextInputComponent
-                    value={email}
-                    onChangeText={(email) => setEmail(email)}
-                    input={{ fontSize: textScale(15), color: colors.blackB }}
-                    placeholder='please enter email' />
-            </View>
-            <View style={{
-                alignItems: 'center',
-                borderWidth: 0.5,
-                marginLeft: moderateScaleVertical(30),
-                marginRight: moderateScaleVertical(30),
-                marginTop: moderateScaleVertical(20),
-                backgroundColor: colors.greyA
-            }}>
-                <TextInputComponent
-                    value={password}
-                    onChangeText={(password) => setPassword(password)}
-                    input={{
-                        fontSize: textScale(15),
-                        color: colors.black
-                    }}
-                    placeholder='please enter password' />
-            </View>
-            <ButtonComp
-                onPress={handleLogin}
-                // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
-                btnStyle={{ marginTop: moderateScaleVertical(50) }}
-                ButtonText='Login' />
-            <ButtonComp
-                btnStyle={{ marginTop: moderateScaleVertical(20) }}
-                ButtonText='Login with Google' />
-            <ButtonComp
-                btnStyle={{ marginTop: moderateScaleVertical(20) }}
-                ButtonText='Login with facebook' />
-                <View style={{backgroundColor:"red",marginTop:moderateScaleVertical(10), 
-                flexDirection:"row",justifyContent:"center",
-                marginHorizontal:moderateScaleVertical(27)}}>
-                    <Text style={{fontSize:textScale(12), paddingHorizontal:15}}>New here</Text>
-                    <Text>create account</Text>
+        <Wrappercontainer>
+            <SafeAreaView style={{ height: "100%", width: "100%", }}>
+                <View style={{
+                    marginTop: moderateVerticalScale(50),
+                    justifyContent: 'center',
+                    alignItems: "center"
+                }}>
+                    <Text style={{
+                        color: colors.blue
+                        , fontSize: textScale(20)
+                    }}>Welcome to Social App</Text>
                 </View>
-        </SafeAreaView>
+                <View style={{
+                    marginTop: moderateVerticalScale(50),
+                    justifyContent: 'center', alignItems: "center"
+                }}>
+                    <Text style={{
+                        color: colors.blue,
+                        fontSize: textScale(20)
+                    }} > Login</Text>
+                </View>
+                <View style={{
+                    // alignItems: 'center',
+                    borderWidth: 0.5,
+                    marginLeft: moderateScaleVertical(30),
+                    marginRight: moderateScaleVertical(30),
+                    marginTop: moderateScaleVertical(45),
+                    // backgroundColor: colors.greyA
+                }}>
+                    <TextInputComponent
+                        value={email}
+                        onChangeText={(email) => setEmail(email)}
+                        input={{ fontSize: textScale(10), color: colors.blackB }}
+                        placeholder='please enter email' />
+                </View>
+                <View style={{
+                    // alignItems: 'center',
+                    borderWidth: 0.5,
+                    marginLeft: moderateScaleVertical(30),
+                    marginRight: moderateScaleVertical(30),
+                    marginTop: moderateScaleVertical(20),
+                    // backgroundColor: colors.greyA
+                }}>
+                    {/* <View></View> */}
 
-        // </Wrappercontainer>
+                    <TextInputComponent
+                        value={password}
+                        secureTextEntry={true}
+                        onChangeText={(password) => setPassword(password)}
+                        input={{
+                            fontSize: textScale(10),
+                            color: colors.black
+                        }}
+                        placeholder='please enter password' />
+                </View>
+                <ButtonComp
+                    onPress={handleLogin}
+                    // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
+                    btnStyle={{ marginTop: moderateScaleVertical(50) }}
+                    ButtonText='Login' />
+                <ButtonComp
+                    btnIcon={imagePath.google_icon}
+                    btnStyle={{ marginTop: moderateScaleVertical(20) }}
+                    ButtonText='Login with Google' />
+                <ButtonComp
+                    btnIcon={imagePath.facebook_icon}
+                    btnStyle={{ marginTop: moderateScaleVertical(20) }}
+                    ButtonText='Login with facebook' />
+                <View style={{
+                    marginTop: moderateScaleVertical(10),
+                    flexDirection: "row", justifyContent: "center",
+                    marginHorizontal: moderateScaleVertical(27)
+                }}>
+                    <Text style={{
+                        fontSize: textScale(12),
+                        paddingHorizontal: 10
+                    }}>New here?</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SIGNUP)}
+                        activeOpacity={0.5}>
+                        <Text style={{
+                            fontSize: textScale(12),
+                            color: colors.blue
+                        }}>create account</Text>
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
+
+        </Wrappercontainer>
     );
 };
 

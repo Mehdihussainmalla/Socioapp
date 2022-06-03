@@ -13,6 +13,7 @@ const TextInputComponent = ({
     // keyboardType = '',
     onChangeText,
     input,
+    secureTextEntry,
     value
 
 }) => {
@@ -25,6 +26,7 @@ const TextInputComponent = ({
                 // keyboardType={keyboardType}
                 style={{ ...styles.input, ...input }}
                 value={value}
+                secureTextEntry={secureTextEntry}
 
 
 

@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
+import wrappercontainer from '../../Components/wrappercontainer';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
@@ -49,6 +50,7 @@ const SignUp = ({navigation}) => {
 
     
     return (
+        <Wrappercontainer>
         <SafeAreaView style={{ height: "100%", width: "100%", }}>
             <View style={{
                 marginTop: moderateVerticalScale(50),
@@ -75,12 +77,12 @@ const SignUp = ({navigation}) => {
                 marginLeft: moderateScaleVertical(30),
                 marginRight: moderateScaleVertical(30),
                 marginTop: moderateScaleVertical(45),
-                backgroundColor: colors.greyA
+                // backgroundColor: colors.greyA
             }}>
                 <TextInputComponent
                     value={email}
                     onChangeText={(email) => setEmail(email)}
-                    input={{ fontSize: textScale(13), color: colors.blackB }}
+                    input={{ fontSize: textScale(10), color: colors.blackB }}
                     placeholder='please enter email' />
             </View>
             <View style={{
@@ -89,12 +91,13 @@ const SignUp = ({navigation}) => {
                 marginLeft: moderateScaleVertical(30),
                 marginRight: moderateScaleVertical(30),
                 marginTop: moderateScaleVertical(12),
-                backgroundColor: colors.greyA
+                // backgroundColor: colors.greyA
             }}>
                 <TextInputComponent
                     value={password}
+                    secureTextEntry={true}
                     onChangeText={(password) => setPassword(password)}
-                    input={{ fontSize: textScale(13), color: colors.black }}
+                    input={{ fontSize: textScale(10), color: colors.black }}
                     placeholder='please enter password' />
             </View>
             <View style={{
@@ -103,12 +106,13 @@ const SignUp = ({navigation}) => {
                 marginLeft: moderateScaleVertical(30),
                 marginRight: moderateScaleVertical(30),
                 marginTop: moderateScaleVertical(12),
-                backgroundColor: colors.greyA
+                // backgroundColor: colors.greyA
             }}>
                 <TextInputComponent
                     value={confirmPassword}
+                    secureTextEntry={true}
                     onChangeText={(confirmPassword) => setConfirmpassword(confirmPassword)}
-                    input={{ fontSize: textScale(13), color: colors.black }}
+                    input={{ fontSize: textScale(10), color: colors.black }}
                     placeholder='confirm password' />
             </View>
             <ButtonComp
@@ -123,7 +127,25 @@ const SignUp = ({navigation}) => {
                 ButtonText='Login with Google' />
             <ButtonComp btnStyle={{ marginTop: moderateScaleVertical(20) }}
                 ButtonText='Login with facebook' />
+                <View style={{
+                marginTop: moderateScaleVertical(10),
+                flexDirection: "row", justifyContent: "center",
+                marginHorizontal: moderateScaleVertical(27)
+            }}>
+                <Text style={{
+                    fontSize: textScale(12),
+                    paddingHorizontal: 10
+                }}>already user?</Text>
+                <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.LOGIN)}
+                    activeOpacity={0.5}>
+                    <Text style={{
+                        fontSize: textScale(12),
+                        color: colors.blue
+                    }}>SignIn</Text>
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
+        </Wrappercontainer>
     );
 };
 

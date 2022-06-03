@@ -2,6 +2,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, useEffect, useContext } from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { View, Text, StyleSheet } from 'react-native';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
@@ -18,8 +19,14 @@ const Routes = () => {
     }
 
     useEffect(() => {
+        GoogleSignin.configure({
+            webClientId: '',
+          });
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
         return subscriber;
+        
+        
+
     }, [])
     if (initializing) return null;
     return (

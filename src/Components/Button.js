@@ -47,13 +47,14 @@ const styles = StyleSheet.create({
         borderRadius: moderateScale(8),
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent:"center"
     },
     buttonTxt: {
         fontSize: textScale(14),
         fontWeight: '600',
         textAlign: 'center',
         color: colors.white,
+        paddingHorizontal:15,
         // fontFamily:fontFamily.BarlowBold
     },
     imgIcon: {
