@@ -1,5 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+    View, Text, StyleSheet,
+    SafeAreaView,
+    TouchableOpacity,
+    Image
+
+} from 'react-native';
 import { moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
@@ -18,6 +24,7 @@ const Login = ({ navigation, route }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const { login } = useContext(AuthContext);
+    const [hide, setHide] = useState();
     const handleLogin = () => {
 
         if (email === "") {
@@ -86,19 +93,35 @@ const Login = ({ navigation, route }) => {
                     marginLeft: moderateScaleVertical(30),
                     marginRight: moderateScaleVertical(30),
                     marginTop: moderateScaleVertical(20),
+                    flexDirection: "row",
+                    justifyContent: "space-between"
                     // backgroundColor: colors.greyA
                 }}>
-                    {/* <View></View> */}
+
 
                     <TextInputComponent
                         value={password}
-                        secureTextEntry={true}
+                        secureTextEntry={hide}
                         onChangeText={(password) => setPassword(password)}
                         input={{
                             fontSize: textScale(10),
                             color: colors.black
                         }}
                         placeholder='please enter password' />
+                    <View style={{ paddingRight: 10, }}>
+                        { hide ? 
+                        <TouchableOpacity onPress={()=>setHide(false)}>
+                        <Image style={{ marginTop: 8, }}
+                            source={imagePath.hide_eye} />
+                            </TouchableOpacity>
+                            
+                      :
+                      <TouchableOpacity  onPress={()=>setHide(true)}>
+                      <Image style={{ marginTop: 8, }}
+                       source={imagePath.show_eye} /> 
+                       </TouchableOpacity> }
+
+                    </View>
                 </View>
                 <ButtonComp
                     onPress={handleLogin}
