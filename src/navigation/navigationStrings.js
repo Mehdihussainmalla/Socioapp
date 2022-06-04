@@ -3,5 +3,7 @@ export default {
     HOME:'Home',
     SIGNUP:'SignUp',
     PROFILE:"Profile",
-    SEARCH_SCREEN:"Search "
+    SEARCH_SCREEN:"Search ",
+    TABSTACK:"Tabstack",
+    DRAWER:"Drawer"
 }

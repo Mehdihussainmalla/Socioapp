@@ -6,4 +6,5 @@ export default {
     Home_icon:require("../assets/images/Home.png"),
     search_icon:require("../assets/images/Search.png"),
     profile_icon:require("../assets/images/Profile.png"),
+    hamsburg:require("../assets/images/drawer.png"),
 }
