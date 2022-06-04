@@ -1,3 +1,4 @@
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { useContext, useState, useEffect } from 'react';
 import {
     View, Text, StyleSheet,
@@ -23,8 +24,14 @@ const Login = ({ navigation, route }) => {
     // console.log(route?.params,"route data")
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { login } = useContext(AuthContext);
+    const { login,googleLogin } = useContext(AuthContext);
     const [hide, setHide] = useState();
+
+    useEffect(()=>{
+        GoogleSignin.configure({
+            webClientId: '196889429419-ukv9i2e4229oj3frq0nm2btuamemk46u.apps.googleusercontent.com',
+          });
+    },[])
     const handleLogin = () => {
 
         if (email === "") {
@@ -128,7 +135,7 @@ const Login = ({ navigation, route }) => {
                     // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
                     btnStyle={{ marginTop: moderateScaleVertical(50) }}
                     ButtonText='Login' />
-                <ButtonComp
+                <ButtonComp onPress={()=>googleLogin()}
                     btnIcon={imagePath.google_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
                     ButtonText='Login with Google' />

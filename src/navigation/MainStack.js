@@ -8,7 +8,7 @@ const MainStack = (Stack) => {
        <>
        <Stack.Navigator>
        <Stack.Screen name={navigationStrings.HOME}
-                    component={Home} />
+                    component={Home}  options={{ headerShown: false }} />
 
        </Stack.Navigator>
        </>
