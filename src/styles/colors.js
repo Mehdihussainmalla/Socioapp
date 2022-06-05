@@ -123,5 +123,6 @@ export default {
     greyColor4: '#B0B0B0',
     lightGreen: 'rgba(68,215,182,0.17)',
     Light_blue:"#2c3e50",
+    hexacolor:"#878f99"
   };
   

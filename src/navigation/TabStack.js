@@ -15,21 +15,22 @@ export default function TabStack() {
         <>
             <Tab.Navigator screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: colors.white,
-                tabBarInactiveTintColor: colors.redB,
+                tabBarActiveTintColor: colors.redB,
+                tabBarInactiveTintColor: colors.black,
+                tabBarShowLabel: false,
                 tabBarStyle: {
                     // marginBottom:3,
                     height: moderateVerticalScale(60),
                     paddingBottom: moderateVerticalScale(5),
                     borderToprRadius: moderateScale(15),
                     borderTopStartRadius: moderateScale(3),
-                    backgroundColor: colors.Light_blue
+                    backgroundColor: "lightgrey"
                 }
             }}>
                 <Tab.Screen options={{
-                    tabBarIcon: ({ focussed }) => {
+                    tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focussed ? colors.white : colors.redB }}
+                            <Image style={{ tintColor: focused ? colors.redB : colors.black }}
                                 source={imagePath.Home_icon} />
                         )
                     }
@@ -37,9 +38,9 @@ export default function TabStack() {
                     name={navigationStrings.HOME} component={Home}
                 />
                  <Tab.Screen options={{
-                    tabBarIcon: ({ focussed }) => {
+                    tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focussed ? colors.white : colors.redB }}
+                            <Image style={{ tintColor: focused ? colors.redB : colors.black }}
                                 source={imagePath.search_icon} />
                         )
                     }
@@ -47,9 +48,9 @@ export default function TabStack() {
                     name={navigationStrings.SEARCH_SCREEN} component={SearchScreen}
                 />
                 <Tab.Screen options={{
-                    tabBarIcon: ({ focussed }) => {
+                    tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focussed ? colors.white : colors.redB }}
+                            <Image style={{ tintColor: focused ? colors.redB : colors.black }}
                                 source={imagePath.profile_icon} />
                         )
                     }

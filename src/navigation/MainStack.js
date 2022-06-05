@@ -9,11 +9,20 @@ import TabStack from './TabStack';
 const MainStack = (Stack) => {
    return (
       <>
-         <Stack.Navigator  options={{ headerShown: false }}>
-            <Stack.Screen options={{ headerShown: false }} name={navigationStrings.TABSTACK}
-               component={TabStack} />
-            <Stack.Screen options={{ headerShown: false }} name={navigationStrings.DRAWER}
+         <Stack.Navigator  >
+         
+            <Stack.Screen
+             options={{ headerShown: false }}
+             name={navigationStrings.DRAWER}
                component={DrawerStack}  />
+               {/* <Stack.Screen 
+            options={{ headerShown: true }} 
+            name={navigationStrings.TABSTACK}
+               component={TabStack} /> */}
+         
+         
+         
+           
          </Stack.Navigator>
       </>
    );
