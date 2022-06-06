@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import auth from "@react-native-firebase/auth";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-
+import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
@@ -30,6 +30,28 @@ export const AuthProvider = ({ children }) => {
                         console.log("error in goolge login")
 
                     }
+                },
+                facebookLogin: async () => {
+                    try {
+                        const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+                        if (result.isCancelled) {
+                            throw 'User cancelled the login process';
+                        }
+                        const data = await AccessToken.getCurrentAccessToken();
+
+                        if (!data) {
+                            throw 'Something went wrong obtaining access token';
+                        }
+                        const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+
+
+                        await auth().signInWithCredential(facebookCredential);
+                    } catch (error) {
+                        console.log("error occurred during facebook login", error)
+
+                    }
+
                 },
                 register: async (email, password) => {
                     try {

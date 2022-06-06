@@ -25,7 +25,7 @@ const Login = ({ navigation, route }) => {
     // console.log(route?.params,"route data")
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { login, googleLogin } = useContext(AuthContext);
+    const { login, googleLogin,facebookLogin } = useContext(AuthContext);
     const [hide, setHide] = useState();
 
     useEffect(() => {
@@ -114,7 +114,7 @@ const Login = ({ navigation, route }) => {
                     btnIcon={imagePath.google_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
                     ButtonText='Login with Google' />
-                <ButtonComp
+                <ButtonComp onPress={()=>facebookLogin()}
                     btnIcon={imagePath.facebook_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
                     ButtonText='Login with facebook' />

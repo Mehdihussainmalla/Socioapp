@@ -62,9 +62,9 @@ function CustomDrawer(props) {
                 </View>
                 <View style={{
                     paddingVertical: moderateScaleVertical(5),
-                    marginTop: moderateScaleVertical(15), alignSelf: 'center'
+                    marginTop: moderateScaleVertical(14), alignSelf: 'center'
                 }}>
-                    <Text style={{ fontSize: textScale(12), color: colors.white }}>{user?._user?.email}</Text>
+                    <Text style={{ fontSize: textScale(12), color: colors.white , fontWeight:"800"}}>{user?._user?.email}</Text>
                 </View>
             </View>
 

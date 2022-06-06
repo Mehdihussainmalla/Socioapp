@@ -18,9 +18,9 @@ const Routes = () => {
     }
 
     useEffect(() => {
-        GoogleSignin.configure({
-            webClientId: '',
-          });
+        // GoogleSignin.configure({
+        //     webClientId: '',
+        //   });
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
         return subscriber;
         
