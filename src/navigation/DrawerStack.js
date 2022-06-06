@@ -14,7 +14,7 @@ const DrawerStack = () => {
                 drawerContent={(props) => <CustomDrawer {...props} />}
                 initialRouteName={navigationStrings.HOME}>
 
-                <Drawer.Screen options={{ headerShown: false }} name={navigationStrings.HOME}
+                <Drawer.Screen options={{ headerShown: false }} name={navigationStrings.TABSTACK}
                     component={TabStack} />
                 {/* <Drawer.Screen name={navigationStrings.PROFILE}
                 component={Profile} />  */}
