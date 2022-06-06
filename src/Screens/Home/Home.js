@@ -1,18 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { moderateVerticalScale } from 'react-native-size-matters';
+import { View, Text, StyleSheet, TouchableOpacity, Image ,SafeAreaView} from 'react-native';
 import imagePath from '../../constants/imagePath';
 import { AuthContext } from '../../navigation/AuthProvider';
-import colors from '../../styles/colors';
 import { styles } from './styles';
 
 const Home = (props) => {
     const { navigation } = props;
-    console.log("props are", props)
+    // console.log("props are", props)
     const { user, logout } = useContext(AuthContext);
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <TouchableOpacity
                 onPress={() => navigation.openDrawer()}
                 activeOpacity={0.5}
@@ -31,7 +29,7 @@ const Home = (props) => {
                 style={styles.signstyle}>
                 <Text style={styles.textview}>SignOut</Text>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 };
 

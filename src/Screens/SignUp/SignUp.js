@@ -122,11 +122,11 @@ const SignUp = ({ navigation }) => {
                     {hide ? <TouchableOpacity onPress={() => setHide(false)}
                         style={{ paddingRight: 10 }}>
                         <Image style={{ marginTop: 8 }}
-                            source={imagePath.hide_eye} />
+                            source={imagePath.show_eye} />
                     </TouchableOpacity> :
                         <TouchableOpacity style={{ paddingRight: 10 }}
                             onPress={() => setHide(true)}>
-                            <Image style={{ marginTop: 8 }} source={imagePath.show_eye} />
+                            <Image style={{ marginTop: 8 }} source={imagePath.hide_eye} />
                         </TouchableOpacity>
                     }
                 </View>
@@ -136,8 +136,8 @@ const SignUp = ({ navigation }) => {
                     marginLeft: moderateScaleVertical(30),
                     marginRight: moderateScaleVertical(30),
                     marginTop: moderateScaleVertical(12),
-                    flexDirection:"row",
-                    justifyContent:"space-between"
+                    flexDirection: "row",
+                    justifyContent: "space-between"
                     // backgroundColor: colors.greyA
                 }}>
                     <TextInputComponent
@@ -150,26 +150,19 @@ const SignUp = ({ navigation }) => {
                     {hideIcon ? <TouchableOpacity onPress={() => setHideIcon(false)}
                         style={{ paddingRight: 10 }}>
                         <Image style={{ marginTop: 8 }}
-                            source={imagePath.hide_eye} />
+                            source={imagePath.show_eye} />
                     </TouchableOpacity> :
                         <TouchableOpacity style={{ paddingRight: 10 }}
                             onPress={() => setHideIcon(true)}>
-                            <Image style={{ marginTop: 8 }} source={imagePath.show_eye} />
+                            <Image style={{ marginTop: 8 }} source={imagePath.hide_eye} />
                         </TouchableOpacity>
                     }
                 </View>
                 <ButtonComp
-                    //  onPress={()=>navigation.navigate(navigationStrings.LOGIN,register(email,password))}
                     onPress={handleSignup}
-
-                    btnStyle={{ marginTop: moderateScaleVertical(50) }}
+                    btnStyle={{ marginTop: moderateScaleVertical(90), }}
                     ButtonText='SignUp' />
-                <ButtonComp
-                    onPress={() => navigation.navigate(navigationStrings.LOGIN)}
-                    btnStyle={{ marginTop: moderateScaleVertical(20) }}
-                    ButtonText='Login with Google' />
-                <ButtonComp btnStyle={{ marginTop: moderateScaleVertical(20) }}
-                    ButtonText='Login with facebook' />
+
                 <View style={{
                     marginTop: moderateScaleVertical(10),
                     flexDirection: "row", justifyContent: "center",

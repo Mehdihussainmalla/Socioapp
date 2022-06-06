@@ -7,4 +7,5 @@ export default {
     search_icon:require("../assets/images/Search.png"),
     profile_icon:require("../assets/images/Profile.png"),
     hamsburg:require("../assets/images/drawer.png"),
+    profile_pic:require("../assets/images/profile-pic.png")
 }

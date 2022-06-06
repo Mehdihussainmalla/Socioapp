@@ -1,7 +1,9 @@
 import React from "react";
-import { Stylesheet } from "react-native"
+import { StyleSheet } from "react-native"
+import { moderateVerticalScale } from "react-native-size-matters";
+import colors from "../../styles/colors";
 import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
-export const styles = Stylesheet.create({
+export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.greyD,
@@ -27,13 +29,14 @@ export const styles = Stylesheet.create({
         fontSize: 20,
         color: colors.black
     },
-    signview: {
+    signstyle: {
         justifyContent: 'center',
         alignItems: "center",
         alignSelf: "center"
     },
-    signtext: {
+    textview: {
         fontSize: textScale(20),
-        color: 'red'
+        color: 'red',
+        fontWeight:"300"
     }
 })

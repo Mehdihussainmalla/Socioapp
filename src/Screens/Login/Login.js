@@ -20,7 +20,7 @@ import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 const Login = ({ navigation, route }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{8,})");
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{4,})");
     // console.log(route?.params,"route data")
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -119,13 +119,13 @@ const Login = ({ navigation, route }) => {
                         { hide ? 
                         <TouchableOpacity onPress={()=>setHide(false)}>
                         <Image style={{ marginTop: 8, }}
-                            source={imagePath.hide_eye} />
+                            source={imagePath.show_eye} />
                             </TouchableOpacity>
                             
                       :
                       <TouchableOpacity  onPress={()=>setHide(true)}>
                       <Image style={{ marginTop: 8, }}
-                       source={imagePath.show_eye} /> 
+                       source={imagePath.hide_eye} /> 
                        </TouchableOpacity> }
 
                     </View>

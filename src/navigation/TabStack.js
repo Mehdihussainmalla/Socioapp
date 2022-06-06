@@ -8,6 +8,7 @@ import navigationStrings from "./navigationStrings";
 import Home from "../Screens/Home/Home";
 import { moderateScale, moderateVerticalScale } from "react-native-size-matters";
 import { Profile, SearchScreen } from "../Screens";
+import { moderateScaleVertical } from "../styles/responsiveSize";
 const Tab = createBottomTabNavigator();
 export default function TabStack() {
 
@@ -24,13 +25,15 @@ export default function TabStack() {
                     paddingBottom: moderateVerticalScale(5),
                     borderToprRadius: moderateScale(15),
                     borderTopStartRadius: moderateScale(3),
-                    backgroundColor: "lightgrey"
+                    backgroundColor: colors.lightGreyBgB,
+                    
+                
                 }
             }}>
                 <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redB : colors.black }}
+                            <Image style={{ tintColor: focused ? colors.redC: colors.black }}
                                 source={imagePath.Home_icon} />
                         )
                     }
@@ -40,7 +43,7 @@ export default function TabStack() {
                  <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redB : colors.black }}
+                            <Image style={{ tintColor: focused ? colors.redC : colors.black ,}}
                                 source={imagePath.search_icon} />
                         )
                     }
@@ -50,7 +53,7 @@ export default function TabStack() {
                 <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redB : colors.black }}
+                            <Image style={{ tintColor: focused ? colors.redC : colors.black }}
                                 source={imagePath.profile_icon} />
                         )
                     }
