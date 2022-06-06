@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, useEffect, useContext } from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { View, Text, StyleSheet } from 'react-native';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 import { AuthContext } from "./AuthProvider";

@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import {
     DrawerContentScrollView,
     DrawerItemList,
@@ -14,10 +14,10 @@ import Home from '../Screens/Home/Home';
 import { AuthContext } from '../navigation/AuthProvider';
 
 function CustomDrawer(props) {
-    const { user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     // console.log("user is ", user?._user?.email)
     const { navigation } = props;
-const {logout} =useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
 
     const handleScreen = () => {
         navigation.navigate(navigationStrings.HOME)
@@ -25,7 +25,8 @@ const {logout} =useContext(AuthContext);
     }
     return (
         <DrawerContentScrollView style={{
-            backgroundColor: colors.hexacolor,
+            backgroundColor: colors.Light_blue,
+
         }} {...props}>
 
             <View style={{
@@ -37,12 +38,14 @@ const {logout} =useContext(AuthContext);
                     style={{
                         alignItems: "flex-end",
                         paddingVertical: moderateScaleVertical(10),
-                        paddingRight: moderateScaleVertical(10)
+                        paddingRight: moderateScaleVertical(10),
                     }}>
-                    <Text style={{
-                        backgroundColor: colors.white,
-                        fontSize: textScale(12)
-                    }}>Close</Text>
+                    <Image source={imagePath.close_icon}
+                        style={{
+                            backgroundColor: colors.white,
+                            paddingVertical: moderateScaleVertical(8),
+                            paddingHorizontal: moderateScaleVertical(8)
+                        }} />
 
                 </TouchableOpacity>
 
@@ -72,7 +75,7 @@ const {logout} =useContext(AuthContext);
                     marginLeft: moderateScaleVertical(20),
                     marginTop: moderateScale(20)
                 }}>
-                <Image style={{ tintColor: "white", }}
+                <Image style={{ tintColor: "white", marginTop: moderateScaleVertical(5) }}
                     source={imagePath.profile_icon} />
                 <Text style={{
                     color: colors.white,
@@ -86,7 +89,7 @@ const {logout} =useContext(AuthContext);
                 activeOpacity={0.5}
                 style={{
                     flexDirection: "row",
-                    marginLeft: moderateScaleVertical(20),
+                    marginLeft: moderateScaleVertical(22),
                     marginTop: moderateScale(15)
                 }}>
                 <Image style={{ tintColor: "white", }}
@@ -99,17 +102,37 @@ const {logout} =useContext(AuthContext);
                 }}
                 >Search</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={()=>logout()}
+            <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
                 style={{
                     flexDirection: "row",
-                    marginLeft: moderateScaleVertical(20),
+                    marginLeft: moderateScaleVertical(25),
                     marginTop: moderateScale(15)
                 }}>
-                <Image style={{ tintColor: colors.white, }}
-                    source={imagePath.profile_icon} />
+                <Image style={{ tintColor: "white", marginTop: 8, width: width / 16, height: height / 35 }}
+                    source={imagePath.setting_icon} />
                 <Text style={{
+                    color: colors.white,
+                    fontSize: textScale(15), fontWeight: "500",
+                    paddingLeft: moderateVerticalScale(10),
+                    paddingTop: moderateScale(5)
+                }}
+                >Settings</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => logout()}
+                activeOpacity={0.5}
+                style={{
+                    flexDirection: "row",
+                    marginLeft: moderateScaleVertical(25),
+                    marginTop: moderateScale(15),
+                    paddingVertical: 450,
+
+                }}>
+                <Image style={{ tintColor: colors.white, width: width / 17, marginTop: 9, }}
+                    source={imagePath.logout_icon} />
+                <Text style={{
+
                     color: colors.white,
                     fontSize: textScale(15), fontWeight: "500",
                     paddingLeft: moderateVerticalScale(10),

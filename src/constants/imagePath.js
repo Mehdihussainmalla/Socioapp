@@ -7,5 +7,10 @@ export default {
     search_icon:require("../assets/images/Search.png"),
     profile_icon:require("../assets/images/Profile.png"),
     hamsburg:require("../assets/images/drawer.png"),
-    profile_pic:require("../assets/images/profile-pic.png")
+    profile_pic:require("../assets/images/profile-pic.png"),
+    close_icon :require("../assets/images/close-icon.png"),
+    back_arrow: require("../assets/images/back-arrow.png"),
+    logout_icon:require("../assets/images/logout-icon.png"),
+    setting_icon:require("../assets/images/settings.png")
+
 }

@@ -18,7 +18,7 @@ export default function TabStack() {
                 headerShown: false,
                 tabBarActiveTintColor: colors.redB,
                 tabBarInactiveTintColor: colors.black,
-                tabBarShowLabel: false,
+                tabBarShowLabel: true,
                 tabBarStyle: {
                     // marginBottom:3,
                     height: moderateVerticalScale(60),

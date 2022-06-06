@@ -16,22 +16,23 @@ import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
+import { styles } from './styles';
 
 
 const Login = ({ navigation, route }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%\^&\*])(?=.{4,})");
+    const strongRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,20}$/;
     // console.log(route?.params,"route data")
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { login,googleLogin } = useContext(AuthContext);
+    const { login, googleLogin } = useContext(AuthContext);
     const [hide, setHide] = useState();
 
-    useEffect(()=>{
+    useEffect(() => {
         GoogleSignin.configure({
             webClientId: '196889429419-ukv9i2e4229oj3frq0nm2btuamemk46u.apps.googleusercontent.com',
-          });
-    },[])
+        });
+    }, [])
     const handleLogin = () => {
 
         if (email === "") {
@@ -46,9 +47,9 @@ const Login = ({ navigation, route }) => {
             console.log('please enter password')
         }
 
-        else if (password.length < 8) {
-            console.log('please enter correct password')
-        }
+        // else if (password.length < 8) {
+        //     console.log('please enter correct password')
+        // }
 
         else if (!strongRegex.test(password)) {
             console.log('please enter valid password')
@@ -60,50 +61,24 @@ const Login = ({ navigation, route }) => {
     }
     return (
         <Wrappercontainer>
-            <SafeAreaView style={{ height: "100%", width: "100%", }}>
-                <View style={{
-                    marginTop: moderateVerticalScale(50),
-                    justifyContent: 'center',
-                    alignItems: "center"
-                }}>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.headtext}>
                     <Text style={{
                         color: colors.blue
                         , fontSize: textScale(20)
                     }}>Welcome to Social App</Text>
                 </View>
-                <View style={{
-                    marginTop: moderateVerticalScale(50),
-                    justifyContent: 'center', alignItems: "center"
-                }}>
-                    <Text style={{
-                        color: colors.blue,
-                        fontSize: textScale(20)
-                    }} > Login</Text>
+                <View style={styles.descview}>
+                    <Text style={styles.desctext} > Login</Text>
                 </View>
-                <View style={{
-                    // alignItems: 'center',
-                    borderWidth: 0.5,
-                    marginLeft: moderateScaleVertical(30),
-                    marginRight: moderateScaleVertical(30),
-                    marginTop: moderateScaleVertical(45),
-                    // backgroundColor: colors.greyA
-                }}>
+                <View style={styles.mainview}>
                     <TextInputComponent
                         value={email}
                         onChangeText={(email) => setEmail(email)}
                         input={{ fontSize: textScale(10), color: colors.blackB }}
                         placeholder='please enter email' />
                 </View>
-                <View style={{
-                    // alignItems: 'center',
-                    borderWidth: 0.5,
-                    marginLeft: moderateScaleVertical(30),
-                    marginRight: moderateScaleVertical(30),
-                    marginTop: moderateScaleVertical(20),
-                    flexDirection: "row",
-                    justifyContent: "space-between"
-                    // backgroundColor: colors.greyA
-                }}>
+                <View style={styles.passwiew}>
 
 
                     <TextInputComponent
@@ -116,17 +91,17 @@ const Login = ({ navigation, route }) => {
                         }}
                         placeholder='please enter password' />
                     <View style={{ paddingRight: 10, }}>
-                        { hide ? 
-                        <TouchableOpacity onPress={()=>setHide(false)}>
-                        <Image style={{ marginTop: 8, }}
-                            source={imagePath.show_eye} />
+                        {hide ?
+                            <TouchableOpacity onPress={() => setHide(false)}>
+                                <Image style={{ marginTop: 8, }}
+                                    source={imagePath.show_eye} />
                             </TouchableOpacity>
-                            
-                      :
-                      <TouchableOpacity  onPress={()=>setHide(true)}>
-                      <Image style={{ marginTop: 8, }}
-                       source={imagePath.hide_eye} /> 
-                       </TouchableOpacity> }
+
+                            :
+                            <TouchableOpacity onPress={() => setHide(true)}>
+                                <Image style={{ marginTop: 8, }}
+                                    source={imagePath.hide_eye} />
+                            </TouchableOpacity>}
 
                     </View>
                 </View>
@@ -135,7 +110,7 @@ const Login = ({ navigation, route }) => {
                     // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
                     btnStyle={{ marginTop: moderateScaleVertical(50) }}
                     ButtonText='Login' />
-                <ButtonComp onPress={()=>googleLogin()}
+                <ButtonComp onPress={() => googleLogin()}
                     btnIcon={imagePath.google_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
                     ButtonText='Login with Google' />
@@ -148,16 +123,10 @@ const Login = ({ navigation, route }) => {
                     flexDirection: "row", justifyContent: "center",
                     marginHorizontal: moderateScaleVertical(27)
                 }}>
-                    <Text style={{
-                        fontSize: textScale(12),
-                        paddingHorizontal: 10
-                    }}>New here?</Text>
+                    <Text style={styles.bottomdesc}>New here?</Text>
                     <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SIGNUP)}
                         activeOpacity={0.5}>
-                        <Text style={{
-                            fontSize: textScale(12),
-                            color: colors.blue
-                        }}>create account</Text>
+                        <Text style={styles.belowdesctext}>create account</Text>
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
@@ -165,11 +134,6 @@ const Login = ({ navigation, route }) => {
         </Wrappercontainer>
     );
 };
-
-
-const styles = StyleSheet.create({
-
-});
 
 
 export default Login;
