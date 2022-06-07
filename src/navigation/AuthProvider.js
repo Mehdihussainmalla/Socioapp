@@ -67,13 +67,12 @@ export const AuthProvider = ({ children }) => {
                 forgetPassword: async (email) => {
                     try {
                         await auth().sendPasswordResetEmail(email)
-                        Alert.alert("message sent sucessfully");
-                        ;
+                         Alert.alert("message sent sucessfully");
+                                           
                     } catch (error) {
-                        
+                        // Alert.alert("An email address must be provided ")
                         console.log(error, "An email address must be provided ")
                     }
-
 
                 },
                 logout: async () => {
