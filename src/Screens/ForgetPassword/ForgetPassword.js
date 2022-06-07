@@ -18,13 +18,13 @@ const ForgetPassword = ({navigation}) => {
 
  const forget=()=>{
     forgetPassword(email)
-    {email ?  navigation.navigate(navigationStrings.LOGIN) :  Alert. alert("please enter email address")}
-    // if(email){
-    //     navigation.navigate(navigationStrings.LOGIN)
-    // }
-    // else{
-    //    Alert. alert("please enter email address")
-    // }
+    if(email){
+        navigation.navigate(navigationStrings.LOGIN)
+        Alert.alert("dhfhdh")
+    }
+    else{
+       Alert. alert("please enter email address")
+    }
  }
 
     return (
