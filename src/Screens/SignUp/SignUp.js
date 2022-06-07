@@ -73,7 +73,7 @@ const SignUp = ({ navigation }) => {
                     <TextInputComponent
                         value={email}
                         onChangeText={(email) => setEmail(email)}
-                        input={{ fontSize: textScale(10), color: colors.blackB }}
+                        input={{ fontSize: textScale(10), color: colors.blackB,  }}
                         placeholder='please enter email' />
                 </View>
                 <View style={styles.inputview}>
@@ -81,7 +81,7 @@ const SignUp = ({ navigation }) => {
                         value={password}
                         secureTextEntry={hide}
                         onChangeText={(password) => setPassword(password)}
-                        input={{ fontSize: textScale(10), color: colors.black }}
+                        input={{ fontSize: textScale(10), color: colors.black, }}
                         placeholder='please enter password' />
                     {hide ? <TouchableOpacity onPress={() => setHide(false)}
                         style={{ paddingRight: 10 }}>

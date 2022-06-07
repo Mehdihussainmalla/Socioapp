@@ -64,7 +64,7 @@ function CustomDrawer(props) {
                     paddingVertical: moderateScaleVertical(5),
                     marginTop: moderateScaleVertical(14), alignSelf: 'center'
                 }}>
-                    <Text style={{ fontSize: textScale(12), color: colors.white , fontWeight:"800"}}>{user?._user?.email}</Text>
+                    <Text style={{ fontSize: textScale(12), color: colors.white, fontWeight: "800" }}>{user?._user?.email}</Text>
                 </View>
             </View>
 
@@ -120,26 +120,31 @@ function CustomDrawer(props) {
                 >Settings</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => logout()}
-                activeOpacity={0.5}
+            <View
+
                 style={{
-                    flexDirection: "row",
+
                     marginLeft: moderateScaleVertical(25),
                     marginTop: moderateScale(15),
-                    paddingVertical: 450,
+                    paddingVertical: 390,
 
                 }}>
-                <Image style={{ tintColor: colors.white, width: width / 17, marginTop: 9, }}
-                    source={imagePath.logout_icon} />
-                <Text style={{
+                <TouchableOpacity
+                    style={{ flexDirection: "row", }}
+                    activeOpacity={0.5}
+                    onPress={() => logout()}>
+                    <Image style={{ tintColor: colors.white, width: width / 17, marginTop: 2, }}
+                        source={imagePath.logout_icon} />
+                    <Text style={{
 
-                    color: colors.white,
-                    fontSize: textScale(15), fontWeight: "500",
-                    paddingLeft: moderateVerticalScale(10),
-                    paddingTop: moderateScale(5)
-                }}
-                >SignOut</Text>
-            </TouchableOpacity>
+                        color: colors.white,
+                        fontSize: textScale(15), fontWeight: "500",
+                        paddingLeft: moderateVerticalScale(10),
+                        // paddingTop: moderateScale(5)
+                    }}
+                    >SignOut</Text>
+                </TouchableOpacity>
+            </View>
 
         </DrawerContentScrollView>
     );

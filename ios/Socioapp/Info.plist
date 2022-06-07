@@ -23,6 +23,8 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb961328847836010</string>
@@ -47,9 +49,11 @@
 	<array>
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
+    <key>FB AUTH TOKEN</key>
+		<string>48062002c3e01e4f9c1e9c4e775af33e</string>
 		<string>fbshareextension</string>
 	</array>
+  
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -80,4 +84,5 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
+
 </plist>

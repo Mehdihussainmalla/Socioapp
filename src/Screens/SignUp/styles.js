@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { moderateVerticalScale } from "react-native-size-matters";
+import { moderateScale, moderateVerticalScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
 import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 
@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
     mainview: {
         // alignItems: 'center',
         borderWidth: 0.5,
+        borderRadius:moderateScale(5),
         marginLeft: moderateScaleVertical(30),
         marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(45),
@@ -36,7 +37,8 @@ export const styles = StyleSheet.create({
     },
     inputview: {
 
-        borderWidth: 0.4,
+        borderWidth: 0.5,
+        borderRadius:moderateScale(5),
         marginLeft: moderateScaleVertical(30),
         marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(12),

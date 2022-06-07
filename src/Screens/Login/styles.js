@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { moderateVerticalScale } from "react-native-size-matters";
+import { moderateScale, moderateVerticalScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
 import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
@@ -23,21 +23,24 @@ export const styles = StyleSheet.create({
     },
     mainview: {
         // alignItems: 'center',
-        borderWidth: 0.5,
-        marginLeft: moderateScaleVertical(30),
-        marginRight: moderateScaleVertical(30),
+        // borderWidth: 0.5,
+        // marginLeft: moderateScaleVertical(30),
+        // marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(45),
         // backgroundColor: colors.greyA
     },
     passwiew: {
+        // backgroundColor:'red',
+      borderWidth: 0.5,
         // alignItems: 'center',
-        borderWidth: 0.5,
-        marginLeft: moderateScaleVertical(30),
+        // borderWidth: 0.5,
+     marginLeft: moderateScaleVertical(13),
         marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(20),
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
         // backgroundColor: colors.greyA
+        borderRadius:moderateScale(5)
     },
     belowdesctext: {
         fontSize: textScale(12),

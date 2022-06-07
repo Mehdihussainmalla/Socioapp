@@ -2,12 +2,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState, useEffect, useContext } from 'react';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 import { AuthContext } from "./AuthProvider";
 import auth from '@react-native-firebase/auth';
 const Stack = createNativeStackNavigator();
+
 const Routes = () => {
     const {user,setUser} = useContext(AuthContext);
     const [initializing, setInitializing] = useState(true)

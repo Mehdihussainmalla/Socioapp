@@ -19,13 +19,13 @@ import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
 
 
-const Login = ({ navigation, route }) => {
+const Login = ({ navigation }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
     const strongRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,20}$/;
     // console.log(route?.params,"route data")
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { login, googleLogin,facebookLogin } = useContext(AuthContext);
+    const { login, googleLogin, facebookLogin } = useContext(AuthContext);
     const [hide, setHide] = useState();
 
     useEffect(() => {
@@ -75,17 +75,18 @@ const Login = ({ navigation, route }) => {
                     <TextInputComponent
                         value={email}
                         onChangeText={(email) => setEmail(email)}
-                        input={{ fontSize: textScale(10), color: colors.blackB }}
+                        input={{ fontSize: textScale(10), color: colors.blackB,
+                             borderWidth: 0.5,paddingHorizontal:moderateScaleVertical(10), }}
                         placeholder='please enter email' />
                 </View>
+
                 <View style={styles.passwiew}>
-
-
                     <TextInputComponent
                         value={password}
                         secureTextEntry={hide}
                         onChangeText={(password) => setPassword(password)}
                         input={{
+                        
                             fontSize: textScale(10),
                             color: colors.black
                         }}
@@ -105,6 +106,19 @@ const Login = ({ navigation, route }) => {
 
                     </View>
                 </View>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate(navigationStrings.FORGETPASSWORD)}
+                    activeOpacity={0.5}
+                    style={{
+                        marginTop: moderateScaleVertical(10),
+                        alignItems: "flex-end",
+                        marginHorizontal: moderateScaleVertical(50)
+                    }}>
+                    <Text style={{
+                        alignContent: "flex-end",
+                        justifyContent: "flex-end", color: colors.blue
+                    }}>ForgetPassword?</Text>
+                </TouchableOpacity>
                 <ButtonComp
                     onPress={handleLogin}
                     // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
@@ -114,7 +128,7 @@ const Login = ({ navigation, route }) => {
                     btnIcon={imagePath.google_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
                     ButtonText='Login with Google' />
-                <ButtonComp onPress={()=>facebookLogin()}
+                <ButtonComp onPress={() => facebookLogin()}
                     btnIcon={imagePath.facebook_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
                     ButtonText='Login with facebook' />

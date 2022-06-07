@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Home, Login, SignUp } from '../Screens';
+import { ForgetPassword, Home, Login, SignUp } from '../Screens';
 import navigationStrings from './navigationStrings';
 
 
@@ -15,6 +15,8 @@ const AuthStack = (Stack) => {
                     component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name={navigationStrings.SIGNUP}
                     component={SignUp} options={{ headerShown: false }} />
+                    <Stack.Screen  name={navigationStrings.FORGETPASSWORD}
+                    component={ForgetPassword} options={{headerShown:false}}/>
 
             </Stack.Navigator>
         </>

@@ -5,5 +5,6 @@ export default {
     PROFILE:"Profile",
     SEARCH_SCREEN:"Search ",
     TABSTACK:"Tabstack",
-    DRAWER:"Drawer"
+    DRAWER:"Drawer",
+    FORGETPASSWORD:"Forget Password",
 }
