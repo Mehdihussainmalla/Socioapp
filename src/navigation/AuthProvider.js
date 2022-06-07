@@ -1,7 +1,10 @@
 import React, { createContext, useState } from "react";
 import auth from "@react-native-firebase/auth";
+import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
+
+
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
@@ -60,6 +63,18 @@ export const AuthProvider = ({ children }) => {
                         console.log(error)
 
                     }
+                },
+                forgetPassword: async (email) => {
+                    try {
+                        await auth().sendPasswordResetEmail(email)
+                        Alert.alert("message sent sucessfully");
+                        ;
+                    } catch (error) {
+                        
+                        console.log(error, "An email address must be provided ")
+                    }
+
+
                 },
                 logout: async () => {
                     try {

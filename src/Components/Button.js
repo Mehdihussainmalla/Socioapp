@@ -16,7 +16,7 @@ export default function ButtonComp({
     return (
 
         <TouchableOpacity
-        activeOpacity={0.8}
+            activeOpacity={0.8}
             style={{
                 ...styles.btnStyle,
                 ...btnStyle,
@@ -41,20 +41,20 @@ const styles = StyleSheet.create({
     btnStyle: {
         height: moderateScale(48),
         // width: moderateScale(328),
-        marginLeft:moderateVerticalScale(24),
-        marginRight:moderateVerticalScale(24),
-        backgroundColor:colors.redB,
+        marginLeft: moderateVerticalScale(24),
+        marginRight: moderateVerticalScale(24),
+        backgroundColor: colors.redB,
         borderRadius: moderateScale(8),
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:"center"
+        justifyContent: "center"
     },
     buttonTxt: {
         fontSize: textScale(14),
         fontWeight: '600',
         textAlign: 'center',
         color: colors.white,
-        paddingHorizontal:15,
+        paddingHorizontal: 15,
         // fontFamily:fontFamily.BarlowBold
     },
     imgIcon: {

@@ -22,18 +22,11 @@ export const styles = StyleSheet.create({
         fontSize: textScale(20)
     },
     mainview: {
-        // alignItems: 'center',
-        // borderWidth: 0.5,
-        // marginLeft: moderateScaleVertical(30),
-        // marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(45),
         // backgroundColor: colors.greyA
     },
     passwiew: {
-        // backgroundColor:'red',
       borderWidth: 0.5,
-        // alignItems: 'center',
-        // borderWidth: 0.5,
      marginLeft: moderateScaleVertical(13),
         marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(20),
