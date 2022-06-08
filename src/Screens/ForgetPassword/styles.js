@@ -5,17 +5,8 @@ import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 
 export const styles = StyleSheet.create({
     container: {
-        paddingVertical: moderateScaleVertical(5),
-        flex: 0.5
-
-
-    },
-    headertext: {
-        fontSize: textScale(15),
-        fontWeight: "500",
-        marginTop: moderateScaleVertical(10),
-        alignContent: "center",
-        alignSelf: "center",
+       
+        flex: 1
     },
     titlestyle: {
         paddingHorizontal: moderateScaleVertical(20),
@@ -30,8 +21,8 @@ export const styles = StyleSheet.create({
     },
     titletxt:
     {
-        fontSize: textScale(12),
-        fontWeight: "400",
+        fontSize: textScale(15),
+        fontWeight: "500",
     }
 
 })

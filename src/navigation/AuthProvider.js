@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }) => {
                 },
                 forgetPassword: async (email) => {
                     try {
+                        if (email=="")
                         await auth().sendPasswordResetEmail(email)
                         showMessage({
                             message: "message sent sucessfully to the mail",
