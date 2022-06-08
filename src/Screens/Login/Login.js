@@ -18,7 +18,7 @@ import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
-
+import strings from '../../constants/lang';
 
 const Login = ({ navigation }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
@@ -37,20 +37,20 @@ const Login = ({ navigation }) => {
     const handleLogin = () => {
 
         if (email === "") {
-           
+
             // console.log('please enter email')
         }
 
         else if (!emailRegex.test(email)) {
             showMessage({
-                message:"please enter email",
-                type:"danger",
+                message: "Please enter email",
+                type: "danger",
             })
         }
         else if (!strongRegex.test(password)) {
             showMessage({
-                message:"please enter password",
-                type:"danger",
+                message: "Please enter password",
+                type: "danger",
             })
         }
         else {
@@ -61,22 +61,19 @@ const Login = ({ navigation }) => {
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>
-                <View style={styles.headtext}>
-                    <Text style={{
-                        color: colors.blue
-                        , fontSize: textScale(20)
-                    }}>Welcome to Social App</Text>
-                </View>
+            
                 <View style={styles.descview}>
-                    <Text style={styles.desctext} > Login</Text>
+                    <Text style={styles.desctext} >{strings.LOGIN}</Text>
                 </View>
                 <View style={styles.mainview}>
                     <TextInputComponent
                         value={email}
                         onChangeText={(email) => setEmail(email)}
-                        input={{ fontSize: textScale(10), color: colors.blackB,
-                             borderWidth: 0.5,paddingHorizontal:moderateScaleVertical(10), }}
-                        placeholder='please enter email' />
+                        input={{
+                            fontSize: textScale(10), color: colors.blackB,
+                            borderWidth: 0.5, paddingHorizontal: moderateScaleVertical(10),
+                        }}
+                        placeholder={strings.ENTER_EMAIL} />
                 </View>
 
                 <View style={styles.passwiew}>
@@ -85,11 +82,11 @@ const Login = ({ navigation }) => {
                         secureTextEntry={hide}
                         onChangeText={(password) => setPassword(password)}
                         input={{
-                        
+
                             fontSize: textScale(10),
                             color: colors.black
                         }}
-                        placeholder='please enter password' />
+                        placeholder={strings.ENTER_PASSWORD} />
                     <View style={{ paddingRight: 10, }}>
                         {hide ?
                             <TouchableOpacity onPress={() => setHide(false)}>
@@ -116,30 +113,30 @@ const Login = ({ navigation }) => {
                     <Text style={{
                         alignContent: "flex-end",
                         justifyContent: "flex-end", color: colors.blue
-                    }}>ForgetPassword?</Text>
+                    }}>{strings.FORGOT_PASSWORD}?</Text>
                 </TouchableOpacity>
                 <ButtonComp
                     onPress={handleLogin}
                     // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
                     btnStyle={{ marginTop: moderateScaleVertical(50) }}
-                    ButtonText='Login' />
+                    ButtonText={strings.LOGIN} />
                 <ButtonComp onPress={() => googleLogin()}
                     btnIcon={imagePath.google_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
-                    ButtonText='Login with Google' />
+                    ButtonText={strings.GOOGLE_LOGIN} />
                 <ButtonComp onPress={() => facebookLogin()}
                     btnIcon={imagePath.facebook_icon}
                     btnStyle={{ marginTop: moderateScaleVertical(20) }}
-                    ButtonText='Login with facebook' />
+                    ButtonText={strings.FB_LOGIN} />
                 <View style={{
                     marginTop: moderateScaleVertical(10),
                     flexDirection: "row", justifyContent: "center",
                     marginHorizontal: moderateScaleVertical(27)
                 }}>
-                    <Text style={styles.bottomdesc}>New here?</Text>
+                    <Text style={styles.bottomdesc}>{strings.NEW_HERE}</Text>
                     <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SIGNUP)}
                         activeOpacity={0.5}>
-                        <Text style={styles.belowdesctext}>create account</Text>
+                        <Text style={styles.belowdesctext}>{strings.NEW_ACCOUNT}</Text>
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>

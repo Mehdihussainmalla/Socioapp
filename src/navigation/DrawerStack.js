@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native'
 import navigationStrings from './navigationStrings';
 import { Home, Profile } from '../Screens';
@@ -16,10 +16,9 @@ const DrawerStack = () => {
                 drawerContent={(props) => <CustomDrawer {...props} />}
                 initialRouteName={navigationStrings.HOME}>
 
-                <Drawer.Screen options={{ headerShown: false }} name={navigationStrings.TABSTACK}
+                <Drawer.Screen options={{ headerShown: false }} 
+                name={navigationStrings.TABSTACK}
                     component={TabStack} />
-                {/* <Drawer.Screen name={navigationStrings.PROFILE}
-                component={Profile} />  */}
 
 
 

@@ -4,11 +4,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, SafeAreaView } from 'r
 import imagePath from '../../constants/imagePath';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { styles } from './styles';
-
+import Header from '../../Components/Header';
 const Home = (props) => {
     const { navigation } = props;
     // console.log("props are", props)
-    const { user, logout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     return (
         <SafeAreaView style={styles.container}>
             <TouchableOpacity
@@ -17,6 +17,7 @@ const Home = (props) => {
                 style={styles.drawerstyle}>
                 <Image source={imagePath.hamsburg} />
             </TouchableOpacity>
+            
             <View style={styles.idstyle}>
                 <Text style={styles.idtext}>UID_is:-{user.uid}</Text>
                 <View style={{ flex: 0.4, marginTop: 20 }}>

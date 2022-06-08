@@ -8,7 +8,7 @@ import navigationStrings from "./navigationStrings";
 import Home from "../Screens/Home/Home";
 import { moderateScale, moderateVerticalScale } from "react-native-size-matters";
 import { Profile, SearchScreen } from "../Screens";
-import { moderateScaleVertical } from "../styles/responsiveSize";
+
 const Tab = createBottomTabNavigator();
 export default function TabStack() {
 
@@ -16,34 +16,34 @@ export default function TabStack() {
         <>
             <Tab.Navigator screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: colors.redB,
+                tabBarActiveTintColor: colors.white,
                 tabBarInactiveTintColor: colors.black,
                 tabBarShowLabel: true,
                 tabBarStyle: {
-                    // marginBottom:3,
+
                     height: moderateVerticalScale(60),
-                    paddingBottom: moderateVerticalScale(5),
+                    paddingBottom: moderateVerticalScale(8),
                     borderToprRadius: moderateScale(15),
                     borderTopStartRadius: moderateScale(3),
-                    backgroundColor: colors.lightGreyBgB,
-                    
-                
+                    backgroundColor: colors.blackOpacity30,
+
+
                 }
             }}>
                 <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redC: colors.black }}
+                            <Image style={{ tintColor: focused ? colors.redE : colors.black }}
                                 source={imagePath.Home_icon} />
                         )
                     }
                 }}
                     name={navigationStrings.HOME} component={Home}
                 />
-                 <Tab.Screen options={{
+                <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redC : colors.black ,}}
+                            <Image style={{ tintColor: focused ? colors.redC : colors.black, }}
                                 source={imagePath.search_icon} />
                         )
                     }
@@ -60,7 +60,7 @@ export default function TabStack() {
                 }}
                     name={navigationStrings.PROFILE} component={Profile}
                 />
-                
+
 
             </Tab.Navigator>
 

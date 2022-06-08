@@ -15,10 +15,9 @@ import { AuthContext } from '../navigation/AuthProvider';
 import { showMessage } from 'react-native-flash-message';
 
 function CustomDrawer(props) {
-    const { user } = useContext(AuthContext);
+    const { user ,logout} = useContext(AuthContext);
     // console.log("user is ", user?._user?.email)
     const { navigation } = props;
-    const { logout } = useContext(AuthContext);
 
     const handleScreen = () => {
         navigation.navigate(navigationStrings.HOME)

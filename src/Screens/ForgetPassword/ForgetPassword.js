@@ -5,10 +5,11 @@ import { moderateScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
+import strings from '../../constants/lang';
 import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
-import colors from '../../styles/colors';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
+import { styles } from './styles';
 
 // create a component
 const ForgetPassword = ({navigation}) => {
@@ -21,57 +22,34 @@ const ForgetPassword = ({navigation}) => {
     if(email){
         navigation.navigate(navigationStrings.LOGIN)
  }
- else return false
+ 
  }
     return (
         <Wrappercontainer>
             <View style={styles.container}>
 
-                <Text style={{
-                    fontSize: textScale(15), fontWeight: "500", marginTop: 10,
-                    alignContent: "center", alignSelf: "center",
-                }}>ForgetPassword</Text>
+                <Text style={styles.headertext}>{strings.FORGOT_PASSWORD}</Text>
 
-                <View style={{
-                    paddingHorizontal: moderateScaleVertical(20),
-                    marginTop: moderateScaleVertical(50),
-                }}>
-                    <Text style={{ fontSize: textScale(12), fontWeight: "400", }}>
-                        Enter your email address we will help reset your password
+                <View style={styles.titlestyle}>
+                    <Text style={styles.titletxt}>
+                        {strings.TITLE}
                     </Text>
                 </View>
             </View>
             <TextInputComponent onPress={() => alert("hey")}
                 value={email}
                 onChangeText={(email) => setEmail(email)}
-                input={{
-                    borderRadius: 5, borderWidth: 0.5,
-                    marginTop: moderateScaleVertical(20),
-                    fontSize: textScale(13),
-                    paddingHorizontal: moderateScale(10)
-                }}
-                placeholder='enter email' />
+                input={styles.input}
+                placeholder={strings.ENTER_EMAIL}/>
 
             <ButtonComp
                 // onPress={() => alert("in process")}
                 onPress={forget}
                 btnStyle={{ marginTop: moderateScaleVertical(70), }}
-                ButtonText="Continue" />
+                ButtonText={strings.CONTINUE} />
 
         </Wrappercontainer>
     );
 };
 
-// define your styles
-const styles = StyleSheet.create({
-    container: {
-        // backgroundColor:colors.hexacolor,
-        paddingVertical: moderateScaleVertical(5),
-        flex: 0.5
-
-
-    },
-});
-
-//make this component available to the app
 export default ForgetPassword;

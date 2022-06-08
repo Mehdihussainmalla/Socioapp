@@ -12,7 +12,7 @@ const MainStack = (Stack) => {
          <Stack.Navigator  >
          
             <Stack.Screen
-             options={{ headerShown: false }}
+             options={{ headerShown: false}}
              name={navigationStrings.DRAWER}
                component={DrawerStack}  />
                {/* <Stack.Screen 

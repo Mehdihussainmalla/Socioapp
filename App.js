@@ -1,16 +1,19 @@
 //import liraries
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { AuthProvider } from './src/navigation/AuthProvider';
 import Routes from './src/navigation/Routes';
+import { StatusBarHeight } from './src/styles/responsiveSize';
 
 
 const App = () => {
   return (
 
     <AuthProvider>
-      <FlashMessage duration={2000}
+      <FlashMessage
+        //  hideStatusBar={true}
+        //  statusBarHeight={sta.currentHeight}
+        duration={2000}
         position="top" />
       <Routes />
     </AuthProvider>

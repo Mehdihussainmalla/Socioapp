@@ -11,6 +11,7 @@ import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
+import strings from '../../constants/lang';
 import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
@@ -75,18 +76,15 @@ const SignUp = ({ navigation }) => {
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>
-                <View style={styles.headstyle}>
-                    <Text style={styles.headtext}>Welcome to Social App</Text>
-                </View>
                 <View style={styles.desc}>
-                    <Text style={styles.desctext} > SignUp Here</Text>
+                    <Text style={styles.desctext} > {strings.SIGN_UP_HERE}</Text>
                 </View>
                 <View style={styles.mainview}>
                     <TextInputComponent
                         value={email}
                         onChangeText={(email) => setEmail(email)}
                         input={{ fontSize: textScale(10), color: colors.blackB, }}
-                        placeholder='please enter email' />
+                        placeholder={strings.ENTER_EMAIL} />
                 </View>
                 <View style={styles.inputview}>
                     <TextInputComponent
@@ -94,7 +92,7 @@ const SignUp = ({ navigation }) => {
                         secureTextEntry={hide}
                         onChangeText={(password) => setPassword(password)}
                         input={{ fontSize: textScale(10), color: colors.black, }}
-                        placeholder='please enter password' />
+                        placeholder={strings.ENTER_PASSWORD} />
                     {hide ? <TouchableOpacity onPress={() => setHide(false)}
                         style={{ paddingRight: 10 }}>
                         <Image style={{ marginTop: 8 }}
@@ -112,7 +110,7 @@ const SignUp = ({ navigation }) => {
                         secureTextEntry={hideIcon}
                         onChangeText={(confirmPassword) => setConfirmpassword(confirmPassword)}
                         input={{ fontSize: textScale(10), color: colors.black }}
-                        placeholder='confirm password' />
+                        placeholder={strings.CONFIRM_PASSWORD} />
 
                     {hideIcon ? <TouchableOpacity onPress={() => setHideIcon(false)}
                         style={{ paddingRight: 10 }}>
@@ -128,19 +126,19 @@ const SignUp = ({ navigation }) => {
                 <ButtonComp
                     onPress={handleSignup}
                     btnStyle={{ marginTop: moderateScaleVertical(90), }}
-                    ButtonText='SignUp' />
+                    ButtonText={strings.SIGN_UP} />
 
                 <View style={styles.usertext}>
                     <Text style={{
                         fontSize: textScale(12),
                         paddingHorizontal: 10
-                    }}>already user?</Text>
+                    }}>{strings.ALREADY_USER}</Text>
                     <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.LOGIN)}
                         activeOpacity={0.5}>
                         <Text style={{
                             fontSize: textScale(12),
                             color: colors.blue
-                        }}>SignIn</Text>
+                        }}>{strings.LOGIN}</Text>
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
