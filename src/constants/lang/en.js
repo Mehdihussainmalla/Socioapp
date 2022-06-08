@@ -13,4 +13,8 @@ export default {
     ALREADY_USER:"already user?",
     CONTINUE:"Continue",
     TITLE:"Enter your email address we will help reset your password",
+    SEARCH:"Search",
+    SETTINGS:"Settings",
+    HOME:"Home",
+    SIGN_OUT:"SignOut"
 }

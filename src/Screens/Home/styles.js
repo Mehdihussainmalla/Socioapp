@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.blackOpacity40,
     },
     drawerstyle: {
-
+        flexDirection:"row",
         marginTop: moderateVerticalScale(15),
         marginHorizontal: moderateVerticalScale(10)
 

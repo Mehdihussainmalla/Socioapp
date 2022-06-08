@@ -16,6 +16,7 @@ const Home = (props) => {
                 activeOpacity={0.5}
                 style={styles.drawerstyle}>
                 <Image source={imagePath.hamsburg} />
+                <Header  title="Home"/>
             </TouchableOpacity>
             
             <View style={styles.idstyle}>

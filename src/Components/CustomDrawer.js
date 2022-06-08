@@ -13,9 +13,10 @@ import { moderateScale, moderateVerticalScale } from 'react-native-size-matters'
 import Home from '../Screens/Home/Home';
 import { AuthContext } from '../navigation/AuthProvider';
 import { showMessage } from 'react-native-flash-message';
+import strings from '../constants/lang';
 
 function CustomDrawer(props) {
-    const { user ,logout} = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     // console.log("user is ", user?._user?.email)
     const { navigation } = props;
 
@@ -83,7 +84,7 @@ function CustomDrawer(props) {
                     paddingLeft: moderateVerticalScale(10),
                     paddingTop: moderateScale(5)
                 }}
-                >Home</Text>
+                >{strings.HOME}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
@@ -100,7 +101,7 @@ function CustomDrawer(props) {
                     paddingLeft: moderateVerticalScale(10),
                     paddingTop: moderateScale(5)
                 }}
-                >Search</Text>
+                >{strings.SEARCH}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
@@ -117,7 +118,7 @@ function CustomDrawer(props) {
                     paddingLeft: moderateVerticalScale(10),
                     paddingTop: moderateScale(5)
                 }}
-                >Settings</Text>
+                >{strings.SETTINGS}</Text>
             </TouchableOpacity>
 
             <View
@@ -137,7 +138,7 @@ function CustomDrawer(props) {
                     onPress={() => logout(
                         showMessage({
                             message: "logout succussfully",
-                            type:"success"
+                            type: "success"
                         })
                     )}>
                     <Image style={{ tintColor: colors.white, width: width / 17, marginTop: 2, }}
@@ -149,7 +150,7 @@ function CustomDrawer(props) {
                         paddingLeft: moderateVerticalScale(10),
                         // paddingTop: moderateScale(5)
                     }}
-                    >SignOut</Text>
+                    >{strings.SIGN_OUT}</Text>
                 </TouchableOpacity>
             </View>
 
