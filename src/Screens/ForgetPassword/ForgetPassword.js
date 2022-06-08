@@ -20,13 +20,9 @@ const ForgetPassword = ({navigation}) => {
     forgetPassword(email)
     if(email){
         navigation.navigate(navigationStrings.LOGIN)
-        Alert.alert("dhfhdh")
-    }
-    else{
-       Alert. alert("please enter email address")
-    }
  }
-
+ else return false
+ }
     return (
         <Wrappercontainer>
             <View style={styles.container}>

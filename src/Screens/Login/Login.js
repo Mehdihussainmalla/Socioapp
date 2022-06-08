@@ -7,6 +7,7 @@ import {
     Image
 
 } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 import { moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
@@ -36,23 +37,21 @@ const Login = ({ navigation }) => {
     const handleLogin = () => {
 
         if (email === "") {
-            console.log('please enter email')
+           
+            // console.log('please enter email')
         }
 
         else if (!emailRegex.test(email)) {
-            console.log('Invalid email')
+            showMessage({
+                message:"please enter email",
+                type:"danger",
+            })
         }
-
-        else if (password === "") {
-            console.log('please enter password')
-        }
-
-        // else if (password.length < 8) {
-        //     console.log('please enter correct password')
-        // }
-
         else if (!strongRegex.test(password)) {
-            console.log('please enter valid password')
+            showMessage({
+                message:"please enter password",
+                type:"danger",
+            })
         }
         else {
             login(email, password)

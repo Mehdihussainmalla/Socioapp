@@ -3,6 +3,7 @@ import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
+import { showMessage } from "react-native-flash-message";
 
 
 
@@ -67,11 +68,24 @@ export const AuthProvider = ({ children }) => {
                 forgetPassword: async (email) => {
                     try {
                         await auth().sendPasswordResetEmail(email)
-                         Alert.alert("message sent sucessfully");
-                                           
+                        showMessage({
+                            message: "message sent sucessfully to the mail",
+                            type: "success",
+                            color: "yellow"
+
+                        })
+
+                        return true
+
                     } catch (error) {
-                        // Alert.alert("An email address must be provided ")
+                        showMessage({
+                            message: "An email address must be provided",
+                            type: "danger",
+                                                    
+
+                        })
                         console.log(error, "An email address must be provided ")
+                        return false
                     }
 
                 },

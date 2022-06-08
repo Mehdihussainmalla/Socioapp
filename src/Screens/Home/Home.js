@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image ,SafeAreaView} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { styles } from './styles';
@@ -23,12 +23,6 @@ const Home = (props) => {
                     <Text style={styles.emailstyle}>userid_is:-{user._user.email}</Text>
                 </View>
             </View>
-            <TouchableOpacity
-                onPress={() => logout()}
-
-                style={styles.signstyle}>
-                <Text style={styles.textview}>SignOut</Text>
-            </TouchableOpacity>
         </SafeAreaView>
     );
 };

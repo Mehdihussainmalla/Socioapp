@@ -12,6 +12,7 @@ import { height, moderateScaleVertical, textScale, width } from '../styles/respo
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 import Home from '../Screens/Home/Home';
 import { AuthContext } from '../navigation/AuthProvider';
+import { showMessage } from 'react-native-flash-message';
 
 function CustomDrawer(props) {
     const { user } = useContext(AuthContext);
@@ -130,9 +131,16 @@ function CustomDrawer(props) {
 
                 }}>
                 <TouchableOpacity
+
                     style={{ flexDirection: "row", }}
                     activeOpacity={0.5}
-                    onPress={() => logout()}>
+
+                    onPress={() => logout(
+                        showMessage({
+                            message: "logout succussfully",
+                            type:"success"
+                        })
+                    )}>
                     <Image style={{ tintColor: colors.white, width: width / 17, marginTop: 2, }}
                         source={imagePath.logout_icon} />
                     <Text style={{

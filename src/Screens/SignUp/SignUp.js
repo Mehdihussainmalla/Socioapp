@@ -6,6 +6,7 @@ import {
     Image
 
 } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
@@ -32,29 +33,40 @@ const SignUp = ({ navigation }) => {
     const handleSignup = () => {
 
         if (email === "") {
-            console.log('please enter email')
+            // console.log('please enter email')
         }
 
         else if (!emailRegex.test(email)) {
-            console.log('Invalid email')
+            showMessage({
+                message: "Please enter your email",
+                type: "danger",
+            })
         }
 
-        else if (password === "") {
-            console.log('please enter password')
-        }
+        // else if (password === "") {
+        //     console.log('please enter password')
+        // }
 
         else if (!strongRegex.test(password)) {
-            console.log('please enter password')
+            showMessage({
+                message: "Please enter your password",
+                type: "danger",
+            })
         }
-        else if (confirmPassword === "") {
-            console.log("confirm password")
 
-        }
         else {
             if (password === confirmPassword) {
                 register(email, password)
-                // navigation.navigate(navigationStrings.HOME, register(email, password))
-                //  alert("error occurred")
+                showMessage({
+                    message: "Signup sucessfully",
+                    type: "success"
+                })
+            }
+            else {
+                showMessage({
+                    message: "please confirm password",
+                    type: "danger"
+                })
             }
         }
     }
@@ -73,7 +85,7 @@ const SignUp = ({ navigation }) => {
                     <TextInputComponent
                         value={email}
                         onChangeText={(email) => setEmail(email)}
-                        input={{ fontSize: textScale(10), color: colors.blackB,  }}
+                        input={{ fontSize: textScale(10), color: colors.blackB, }}
                         placeholder='please enter email' />
                 </View>
                 <View style={styles.inputview}>
