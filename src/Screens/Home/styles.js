@@ -6,7 +6,7 @@ import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.blackOpacity40,
+        // backgroundColor: colors.blackOpacity40,
     },
     drawerstyle: {
         flexDirection:"row",

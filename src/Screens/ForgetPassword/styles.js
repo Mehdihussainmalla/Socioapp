@@ -5,12 +5,14 @@ import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 
 export const styles = StyleSheet.create({
     container: {
-       
-        flex: 1
+        flex: 1,
+        
     },
     titlestyle: {
         paddingHorizontal: moderateScaleVertical(20),
         marginTop: moderateScaleVertical(50),
+        paddingVertical: moderateScaleVertical(20),
+
     },
     input: {
         borderRadius: moderateScale(5),

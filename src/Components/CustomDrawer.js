@@ -26,12 +26,12 @@ function CustomDrawer(props) {
     }
     return (
         <DrawerContentScrollView style={{
-            backgroundColor: colors.Light_blue,
+            backgroundColor: colors.blackOpacity30,
 
         }} {...props}>
 
             <View style={{
-                backgroundColor: colors.black,
+                backgroundColor: colors.blackOpacity66,
                 height: height / 5
             }}>
                 <TouchableOpacity activeOpacity={0.5}
@@ -127,7 +127,7 @@ function CustomDrawer(props) {
 
                     marginLeft: moderateScaleVertical(25),
                     marginTop: moderateScale(15),
-                    paddingVertical: 390,
+                    paddingTop:moderateScaleVertical(390),
 
                 }}>
                 <TouchableOpacity

@@ -3,7 +3,7 @@ import {
     View, Text, StyleSheet,
     SafeAreaView,
     TouchableOpacity,
-    Image
+    Image, ScrollView
 
 } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
@@ -79,6 +79,7 @@ const SignUp = ({ navigation }) => {
                 <View style={styles.desc}>
                     <Text style={styles.desctext} > {strings.SIGN_UP_HERE}</Text>
                 </View>
+                <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.mainview}>
                     <TextInputComponent
                         value={email}
@@ -123,6 +124,8 @@ const SignUp = ({ navigation }) => {
                         </TouchableOpacity>
                     }
                 </View>
+                </ScrollView>
+                </SafeAreaView>
                 <ButtonComp
                     onPress={handleSignup}
                     btnStyle={{ marginTop: moderateScaleVertical(90), }}
@@ -140,8 +143,10 @@ const SignUp = ({ navigation }) => {
                             color: colors.blue
                         }}>{strings.LOGIN}</Text>
                     </TouchableOpacity>
+                    
                 </View>
-            </SafeAreaView>
+                
+                
         </Wrappercontainer>
     );
 };

@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
         borderRadius: moderateScale(8),
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: "center"
+        justifyContent: "center",
+    
     },
     buttonTxt: {
         fontSize: textScale(14),
