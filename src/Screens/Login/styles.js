@@ -26,9 +26,9 @@ export const styles = StyleSheet.create({
         // backgroundColor: colors.greyA
     },
     passwiew: {
-      borderWidth: 0.5,
-     marginLeft: moderateScaleVertical(13),
-        marginRight: moderateScaleVertical(30),
+      borderWidth: 0.9,
+     marginLeft: moderateScaleVertical(10),
+        marginRight: moderateScaleVertical(10),
         marginTop: moderateScaleVertical(20),
         flexDirection: "row",
         justifyContent: "space-between",

@@ -84,7 +84,8 @@ const SignUp = ({ navigation }) => {
                     <TextInputComponent
                         value={email}
                         onChangeText={(email) => setEmail(email)}
-                        input={{ fontSize: textScale(10), color: colors.blackB, }}
+                        input={{ fontSize: textScale(10), color: colors.blackB,
+                         }}
                         placeholder={strings.ENTER_EMAIL} />
                 </View>
                 <View style={styles.inputview}>

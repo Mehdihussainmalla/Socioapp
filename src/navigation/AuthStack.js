@@ -1,13 +1,16 @@
-
-
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { ForgetPassword, Home, Login, SignUp } from '../Screens';
+import {
+    ForgetPassword,
+    Login,
+    PhoneLogin,
+    phoneLogin,
+    SignUp
+} from '../Screens';
 import navigationStrings from './navigationStrings';
 
 
 const AuthStack = (Stack) => {
-  
+
     return (
         <>
             <Stack.Navigator>
@@ -15,8 +18,10 @@ const AuthStack = (Stack) => {
                     component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name={navigationStrings.SIGNUP}
                     component={SignUp} options={{ headerShown: false }} />
-                    <Stack.Screen  name={navigationStrings.FORGETPASSWORD}
-                    component={ForgetPassword} options={{headerShown:false}}/>
+                <Stack.Screen name={navigationStrings.FORGETPASSWORD}
+                    component={ForgetPassword} options={{ headerShown: false }} />
+                <Stack.Screen name={navigationStrings.PHONELOGIN}
+                    component={PhoneLogin} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </>

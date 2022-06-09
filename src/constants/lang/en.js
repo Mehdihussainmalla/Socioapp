@@ -16,5 +16,6 @@ export default {
     SEARCH:"Search",
     SETTINGS:"Settings",
     HOME:"Home",
-    SIGN_OUT:"SignOut"
+    SIGN_OUT:"SignOut",
+    PHONE_LOGIN:"Phone Login",
 }

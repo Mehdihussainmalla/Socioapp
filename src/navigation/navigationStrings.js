@@ -7,4 +7,5 @@ export default {
     TABSTACK:"Tabstack",
     DRAWER:"Drawer",
     FORGETPASSWORD:"Forget Password",
+    PHONELOGIN:"Phone Login",
 }

@@ -19,7 +19,7 @@ const TextInputComponent = ({
 }) => {
 
     return (
-        <SafeAreaView style={{marginHorizontal:moderateScaleVertical(10)}}>
+        <SafeAreaView style={{ marginHorizontal: moderateScaleVertical(10) }}>
             <TextInput onChangeText={onChangeText}
                 placeholderTextColor={colors.black}
                 placeholder={placeholder}
@@ -41,16 +41,12 @@ export default TextInputComponent
 const styles = StyleSheet.create({
     input: {
         height: moderateScale(40),
-        // backgroundColor: colors.matterhorn,
-        marginRight: moderateScale(20),
-        marginLeft: moderateScale(2),
-        // paddingHorizontal: moderateScale(20),
+        //  /marginRight: moderateScale(20),
+        // marginLeft: moderateScale(2),
         borderRadius: verticalScale(5),
-        // paddingLeft: moderateScale(8),
-        // paddingVertical: verticalScale(10),
-        // color: colors.blue,
-        // fontFamily: fontFamily.BarlowRegular
-        
+        padding: moderateScaleVertical(10)
+
+
 
 
 

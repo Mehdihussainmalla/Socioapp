@@ -78,7 +78,7 @@ const Login = ({ navigation }) => {
                             onChangeText={(email) => setEmail(email)}
                             input={{
                                 fontSize: textScale(10), color: colors.blackB,
-                                borderWidth: 0.5, paddingHorizontal: moderateScaleVertical(10),
+                                borderWidth: 0.9, paddingHorizontal: moderateScaleVertical(10),
                             }}
                             placeholder={strings.ENTER_EMAIL} />
                     </View>
@@ -89,7 +89,7 @@ const Login = ({ navigation }) => {
                             secureTextEntry={hide}
                             onChangeText={(password) => setPassword(password)}
                             input={{
-
+                            
                                 fontSize: textScale(10),
                                 color: colors.black
                             }}
@@ -109,25 +109,42 @@ const Login = ({ navigation }) => {
 
                         </View>
                     </View>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate(navigationStrings.FORGETPASSWORD)}
-                        activeOpacity={0.5}
-                        style={{
-                            marginTop: moderateScaleVertical(10),
-                            alignItems: "flex-end",
-                            marginHorizontal: moderateScaleVertical(50)
-                        }}>
-                        <Text style={{
-                            alignContent: "flex-end",
-                            justifyContent: "flex-end", color: colors.blue
-                        }}>{strings.FORGOT_PASSWORD}?</Text>
-                    </TouchableOpacity>
+                    <View style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        marginTop: moderateScaleVertical(10),
+                        paddingVertical: moderateScaleVertical(10),
+
+                    }}>
+                        <TouchableOpacity
+                         onPress={()=>navigation.navigate(navigationStrings.PHONELOGIN)}
+                        activeOpacity={0.5}>
+                            <Text style={{
+                                color: colors.blue, paddingHorizontal: 30
+                            }}>{strings.PHONE_LOGIN}</Text>
+                        </TouchableOpacity>
+
+
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate(navigationStrings.FORGETPASSWORD)}
+                            activeOpacity={0.5}
+                            style={{
+                                // marginTop: moderateScaleVertical(10),
+                                alignItems: "flex-end",
+                                marginHorizontal: moderateScaleVertical(50)
+                            }}>
+                            <Text style={{
+                                alignContent: "flex-end",
+                                justifyContent: "flex-end", color: colors.blue
+                            }}>{strings.FORGOT_PASSWORD}?</Text>
+                        </TouchableOpacity>
+                    </View>
                     <ButtonComp
                         onPress={handleLogin}
                         // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
                         btnStyle={{ marginTop: moderateScaleVertical(50) }}
                         ButtonText={strings.LOGIN} />
-                     <TouchableOpacity onPress={handleModal}> 
+                    {/* <TouchableOpacity onPress={handleModal}> 
                          <Text>hhh</Text>
                      </TouchableOpacity>
                     <Modal isVisible={isModalVisible}>
@@ -142,7 +159,7 @@ const Login = ({ navigation }) => {
                             <Text style={{fontSize:20}}>close</Text>
                             </TouchableOpacity>
                         </View>
-                    </Modal>
+                    </Modal> */}
                     <ButtonComp onPress={() => googleLogin()}
                         btnIcon={imagePath.google_icon}
                         btnStyle={{ marginTop: moderateScaleVertical(20) }}

@@ -11,6 +11,7 @@ export default {
     close_icon :require("../assets/images/close-icon.png"),
     back_arrow: require("../assets/images/back-arrow.png"),
     logout_icon:require("../assets/images/logout-icon.png"),
-    setting_icon:require("../assets/images/settings.png")
+    setting_icon:require("../assets/images/settings.png"),
+    drop_down_icon:require("../assets/images/ic_down.png"),
 
 }

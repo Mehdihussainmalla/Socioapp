@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     container: {
         height: "100%",
         width: "100%",
-        flex:1, 
+        flex: 1,
     },
     headstyle: {
         marginTop: moderateVerticalScale(50),
@@ -29,8 +29,8 @@ export const styles = StyleSheet.create({
     },
     mainview: {
         // alignItems: 'center',
-        borderWidth: 0.5,
-        borderRadius:moderateScale(5),
+        borderWidth: 0.9,
+        borderRadius: moderateScale(5),
         marginLeft: moderateScaleVertical(30),
         marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(45),
@@ -38,8 +38,8 @@ export const styles = StyleSheet.create({
     },
     inputview: {
 
-        borderWidth: 0.5,
-        borderRadius:moderateScale(5),
+        borderWidth: moderateScaleVertical(0.9),
+        borderRadius: moderateScale(5),
         marginLeft: moderateScaleVertical(30),
         marginRight: moderateScaleVertical(30),
         marginTop: moderateScaleVertical(12),
@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
         // backgroundColor: colors.greyA
     },
     usertext: {
+
         marginTop: moderateScaleVertical(10),
         flexDirection: "row",
         justifyContent: "center",
