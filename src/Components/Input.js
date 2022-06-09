@@ -21,7 +21,7 @@ const TextInputComponent = ({
     return (
         <SafeAreaView style={{ marginHorizontal: moderateScaleVertical(10) }}>
             <TextInput onChangeText={onChangeText}
-                placeholderTextColor={colors.black}
+                placeholderTextColor={colors.blackOpacity30}
                 placeholder={placeholder}
                 // keyboardType={keyboardType}
                 style={{ ...styles.input, ...input }}

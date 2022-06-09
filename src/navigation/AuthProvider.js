@@ -4,13 +4,16 @@ import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { showMessage } from "react-native-flash-message";
+import navigationStrings from "./navigationStrings";
 
 
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
+
     // console.log("children",children)
     const [user, setUser] = useState(null);
+    const [confirm, setconfirm] = useState(null);
     return (
         <AuthContext.Provider
             value={{
@@ -23,6 +26,32 @@ export const AuthProvider = ({ children }) => {
                         console.log(error, "error occurred at auth proviider")
 
                     }
+                },
+                phoneLogin: async (countryCode, phoneNumber) => {
+                    countryCode
+                    let phN = (countryCode + phoneNumber)
+                    let phone = `+${(phN.toString())}`
+                    console.log(phone, 'nooooo')
+                    try {
+                        let data = await auth().signInWithPhoneNumber(phone);
+                        showMessage({
+                            message: "otp sent to your registered number",
+                            type: "sucess"
+                        })
+                        console.log(data, "phone login sucess")
+
+                    } catch (error) {
+                        showMessage({
+                            message: "please enter phone number",
+                            type: "danger"
+                        })
+
+                    }
+
+                },
+                verifyOtp: async(code)=>{
+                    console.log(code,"code issss>>>")
+
                 },
                 googleLogin: async () => {
                     try {
@@ -67,8 +96,8 @@ export const AuthProvider = ({ children }) => {
                 },
                 forgetPassword: async (email) => {
                     try {
-                        if (email=="")
-                        await auth().sendPasswordResetEmail(email)
+                        if (email == "")
+                            await auth().sendPasswordResetEmail(email)
                         showMessage({
                             message: "message sent sucessfully to the mail",
                             type: "success",
@@ -82,7 +111,7 @@ export const AuthProvider = ({ children }) => {
                         showMessage({
                             message: "An email address must be provided",
                             type: "danger",
-                                                    
+
 
                         })
                         console.log(error, "An email address must be provided ")

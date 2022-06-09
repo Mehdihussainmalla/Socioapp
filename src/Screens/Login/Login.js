@@ -89,7 +89,7 @@ const Login = ({ navigation }) => {
                             secureTextEntry={hide}
                             onChangeText={(password) => setPassword(password)}
                             input={{
-                            
+                               
                                 fontSize: textScale(10),
                                 color: colors.black
                             }}

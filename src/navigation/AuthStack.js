@@ -2,6 +2,7 @@ import React from 'react';
 import {
     ForgetPassword,
     Login,
+    OptScreen,
     PhoneLogin,
     phoneLogin,
     SignUp
@@ -22,6 +23,9 @@ const AuthStack = (Stack) => {
                     component={ForgetPassword} options={{ headerShown: false }} />
                 <Stack.Screen name={navigationStrings.PHONELOGIN}
                     component={PhoneLogin} options={{ headerShown: false }} />
+                    <Stack.Screen name={navigationStrings.OTPSCREEN}
+                    component={OptScreen} options={{ headerShown: false }} />
+
 
             </Stack.Navigator>
         </>

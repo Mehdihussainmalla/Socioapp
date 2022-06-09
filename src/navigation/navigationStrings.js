@@ -8,4 +8,5 @@ export default {
     DRAWER:"Drawer",
     FORGETPASSWORD:"Forget Password",
     PHONELOGIN:"Phone Login",
+    OTPSCREEN:"Otp Screen",
 }

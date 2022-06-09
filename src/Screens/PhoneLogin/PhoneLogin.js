@@ -1,16 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 import { moderateScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import CountryCodePicker from '../../Components/CountryCodePicker';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
+import { AuthContext } from '../../navigation/AuthProvider';
+import navigationStrings from '../../navigation/navigationStrings';
 import { moderateScaleVertical } from '../../styles/responsiveSize';
 import { styles } from './styles';
-const PhoneLogin = () => {
+const PhoneLogin = ({ navigation }) => {
+    const { phoneLogin } = useContext(AuthContext);
+    console.log(phoneLogin, "phone login is")
     const [countryCode, setCountryCode] = useState("91");
     const [countryFlag, setCountryFlag] = useState("IN");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [confirm, setConfirm] = useState(null);
+
+    // const getLogin = () => {
+
+    //     phoneLogin(countryCode, phoneNumber)
+    //     showMessage({
+    //         message: "otp sent sucessfully",
+    //         type: "success"
+    //     })
+    //     navigation.navigate(navigationStrings.OTPSCREEN)
+
+    // }
+
+
+
+
     return (
         <Wrappercontainer>
             <View style={styles.container}>
@@ -22,7 +44,7 @@ const PhoneLogin = () => {
                             Enter you phone number
                         </Text>
                         <Text style={styles.desctext}>
-                            Enter 6 digit code sent to you at +91 6005927575
+                            Enter 6 digit code sent to you at {`+${countryCode +  phoneNumber}`}
                         </Text>
                     </View>
 
@@ -39,15 +61,21 @@ const PhoneLogin = () => {
                                 borderRadius: moderateScale(5),
                                 borderWidth: moderateScaleVertical(0.9),
 
+
                             }}
+
+                                value={phoneNumber}
+                                onChangeText={(phoneNumber) => setPhoneNumber(phoneNumber)}
                                 placeholder='enter phone number' />
                         </View>
+                        {/* {alert(phoneNumber )} */}
                     </View>
                 </ScrollView>
             </View>
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                 <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
-                    <ButtonComp onPress={() => Alert.alert("in Process")}
+                    <ButtonComp onPress={() => phoneLogin(countryCode, phoneNumber)}
+                        // onPress={() => getLogin()}
                         ButtonText='Login' />
                 </View>
             </KeyboardAvoidingView>
