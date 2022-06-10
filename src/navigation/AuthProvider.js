@@ -4,9 +4,6 @@ import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { showMessage } from "react-native-flash-message";
-import navigationStrings from "./navigationStrings";
-
-
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
@@ -28,7 +25,7 @@ export const AuthProvider = ({ children }) => {
                     }
                 },
                 phoneLogin: async (countryCode, phoneNumber) => {
-                    countryCode
+                    
                     let phN = (countryCode + phoneNumber)
                     let phone = `+${(phN.toString())}`
                     console.log(phone, 'nooooo')
@@ -39,18 +36,25 @@ export const AuthProvider = ({ children }) => {
                             type: "sucess"
                         })
                         console.log(data, "phone login sucess")
+                        return data
 
                     } catch (error) {
                         showMessage({
-                            message: "please enter phone number",
+                            message: error.message,
                             type: "danger"
                         })
 
                     }
 
                 },
-                verifyOtp: async(code)=>{
-                    console.log(code,"code issss>>>")
+                verifyOtp: async (code)=>{
+                    try {
+                       let res =  await confirm.confirm(code);
+                       return res
+                      } catch (error) {
+                          alert('Invalid code.')
+                        // console.log('Invalid code.');
+                      }
 
                 },
                 googleLogin: async () => {

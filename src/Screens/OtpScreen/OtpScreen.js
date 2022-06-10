@@ -1,12 +1,15 @@
 //import liraries
+import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import { AuthContext } from '../../navigation/AuthProvider';
+import navigationStrings from '../../navigation/navigationStrings';
 import { textScale } from '../../styles/responsiveSize';
 
 // create a component
@@ -15,6 +18,23 @@ const OptScreen = ({route}) => {
     // console.log(data,"data is>>>")
     const {verifyOtp} =useContext(AuthContext);
     const [code, setCode] = useState();
+    const navigation = useNavigation()
+
+    const verifyOtpToNavigate = (code) => {
+       let res =  verifyOtp(code)
+            if (!!res) {
+                alert('otp success')
+                showMessage({
+                    message:"Login Successfully",
+                    type:"success",
+                })
+                navigation.navigate(navigationStrings.HOME)
+            }
+            else {
+                alert('some thing went wrong')
+            }
+    }
+
     return (
         <Wrappercontainer>
             <Header isBackIcon={true}
@@ -35,7 +55,7 @@ const OptScreen = ({route}) => {
                 onChangeText={(code) => setCode(code)}
                 placeholder='please enter otp' />
             <View style={{ marginTop: moderateVerticalScale(50) }}>
-                <ButtonComp onPress={()=>verifyOtp(code)}
+                <ButtonComp onPress={()=>verifyOtpToNavigate(code)}
                     ButtonText='confirm otp' />
                     {/* {console.log(code,"code is")} */}
             </View>

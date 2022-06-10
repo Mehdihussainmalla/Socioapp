@@ -64,9 +64,119 @@ const Login = ({ navigation }) => {
 
         }
     }
+
+    const data = [
+        {
+            key: "1",
+            name: "English"
+        },
+        {
+            key: "2",
+            name: "Spanish"
+        },
+        {
+            key: "3",
+            name: "French"
+        },
+        {
+            key: "4",
+            name: "Urdu"
+        },
+        {
+            key: "5",
+            name: "Arabic"
+        },
+        {
+            key: "6",
+            name: "Japanese"
+        },
+    ]
+    // const items = (data) => {
+    //     let newArr = data.map((item, index) => {
+    //         console.log(item,index)
+    //     })
+    //     return newArr;
+    // }
+    // const d = items(data)
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>
+                <View>
+                    {data.map((item, index) => (
+
+                    
+
+                            <Modal isVisible={isModalVisible}>
+                                <View style={{ backgroundColor: "grey" }}>
+                                    <Text>{item.name}</Text>
+                                </View>
+                                <TouchableOpacity onPress={handleModal}
+                                    activeOpacity={0.5}
+                                    style={{ alignContent: "flex-end", alignItems: "flex-end", }}>
+                                    <Text style={{
+                                        color: colors.redD,
+                                        fontSize: textScale(13), fontWeight: "500"
+                                    }}>close</Text>
+                                </TouchableOpacity>
+                            </Modal>
+                       
+                    )
+
+                    )}
+                    <TouchableOpacity onPress={handleModal}>
+                        <Text>dhdj</Text>
+                    </TouchableOpacity>
+
+
+                </View>
+
+
+
+                {/* <Modal isVisible={isModalVisible}>
+                        <View style={{ height:"90%",}}>
+                             <TouchableOpacity onPress={handleModal}
+                              activeOpacity={0.5}
+                             style={{ alignContent:"flex-end", alignItems:"flex-end",}}>
+                                <Text style={{color:colors.redD,
+                                     fontSize:textScale(13), fontWeight:"500"
+                                     }}>close</Text>
+                            </TouchableOpacity>
+                              <View style={{backgroundColor:colors.whiteOpacity50,marginTop:10,marginHorizontal:100}}>
+                            <Text style={{fontSize:18, color:colors.black, 
+                            alignSelf:"center"}}>
+                          urdu
+                            </Text>
+                            </View>
+                            <View style={{backgroundColor:"white",marginTop:10,marginHorizontal:100}}>
+                            <Text style={{fontSize:18,color:colors.black, 
+                            alignSelf:"center"}}>
+                            Hindi
+                            </Text>
+                            </View>
+                            <View style={{backgroundColor:"white",marginTop:10,marginHorizontal:100}}>
+                            <Text style={{fontSize:18,color:colors.black,  
+                            alignSelf:"center"}}>
+                            English
+                            </Text>
+                            </View>
+                            <View style={{backgroundColor:"white",marginTop:10, marginHorizontal:100}}>
+                            <Text style={{fontSize:18, color:colors.black, 
+                            alignSelf:"center"}}>
+                              Spanish
+                            </Text>
+                            </View>
+                            <View style={{backgroundColor:"white",marginTop:10,marginHorizontal:100}}>
+                            <Text style={{fontSize:18, color:colors.black, 
+                            alignSelf:"center"}}>
+                            French
+                            </Text>
+                            </View>
+                            </View>
+                            
+                            <TouchableOpacity onPress={handleModal}>
+                            <Text style={{fontSize:20}}>close</Text>
+                            </TouchableOpacity>
+                    </Modal> */}
 
                 <View style={styles.descview}>
                     <Text style={styles.desctext} >{strings.LOGIN}</Text>
@@ -89,7 +199,7 @@ const Login = ({ navigation }) => {
                             secureTextEntry={hide}
                             onChangeText={(password) => setPassword(password)}
                             input={{
-                               
+
                                 fontSize: textScale(10),
                                 color: colors.black
                             }}
@@ -117,8 +227,8 @@ const Login = ({ navigation }) => {
 
                     }}>
                         <TouchableOpacity
-                         onPress={()=>navigation.navigate(navigationStrings.PHONELOGIN)}
-                        activeOpacity={0.5}>
+                            onPress={() => navigation.navigate(navigationStrings.PHONELOGIN)}
+                            activeOpacity={0.5}>
                             <Text style={{
                                 color: colors.blue, paddingHorizontal: 30
                             }}>{strings.PHONE_LOGIN}</Text>
@@ -128,15 +238,8 @@ const Login = ({ navigation }) => {
                         <TouchableOpacity
                             onPress={() => navigation.navigate(navigationStrings.FORGETPASSWORD)}
                             activeOpacity={0.5}
-                            style={{
-                                // marginTop: moderateScaleVertical(10),
-                                alignItems: "flex-end",
-                                marginHorizontal: moderateScaleVertical(50)
-                            }}>
-                            <Text style={{
-                                alignContent: "flex-end",
-                                justifyContent: "flex-end", color: colors.blue
-                            }}>{strings.FORGOT_PASSWORD}?</Text>
+                            style={styles.forgetstyle}>
+                            <Text style={styles.forgettext}>{strings.FORGOT_PASSWORD}?</Text>
                         </TouchableOpacity>
                     </View>
                     <ButtonComp
@@ -144,22 +247,7 @@ const Login = ({ navigation }) => {
                         // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
                         btnStyle={{ marginTop: moderateScaleVertical(50) }}
                         ButtonText={strings.LOGIN} />
-                    {/* <TouchableOpacity onPress={handleModal}> 
-                         <Text>hhh</Text>
-                     </TouchableOpacity>
-                    <Modal isVisible={isModalVisible}>
-                        <View style={{ height:"90%"}}>
-                            <View style={{ marginTop:20}}>
-                                <TextInputComponent input={{backgroundColor:"white"}} placeholder='enter phone number'/>
-                                <View style={{backgroundColor:"red", marginTop:10}}>
-                            <Text style={{fontSize:18, color:"white", alignSelf:"center"}}>Login with Phone Number</Text>
-                            </View>
-                            </View>
-                            <TouchableOpacity onPress={handleModal}>
-                            <Text style={{fontSize:20}}>close</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </Modal> */}
+
                     <ButtonComp onPress={() => googleLogin()}
                         btnIcon={imagePath.google_icon}
                         btnStyle={{ marginTop: moderateScaleVertical(20) }}

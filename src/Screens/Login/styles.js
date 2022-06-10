@@ -26,14 +26,14 @@ export const styles = StyleSheet.create({
         // backgroundColor: colors.greyA
     },
     passwiew: {
-      borderWidth: 0.9,
-     marginLeft: moderateScaleVertical(10),
+        borderWidth: 0.9,
+        marginLeft: moderateScaleVertical(10),
         marginRight: moderateScaleVertical(10),
         marginTop: moderateScaleVertical(20),
         flexDirection: "row",
         justifyContent: "space-between",
         // backgroundColor: colors.greyA
-        borderRadius:moderateScale(5)
+        borderRadius: moderateScale(5)
     },
     belowdesctext: {
         fontSize: textScale(12),
@@ -42,5 +42,16 @@ export const styles = StyleSheet.create({
     bottomdesc: {
         fontSize: textScale(12),
         paddingHorizontal: 10
-    }
+    },
+    forgetstyle:
+    {
+        alignItems: "flex-end",
+        marginHorizontal: moderateScaleVertical(50)
+    },
+    forgettext:
+    {
+        alignContent: "flex-end",
+        justifyContent: "flex-end", color: colors.blue
+    },
+
 })

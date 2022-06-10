@@ -19,19 +19,16 @@ const PhoneLogin = ({ navigation }) => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [confirm, setConfirm] = useState(null);
 
-    // const getLogin = () => {
+    const getLogin = (countryCode, phoneNumber) => {
 
-    //     phoneLogin(countryCode, phoneNumber)
-    //     showMessage({
-    //         message: "otp sent sucessfully",
-    //         type: "success"
-    //     })
-    //     navigation.navigate(navigationStrings.OTPSCREEN)
-
-    // }
-
-
-
+        let res = phoneLogin(countryCode, phoneNumber)
+        console.log(res,"resss>>")
+        if (!!res) {
+            navigation.navigate(navigationStrings.OTPSCREEN)
+        } else {
+            alert('something went wrong')
+        }
+    }
 
     return (
         <Wrappercontainer>
@@ -74,7 +71,7 @@ const PhoneLogin = ({ navigation }) => {
             </View>
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                 <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
-                    <ButtonComp onPress={() => phoneLogin(countryCode, phoneNumber)}
+                    <ButtonComp onPress={() => getLogin (countryCode,phoneNumber)} 
                         // onPress={() => getLogin()}
                         ButtonText='Login' />
                 </View>
