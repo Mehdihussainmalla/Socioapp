@@ -23,7 +23,7 @@ const OptScreen = ({route}) => {
     const verifyOtpToNavigate = (code) => {
        let res =  verifyOtp(code)
             if (!!res) {
-                alert('otp success')
+                // alert('otp success')
                 showMessage({
                     message:"Login Successfully",
                     type:"success",
@@ -31,7 +31,11 @@ const OptScreen = ({route}) => {
                 navigation.navigate(navigationStrings.HOME)
             }
             else {
-                alert('some thing went wrong')
+                showMessage({
+                    message:"wrong code",
+                    type:"danger"
+                })
+                // alert('some thing went wrong')
             }
     }
 

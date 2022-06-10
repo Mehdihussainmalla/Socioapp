@@ -18,4 +18,12 @@ export default {
     HOME:"Home",
     SIGN_OUT:"SignOut",
     PHONE_LOGIN:"Phone Login",
+    CHANGE_LANGUAGE:"Change language",
+    CLOSE:"close",
+    HINDI:"हिन्दी",
+    ARABIC:"عربى",
+    SPANISH:"spanish",
+    URDU:"urdu",
+    FRENCH:"french",
+    ENGLISH:"english"
 }

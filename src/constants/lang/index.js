@@ -5,6 +5,7 @@ import ur from "./ur";
 let strings = new LocalizedStrings({
     en: en,
     ur: ur,
+    
 })
 export const changeLanguage = async (languagekey) => {
     await AsyncStorage.setItem("language", languagekey)

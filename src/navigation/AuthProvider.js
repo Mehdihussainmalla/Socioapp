@@ -50,9 +50,11 @@ export const AuthProvider = ({ children }) => {
                 verifyOtp: async (code)=>{
                     try {
                        let res =  await confirm.confirm(code);
-                       return res
+                       return res;
                       } catch (error) {
-                          alert('Invalid code.')
+                         showMessage({
+                             message:error.message,
+                         })
                         // console.log('Invalid code.');
                       }
 

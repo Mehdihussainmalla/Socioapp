@@ -1,16 +1,17 @@
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { useContext, useState, useEffect } from 'react';
+import RNRestart from 'react-native-restart'
 import {
     View, Text, StyleSheet,
     SafeAreaView,
     TouchableOpacity,
     Image,
     ScrollView,
+    FlatList
 
 
 } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
-import { moderateVerticalScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
@@ -20,7 +21,7 @@ import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
-import strings from '../../constants/lang';
+import strings, { changeLanguage } from '../../constants/lang';
 import Modal from "react-native-modal"
 
 const Login = ({ navigation }) => {
@@ -64,119 +65,176 @@ const Login = ({ navigation }) => {
 
         }
     }
+    //................language change................//
+    const onchangeLange = (key, data) => {
+        console.log(key, "key is>", data, "ddidd")
+        changeLanguage(key);
+        RNRestart.Restart();
 
-    const data = [
-        {
-            key: "1",
-            name: "English"
-        },
-        {
-            key: "2",
-            name: "Spanish"
-        },
-        {
-            key: "3",
-            name: "French"
-        },
-        {
-            key: "4",
-            name: "Urdu"
-        },
-        {
-            key: "5",
-            name: "Arabic"
-        },
-        {
-            key: "6",
-            name: "Japanese"
-        },
-    ]
-    // const items = (data) => {
-    //     let newArr = data.map((item, index) => {
-    //         console.log(item,index)
-    //     })
-    //     return newArr;
+    }
+
+    // const data = [
+    //     {
+    //         key: "1",
+    //         name: "English"
+    //     },
+    //     {
+    //         key: "2",
+    //         name: "Spanish"
+    //     },
+    //     {
+    //         key: "3",
+    //         name: "French"
+    //     },
+    //     {
+    //         key: "4",
+    //         name: "Urdu"
+    //     },
+    //     {
+    //         key: "5",
+    //         name: "Arabic"
+    //     },
+    //     {
+    //         key: "6",
+    //         name: "Japanese"
+    //     },
+    // ]
+    // const renderItem = (item, handleModal) => {
+    //     console.log(handleModal, "handle modal idss")
+    //     console.log(item, "items aree")
+    //     return (
+    //         <View>
+    //             <Text>{item?.item?.name}</Text>
+    //         </View>
+    //     )
     // }
-    // const d = items(data)
+
+
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>
-                <View>
-                    {data.map((item, index) => (
 
-                    
+                {/* <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.key} /> */}
 
-                            <Modal isVisible={isModalVisible}>
-                                <View style={{ backgroundColor: "grey" }}>
-                                    <Text>{item.name}</Text>
-                                </View>
-                                <TouchableOpacity onPress={handleModal}
-                                    activeOpacity={0.5}
-                                    style={{ alignContent: "flex-end", alignItems: "flex-end", }}>
-                                    <Text style={{
-                                        color: colors.redD,
-                                        fontSize: textScale(13), fontWeight: "500"
-                                    }}>close</Text>
-                                </TouchableOpacity>
-                            </Modal>
-                       
-                    )
 
-                    )}
-                    <TouchableOpacity onPress={handleModal}>
-                        <Text>dhdj</Text>
+
+                <View style={{ alignItems: "flex-end", alignContent: "flex-end", flexDirection: "column" }}>
+                    <TouchableOpacity  
+                    style={{backgroundColor:colors.backgroundGreyB}}
+                    activeOpacity={0.5}
+                    onPress={handleModal}>
+                        <Text style={{ color: colors.black,
+                            fontWeight:"400",
+                            fontSize:textScale(13), }}>
+                            {strings.CHANGE_LANGUAGE}
+                        </Text>
                     </TouchableOpacity>
-
-
                 </View>
+                <Modal isVisible={isModalVisible}>
+                    <View style={{ height: "5%", }}>
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={() => onchangeLange('ur')}
+                            style={{
+                               
+                                paddingVertical: moderateScaleVertical(6)
+                            }}>
+                            <Text style={{
+                                fontSize: textScale(20), color: colors.white,
+                                alignSelf: "center"
+                            }}>
+                                {strings.URDU}
+                            </Text>
+                        </TouchableOpacity>
 
+                        <TouchableOpacity
+                            onPress={() => onchangeLange('hi')}
+                            activeOpacity={0.5}
+                            style={{
+                                // marginTop: moderateScaleVertical(5),
+                                paddingVertical: moderateScaleVertical(6)
+                            }}>
+                            <Text style={{
+                                fontSize: textScale(20), color: colors.white,
+                                alignSelf: "center"
+                            }}>
+                                {strings.HINDI}
+                            </Text>
+                        </TouchableOpacity>
 
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={() => onchangeLange('ar')}
+                            style={{
+                                // marginTop: moderateScaleVertical(5),
+                                paddingVertical: moderateScaleVertical(6)
+                            }}>
+                            <Text style={{
+                                fontSize: textScale(20), color: colors.white,
+                                alignSelf: "center"
+                            }}>
+                                {strings.ARABIC}
+                            </Text>
+                        </TouchableOpacity>
 
-                {/* <Modal isVisible={isModalVisible}>
-                        <View style={{ height:"90%",}}>
-                             <TouchableOpacity onPress={handleModal}
-                              activeOpacity={0.5}
-                             style={{ alignContent:"flex-end", alignItems:"flex-end",}}>
-                                <Text style={{color:colors.redD,
-                                     fontSize:textScale(13), fontWeight:"500"
-                                     }}>close</Text>
-                            </TouchableOpacity>
-                              <View style={{backgroundColor:colors.whiteOpacity50,marginTop:10,marginHorizontal:100}}>
-                            <Text style={{fontSize:18, color:colors.black, 
-                            alignSelf:"center"}}>
-                          urdu
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={() => onchangeLange('sp')}
+                            style={{
+                                // marginTop: moderateScaleVertical(5),
+                                paddingVertical: moderateScaleVertical(6)
+                            }}>
+                            <Text style={{
+                                fontSize: textScale(20), color: colors.white,
+                                alignSelf: "center"
+                            }}>
+                                {strings.SPANISH}
                             </Text>
-                            </View>
-                            <View style={{backgroundColor:"white",marginTop:10,marginHorizontal:100}}>
-                            <Text style={{fontSize:18,color:colors.black, 
-                            alignSelf:"center"}}>
-                            Hindi
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={() => onchangeLange('en')}
+                            style={{
+                                marginTop: moderateScaleVertical(1),
+                                paddingVertical: moderateScaleVertical(6)
+                            }}>
+                            <Text style={{
+                                fontSize: textScale(20), color: colors.white,
+                                alignSelf: "center"
+                            }}>
+                                {strings.ENGLISH}
                             </Text>
-                            </View>
-                            <View style={{backgroundColor:"white",marginTop:10,marginHorizontal:100}}>
-                            <Text style={{fontSize:18,color:colors.black,  
-                            alignSelf:"center"}}>
-                            English
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={() => onchangeLange('fr')}
+                            style={{
+                                // marginTop: moderateScaleVertical(),
+                                paddingVertical: moderateScaleVertical(6)
+                            }}>
+                            <Text style={{
+                                fontSize: textScale(18), color: colors.white,
+                                alignSelf: "center"
+                            }}>
+                                {strings.FRENCH}
                             </Text>
-                            </View>
-                            <View style={{backgroundColor:"white",marginTop:10, marginHorizontal:100}}>
-                            <Text style={{fontSize:18, color:colors.black, 
-                            alignSelf:"center"}}>
-                              Spanish
-                            </Text>
-                            </View>
-                            <View style={{backgroundColor:"white",marginTop:10,marginHorizontal:100}}>
-                            <Text style={{fontSize:18, color:colors.black, 
-                            alignSelf:"center"}}>
-                            French
-                            </Text>
-                            </View>
-                            </View>
-                            
-                            <TouchableOpacity onPress={handleModal}>
-                            <Text style={{fontSize:20}}>close</Text>
-                            </TouchableOpacity>
-                    </Modal> */}
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={handleModal}
+                            activeOpacity={0.5}
+                            style={{ alignContent: "flex-end", alignItems: "flex-end", }}>
+                            <Text style={{
+                                color: colors.redD,
+                                fontSize: textScale(14), fontWeight: "500"
+                            }}>{strings.CLOSE}</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
 
                 <View style={styles.descview}>
                     <Text style={styles.desctext} >{strings.LOGIN}</Text>
