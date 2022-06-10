@@ -122,117 +122,122 @@ const Login = ({ navigation }) => {
 
 
                 <View style={{ alignItems: "flex-end", alignContent: "flex-end", flexDirection: "column" }}>
-                    <TouchableOpacity  
-                    style={{backgroundColor:colors.backgroundGreyB}}
-                    activeOpacity={0.5}
-                    onPress={handleModal}>
-                        <Text style={{ color: colors.black,
-                            fontWeight:"400",
-                            fontSize:textScale(13), }}>
+                    <TouchableOpacity
+                        style={{ backgroundColor: colors.backgroundGreyB }}
+                        activeOpacity={0.5}
+                        onPress={handleModal}>
+                        <Text style={{
+                            color: colors.black,
+                            fontWeight: "400",
+                            fontSize: textScale(13),
+                        }}>
                             {strings.CHANGE_LANGUAGE}
                         </Text>
                     </TouchableOpacity>
                 </View>
                 <Modal isVisible={isModalVisible}>
-                    <View style={{ height: "5%", }}>
-                        <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={() => onchangeLange('ur')}
-                            style={{
-                               
-                                paddingVertical: moderateScaleVertical(6)
-                            }}>
-                            <Text style={{
-                                fontSize: textScale(20), color: colors.white,
-                                alignSelf: "center"
-                            }}>
-                                {strings.URDU}
-                            </Text>
-                        </TouchableOpacity>
 
-                        <TouchableOpacity
-                            onPress={() => onchangeLange('hi')}
-                            activeOpacity={0.5}
-                            style={{
-                                // marginTop: moderateScaleVertical(5),
-                                paddingVertical: moderateScaleVertical(6)
-                            }}>
-                            <Text style={{
-                                fontSize: textScale(20), color: colors.white,
-                                alignSelf: "center"
-                            }}>
-                                {strings.HINDI}
-                            </Text>
-                        </TouchableOpacity>
+                    <View style={{ height: "50%", }}>
+                        <ScrollView>
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                onPress={() => onchangeLange('ur')}
+                                style={{
 
-                        <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={() => onchangeLange('ar')}
-                            style={{
-                                // marginTop: moderateScaleVertical(5),
-                                paddingVertical: moderateScaleVertical(6)
-                            }}>
-                            <Text style={{
-                                fontSize: textScale(20), color: colors.white,
-                                alignSelf: "center"
-                            }}>
-                                {strings.ARABIC}
-                            </Text>
-                        </TouchableOpacity>
+                                    paddingVertical: moderateScaleVertical(6)
+                                }}>
+                                <Text style={{
+                                    fontSize: textScale(20), color: colors.white,
+                                    alignSelf: "center"
+                                }}>
+                                    {strings.URDU}
+                                </Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={() => onchangeLange('sp')}
-                            style={{
-                                // marginTop: moderateScaleVertical(5),
-                                paddingVertical: moderateScaleVertical(6)
-                            }}>
-                            <Text style={{
-                                fontSize: textScale(20), color: colors.white,
-                                alignSelf: "center"
-                            }}>
-                                {strings.SPANISH}
-                            </Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => onchangeLange('hi')}
+                                activeOpacity={0.5}
+                                style={{
+                                    // marginTop: moderateScaleVertical(5),
+                                    paddingVertical: moderateScaleVertical(6)
+                                }}>
+                                <Text style={{
+                                    fontSize: textScale(20), color: colors.white,
+                                    alignSelf: "center"
+                                }}>
+                                    {strings.HINDI}
+                                </Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={() => onchangeLange('en')}
-                            style={{
-                                marginTop: moderateScaleVertical(1),
-                                paddingVertical: moderateScaleVertical(6)
-                            }}>
-                            <Text style={{
-                                fontSize: textScale(20), color: colors.white,
-                                alignSelf: "center"
-                            }}>
-                                {strings.ENGLISH}
-                            </Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                onPress={() => onchangeLange('ar')}
+                                style={{
+                                    // marginTop: moderateScaleVertical(5),
+                                    paddingVertical: moderateScaleVertical(6)
+                                }}>
+                                <Text style={{
+                                    fontSize: textScale(20), color: colors.white,
+                                    alignSelf: "center"
+                                }}>
+                                    {strings.ARABIC}
+                                </Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={() => onchangeLange('fr')}
-                            style={{
-                                // marginTop: moderateScaleVertical(),
-                                paddingVertical: moderateScaleVertical(6)
-                            }}>
-                            <Text style={{
-                                fontSize: textScale(18), color: colors.white,
-                                alignSelf: "center"
-                            }}>
-                                {strings.FRENCH}
-                            </Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                onPress={() => onchangeLange('sp')}
+                                style={{
+                                    // marginTop: moderateScaleVertical(5),
+                                    paddingVertical: moderateScaleVertical(6)
+                                }}>
+                                <Text style={{
+                                    fontSize: textScale(20), color: colors.white,
+                                    alignSelf: "center"
+                                }}>
+                                    {strings.SPANISH}
+                                </Text>
+                            </TouchableOpacity>
 
-                        <TouchableOpacity onPress={handleModal}
-                            activeOpacity={0.5}
-                            style={{ alignContent: "flex-end", alignItems: "flex-end", }}>
-                            <Text style={{
-                                color: colors.redD,
-                                fontSize: textScale(14), fontWeight: "500"
-                            }}>{strings.CLOSE}</Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                onPress={() => onchangeLange('en')}
+                                style={{
+                                    marginTop: moderateScaleVertical(1),
+                                    paddingVertical: moderateScaleVertical(6)
+                                }}>
+                                <Text style={{
+                                    fontSize: textScale(20), color: colors.white,
+                                    alignSelf: "center"
+                                }}>
+                                    {strings.ENGLISH}
+                                </Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                onPress={() => onchangeLange('fr')}
+                                style={{
+                                    // marginTop: moderateScaleVertical(),
+                                    paddingVertical: moderateScaleVertical(6)
+                                }}>
+                                <Text style={{
+                                    fontSize: textScale(18), color: colors.white,
+                                    alignSelf: "center"
+                                }}>
+                                    {strings.FRENCH}
+                                </Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={handleModal}
+                                activeOpacity={0.5}
+                                style={{ alignContent: "flex-end", alignItems: "flex-end", }}>
+                                <Text style={{
+                                    color: colors.redD,
+                                    fontSize: textScale(14), fontWeight: "500"
+                                }}>{strings.CLOSE}</Text>
+                            </TouchableOpacity>
+                        </ScrollView>
                     </View>
                 </Modal>
 

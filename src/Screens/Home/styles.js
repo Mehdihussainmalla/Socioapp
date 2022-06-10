@@ -11,7 +11,8 @@ export const styles = StyleSheet.create({
     drawerstyle: {
         flexDirection:"row",
         marginTop: moderateVerticalScale(15),
-        marginHorizontal: moderateVerticalScale(10)
+        marginHorizontal: moderateVerticalScale(10), 
+        justifyContent:"flex-start"
 
     },
     idstyle: {

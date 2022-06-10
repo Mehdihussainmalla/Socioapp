@@ -14,14 +14,15 @@ const TextInputComponent = ({
     onChangeText,
     input,
     secureTextEntry,
-    value
+    value, 
+   
 
 }) => {
 
     return (
         <SafeAreaView style={{ marginHorizontal: moderateScaleVertical(10) }}>
             <TextInput onChangeText={onChangeText}
-                placeholderTextColor={colors.blackOpacity30}
+                placeholderTextColor={colors.blackOpacity43}
                 placeholder={placeholder}
                 // keyboardType={keyboardType}
                 style={{ ...styles.input, ...input }}

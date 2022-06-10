@@ -15,4 +15,7 @@ export default {
     drop_down_icon: require("../assets/images/ic_down.png"),
     language_icon: require("../assets/images/language-icon.png"),
     langs_icon: require("../assets/images/langs-icon.png"),
+    bgc_icon: require("../assets/images/bgc-icon.png"),
+    add_icon: require("../assets/images/add-icon.png"),
+    add_icon2: require("../assets/images/add2@.png"),
 }
