@@ -1,3 +1,7 @@
+//.................Intro Slider...............//
+export { default as Slider } from "./Slider/Slider";
+
+
 //........Auth Stack..........//
 export { default as Login } from './Login/Login';
 export { default as SignUp } from './SignUp/SignUp';

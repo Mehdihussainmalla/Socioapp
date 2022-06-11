@@ -9,4 +9,5 @@ export default {
     FORGETPASSWORD:"Forget Password",
     PHONELOGIN:"Phone Login",
     OTPSCREEN:"Otp Screen",
+    SLIDER:"Slider",
 }

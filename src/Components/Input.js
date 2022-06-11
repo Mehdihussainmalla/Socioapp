@@ -42,20 +42,14 @@ export default TextInputComponent
 const styles = StyleSheet.create({
     input: {
         height: moderateScale(40),
-        //  /marginRight: moderateScale(20),
-        // marginLeft: moderateScale(2),
         borderRadius: verticalScale(5),
-        padding: moderateScaleVertical(10)
-
-
-
-
+        padding: moderateScaleVertical(10),
 
     },
     text: {
 
         color: colors.black,
-        fontSize: textScale(14)
+        fontSize: textScale(16)
 
 
     }

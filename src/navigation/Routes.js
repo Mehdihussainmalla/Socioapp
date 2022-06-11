@@ -6,6 +6,7 @@ import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 import { AuthContext } from "./AuthProvider";
 import auth from '@react-native-firebase/auth';
+import IntroStack from './IntroStack';
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
@@ -30,7 +31,7 @@ const Routes = () => {
     if (initializing) return null;
     return (
         <NavigationContainer>
-            {user? MainStack(Stack) : AuthStack(Stack)}
+            {user? MainStack(Stack) :   AuthStack(Stack)}
         </NavigationContainer>
 
     );
