@@ -16,6 +16,7 @@ import { moderateScale, moderateVerticalScale } from 'react-native-size-matters'
 import { moderateScaleVertical, sliderWidth, textScale, width } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import CardView from '../../Components/card';
 
 const Home = (props) => {
     const { navigation } = props;
@@ -60,8 +61,6 @@ const Home = (props) => {
                         borderRadius: moderateScale(10), borderWidth: moderateScale(1,)
                     }}
                     source={item?.image} />
-                {/* <Text style={{fontSize:14, color:colors.redC}}>
-                    {item?.title}</Text> */}
             </TouchableOpacity>
         )
     }
@@ -83,8 +82,7 @@ const Home = (props) => {
                         source={imagePath.add_icon} />
                 </TouchableOpacity>
             </TouchableOpacity>
-            {/* <ImageBackground style={{ width: "100%", height: "60%", }}
-                source={imagePath.bgc_icon}> */}
+
             <TouchableOpacity
                 onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
@@ -132,9 +130,9 @@ const Home = (props) => {
 
                 />
             </View>
-
-            {/* </ImageBackground> */}
-
+          
+               <CardView />
+            
         </Wrappercontainer>
 
     );
