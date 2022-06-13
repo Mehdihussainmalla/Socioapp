@@ -32,7 +32,6 @@ const SignUp = ({ navigation }) => {
     const [hideIcon, setHideIcon] = useState();
 
     const handleSignup = () => {
-
         if (email === "") {
             // console.log('please enter email')
         }

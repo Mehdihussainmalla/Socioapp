@@ -14,7 +14,8 @@ const DrawerStack = () => {
         <>
             <Drawer.Navigator
                 drawerContent={(props) => <CustomDrawer {...props} />}
-                initialRouteName={navigationStrings.HOME}>
+                // initialRouteName={navigationStrings.HOME}
+                >
 
                 <Drawer.Screen options={{ headerShown: false }} 
                 name={navigationStrings.TABSTACK}

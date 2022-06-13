@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
 import {
-    View, Text, StyleSheet, TouchableOpacity,
+    View, Text,
+    TouchableOpacity,
     Image,
-    ImageBackground, Dimensions
+    Dimensions,
+    ScrollView
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import { AuthContext } from '../../navigation/AuthProvider';
@@ -17,12 +19,15 @@ import { moderateScaleVertical, sliderWidth, textScale, width } from '../../styl
 import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
+import ElectronicCard from '../../Components/electonicCard';
 
 const Home = (props) => {
     const { navigation } = props;
     // console.log("props are", props)
     const { user } = useContext(AuthContext);
     const [snapState, setSnapState] = useState(0);
+
+    console.log(user, "user>>H")
 
     const data = [{
 
@@ -43,10 +48,21 @@ const Home = (props) => {
 
         image: imagePath.men_collar,
 
-    }]
+    },
+    {
+        key: 4,
+        image: imagePath.watch,
+
+    },
+    {
+        key: 5,
+        image: imagePath.mobile,
+    },
+
+    ]
     const SLIDER_WIDTH = Dimensions.get('window').width;
     const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
-    const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 3);
+    const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
 
     const renderItem = ({ item }) => {
         // console.log(item, "items are")
@@ -54,7 +70,7 @@ const Home = (props) => {
 
             <TouchableOpacity
                 activeOpacity={0.8}
-                style={{ width: "50%", height: "30%", marginTop: moderateScale(15) }}>
+                style={{ width: "50%", height: "20%", marginTop: moderateScale(10) }}>
                 <Image
                     style={{
                         width: width / 1.22, justifyContent: 'center',
@@ -100,39 +116,46 @@ const Home = (props) => {
                 }}
                     source={imagePath.search_icon} />
             </TouchableOpacity>
+            <ScrollView showsVerticalScrollIndicator={false}>
 
+                <View>
 
-            <View>
+                    <Carousel layout="stack"
+                        data={data}
+                        itemHeight={ITEM_HEIGHT}
+                        // sliderHeight={100}
+                        sliderWidth={SLIDER_WIDTH}
+                        itemWidth={moderateScale(width - 70)}
+                        renderItem={renderItem}
+                        onSnapToItem={index => setSnapState(index)}
+                        scrollEnabled={data.length > 1 ? true : false}
 
-                <Carousel layout="stack"
-                    data={data}
-                    // itemHeight={ITEM_HEIGHT}
-                    // itemWidth={ITEM_WIDTH}
-                    sliderWidth={SLIDER_WIDTH}
-                    itemWidth={moderateScale(width - 70)}
-                    // sliderWidth={moderateScale(width - 25)}
-                    renderItem={renderItem}
-                    onSnapToItem={index => setSnapState(index)}
-                    scrollEnabled={data.length > 1 ? true : false}
-                />
+                    />
 
-                <Pagination
-                    activeDotIndex={snapState}
-                    containerStyle={{ paddingVertical: 0, marginTop: 0 }}
-                    dotColor={colors.redB}
-                    dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
-                    inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
-                    inactiveDotColor={colors.black}
-                    inactiveDotOpacity={0.4}
-                    activeOpacity={0.8}
-                    dotContainerStyle={{ marginHorizontal: 2, paddingTop: 0 }}
-                    dotsLength={data.length}
+                    <Pagination
+                        activeDotIndex={snapState}
+                        containerStyle={{ paddingVertical: 0, marginTop: 0 }}
+                        dotColor={colors.redB}
+                        dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
+                        inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
+                        inactiveDotColor={colors.black}
+                        inactiveDotOpacity={0.4}
+                        activeOpacity={0.8}
+                        dotContainerStyle={{ marginHorizontal: 2, paddingTop: 0 }}
+                        dotsLength={data.length}
 
-                />
-            </View>
-          
-               <CardView />
-            
+                    />
+                </View>
+
+                <CardView />
+                <View style={{ marginTop: 3 }}>
+                    <Text style={{ fontSize: textScale(14), fontWeight: "500" }}>Accessories </Text>
+                </View>
+                <View>
+                    <ElectronicCard />
+
+                </View>
+            </ScrollView>
         </Wrappercontainer>
 
     );

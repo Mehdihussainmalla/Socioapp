@@ -5,9 +5,9 @@ import { View, Text, Image } from 'react-native'
 import imagePath from "../constants/imagePath";
 import colors from "../styles/colors";
 import navigationStrings from "./navigationStrings";
-import Home from "../Screens/Home/Home";
+// import Home from "../Screens/Home/Home";
 import { moderateScale, moderateVerticalScale } from "react-native-size-matters";
-import { Profile, SearchScreen } from "../Screens";
+import { Profile, SearchScreen, Home } from "../Screens";
 
 const Tab = createBottomTabNavigator();
 export default function TabStack() {

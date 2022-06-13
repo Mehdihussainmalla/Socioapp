@@ -19,7 +19,11 @@ export default {
     add_icon: require("../assets/images/add-icon.png"),
     add_icon2: require("../assets/images/add2@.png"),
     men_collar: require("../assets/images/mendress.png"),
-    fruits_stock:require("../assets/images/fruits.png"),
-    spices_hub:require("../assets/images/spices.png")
+    fruits_stock: require("../assets/images/fruits.png"),
+    spices_hub: require("../assets/images/spices.png"),
+    mobile: require("../assets/images/mobile.png"),
+    cameras: require("../assets/images/cameras.png"),
+    laptops: require("../assets/images/laptops.png"),
+    watch: require("../assets/images/watch.png"),
 
 }

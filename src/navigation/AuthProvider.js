@@ -15,7 +15,9 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider
             value={{
                 user,
+                confirm,
                 setUser,
+                setconfirm,
                 login: async (email, password) => {
                     try {
                         await auth().signInWithEmailAndPassword(email, password);
