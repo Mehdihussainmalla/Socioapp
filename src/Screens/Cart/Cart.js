@@ -25,10 +25,7 @@ const Cart = () => {
                 <View style={{
                     justifyContent: "center",
                     alignItems: "center",
-                    // height: height / 20,
                     backgroundColor: "green",
-                    // marginTop: moderateScale(100),
-                    // paddingVertical: moderateScale(2),
                     marginHorizontal: moderateScale(20),
 
                 }}>
