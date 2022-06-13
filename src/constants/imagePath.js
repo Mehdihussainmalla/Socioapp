@@ -10,7 +10,7 @@ export default {
     profile_pic: require("../assets/images/profile-pic.png"),
     close_icon: require("../assets/images/close-icon.png"),
     back_arrow: require("../assets/images/back-arrow.png"),
-    logout_icon: require("../assets/images/logout-icon.png"),
+    logout_icon: require("../assets/images/logout.png"),
     setting_icon: require("../assets/images/settings.png"),
     drop_down_icon: require("../assets/images/ic_down.png"),
     language_icon: require("../assets/images/language-icon.png"),
@@ -25,5 +25,12 @@ export default {
     cameras: require("../assets/images/cameras.png"),
     laptops: require("../assets/images/laptops.png"),
     watch: require("../assets/images/watch.png"),
+    white_circle2: require("../assets/images/whiteee.png"),
+    white_circle: require("../assets/images/circle-white.png"),
+    digital_order: require("../assets/images/smartphone.png"),
+    forward_arrow: require("../assets/images/forward-arrow.png"),
+    location: require("../assets/images/location.png"),
+    help: require("../assets/images/help-icon.png"),
+    category: require("../assets/images/category.png"),
 
 }

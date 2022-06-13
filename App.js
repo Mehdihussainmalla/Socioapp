@@ -16,7 +16,7 @@ const App = () => {
   const getLanguage = async () => {
     try {
       const lng = await AsyncStorage.getItem('language')
-      console.log("Lnguage changed", lng)
+      // console.log("Lnguage changed", lng)
       if (!!lng) {
         strings.setLanguage(lng)
       } else {
