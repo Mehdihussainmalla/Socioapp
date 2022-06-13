@@ -9,6 +9,7 @@ const Header = ({
     isBackIcon,
     title,
     onPress,
+    imageStyle
 
 }) => {
     const navigation = useNavigation();
@@ -21,8 +22,7 @@ const Header = ({
 
                 <TouchableOpacity activeOpacity={0.5}
                     onPress={!!onPress ? onPress : () => goBack()} >
-                    <Image style={{ padding: moderateScaleVertical(13), 
-                        marginTop: moderateScaleVertical(4) }} source={imagePath.back_arrow} />
+                    <Image style={{...styles.imageStyle, ...imageStyle}} source={imagePath.back_arrow} />
                 </TouchableOpacity>
             )}
             <View style={{
@@ -50,7 +50,10 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         textAlign: "center"
 
-    }
+    },
+    imageStyle:
+    { padding: moderateScaleVertical(13), 
+        marginTop: moderateScaleVertical(4) }
 });
 
 export default Header;

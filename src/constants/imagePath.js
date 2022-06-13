@@ -32,5 +32,6 @@ export default {
     location: require("../assets/images/location.png"),
     help: require("../assets/images/help-icon.png"),
     category: require("../assets/images/category.png"),
+    cart: require("../assets/images/cart-icon.png"),
 
 }

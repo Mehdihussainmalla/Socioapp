@@ -7,7 +7,7 @@ import colors from "../styles/colors";
 import navigationStrings from "./navigationStrings";
 // import Home from "../Screens/Home/Home";
 import { moderateScale, moderateVerticalScale } from "react-native-size-matters";
-import { Profile, SearchScreen, Home } from "../Screens";
+import { Profile, SearchScreen, Home, Cart } from "../Screens";
 
 const Tab = createBottomTabNavigator();
 export default function TabStack() {
@@ -44,11 +44,11 @@ export default function TabStack() {
                     tabBarIcon: ({ focused }) => {
                         return (
                             <Image style={{ tintColor: focused ? colors.redC : colors.black, }}
-                                source={imagePath.search_icon} />
+                                source={imagePath.cart} />
                         )
                     }
                 }}
-                    name={navigationStrings.SEARCH_SCREEN} component={SearchScreen}
+                    name={navigationStrings.CART} component={Cart}
                 />
                 <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {

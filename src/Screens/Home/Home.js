@@ -46,7 +46,7 @@ const Home = (props) => {
         key: 3,
         title: 'Gaming Furniture',
 
-        image: imagePath.men_collar,
+        image: imagePath.spices_hub,
 
     },
     {
@@ -56,7 +56,7 @@ const Home = (props) => {
     },
     {
         key: 5,
-        image: imagePath.mobile,
+        image: imagePath.spices_hub,
     },
 
     ]
