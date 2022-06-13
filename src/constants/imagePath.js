@@ -18,4 +18,8 @@ export default {
     bgc_icon: require("../assets/images/bgc-icon.png"),
     add_icon: require("../assets/images/add-icon.png"),
     add_icon2: require("../assets/images/add2@.png"),
+    men_collar: require("../assets/images/mendress.png"),
+    fruits_stock:require("../assets/images/fruits.png"),
+    spices_hub:require("../assets/images/spices.png")
+
 }

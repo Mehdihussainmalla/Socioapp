@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         flexDirection:"row",
         marginTop: moderateVerticalScale(15),
         marginHorizontal: moderateVerticalScale(10), 
-        justifyContent:"flex-start"
+        justifyContent:"flex-start",
 
     },
     idstyle: {
