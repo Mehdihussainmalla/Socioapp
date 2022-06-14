@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react";
 import auth from "@react-native-firebase/auth";
-import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { showMessage } from "react-native-flash-message";
+import actions from "../redux/actions";
 
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
@@ -20,14 +20,19 @@ export const AuthProvider = ({ children }) => {
                 setconfirm,
                 login: async (email, password) => {
                     try {
-                        await auth().signInWithEmailAndPassword(email, password);
+                        await auth().signInWithEmailAndPassword(email, password).then(() => {
+
+                            let data = [email, password];
+                            console.log(data, "data from auth provider");
+                            actions.loginData(data)
+                        });
                     } catch (error) {
                         console.log(error, "error occurred at auth proviider")
 
                     }
                 },
                 phoneLogin: async (countryCode, phoneNumber) => {
-                    
+
                     let phN = (countryCode + phoneNumber)
                     let phone = `+${(phN.toString())}`
                     console.log(phone, 'nooooo')
@@ -49,16 +54,16 @@ export const AuthProvider = ({ children }) => {
                     }
 
                 },
-                verifyOtp: async (code)=>{
+                verifyOtp: async (code) => {
                     try {
-                       let res =  await confirm.confirm(code);
-                       return res;
-                      } catch (error) {
-                         showMessage({
-                             message:error.message,
-                         })
+                        let res = await confirm.confirm(code);
+                        return res;
+                    } catch (error) {
+                        showMessage({
+                            message: error.message,
+                        })
                         // console.log('Invalid code.');
-                      }
+                    }
 
                 },
                 googleLogin: async () => {
@@ -129,7 +134,11 @@ export const AuthProvider = ({ children }) => {
                 },
                 logout: async () => {
                     try {
-                        await auth().signOut();
+                      
+                        await auth().signOut().then(()=>{
+                            actions.Logout()
+
+                        })
                     } catch (error) {
                         console.log(error)
                     }

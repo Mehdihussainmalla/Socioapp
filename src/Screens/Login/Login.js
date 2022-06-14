@@ -23,6 +23,7 @@ import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
 import strings, { changeLanguage } from '../../constants/lang';
 import Modal from "react-native-modal"
+import actions from '../../redux/actions';
 
 const Login = ({ navigation }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
@@ -40,7 +41,9 @@ const Login = ({ navigation }) => {
         GoogleSignin.configure({
             webClientId: '196889429419-ukv9i2e4229oj3frq0nm2btuamemk46u.apps.googleusercontent.com',
         });
-    }, [])
+    }, []);
+
+    const data=[email,password];
     const handleLogin = () => {
 
         if (email === "") {
@@ -61,6 +64,8 @@ const Login = ({ navigation }) => {
             })
         }
         else {
+            // actions.signIn(data);
+            // console.log(data,"data is>>>>>>")
             login(email, password)
 
         }
@@ -72,54 +77,9 @@ const Login = ({ navigation }) => {
         RNRestart.Restart();
 
     }
-
-    // const data = [
-    //     {
-    //         key: "1",
-    //         name: "English"
-    //     },
-    //     {
-    //         key: "2",
-    //         name: "Spanish"
-    //     },
-    //     {
-    //         key: "3",
-    //         name: "French"
-    //     },
-    //     {
-    //         key: "4",
-    //         name: "Urdu"
-    //     },
-    //     {
-    //         key: "5",
-    //         name: "Arabic"
-    //     },
-    //     {
-    //         key: "6",
-    //         name: "Japanese"
-    //     },
-    // ]
-    // const renderItem = (item, handleModal) => {
-    //     console.log(handleModal, "handle modal idss")
-    //     console.log(item, "items aree")
-    //     return (
-    //         <View>
-    //             <Text>{item?.item?.name}</Text>
-    //         </View>
-    //     )
-    // }
-
-
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>
-
-                {/* <FlatList
-                    data={data}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.key} /> */}
-
-
 
                 <View style={{ alignItems: "flex-end", alignContent: "flex-end", flexDirection: "column" }}>
                     <TouchableOpacity

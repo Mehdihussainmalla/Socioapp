@@ -79,7 +79,7 @@ const electronicData = [{
 ]
 
 const renderItem = ({ item }) => {
-    console.log(item?.image, "dfdfjf>>>>>")
+    // console.log(item?.image, "dfdfjf>>>>>")
     return (
         <TouchableOpacity
             activeOpacity={0.8}
@@ -125,7 +125,7 @@ const ElectronicCard = () => {
                 numColumns={3}
                 data={electronicData}
                 renderItem={renderItem}
-                keyExtractor={item=>item.id}
+                // keyExtractor={item => item.id}
             />
         </View>
     );

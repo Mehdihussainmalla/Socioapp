@@ -36,7 +36,7 @@ const CardView = () => {
     },
     ]
     const renderItem = ({ item }) => {
-        console.log(item, "items for flast list are")
+        // console.log(item, "items for flast list are")
         return (
             <TouchableOpacity
                 activeOpacity={0.7}

@@ -14,6 +14,7 @@ import imagePath from '../../constants/imagePath';
 import strings from '../../constants/lang';
 import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
+import actions from '../../redux/actions';
 import colors from '../../styles/colors';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
@@ -30,7 +31,8 @@ const SignUp = ({ navigation }) => {
     const { register } = useContext(AuthContext);
     const [hide, setHide] = useState();
     const [hideIcon, setHideIcon] = useState();
-
+  
+    const data=[email, password]
     const handleSignup = () => {
         if (email === "") {
             // console.log('please enter email')
@@ -56,6 +58,8 @@ const SignUp = ({ navigation }) => {
 
         else {
             if (password === confirmPassword) {
+                // actions.signIn(data)
+                console.log(data, "sign in data >>>>>>>")
                 register(email, password)
                 showMessage({
                     message: "Signup sucessfully",

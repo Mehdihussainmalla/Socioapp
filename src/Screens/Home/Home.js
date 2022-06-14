@@ -27,7 +27,7 @@ const Home = (props) => {
     const { user } = useContext(AuthContext);
     const [snapState, setSnapState] = useState(0);
 
-    console.log(user, "user>>H")
+    // console.log(user, "user>>H")
 
     const data = [{
 
@@ -83,21 +83,23 @@ const Home = (props) => {
 
     return (
         <Wrappercontainer >
-            <TouchableOpacity
-                onPress={() => navigation.openDrawer()}
-                activeOpacity={0.5}
-                style={styles.drawerstyle}>
-                <Image source={imagePath.hamsburg} />
+            <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                    onPress={() => navigation.openDrawer()}
+                    activeOpacity={0.5}
+                    style={styles.drawerstyle}>
+                    <Image source={imagePath.hamsburg} />
+                </TouchableOpacity>
                 <Header title="Home" />
 
-                <TouchableOpacity style={{
+                {/* <TouchableOpacity style={{
                     marginRight: moderateScaleVertical(40)
                     , marginTop: 10, width: "7%"
                 }} >
                     <Image
                         source={imagePath.add_icon} />
-                </TouchableOpacity>
-            </TouchableOpacity>
+                </TouchableOpacity> */}
+            </View>
 
             <TouchableOpacity
                 onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
@@ -116,46 +118,46 @@ const Home = (props) => {
                 }}
                     source={imagePath.search_icon} />
             </TouchableOpacity>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
-                <View>
+            <View>
 
-                    <Carousel layout="stack"
-                        data={data}
-                        itemHeight={ITEM_HEIGHT}
-                        // sliderHeight={100}
-                        sliderWidth={SLIDER_WIDTH}
-                        itemWidth={moderateScale(width - 70)}
-                        renderItem={renderItem}
-                        onSnapToItem={index => setSnapState(index)}
-                        scrollEnabled={data.length > 1 ? true : false}
+                <Carousel layout="stack"
+                    data={data}
+                    itemHeight={ITEM_HEIGHT}
+                    // sliderHeight={100}
+                    sliderWidth={SLIDER_WIDTH}
+                    itemWidth={moderateScale(width - 70)}
+                    renderItem={renderItem}
+                    onSnapToItem={index => setSnapState(index)}
+                    scrollEnabled={data.length > 1 ? true : false}
 
-                    />
+                />
 
-                    <Pagination
-                        activeDotIndex={snapState}
-                        containerStyle={{ paddingVertical: 0, marginTop: 0 }}
-                        dotColor={colors.redB}
-                        dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
-                        inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
-                        inactiveDotColor={colors.black}
-                        inactiveDotOpacity={0.4}
-                        activeOpacity={0.8}
-                        dotContainerStyle={{ marginHorizontal: 2, paddingTop: 0 }}
-                        dotsLength={data.length}
+                <Pagination
+                    activeDotIndex={snapState}
+                    containerStyle={{ paddingVertical: 0, marginTop: 0 }}
+                    dotColor={colors.redB}
+                    dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
+                    inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
+                    inactiveDotColor={colors.black}
+                    inactiveDotOpacity={0.4}
+                    activeOpacity={0.8}
+                    dotContainerStyle={{ marginHorizontal: 2, paddingTop: 0 }}
+                    dotsLength={data.length}
 
-                    />
-                </View>
+                />
+            </View>
 
-                <CardView />
-                <View style={{ marginTop: 3 }}>
-                    <Text style={{ fontSize: textScale(14), fontWeight: "500" }}>Accessories </Text>
-                </View>
-                <View>
-                    <ElectronicCard />
+            <CardView />
+            <View style={{ marginTop: 3 }}>
+                <Text style={{ fontSize: textScale(14), fontWeight: "500" }}>Accessories </Text>
+            </View>
+            <View>
+                <ElectronicCard />
 
-                </View>
-            </ScrollView>
+            </View>
+            {/* </ScrollView> */}
         </Wrappercontainer>
 
     );

@@ -7,10 +7,15 @@ import MainStack from './MainStack';
 import { AuthContext } from "./AuthProvider";
 import auth from '@react-native-firebase/auth';
 import IntroStack from './IntroStack';
+import { useSelector } from 'react-redux';
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
+
+    // const userData=useSelector((state)=>state?.useState);
+    // console.log(userData,"userdata>>>>>>>>>")
     const {user,setUser} = useContext(AuthContext);
+    console.log(user,"user")
     const [initializing, setInitializing] = useState(true)
 
     const onAuthStateChanged = (user) => {
