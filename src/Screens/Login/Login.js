@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
         });
     }, []);
 
-    const data=[email,password];
+    const data = [email, password];
     const handleLogin = () => {
 
         if (email === "") {
@@ -64,9 +64,9 @@ const Login = ({ navigation }) => {
             })
         }
         else {
-            // actions.signIn(data);
-            // console.log(data,"data is>>>>>>")
-            login(email, password)
+            // actions.signIn(data)
+            // console.log(data, "data is>>>>>>")
+             login(email, password)
 
         }
     }
