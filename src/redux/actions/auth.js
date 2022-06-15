@@ -14,11 +14,11 @@ export const signUp = (data) => {
 }
 export const SignUpHandle = async (email, password) => {
     console.log(email, password, "email and password is:-")
-   
+
     try {
-        const user = await auth().createUserWithEmailAndPassword(email,password);
+        const user = await auth().createUserWithEmailAndPassword(email, password);
         console.log(user, "sign up data")
-        loginData(email,password);
+        signIn(email, password);
     } catch (error) {
         console.log(error, "error occurred")
 
@@ -40,11 +40,11 @@ export const loginData = (data) => {
 }
 export const signIn = (email, password) => {
     console.log(email, password)
-   
+
     try {
-         let user = auth().signInWithEmailAndPassword(email, password);
-    console.log(user, "user>>")
-        dispatch(loginData(user))
+        let user = auth().signInWithEmailAndPassword(email, password);
+        console.log(user, "user>>")
+        loginData(user)
 
 
     } catch (error) {

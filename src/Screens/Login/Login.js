@@ -64,8 +64,7 @@ const Login = ({ navigation }) => {
             })
         }
         else {
-            actions.signIn(data)
-            console.log(data, "data is>>>>>>")
+            actions.signIn(email,password)
             //  login(email, password)
 
         }
