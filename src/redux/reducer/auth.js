@@ -1,11 +1,11 @@
-import { removeItem, setItem, setLogin } from "../../utils/utils";
+import { removeData, removeItem, setItem, setLogin } from "../../utils/utils";
 import types from "../types";
 import auth from "@react-native-firebase/auth"
 const initialState = {
     userData: {}
 }
 
-export const userStatus =  (state = initialState, action) => {
+export const userStatus = (state = initialState, action) => {
 
     switch (action.type) {
         case types.LOGIN: {
@@ -15,12 +15,18 @@ export const userStatus =  (state = initialState, action) => {
                 userData: data
             }
         }
-        case types.LOGOUT: {
-            removeItem("login")
+        case types.SIGNUP: {
             return {
-                userData: undefined
+                ...state
             }
         }
+        case types.LOGOUT:
+            removeData().then((res) => {
+                console.log(res, "res from reducer>>")
+                return { ...state.userData, userData: res }
+            })
+            return { ...state.userData, userData: undefined }
+
         default: return state
     }
 }

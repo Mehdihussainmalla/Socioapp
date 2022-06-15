@@ -24,7 +24,7 @@ import ElectronicCard from '../../Components/electonicCard';
 const Home = (props) => {
     const { navigation } = props;
     // console.log("props are", props)
-    const { user } = useContext(AuthContext);
+    // const { user } = useContext(AuthContext);
     const [snapState, setSnapState] = useState(0);
 
     // console.log(user, "user>>H")

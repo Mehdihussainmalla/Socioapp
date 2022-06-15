@@ -28,7 +28,7 @@ const SignUp = ({ navigation }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmpassword] = useState();
-    const { register } = useContext(AuthContext);
+    // const { register } = useContext(AuthContext);
     const [hide, setHide] = useState();
     const [hideIcon, setHideIcon] = useState();
 
@@ -58,7 +58,9 @@ const SignUp = ({ navigation }) => {
 
         else {
             if (password === confirmPassword) {
-                register(email, password)
+                actions.SignUpHandle(email,password)
+                // navigation.navigate(navigationStrings.HOME)
+                // register(email, password)
                 showMessage({
                     message: "Signup sucessfully",
                     type: "success"

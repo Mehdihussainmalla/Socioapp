@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
     // console.log(route?.params,"route data")
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { login, googleLogin, facebookLogin } = useContext(AuthContext);
+    // const { login, googleLogin, facebookLogin } = useContext(AuthContext);
     const [hide, setHide] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -64,9 +64,9 @@ const Login = ({ navigation }) => {
             })
         }
         else {
-            // actions.signIn(data)
-            // console.log(data, "data is>>>>>>")
-             login(email, password)
+            actions.signIn(data)
+            console.log(data, "data is>>>>>>")
+            //  login(email, password)
 
         }
     }
@@ -271,13 +271,15 @@ const Login = ({ navigation }) => {
                         btnStyle={{ marginTop: moderateScaleVertical(50) }}
                         ButtonText={strings.LOGIN} />
 
-                    <ButtonComp onPress={() => googleLogin()}
+                    <ButtonComp 
+                    // onPress={() => googleLogin()}
                         btnIcon={imagePath.google_icon}
                         btnStyle={{ marginTop: moderateScaleVertical(20) }}
                         ButtonText={strings.GOOGLE_LOGIN} />
 
 
-                    <ButtonComp onPress={() => facebookLogin()}
+                    <ButtonComp 
+                    // onPress={() => facebookLogin()}
                         btnIcon={imagePath.facebook_icon}
                         btnStyle={{ marginTop: moderateScaleVertical(20) }}
                         ButtonText={strings.FB_LOGIN} />

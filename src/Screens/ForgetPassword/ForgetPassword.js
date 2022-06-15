@@ -14,15 +14,15 @@ import { styles } from './styles';
 
 // create a component
 const ForgetPassword = ({ navigation }) => {
-    const { forgetPassword } = useContext(AuthContext);
+    // const { forgetPassword } = useContext(AuthContext);
     // console.log(forgetPassword, "pass is>>>>")
     const [email, setEmail] = useState("");
 
     const forget = () => {
-        forgetPassword(email)
-        if (email) {
-            navigation.navigate(navigationStrings.LOGIN)
-        }
+        // forgetPassword(email)
+        // if (email) {
+        //     navigation.navigate(navigationStrings.LOGIN)
+        // }
 
     }
     return (

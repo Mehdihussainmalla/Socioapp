@@ -7,12 +7,17 @@ import { AuthContext } from '../../navigation/AuthProvider'
 import colors from '../../styles/colors';
 import { textScale } from '../../styles/responsiveSize'
 import { moderateScale } from 'react-native-size-matters'
+import actions from '../../redux/actions'
 
 
 const Profile = () => {
-  const { user, logout } = useContext(AuthContext);
-  const image = user?._user?.photoURL;
+  // const { user, logout } = useContext(AuthContext);
+  // const image = user?._user?.photoURL;
   // console.log("user is ", user?._user?.email)
+
+  const handleLogout=()=>{
+    actions.Logout();
+  }
   return (
     <Wrappercontainer>
       <ScrollView>
@@ -27,13 +32,17 @@ const Profile = () => {
                   height: 80,
                   borderRadius: 0.5,
                   borderWidth: 1
-                }} source={{ uri: image }} />
+                }} 
+                // source={{ uri: image }}
+                 />
               </View>
               <View style={{ marginTop: 20 }}>
                 <Text style={{ fontWeight: "700", color: colors.blackOpacity66 }}>
-                  {user?._user?.displayName}</Text>
+                  {/* {user?._user?.displayName} */}
+                  </Text>
                 <Text style={{ fontWeight: "400", color: colors.blackOpacity43 }}>
-                  {user?._user?.email}</Text>
+                  {/* {user?._user?.email} */}
+                  </Text>
                 <Text style={{ color: colors.green }}>SILVER MEMBER</Text>
               </View>
             </View>
@@ -135,7 +144,7 @@ const Profile = () => {
           }}>
             <Image source={imagePath.location} />
             <View style={{ marginHorizontal: 10 }}>
-              <Text style={{ fontSize: textScale(16), fontWeight: "700" }}>Store Locator</Text>
+              <Text style={{ fontSize: textScale(16), fontWeight: "500" }}>Store Locator</Text>
               <Text style={{
                 fontSize: textScale(12), color: colors.blackOpacity66,
 
@@ -188,7 +197,8 @@ const Profile = () => {
           </View>
 
           <TouchableOpacity
-            onPress={() => logout()}
+            onPress={handleLogout}
+            // onPress={() => logout()}
             activeOpacity={0.7}
             style={{ flexDirection: "row", }}>
             <Image source={imagePath.logout_icon} />

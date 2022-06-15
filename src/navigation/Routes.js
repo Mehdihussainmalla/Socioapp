@@ -12,31 +12,31 @@ const Stack = createNativeStackNavigator();
 
 const Routes = () => {
 
-    const userData=useSelector((state)=>state?.userStatus?.userData);
-    console.log(userData,"userdata>>>>>>>>>")
-    const {user,setUser} = useContext(AuthContext);
-    console.log(user,"user from routes")
-    const [initializing, setInitializing] = useState(true)
+    const userData = useSelector((state) => state?.userStatus?.userData);
+    console.log(userData, "userdata>>>>>>>>>")
+    // const { user, setUser } = useContext(AuthContext);
+    // // console.log(user, "user from routes")
+    // const [initializing, setInitializing] = useState(true)
 
-    const onAuthStateChanged = (user) => {
-        setUser(user);
-        if (initializing) setInitializing(false);
-    }
+    // const onAuthStateChanged = (user) => {
+    //     setUser(user);
+    //     if (initializing) setInitializing(false);
+    // }
 
-    useEffect(() => {
-        // GoogleSignin.configure({
-        //     webClientId: '',
-        //   });
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber;
-        
-        
+    // useEffect(() => {
+    //     // GoogleSignin.configure({
+    //     //     webClientId: '',
+    //     //   });
+    //     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    //     return subscriber;
 
-    }, [])
-    if (initializing) return null;
+
+
+    // }, [])
+    // if (initializing) return null;
     return (
         <NavigationContainer>
-            {user? MainStack(Stack) :   AuthStack(Stack)}
+            {userData ? MainStack(Stack) : AuthStack(Stack)}
         </NavigationContainer>
 
     );

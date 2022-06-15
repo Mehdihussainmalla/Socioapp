@@ -16,28 +16,28 @@ import { textScale } from '../../styles/responsiveSize';
 const OptScreen = ({ route }) => {
     // const data=route?.params;
     // console.log(data,"data is>>>")
-    const { verifyOtp } = useContext(AuthContext);
+    // const { verifyOtp } = useContext(AuthContext);
     const [code, setCode] = useState();
     const navigation = useNavigation();
     const verifyOtpToNavigate = (code) => {
-        let res = verifyOtp(code)
-        //    let data =  JSON.stringify(res)
-        console.log(res, "ressss>>")
-        if (!!res) {
-            // alert('otp success')
-            showMessage({
-                message:"Login Successfully",
-                type:"success",
-            })
-            navigation.navigate(navigationStrings.HOME)
-        }
-        else {
-            showMessage({
-                message:"wrong code",
-                type:"danger"
-            })
-            // alert('some thing went wrong')
-        }
+        // let res = verifyOtp(code)
+        // //    let data =  JSON.stringify(res)
+        // console.log(res, "ressss>>")
+        // if (!!res) {
+        //     // alert('otp success')
+        //     showMessage({
+        //         message:"Login Successfully",
+        //         type:"success",
+        //     })
+        //     navigation.navigate(navigationStrings.HOME)
+        // }
+        // else {
+        //     showMessage({
+        //         message:"wrong code",
+        //         type:"danger"
+        //     })
+        //     // alert('some thing went wrong')
+        // }
     }
 
     return (
@@ -60,7 +60,8 @@ const OptScreen = ({ route }) => {
                 onChangeText={(code) => setCode(code)}
                 placeholder='please enter otp' />
             <View style={{ marginTop: moderateVerticalScale(50) }}>
-                <ButtonComp onPress={() => verifyOtpToNavigate(code)}
+                <ButtonComp
+                    onPress={() => verifyOtpToNavigate(code)}
                     ButtonText='confirm otp' />
                 {/* {console.log(code,"code is")} */}
             </View>

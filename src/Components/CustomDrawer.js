@@ -14,11 +14,20 @@ import Home from '../Screens/Home/Home';
 import { AuthContext } from '../navigation/AuthProvider';
 import { showMessage } from 'react-native-flash-message';
 import strings from '../constants/lang';
+import actions from '../redux/actions';
 
 function CustomDrawer(props) {
-    const { user, logout } = useContext(AuthContext);
+    // const { user, logout } = useContext(AuthContext);
     // console.log("user is ", user?._user?.email)
     const { navigation } = props;
+
+    const handleLogout = () => {
+        actions.logouthandle();
+        showMessage({
+            message: "Logout Sucessfully",
+            type: "success"
+        })
+    }
 
     const handleScreen = () => {
         navigation.navigate(navigationStrings.HOME)
@@ -65,7 +74,7 @@ function CustomDrawer(props) {
                     paddingVertical: moderateScaleVertical(5),
                     marginTop: moderateScaleVertical(14), alignSelf: 'center'
                 }}>
-                    <Text style={{ fontSize: textScale(12), color: colors.white, fontWeight: "800" }}>{user?._user?.email}</Text>
+                    {/* <Text style={{ fontSize: textScale(12), color: colors.white, fontWeight: "800" }}>{user?._user?.email}</Text> */}
                 </View>
             </View>
 
@@ -127,28 +136,24 @@ function CustomDrawer(props) {
 
                     marginLeft: moderateScaleVertical(25),
                     marginTop: moderateScale(15),
-                    paddingTop:moderateScaleVertical(390),
+                    paddingTop: moderateScaleVertical(390),
 
                 }}>
                 <TouchableOpacity
 
                     style={{ flexDirection: "row", }}
                     activeOpacity={0.5}
+                    onPress={()=>handleLogout()}
 
-                    onPress={() => logout(
-                        showMessage({
-                            message: "logout succussfully",
-                            type: "success"
-                        })
-                    )}>
-                    <Image style={{ tintColor: colors.white, width: width / 17, marginTop: 2, }}
+                // onPress={() => logout()}
+                >
+                    <Image style={{ tintColor: colors.white, width: width / 12,}}
                         source={imagePath.logout_icon} />
                     <Text style={{
 
                         color: colors.white,
-                        fontSize: textScale(15), fontWeight: "500",
+                        fontSize: textScale(17), fontWeight: "500",
                         paddingLeft: moderateVerticalScale(10),
-                        // paddingTop: moderateScale(5)
                     }}
                     >{strings.SIGN_OUT}</Text>
                 </TouchableOpacity>

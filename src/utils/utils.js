@@ -205,3 +205,14 @@ export async function getLogin() {
         console.log("user_data get error")
     }
 }
+//...............remove data..............//
+export const removeData = async () => {
+    try {
+        await AsyncStorage.removeItem('userData')
+
+
+    } catch (error) {
+        console.log('error occurred in remove items', error)
+
+    }
+}
