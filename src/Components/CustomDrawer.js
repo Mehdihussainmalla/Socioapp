@@ -22,7 +22,7 @@ function CustomDrawer(props) {
     const { navigation } = props;
 
     const handleLogout = () => {
-        actions.logouthandle();
+        actions.Logout();
         showMessage({
             message: "Logout Sucessfully",
             type: "success"

@@ -61,17 +61,16 @@ export const Logout = () => {
     })
 
 }
-export const logouthandle = async () => {
+// export const logouthandle = async () => {
 
-    try {
-        await
-            auth().signOut().then(() => {
-                Logout()
-            })
+//     try {
+//         await auth().signOut().then(() => {
+//             Logout()
+//         })
 
-    } catch (error) {
-        console.log(error, "error occurred")
+//     } catch (error) {
+//         console.log(error, "error occurred")
 
-    }
+//     }
 
-}
+// }

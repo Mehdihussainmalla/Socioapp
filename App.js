@@ -9,7 +9,7 @@ import Routes from './src/navigation/Routes';
 import actions from './src/redux/actions';
 import store from './src/redux/store';
 import { getLogin } from './src/utils/utils';
-
+import SplashScreen from 'react-native-splash-screen'
 
 const App = () => {
 
@@ -18,6 +18,10 @@ const App = () => {
       console.log(res, "res is>>>>>")
       actions.loginData(res);
     })
+    setTimeout(() => {
+      SplashScreen.hide();    
+
+    }, 2000);
     getLanguage();
   }, [])
   const getLanguage = async () => {
