@@ -88,7 +88,7 @@ const SignUp = ({ navigation }) => {
                             value={email}
                             onChangeText={(email) => setEmail(email)}
                             input={{
-                                fontSize: textScale(10), color: colors.blackB,
+                                fontSize: textScale(14), color: colors.blackB,
                             }}
                             placeholder={strings.ENTER_EMAIL} />
                     </View>
@@ -97,7 +97,7 @@ const SignUp = ({ navigation }) => {
                             value={password}
                             secureTextEntry={hide}
                             onChangeText={(password) => setPassword(password)}
-                            input={{ fontSize: textScale(10), color: colors.black, }}
+                            input={{ fontSize: textScale(14), color: colors.black, }}
                             placeholder={strings.ENTER_PASSWORD} />
                         {hide ? <TouchableOpacity onPress={() => setHide(false)}
                             style={{ paddingRight: 10 }}>
@@ -115,7 +115,7 @@ const SignUp = ({ navigation }) => {
                             value={confirmPassword}
                             secureTextEntry={hideIcon}
                             onChangeText={(confirmPassword) => setConfirmpassword(confirmPassword)}
-                            input={{ fontSize: textScale(10), color: colors.black }}
+                            input={{ fontSize: textScale(14), color: colors.black }}
                             placeholder={strings.CONFIRM_PASSWORD} />
 
                         {hideIcon ? <TouchableOpacity onPress={() => setHideIcon(false)}

@@ -17,6 +17,7 @@ const MainStack = (Stack) => {
                component={DrawerStack} />
             <Stack.Screen name={navigationStrings.SEARCH_SCREEN}
                component={SearchScreen} />
+               
             {/* <Stack.Screen name={navigationStrings.HOME}
                component={Home} /> */}
             {/* <Stack.Screen 

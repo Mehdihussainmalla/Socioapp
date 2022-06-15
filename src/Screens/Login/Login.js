@@ -209,7 +209,8 @@ const Login = ({ navigation }) => {
                             value={email}
                             onChangeText={(email) => setEmail(email)}
                             input={{
-                                fontSize: textScale(10), color: colors.blackB,
+                                fontSize: textScale(14), 
+                                color: colors.blackB,
                                 borderWidth: 0.9, paddingHorizontal: moderateScaleVertical(10),
                             }}
                             placeholder={strings.ENTER_EMAIL} />
@@ -222,7 +223,7 @@ const Login = ({ navigation }) => {
                             onChangeText={(password) => setPassword(password)}
                             input={{
 
-                                fontSize: textScale(10),
+                                fontSize: textScale(14),
                                 color: colors.black
                             }}
                             placeholder={strings.ENTER_PASSWORD} />

@@ -9,7 +9,7 @@ import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
-import { moderateScaleVertical } from '../../styles/responsiveSize';
+import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
 const PhoneLogin = ({ navigation }) => {
     // const { phoneLogin } = useContext(AuthContext);
@@ -55,9 +55,10 @@ const PhoneLogin = ({ navigation }) => {
                         </View>
                         <View style={{ flex: 0.68 }}>
                             <TextInputComponent input={{
+                                fontSize: textScale(14),
                                 borderRadius: moderateScale(5),
                                 borderWidth: moderateScaleVertical(0.9),
-
+                            
 
                             }}
 
