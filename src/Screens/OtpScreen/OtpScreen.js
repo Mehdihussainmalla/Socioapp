@@ -12,10 +12,7 @@ import { textScale } from '../../styles/responsiveSize';
 import auth from "@react-native-firebase/auth";
 
 // create a component
-const OptScreen = ({ route }) => {
-    // const data=route?.params;
-    // console.log(data,"data is>>>")
-    // const { verifyOtp } = useContext(AuthContext);
+const OptScreen = () => {
     const [code, setCode] = useState();
     const [confirm, setConfirm] = useState(null);
     const navigation = useNavigation();
@@ -38,27 +35,6 @@ const OptScreen = ({ route }) => {
             console.log('Invalid code.');
         }
     }
-
-    // const verifyOtpToNavigate = (code) => {
-    // let res = verifyOtp(code)
-    // //    let data =  JSON.stringify(res)
-    // console.log(res, "ressss>>")
-    // if (!!res) {
-    //     // alert('otp success')
-    //     showMessage({
-    //         message:"Login Successfully",
-    //         type:"success",
-    //     })
-    //     navigation.navigate(navigationStrings.HOME)
-    // }
-    // else {
-    //     showMessage({
-    //         message:"wrong code",
-    //         type:"danger"
-    //     })
-    //     // alert('some thing went wrong')
-    // }
-    // }
 
     return (
         <Wrappercontainer>
@@ -83,7 +59,6 @@ const OptScreen = ({ route }) => {
                 <ButtonComp
                     onPress={() => verifyOtp(code)}
                     ButtonText='confirm otp' />
-                {/* {console.log(code,"code is")} */}
             </View>
         </Wrappercontainer>
     );

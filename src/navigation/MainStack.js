@@ -23,14 +23,6 @@ const MainStack = (Stack) => {
             <Stack.Screen name={navigationStrings.SETTINGS}
             options={{headerShown:false}}
                component={Settings} />
-            {/* <Stack.Screen 
-            options={{ headerShown: true }} 
-            name={navigationStrings.TABSTACK}
-               component={TabStack} /> */}
-
-
-
-
          </Stack.Navigator>
       </>
    );
