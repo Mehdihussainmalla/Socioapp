@@ -1,14 +1,12 @@
+import React, { useState, useEffect } from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import React, { useContext, useState, useEffect } from 'react';
 import RNRestart from 'react-native-restart'
 import {
-    View, Text, StyleSheet,
+    View, Text,
     SafeAreaView,
     TouchableOpacity,
     Image,
     ScrollView,
-    FlatList
-
 
 } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
@@ -24,6 +22,7 @@ import { styles } from './styles';
 import strings, { changeLanguage } from '../../constants/lang';
 import Modal from "react-native-modal"
 import actions from '../../redux/actions';
+import auth from "@react-native-firebase/auth"
 
 const Login = ({ navigation }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
@@ -36,12 +35,15 @@ const Login = ({ navigation }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
-
     useEffect(() => {
-        GoogleSignin.configure({
-            webClientId: '196889429419-ukv9i2e4229oj3frq0nm2btuamemk46u.apps.googleusercontent.com',
-        });
-    }, []);
+        GoogleSignin.configure();
+    }, [])
+
+    // useEffect(() => {
+    //     GoogleSignin.configure({
+    //         // webClientId: '196889429419-ukv9i2e4229oj3frq0nm2btuamemk46u.apps.googleusercontent.com',
+    //     });
+    // }, []);
 
     const data = [email, password];
     const handleLogin = () => {
@@ -64,7 +66,7 @@ const Login = ({ navigation }) => {
             })
         }
         else {
-            actions.signIn(email,password)
+            actions.signIn(email, password)
             //  login(email, password)
 
         }
@@ -76,6 +78,27 @@ const Login = ({ navigation }) => {
         RNRestart.Restart();
 
     }
+    //..........google login.........//
+    const googlelogin = async () => {
+        try {
+            const { idToken } = await GoogleSignin.signIn();
+            // console.log(idToken, "user info is >>")
+            const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+            await auth().signInWithCredential(googleCredential);
+            actions.loginData(googleCredential)
+            showMessage({
+                message: "login sucessfully",
+                type: "success"
+            })
+
+
+        } catch (error) {
+            console.log("error in goolge login")
+
+        }
+    }
+
+
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>
@@ -209,7 +232,7 @@ const Login = ({ navigation }) => {
                             value={email}
                             onChangeText={(email) => setEmail(email)}
                             input={{
-                                fontSize: textScale(14), 
+                                fontSize: textScale(14),
                                 color: colors.blackB,
                                 borderWidth: 0.9, paddingHorizontal: moderateScaleVertical(10),
                             }}
@@ -271,15 +294,16 @@ const Login = ({ navigation }) => {
                         btnStyle={{ marginTop: moderateScaleVertical(50) }}
                         ButtonText={strings.LOGIN} />
 
-                    <ButtonComp 
-                    // onPress={() => googleLogin()}
+                    <ButtonComp
+                        onPress={() => googlelogin()}
+                        // onPress={handleGoogle}
                         btnIcon={imagePath.google_icon}
                         btnStyle={{ marginTop: moderateScaleVertical(20) }}
                         ButtonText={strings.GOOGLE_LOGIN} />
 
 
-                    <ButtonComp 
-                    // onPress={() => facebookLogin()}
+                    <ButtonComp
+                        // onPress={() => facebookLogin()}
                         btnIcon={imagePath.facebook_icon}
                         btnStyle={{ marginTop: moderateScaleVertical(20) }}
                         ButtonText={strings.FB_LOGIN} />
