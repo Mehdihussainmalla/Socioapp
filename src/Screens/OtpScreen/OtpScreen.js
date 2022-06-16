@@ -8,9 +8,8 @@ import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
-import { AuthContext } from '../../navigation/AuthProvider';
-import navigationStrings from '../../navigation/navigationStrings';
 import { textScale } from '../../styles/responsiveSize';
+import auth from "@react-native-firebase/auth";
 
 // create a component
 const OptScreen = ({ route }) => {
@@ -18,27 +17,48 @@ const OptScreen = ({ route }) => {
     // console.log(data,"data is>>>")
     // const { verifyOtp } = useContext(AuthContext);
     const [code, setCode] = useState();
+    const [confirm, setConfirm] = useState(null);
     const navigation = useNavigation();
-    const verifyOtpToNavigate = (code) => {
-        // let res = verifyOtp(code)
-        // //    let data =  JSON.stringify(res)
-        // console.log(res, "ressss>>")
-        // if (!!res) {
-        //     // alert('otp success')
-        //     showMessage({
-        //         message:"Login Successfully",
-        //         type:"success",
-        //     })
-        //     navigation.navigate(navigationStrings.HOME)
-        // }
-        // else {
-        //     showMessage({
-        //         message:"wrong code",
-        //         type:"danger"
-        //     })
-        //     // alert('some thing went wrong')
-        // }
+
+
+    const verifyOtp = async (code) => {
+        console.log(code, "code is")
+        let data = JSON.stringify(code);
+        console.log(data, "data is")
+        try {
+            if (!!data) {
+               
+                showMessage({
+                    message: "otp sucess",
+                    type: "success"
+                })
+                await confirm.confirm(code);
+            }
+        } catch (error) {
+            console.log('Invalid code.');
+        }
     }
+
+    // const verifyOtpToNavigate = (code) => {
+    // let res = verifyOtp(code)
+    // //    let data =  JSON.stringify(res)
+    // console.log(res, "ressss>>")
+    // if (!!res) {
+    //     // alert('otp success')
+    //     showMessage({
+    //         message:"Login Successfully",
+    //         type:"success",
+    //     })
+    //     navigation.navigate(navigationStrings.HOME)
+    // }
+    // else {
+    //     showMessage({
+    //         message:"wrong code",
+    //         type:"danger"
+    //     })
+    //     // alert('some thing went wrong')
+    // }
+    // }
 
     return (
         <Wrappercontainer>
@@ -61,7 +81,7 @@ const OptScreen = ({ route }) => {
                 placeholder='please enter otp' />
             <View style={{ marginTop: moderateVerticalScale(50) }}>
                 <ButtonComp
-                    onPress={() => verifyOtpToNavigate(code)}
+                    onPress={() => verifyOtp(code)}
                     ButtonText='confirm otp' />
                 {/* {console.log(code,"code is")} */}
             </View>

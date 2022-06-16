@@ -26,12 +26,13 @@ const ForgetPassword = ({ navigation }) => {
                 })
             await auth().sendPasswordResetEmail(email)
             showMessage({
-                message:"link has sent to your email sucessfully",
-                type:"success"
+                message: "link has sent to your email sucessfully",
+                type: "success"
             })
             navigation.navigate(navigationStrings.LOGIN)
         }
         catch (error) {
+
             console.log(error, "error occurred during forget password")
         }
     }

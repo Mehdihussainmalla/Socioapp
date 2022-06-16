@@ -7,10 +7,10 @@ import CountryCodePicker from '../../Components/CountryCodePicker';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
-import { AuthContext } from '../../navigation/AuthProvider';
-import navigationStrings from '../../navigation/navigationStrings';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
+import auth from "@react-native-firebase/auth";
+import navigationStrings from '../../navigation/navigationStrings';
 const PhoneLogin = ({ navigation }) => {
     // const { phoneLogin } = useContext(AuthContext);
     // console.log(phoneLogin, "phone login is")
@@ -18,6 +18,42 @@ const PhoneLogin = ({ navigation }) => {
     const [countryFlag, setCountryFlag] = useState("IN");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [confirm, setConfirm] = useState(null);
+
+
+    const numberLogin = async (countryCode, phoneNumber) => {
+        // console.log(countryCode, phoneNumber,"country code and number is")
+        let phN = (countryCode + phoneNumber)
+        let phone = `+${(phN.toString())}`
+        console.log(phone, 'nooooo')
+        try {
+            let data = await auth().signInWithPhoneNumber(phone);
+            navigation.navigate(navigationStrings.OTPSCREEN)
+            showMessage({
+                message: "otp sent to your registered number",
+                type: "sucess"
+            })
+            console.log(data, "phone login sucess")
+            return data
+
+        } catch (error) {
+            showMessage({
+                message: error.message,
+                type: "danger"
+            })
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     const getLogin = (countryCode, phoneNumber) => {
 
@@ -58,7 +94,7 @@ const PhoneLogin = ({ navigation }) => {
                                 fontSize: textScale(14),
                                 borderRadius: moderateScale(5),
                                 borderWidth: moderateScaleVertical(0.9),
-                            
+
 
                             }}
 
@@ -72,7 +108,9 @@ const PhoneLogin = ({ navigation }) => {
             </View>
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                 <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
-                    <ButtonComp onPress={() => getLogin(countryCode, phoneNumber)}
+                    <ButtonComp
+                        onPress={() => numberLogin(countryCode, phoneNumber)}
+                        // onPress={() => getLogin(countryCode, phoneNumber)}
                         // onPress={() => getLogin()}
                         ButtonText='Login' />
                 </View>
