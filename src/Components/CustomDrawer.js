@@ -15,10 +15,18 @@ import { AuthContext } from '../navigation/AuthProvider';
 import { showMessage } from 'react-native-flash-message';
 import strings from '../constants/lang';
 import actions from '../redux/actions';
+import { useSelector } from 'react-redux';
 
 function CustomDrawer(props) {
     // const { user, logout } = useContext(AuthContext);
     // console.log("user is ", user?._user?.email)
+
+    const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
+    // console.log(userData, "userdata from drawer");
+    const email = userData?.email;
+    const displayName = userData?.displayName;
+    const photo = userData?.photoURL;
+    // console.log(photo,"photo is")
     const { navigation } = props;
 
     const handleLogout = () => {
@@ -63,18 +71,37 @@ function CustomDrawer(props) {
                     justifyContent: "center", alignItems: "center",
                     height: "50%", width: "50%", alignSelf: "center", marginTop: 1,
                 }}>
-                    <Image style={{
+                    {!!photo ? <Image style={{
                         height: moderateVerticalScale(100),
                         width: width / 3.6,
                         borderRadius: moderateScale(width / 7),
                     }}
-                        source={imagePath.profile_pic} />
+                        source={{ uri: photo }} /> :
+
+                        <Image style={{
+                            height: moderateVerticalScale(100),
+                            width: width / 3.6,
+                            borderRadius: moderateScale(width / 7),
+                        }}
+                            source={imagePath.profile_pic} />}
+
                 </View>
                 <View style={{
                     paddingVertical: moderateScaleVertical(5),
-                    marginTop: moderateScaleVertical(14), alignSelf: 'center'
+                    marginTop: moderateScaleVertical(9), alignSelf: 'center'
                 }}>
-                    {/* <Text style={{ fontSize: textScale(12), color: colors.white, fontWeight: "800" }}>{user?._user?.email}</Text> */}
+                    {!!displayName ? <Text style={{
+                        fontSize: textScale(12),
+                        color: colors.white, fontWeight: "500",
+                    }}>
+                        {displayName}</Text> : <Text style={{
+                            fontSize: textScale(12),
+                            color: colors.redOpacity52, fontWeight: "500",
+                        }}>Muntazir Mehdi</Text>}
+                    <Text style={{
+                        fontSize: textScale(12),
+                        color: colors.white, fontWeight: "500",
+                    }}>{email}</Text>
                 </View>
             </View>
 
@@ -112,14 +139,17 @@ function CustomDrawer(props) {
                 }}
                 >{strings.SEARCH}</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
+            <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SETTINGS)}
                 activeOpacity={0.5}
                 style={{
                     flexDirection: "row",
                     marginLeft: moderateScaleVertical(25),
                     marginTop: moderateScale(15)
                 }}>
-                <Image style={{ tintColor: "white", marginTop: 8, width: width / 16, height: height / 35 }}
+                <Image style={{
+                    tintColor: "white", marginTop: 8,
+                    width: width / 16, height: height / 35
+                }}
                     source={imagePath.setting_icon} />
                 <Text style={{
                     color: colors.white,
@@ -143,11 +173,11 @@ function CustomDrawer(props) {
 
                     style={{ flexDirection: "row", }}
                     activeOpacity={0.5}
-                    onPress={()=>handleLogout()}
+                    onPress={() => handleLogout()}
 
                 // onPress={() => logout()}
                 >
-                    <Image style={{ tintColor: colors.white, width: width / 12,}}
+                    <Image style={{ tintColor: colors.white, width: width / 12, }}
                         source={imagePath.logout_icon} />
                     <Text style={{
 

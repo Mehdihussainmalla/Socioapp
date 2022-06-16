@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Home, SearchScreen } from '../Screens';
+import { Home, SearchScreen, Settings } from '../Screens';
 import DrawerStack from './DrawerStack';
 import navigationStrings from './navigationStrings';
 import TabStack from './TabStack';
@@ -16,10 +16,13 @@ const MainStack = (Stack) => {
                name={navigationStrings.DRAWER}
                component={DrawerStack} />
             <Stack.Screen name={navigationStrings.SEARCH_SCREEN}
+              options={{headerShown:false}}
                component={SearchScreen} />
-               
-            {/* <Stack.Screen name={navigationStrings.HOME}
-               component={Home} /> */}
+
+
+            <Stack.Screen name={navigationStrings.SETTINGS}
+            options={{headerShown:false}}
+               component={Settings} />
             {/* <Stack.Screen 
             options={{ headerShown: true }} 
             name={navigationStrings.TABSTACK}

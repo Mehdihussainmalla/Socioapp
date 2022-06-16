@@ -20,6 +20,10 @@ export const userStatus = (state = initialState, action) => {
                 ...state
             }
         }
+
+        case types.GOOGLELOGIN:
+            return {state }
+            
         case types.LOGOUT:
             removeData().then((res) => {
                 console.log(res, "res from reducer>>")

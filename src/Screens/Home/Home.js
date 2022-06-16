@@ -20,14 +20,20 @@ import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
+import { useSelector } from 'react-redux';
 
 const Home = (props) => {
+
+    // const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
+
+    // console.log(userData,"userData on home screen")
+    // const email= userData?.email;
+    // console.log(email,"email is")
     const { navigation } = props;
     // console.log("props are", props)
     // const { user } = useContext(AuthContext);
     const [snapState, setSnapState] = useState(0);
-
-    // console.log(user, "user>>H")
+  
 
     const data = [{
 
@@ -111,7 +117,9 @@ const Home = (props) => {
                     borderRadius: moderateVerticalScale(5),
                     borderWidth: 1,
                 }}>
-                <Text style={{ paddingTop: moderateScale(7), paddingHorizontal: moderateScale(15) }}>search</Text>
+                <Text style={{ paddingTop: moderateScale(7), 
+                    paddingHorizontal: moderateScale(15) ,
+                    color:colors.blackOpacity43}}>Search</Text>
                 <Image style={{
                     marginTop: moderateVerticalScale(5),
                     marginRight: moderateVerticalScale(10)

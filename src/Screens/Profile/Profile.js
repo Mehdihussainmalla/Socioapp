@@ -8,14 +8,17 @@ import colors from '../../styles/colors';
 import { textScale } from '../../styles/responsiveSize'
 import { moderateScale } from 'react-native-size-matters'
 import actions from '../../redux/actions'
+import { useSelector } from 'react-redux'
 
 
 const Profile = () => {
   // const { user, logout } = useContext(AuthContext);
-  // const image = user?._user?.photoURL;
-  // console.log("user is ", user?._user?.email)
-
-  const handleLogout=()=>{
+  const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
+  // console.log(userData, "userData from profile")
+  const email = userData?.email;
+  const image = userData?.PhotoURL;
+  const displayName = userData?.displayName;
+  const handleLogout = () => {
     actions.Logout();
   }
   return (
@@ -27,22 +30,34 @@ const Profile = () => {
 
             <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
               <View style={{ height: "38%", marginTop: 10, marginHorizontal: 10 }} >
-                <Image style={{
+                {!!image ? <Image style={{
                   width: 80,
                   height: 80,
-                  borderRadius: 0.5,
-                  borderWidth: 1
-                }} 
-                // source={{ uri: image }}
-                 />
+                  // borderRadius: 0.5,
+                  // borderWidth: 1
+                }}
+                  source={{ uri: image }}
+                /> : <Image style={{
+                  width: 80,
+                  height: 80,
+                  // borderRadius: 0.5,
+                  // borderWidth: 1
+                }}
+                  source={imagePath.profile_pic}
+                />}
               </View>
               <View style={{ marginTop: 20 }}>
-                <Text style={{ fontWeight: "700", color: colors.blackOpacity66 }}>
-                  {/* {user?._user?.displayName} */}
-                  </Text>
+                {!!displayName ?
+
+                  <Text style={{ fontWeight: "700", color: colors.blackOpacity66 }}>
+                    {displayName}
+                  </Text> :
+                  <Text style={{ fontWeight: "700", color: colors.blackOpacity66 }}>
+                    Muntazir Mehdi
+                  </Text>}
                 <Text style={{ fontWeight: "400", color: colors.blackOpacity43 }}>
-                  {/* {user?._user?.email} */}
-                  </Text>
+                  {email}
+                </Text>
                 <Text style={{ color: colors.green }}>SILVER MEMBER</Text>
               </View>
             </View>

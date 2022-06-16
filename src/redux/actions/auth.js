@@ -1,6 +1,7 @@
 import store from "../store";
 import types from "../types";
 import auth from "@react-native-firebase/auth"
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 const { dispatch } = store;
 
 //.................signup.................//
@@ -38,11 +39,11 @@ export const loginData = (data) => {
 
     })
 }
-export const signIn = (email, password) => {
+export const signIn = async (email, password) => {
     console.log(email, password)
 
     try {
-        let user = auth().signInWithEmailAndPassword(email, password);
+        let user = await auth().signInWithEmailAndPassword(email, password);
         console.log(user, "user>>")
         loginData(user)
 
@@ -54,23 +55,32 @@ export const signIn = (email, password) => {
 
 }
 //............logout...............//
-export const Logout = () => {
-    dispatch({
-        type: types.LOGOUT,
+export const Logout = async () => {
+    try {
 
-    })
+        await auth().signOut();
+        dispatch({
+            type: types.LOGOUT,
+
+        })
+
+    } catch (error) {
+
+    }
+
 
 }
-// export const logouthandle = async () => {
 
-//     try {
-//         await auth().signOut().then(() => {
-//             Logout()
-//         })
+//.............google login............//
 
-//     } catch (error) {
-//         console.log(error, "error occurred")
+export const googlelogin = async () => {
+    try {
 
-//     }
+        const { idToken } = await GoogleSignin.signIn();
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+        await auth().signInWithCredential(googleCredential);
+    } catch (error) {
+        console.log("error in goolge login")
 
-// }
+    }
+}
