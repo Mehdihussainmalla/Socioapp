@@ -12,6 +12,9 @@ export { default as Home } from "./Home/Home";
 export { default as Profile } from "./Profile/Profile";
 export { default as SearchScreen } from "./Search/Search";
 export { default as OptScreen } from "./OtpScreen/OtpScreen";
-export {default as Cart} from "./Cart/Cart";
-export {default as Settings} from "./Settings/Settings";
- 
+export { default as Cart } from "./Cart/Cart";
+export { default as Settings } from "./Settings/Settings";
+
+//...............product screens..........//
+export { default as Products } from "./Products/Products";
+

@@ -11,5 +11,6 @@ export default {
     OTPSCREEN: "Otp Screen",
     SLIDER: "Slider",
     CART: "Cart",
-    SETTINGS: "Settings"
+    SETTINGS: "Settings",
+    PRODUCTS: "Products"
 }

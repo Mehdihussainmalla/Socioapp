@@ -1,39 +1,26 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
     View, Text,
     TouchableOpacity,
     Image,
     Dimensions,
-    ScrollView
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
-import { AuthContext } from '../../navigation/AuthProvider';
 import { styles } from './styles';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
-import TextInputComponent from '../../Components/Input';
 import navigationStrings from '../../navigation/navigationStrings';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
-import { moderateScaleVertical, sliderWidth, textScale, width } from '../../styles/responsiveSize';
+import { moderateScaleVertical, textScale, width } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
-import { useSelector } from 'react-redux';
 
 const Home = (props) => {
-
-    // const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
-
-    // console.log(userData,"userData on home screen")
-    // const email= userData?.email;
-    // console.log(email,"email is")
     const { navigation } = props;
-    // console.log("props are", props)
-    // const { user } = useContext(AuthContext);
     const [snapState, setSnapState] = useState(0);
-  
+
 
     const data = [{
 
@@ -98,15 +85,21 @@ const Home = (props) => {
                 </TouchableOpacity>
                 <Header title="Home" />
 
-                {/* <TouchableOpacity style={{
-                    marginRight: moderateScaleVertical(40)
-                    , marginTop: 10, width: "7%"
-                }} >
+                {/* <TouchableOpacity
+                    onPress={() => navigation.navigate(navigationStrings.PRODUCTS)}
+                    style={{
+                        marginRight: moderateScaleVertical(40)
+                        , marginTop: 10, width: "7%"
+                    }} >
                     <Image
                         source={imagePath.add_icon} />
                 </TouchableOpacity> */}
             </View>
-
+          <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={()=>navigation.navigate(navigationStrings.PRODUCTS)}>
+                <Text style={{fontSize:textScale(14),color:colors.blackOpacity66,}}>hhhh</Text>
+                </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
@@ -117,9 +110,11 @@ const Home = (props) => {
                     borderRadius: moderateVerticalScale(5),
                     borderWidth: 1,
                 }}>
-                <Text style={{ paddingTop: moderateScale(7), 
-                    paddingHorizontal: moderateScale(15) ,
-                    color:colors.blackOpacity43}}>Search</Text>
+                <Text style={{
+                    paddingTop: moderateScale(7),
+                    paddingHorizontal: moderateScale(15),
+                    color: colors.blackOpacity43
+                }}>Search</Text>
                 <Image style={{
                     marginTop: moderateVerticalScale(5),
                     marginRight: moderateVerticalScale(10)
