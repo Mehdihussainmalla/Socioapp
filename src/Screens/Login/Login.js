@@ -14,7 +14,6 @@ import ButtonComp from '../../Components/Button';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
-import { AuthContext } from '../../navigation/AuthProvider';
 import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
@@ -23,6 +22,7 @@ import strings, { changeLanguage } from '../../constants/lang';
 import Modal from "react-native-modal"
 import actions from '../../redux/actions';
 import auth from "@react-native-firebase/auth"
+import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 
 const Login = ({ navigation }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
@@ -30,7 +30,7 @@ const Login = ({ navigation }) => {
     // console.log(route?.params,"route data")
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    // const { login, googleLogin, facebookLogin } = useContext(AuthContext);
+
     const [hide, setHide] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -38,12 +38,6 @@ const Login = ({ navigation }) => {
     useEffect(() => {
         GoogleSignin.configure();
     }, [])
-
-    // useEffect(() => {
-    //     GoogleSignin.configure({
-    //         // webClientId: '196889429419-ukv9i2e4229oj3frq0nm2btuamemk46u.apps.googleusercontent.com',
-    //     });
-    // }, []);
 
     const data = [email, password];
     const handleLogin = () => {
@@ -90,14 +84,40 @@ const Login = ({ navigation }) => {
                 message: "login sucessfully",
                 type: "success"
             })
-
-
         } catch (error) {
             console.log("error in goolge login")
-
+            showMessage({
+                message: "failed in gooogle authentication"
+            })
         }
     }
 
+    //................facebook login .............//
+    const facebookLogin = async () => {
+        try {
+            const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+            if (result.isCancelled) {
+                throw 'User cancelled the login process';
+            }
+            const data = await AccessToken.getCurrentAccessToken();
+
+            if (!data) {
+                throw 'Something went wrong obtaining access token';
+            }
+            const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+            await auth().signInWithCredential(facebookCredential);
+            actions.loginData(facebookCredential)
+
+        } catch (error) {
+
+            console.log("error occurred during facebook login", error)
+        }
+    }
+
+    //........forget password...........//
+    const ForgetPassword = () => {
+        actions.ForgetPassword(email);
+    }
 
     return (
         <Wrappercontainer>
@@ -303,7 +323,7 @@ const Login = ({ navigation }) => {
 
 
                     <ButtonComp
-                        // onPress={() => facebookLogin()}
+                        onPress={() => facebookLogin()}
                         btnIcon={imagePath.facebook_icon}
                         btnStyle={{ marginTop: moderateScaleVertical(20) }}
                         ButtonText={strings.FB_LOGIN} />

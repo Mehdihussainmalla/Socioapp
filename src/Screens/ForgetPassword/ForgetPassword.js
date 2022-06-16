@@ -7,23 +7,33 @@ import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import strings from '../../constants/lang';
-import { AuthContext } from '../../navigation/AuthProvider';
-import navigationStrings from '../../navigation/navigationStrings';
 import { moderateScaleVertical } from '../../styles/responsiveSize';
 import { styles } from './styles';
+import auth from "@react-native-firebase/auth";
+import { showMessage } from 'react-native-flash-message';
+import navigationStrings from '../../navigation/navigationStrings';
 
-// create a component
 const ForgetPassword = ({ navigation }) => {
-    // const { forgetPassword } = useContext(AuthContext);
-    // console.log(forgetPassword, "pass is>>>>")
     const [email, setEmail] = useState("");
 
-    const forget = () => {
-        // forgetPassword(email)
-        // if (email) {
-        //     navigation.navigate(navigationStrings.LOGIN)
-        // }
-
+    const ForgetPass = async (email) => {
+        console.log(email, "email is")
+        try {
+            if (email == "")
+                showMessage({
+                    message: "An email address must be provided",
+                    type: "danger"
+                })
+            await auth().sendPasswordResetEmail(email)
+            showMessage({
+                message:"link has sent to your email sucessfully",
+                type:"success"
+            })
+            navigation.navigate(navigationStrings.LOGIN)
+        }
+        catch (error) {
+            console.log(error, "error occurred during forget password")
+        }
     }
     return (
         <Wrappercontainer>
@@ -45,19 +55,19 @@ const ForgetPassword = ({ navigation }) => {
                         input={styles.input}
                         placeholder={strings.ENTER_EMAIL} />
                 </ScrollView>
-              
+
 
                 <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                     <View style={{ marginVertical: Platform.OS === 'ios' ? moderateScaleVertical(50) : moderateScaleVertical(20) }}>
-                         
+
                         <ButtonComp
-                            onPress={forget}
-                            btnStyle={{ marginVertical: moderateScale(1),}}
+                            onPress={() => ForgetPass(email)}
+                            btnStyle={{ marginVertical: moderateScale(1), }}
                             ButtonText={strings.CONTINUE} />
-                            </View>
-                   
+                    </View>
+
                 </KeyboardAvoidingView>
-                </View>
+            </View>
         </Wrappercontainer>
     );
 };

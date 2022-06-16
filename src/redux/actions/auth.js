@@ -1,7 +1,7 @@
 import store from "../store";
 import types from "../types";
 import auth from "@react-native-firebase/auth"
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { showMessage } from "react-native-flash-message";
 const { dispatch } = store;
 
 //.................signup.................//
@@ -67,20 +67,20 @@ export const Logout = async () => {
     } catch (error) {
 
     }
-
-
 }
-
-//.............google login............//
-
-export const googlelogin = async () => {
+//..................forget password............//
+export const forgetPass = async (email) => {
+    console.log(email, "email is ")
     try {
+        await auth().sendPasswordResetEmail(email).then((res) => {
+            dispatch({
+                type: types.FORGOTPASSWORD,
+            })
+            console.log(res, "res>>>>>")
 
-        const { idToken } = await GoogleSignin.signIn();
-        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-        await auth().signInWithCredential(googleCredential);
+        })
     } catch (error) {
-        console.log("error in goolge login")
+        console.log(error, "error occurred during forget password")
 
     }
 }

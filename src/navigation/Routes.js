@@ -14,26 +14,7 @@ const Routes = () => {
 
     const userData = useSelector((state) => state?.userStatus?.userData);
     console.log(userData, "userdata>>>>>>>>>")
-    // const { user, setUser } = useContext(AuthContext);
-    // // console.log(user, "user from routes")
-    // const [initializing, setInitializing] = useState(true)
 
-    // const onAuthStateChanged = (user) => {
-    //     setUser(user);
-    //     if (initializing) setInitializing(false);
-    // }
-
-    // useEffect(() => {
-    //     // GoogleSignin.configure({
-    //     //     webClientId: '',
-    //     //   });
-    //     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    //     return subscriber;
-
-
-
-    // }, [])
-    // if (initializing) return null;
     return (
         <NavigationContainer>
             {userData ? MainStack(Stack) : AuthStack(Stack)}
