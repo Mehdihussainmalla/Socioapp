@@ -85,72 +85,35 @@ function CustomDrawer(props) {
             {/*//..............admin...............................  */}
             <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.ADMIN)}
                 activeOpacity={0.5}
-                style={{
-                    flexDirection: "row",
-                    marginLeft: moderateScaleVertical(25),
-                    marginTop: moderateScale(15)
-                }}>
-                <Image style={{
-                    tintColor: "grey",
-                    marginTop: 8,
-                    width: width / 16, height: height / 35
-                }}
+                style={styles.adminstyle}>
+                <Image style={styles.adminicon}
                     source={imagePath.admin_icon} />
-                <Text style={{
-                    // color: colors.white,
-                    fontSize: textScale(15), fontWeight: "500",
-                    paddingLeft: moderateVerticalScale(10),
-                    paddingTop: moderateScale(5)
-                }}
+                <Text style={styles.admintxt}
                 >{strings.ADMIN}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SETTINGS)}
                 activeOpacity={0.5}
-                style={{
-                    flexDirection: "row",
-                    marginLeft: moderateScaleVertical(25),
-                    marginTop: moderateScale(15)
-                }}>
-                <Image style={{
-                    tintColor: "grey",
-                    marginTop: 8,
-                    width: width / 16, height: height / 35
-                }}
+                style={styles.settingstyle}>
+                <Image style={styles.settingicon}
                     source={imagePath.setting_icon} />
-                <Text style={{
-                    // color: colors.white,
-                    fontSize: textScale(15), fontWeight: "500",
-                    paddingLeft: moderateVerticalScale(10),
-                    paddingTop: moderateScale(5)
-                }}
+                <Text style={styles.settingtxt}
                 >{strings.SETTINGS}</Text>
             </TouchableOpacity>
 
             <View
-
-                style={{
-
-                    marginLeft: moderateScaleVertical(25),
-                    paddingTop: moderateScaleVertical(370),
-
-                }}>
+                style={styles.btnview}>
                 <TouchableOpacity
 
-                    style={{ flexDirection: "row", }}
+                    style={styles.btnstyle}
                     activeOpacity={0.5}
                     onPress={() => handleLogout()}
 
                 // onPress={() => logout()}
                 >
-                    <Image style={{ tintColor: colors.white, width: width / 12, }}
+                    <Image style={styles.logouticon}
                         source={imagePath.logout_icon} />
-                    <Text style={{
-
-                        color: colors.white,
-                        fontSize: textScale(17), fontWeight: "500",
-                        paddingLeft: moderateVerticalScale(10),
-                    }}
+                    <Text style={styles.logouttxt}
                     >{strings.SIGN_OUT}</Text>
                 </TouchableOpacity>
             </View>
@@ -163,7 +126,7 @@ const styles = StyleSheet.create({
 
     container:
     {
-        height: height / 5
+        height: height / moderateScale(5)
     },
     drawercontext:
     {
@@ -204,7 +167,8 @@ const styles = StyleSheet.create({
     displayview:
     {
         paddingVertical: moderateScaleVertical(5),
-        marginTop: moderateScaleVertical(9), alignSelf: 'center'
+        marginTop: moderateScaleVertical(9),
+        alignSelf: 'center'
     },
     displaytxt:
     {
@@ -258,5 +222,69 @@ const styles = StyleSheet.create({
         paddingLeft: moderateVerticalScale(10),
         paddingTop: moderateScale(5)
     },
+    adminstyle:
+    {
+        flexDirection: "row",
+        marginLeft: moderateScaleVertical(25),
+        marginTop: moderateScale(15)
+    },
+    adminicon:
+    {
+        tintColor: colors.grayOpacity51,
+        marginTop: moderateScale(8),
+        width: width / moderateScale(16), height: height / moderateScale(35)
+    },
+    admintxt:
+    {
+        // color: colors.white,
+        fontSize: textScale(15), fontWeight: "500",
+        paddingLeft: moderateVerticalScale(10),
+        paddingTop: moderateScale(5)
+    },
+    settingstyle:
+    {
+        flexDirection: "row",
+        marginLeft: moderateScaleVertical(25),
+        marginTop: moderateScale(15)
+    },
+    settingicon:
+    {
+        tintColor: "grey",
+        marginTop: moderateScaleVertical(8),
+        width: width / moderateScale(16), height: height / moderateScale(35)
+    },
+    settingtxt:
+    {
+        // color: colors.white,
+        fontSize: textScale(15),
+        fontWeight: "500",
+        paddingLeft: moderateVerticalScale(10),
+        paddingTop: moderateScale(5)
+    },
+    btnview:
+    {
+
+        marginLeft: moderateScaleVertical(25),
+        paddingTop: moderateScaleVertical(370),
+
+    },
+    btnstyle:
+    {
+        flexDirection: "row",
+    },
+    logouticon:
+    {
+        tintColor: colors.grayOpacity51,
+        width: width / moderateScale(12),
+    },
+    logouttxt:
+    {
+
+        color: colors.grayOpacity51,
+        fontSize: textScale(17), fontWeight: "500",
+        paddingLeft: moderateVerticalScale(10),
+    }
+
+
 })
 export default CustomDrawer;

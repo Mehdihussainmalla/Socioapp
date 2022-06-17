@@ -43,6 +43,8 @@
 	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>961328847836010</string>
+  <key>FacebookClientToken</key>
+  <string>48062002c3e01e4f9c1e9c4e775af33e</string>
 	<key>FacebookDisplayName</key>
 	<string>Socioapp</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -50,7 +52,6 @@
 		<string>fbapi</string>
 		<string>fb-messenger-api</string>
 		<string>FB AUTH TOKEN</string>
-		<string>48062002c3e01e4f9c1e9c4e775af33e</string>
 		<string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>

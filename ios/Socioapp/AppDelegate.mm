@@ -61,8 +61,8 @@
   [self.window makeKeyAndVisible];
   [RNSplashScreen show];
   
-//  [[FBSDKApplicationDelegate sharedInstance] application:application
-//  didFinishLaunchingWithOptions:launchOptions];
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+  didFinishLaunchingWithOptions:launchOptions];
  
   
   return YES;
