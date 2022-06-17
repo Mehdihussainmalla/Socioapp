@@ -22,7 +22,7 @@ function CustomDrawer(props) {
     // console.log("user is ", user?._user?.email)
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
-    console.log(userData, "userdata from drawer");
+    // console.log(userData, "userdata from drawer");
     const email = userData?.email;
     const displayName = userData?.displayName;
     const photo = userData?.photoURL;
@@ -43,12 +43,12 @@ function CustomDrawer(props) {
     }
     return (
         <DrawerContentScrollView style={{
-            backgroundColor: colors.blackOpacity30,
+            backgroundColor: colors.blackOpacity20,
 
         }} {...props}>
 
             <View style={{
-                backgroundColor: colors.blackOpacity66,
+                // backgroundColor: colors.blackOpacity66,
                 height: height / 5
             }}>
                 <TouchableOpacity activeOpacity={0.5}
@@ -92,15 +92,18 @@ function CustomDrawer(props) {
                 }}>
                     {!!displayName ? <Text style={{
                         fontSize: textScale(12),
-                        color: colors.white, fontWeight: "500",
+                        // color: colors.white,
+                        fontWeight: "500",
                     }}>
                         {displayName}</Text> : <Text style={{
                             fontSize: textScale(12),
-                            color: colors.redOpacity52, fontWeight: "500",
+                            color: colors.blackOpacity43,
+                            fontWeight: "500",
                         }}>Muntazir Mehdi</Text>}
                     <Text style={{
                         fontSize: textScale(12),
-                        color: colors.white, fontWeight: "500",
+                        // color: colors.white,
+                        fontWeight: "500",
                     }}>{email}</Text>
                 </View>
             </View>
@@ -112,10 +115,10 @@ function CustomDrawer(props) {
                     marginLeft: moderateScaleVertical(20),
                     marginTop: moderateScale(20)
                 }}>
-                <Image style={{ tintColor: "white", marginTop: moderateScaleVertical(5) }}
+                <Image style={{ tintColor: "grey", marginTop: moderateScaleVertical(5) }}
                     source={imagePath.profile_icon} />
                 <Text style={{
-                    color: colors.white,
+                    // color: colors.white,
                     fontSize: textScale(15), fontWeight: "500",
                     paddingLeft: moderateVerticalScale(10),
                     paddingTop: moderateScale(5)
@@ -129,10 +132,10 @@ function CustomDrawer(props) {
                     marginLeft: moderateScaleVertical(22),
                     marginTop: moderateScale(15)
                 }}>
-                <Image style={{ tintColor: "white", }}
+                <Image style={{ tintColor: "grey", }}
                     source={imagePath.search_icon} />
                 <Text style={{
-                    color: colors.white,
+                    // color: colors.white,
                     fontSize: textScale(15), fontWeight: "500",
                     paddingLeft: moderateVerticalScale(10),
                     paddingTop: moderateScale(5)
@@ -150,12 +153,13 @@ function CustomDrawer(props) {
                     marginTop: moderateScale(15)
                 }}>
                 <Image style={{
-                    tintColor: "white", marginTop: 8,
+                    tintColor: "grey",
+                    marginTop: 8,
                     width: width / 16, height: height / 35
                 }}
-                    source={imagePath.setting_icon} />
+                    source={imagePath.admin_icon} />
                 <Text style={{
-                    color: colors.white,
+                    // color: colors.white,
                     fontSize: textScale(15), fontWeight: "500",
                     paddingLeft: moderateVerticalScale(10),
                     paddingTop: moderateScale(5)
@@ -171,12 +175,13 @@ function CustomDrawer(props) {
                     marginTop: moderateScale(15)
                 }}>
                 <Image style={{
-                    tintColor: "white", marginTop: 8,
+                    tintColor: "grey",
+                    marginTop: 8,
                     width: width / 16, height: height / 35
                 }}
                     source={imagePath.setting_icon} />
                 <Text style={{
-                    color: colors.white,
+                    // color: colors.white,
                     fontSize: textScale(15), fontWeight: "500",
                     paddingLeft: moderateVerticalScale(10),
                     paddingTop: moderateScale(5)
@@ -189,8 +194,8 @@ function CustomDrawer(props) {
                 style={{
 
                     marginLeft: moderateScaleVertical(25),
-                    marginTop: moderateScale(15),
-                    paddingTop: moderateScaleVertical(390),
+                    // marginTop: moderateScale(15),
+                    paddingTop: moderateScaleVertical(370),
 
                 }}>
                 <TouchableOpacity

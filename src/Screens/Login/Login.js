@@ -36,7 +36,12 @@ const Login = ({ navigation }) => {
 
     const handleModal = () => setIsModalVisible(() => !isModalVisible);
     useEffect(() => {
-        GoogleSignin.configure();
+        // GoogleSignin.configure();
+
+        GoogleSignin.configure({
+            webClientId: "196889429419-ukv9i2e4229oj3frq0nm2btuamemk46u.apps.googleusercontent.com",
+        });
+
     }, [])
 
     const data = [email, password];

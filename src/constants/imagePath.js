@@ -33,5 +33,6 @@ export default {
     help: require("../assets/images/help-icon.png"),
     category: require("../assets/images/category.png"),
     cart: require("../assets/images/cart-icon.png"),
+    admin_icon: require("../assets/images/admin.png"),
 
 }
