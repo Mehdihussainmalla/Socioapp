@@ -4,6 +4,7 @@ import {
     TouchableOpacity,
     Image,
     Dimensions,
+    ScrollView
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import { styles } from './styles';
@@ -16,16 +17,21 @@ import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
+import strings from '../../constants/lang';
 
-const Home = (props) => {
-    const { navigation } = props;
+const Home = ({ navigation, route }) => {
+    const productDetails = route?.params?.data;
+
+    const image = productDetails?.productImage;
+    // console.log(image, "image is ")
+    // console.log(productDetails, "details are")
     const [snapState, setSnapState] = useState(0);
 
 
     const data = [{
 
         key: 1,
-        title: `Gaming Controllers`,
+        title: 'Shopping e-barnds',
         image: imagePath.spices_hub,
 
     },
@@ -76,86 +82,64 @@ const Home = (props) => {
 
     return (
         <Wrappercontainer >
-            <View style={{ flexDirection: "row" }}>
+            <View style={styles.container}>
                 <TouchableOpacity
                     onPress={() => navigation.openDrawer()}
                     activeOpacity={0.5}
                     style={styles.drawerstyle}>
                     <Image source={imagePath.hamsburg} />
                 </TouchableOpacity>
-                <Header title="Home" />
-
-                {/* <TouchableOpacity
-                    onPress={() => navigation.navigate(navigationStrings.PRODUCTS)}
-                    style={{
-                        marginRight: moderateScaleVertical(40)
-                        , marginTop: 10, width: "7%"
-                    }} >
-                    <Image
-                        source={imagePath.add_icon} />
-                </TouchableOpacity> */}
+                <Header title={strings.HOME} />
             </View>
             <TouchableOpacity
                 onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
-                style={{
-                    flexDirection: "row",
-                    marginTop: moderateScaleVertical(20),
-                    justifyContent: "space-between",
-                    borderRadius: moderateVerticalScale(5),
-                    borderWidth: 1,
-                }}>
-                <Text style={{
-                    paddingTop: moderateScale(7),
-                    paddingHorizontal: moderateScale(15),
-                    color: colors.blackOpacity43
-                }}>Search</Text>
-                <Image style={{
-                    marginTop: moderateVerticalScale(5),
-                    marginRight: moderateVerticalScale(10)
-                }}
+                style={styles.searchstyle}>
+                <Text style={styles.searchtxt}>{strings.SEARCH}</Text>
+                <Image style={styles.searchicon}
                     source={imagePath.search_icon} />
             </TouchableOpacity>
-            {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+            <ScrollView showsVerticalScrollIndicator={false}>
 
-            <View>
+                <View>
 
-                <Carousel layout="stack"
-                    data={data}
-                    itemHeight={ITEM_HEIGHT}
-                    // sliderHeight={100}
-                    sliderWidth={SLIDER_WIDTH}
-                    itemWidth={moderateScale(width - 70)}
-                    renderItem={renderItem}
-                    onSnapToItem={index => setSnapState(index)}
-                    scrollEnabled={data.length > 1 ? true : false}
+                    <Carousel layout="stack"
+                        data={data}
+                        itemHeight={ITEM_HEIGHT}
+                        // sliderHeight={100}
+                        sliderWidth={SLIDER_WIDTH}
+                        itemWidth={moderateScale(width - 70)}
+                        renderItem={renderItem}
+                        onSnapToItem={index => setSnapState(index)}
+                        scrollEnabled={data.length > 1 ? true : false}
 
-                />
+                    />
 
-                <Pagination
-                    activeDotIndex={snapState}
-                    containerStyle={{ paddingVertical: 0, marginTop: 0 }}
-                    dotColor={colors.redB}
-                    dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
-                    inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
-                    inactiveDotColor={colors.black}
-                    inactiveDotOpacity={0.4}
-                    activeOpacity={0.8}
-                    dotContainerStyle={{ marginHorizontal: 2, paddingTop: 0 }}
-                    dotsLength={data.length}
+                    <Pagination
+                        activeDotIndex={snapState}
+                        containerStyle={styles.containerstyle}
+                        dotColor={colors.redB}
+                        dotStyle={styles.dotstyle}
+                        inactiveDotStyle={styles.inactivedotstyle}
+                        inactiveDotColor={colors.black}
+                        inactiveDotOpacity={0.4}
+                        activeOpacity={0.8}
+                        dotContainerStyle={styles.dotcontainer}
+                        dotsLength={data.length}
 
-                />
-            </View>
+                    />
+                </View>
 
-            <CardView />
-            <View style={{ marginTop: 3 }}>
-                <Text style={{ fontSize: textScale(14), fontWeight: "500" }}>Accessories </Text>
-            </View>
-            <View>
-                <ElectronicCard />
+                <CardView />
+                <View style={styles.viewstyle}>
+                    <Text style={styles.accessorries}>{strings.ACCESSORIES} </Text>
+                </View>
+                <View>
+                    <ElectronicCard />
 
-            </View>
-            {/* </ScrollView> */}
+                </View>
+
+            </ScrollView>
         </Wrappercontainer>
 
     );

@@ -26,5 +26,14 @@ export default {
     URDU:"urdu",
     FRENCH:"french",
     ENGLISH:"english",
-    ADMIN:"admin"
+    ADMIN:"admin",
+    ACCESSORIES:"Accessories",
+    PRODUCTS:"Products",
+    UPLOAD_IMAGE:"Upload Image",
+    PRODUCT_NAME:"product name",
+    PRODUCT_CATEGORY:"product category",
+    DESCRIPTION:"description",
+    RATING:"rating",
+    PRICE:"price",
+    SUBMIT:"Submit"
 }

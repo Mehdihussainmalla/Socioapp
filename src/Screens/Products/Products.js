@@ -1,7 +1,9 @@
 //import liraries
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {
-    View, Text, StyleSheet, Image,
+    View,
+    Text,
+    Image,
     Alert,
     TouchableOpacity
 } from 'react-native';
@@ -14,9 +16,12 @@ import { textScale } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import imagePath from '../../constants/imagePath';
 import ImagePicker from 'react-native-image-crop-picker';
+import navigationStrings from '../../navigation/navigationStrings';
+import { styles } from './styles';
+import strings from '../../constants/lang';
 
 
-const Products = () => {
+const Products = ({ navigation }) => {
 
 
 
@@ -36,15 +41,30 @@ const Products = () => {
     //............firestore.............//  
 
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
 
-        firestore().collection("products").add({
+        await firestore().collection("products").add({
+
             productImage: productImg,
             productName: productName,
             productCategory: productCategory,
             description: description,
             price: price,
             rating: rating,
+
+
+        }).then(() => {
+            let data = {
+                productImage: productImg,
+                productName: productName,
+                productCategory: productCategory,
+                description: description,
+                price: price,
+                rating: rating,
+
+            }
+            console.log(data, "data is")
+            navigation.navigate(navigationStrings.HOME, { data: data })
         })
 
     }
@@ -78,7 +98,7 @@ const Products = () => {
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
             console.log(imageUri, "image is")
             updateState({ productImg: imageUri })
-            console.log(productImg, "profile image is")
+            // console.log(productImg, "profile image is")
         });
 
     }
@@ -93,7 +113,7 @@ const Products = () => {
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
             console.log(imageUri, "image is")
             updateState({ productImg: imageUri })
-            console.log(productImg, "profile image is")
+            // console.log(productImg, "profile image is")
         });
     }
 
@@ -101,106 +121,83 @@ const Products = () => {
         <Wrappercontainer>
             <View style={styles.container}>
                 <Header isBackIcon={true}
-                    title={"Products"} />
-                <Image
-                    style={{ height: "20%", width: "50%", alignSelf: "center" }}
-                    source={{ uri: productImg }}
-                />
-
+                    title={strings.PRODUCTS} />
                 <TouchableOpacity
                     onPress={onSelectImage}
                     activeOpacity={0.5}
-                    style={{
-                        marginTop: 10,
-                        // backgroundColor:"red",
-                        flex: 0.1,
-                        justifyContent: "center",
-                        alignSelf: "center",
-                        alignItems: "baseline",
-                    }}>
+                    style={styles.imageview}>
 
 
-                    <Text style={{
-                        fontSize: textScale(14),
-                        alignSelf: "center",
-                        alignItems: "center",
-                        color: colors.DarkBlue
-                    }}> upload image</Text>
+                    <Text style={styles.imagetext}
+                    > {strings.UPLOAD_IMAGE}</Text>
                 </TouchableOpacity>
-                <View style={{ marginTop: 10 }}>
+                <View style={styles.input1}>
                     <TextInputComponent
                         input={{
                             borderRadius: 10, borderWidth: 1,
                             color: colors.blackOpacity66,
                             fontSize: textScale(14),
                         }}
-                        placeholder='productName'
+                        placeholder={strings.PRODUCT_NAME}
                         value={productName}
                         onChangeText={(productName) => updateState({ productName })}
                     />
                 </View>
 
-                <View style={{ marginTop: 10 }}>
+                <View style={styles.input1}>
                     <TextInputComponent
                         input={{
                             borderRadius: 10, borderWidth: 1,
                             color: colors.blackOpacity66,
                             fontSize: textScale(14)
                         }}
-                        placeholder='product category'
+                        placeholder={strings.PRODUCT_CATEGORY}
                         value={productCategory}
                         onChangeText={(productCategory) => updateState({ productCategory })}
                     />
                 </View>
-                <View style={{ marginTop: 10 }}>
+                <View style={styles.input1}>
                     <TextInputComponent
                         input={{
                             borderRadius: 10, borderWidth: 1,
                             color: colors.blackOpacity66,
                             fontSize: textScale(14)
                         }}
-                        placeholder='description'
+                        placeholder={strings.DESCRIPTION}
                         value={description}
                         onChangeText={(description) => updateState({ description })}
                     />
                 </View>
-                <View style={{ marginTop: 10 }}>
+
+
+                <View style={styles.input1}>
                     <TextInputComponent
                         input={{
                             borderRadius: 10, borderWidth: 1, fontSize: textScale(14),
                             color: colors.blackOpacity66
                         }}
-                        placeholder='rating'
+                        placeholder={strings.PRICE}
+                        value={price}
+                        onChangeText={(price) => updateState({ price })}
+                    />
+                </View>
+                <View style={styles.input1}>
+                    <TextInputComponent
+                        input={{
+                            borderRadius: 10, borderWidth: 1, fontSize: textScale(14),
+                            color: colors.blackOpacity66
+                        }}
+                        placeholder={strings.RATING}
                         value={rating}
                         onChangeText={(rating) => updateState({ rating })}
                     />
                 </View>
 
-                <View style={{ marginTop: 10 }}>
-                    <TextInputComponent
-                        input={{
-                            borderRadius: 10, borderWidth: 1, fontSize: textScale(14),
-                            color: colors.blackOpacity66
-                        }}
-                        placeholder='price'
-                        value={price}
-                        onChangeText={(price) => updateState({ price })}
-                    />
-                </View>
-
             </View>
             <ButtonComp onPress={onSubmit}
-                // btnStyle={{marginTop:50}}
-                ButtonText='Submit' />
+                ButtonText={strings.SUBMIT} />
         </Wrappercontainer>
     );
 };
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-});
 
 export default Products;

@@ -1,17 +1,13 @@
 import React, { useContext } from 'react';
 import {
     DrawerContentScrollView,
-    DrawerItemList,
-    DrawerItem
 } from '@react-navigation/drawer';
-import { Image, View, Text, TouchableOpacity } from "react-native"
+import { Image, View, Text, TouchableOpacity, StyleSheet } from "react-native"
 import navigationStrings from '../navigation/navigationStrings';
 import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import { height, moderateScaleVertical, textScale, width } from '../styles/responsiveSize';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
-import Home from '../Screens/Home/Home';
-import { AuthContext } from '../navigation/AuthProvider';
 import { showMessage } from 'react-native-flash-message';
 import strings from '../constants/lang';
 import actions from '../redux/actions';
@@ -26,7 +22,6 @@ function CustomDrawer(props) {
     const email = userData?.email;
     const displayName = userData?.displayName;
     const photo = userData?.photoURL;
-    // console.log(photo,"photo is")
     const { navigation } = props;
 
     const handleLogout = () => {
@@ -42,104 +37,47 @@ function CustomDrawer(props) {
 
     }
     return (
-        <DrawerContentScrollView style={{
-            backgroundColor: colors.blackOpacity20,
+        <DrawerContentScrollView style={styles.drawercontext} {...props}>
 
-        }} {...props}>
-
-            <View style={{
-                // backgroundColor: colors.blackOpacity66,
-                height: height / 5
-            }}>
-                <TouchableOpacity activeOpacity={0.5}
+            <View style={styles.container}>
+                <TouchableOpacity
+                    activeOpacity={0.5}
                     onPress={() => navigation.closeDrawer()}
-                    style={{
-                        alignItems: "flex-end",
-                        paddingVertical: moderateScaleVertical(10),
-                        paddingRight: moderateScaleVertical(10),
-                    }}>
+                    style={styles.imageview}>
                     <Image source={imagePath.close_icon}
-                        style={{
-                            backgroundColor: colors.white,
-                            paddingVertical: moderateScaleVertical(8),
-                            paddingHorizontal: moderateScaleVertical(8)
-                        }} />
+                        style={styles.imagestyle} />
 
                 </TouchableOpacity>
 
-                <View style={{
-                    justifyContent: "center", alignItems: "center",
-                    height: "50%", width: "50%", alignSelf: "center", marginTop: 1,
-                }}>
-                    {!!photo ? <Image style={{
-                        height: moderateVerticalScale(100),
-                        width: width / 3.6,
-                        borderRadius: moderateScale(width / 7),
-                    }}
+                <View style={styles.imgview}>
+                    {!!photo ? <Image style={styles.img}
                         source={{ uri: photo }} /> :
 
-                        <Image style={{
-                            height: moderateVerticalScale(100),
-                            width: width / 3.6,
-                            borderRadius: moderateScale(width / 7),
-                        }}
+                        <Image style={styles.profileimage}
                             source={imagePath.profile_pic} />}
 
                 </View>
-                <View style={{
-                    paddingVertical: moderateScaleVertical(5),
-                    marginTop: moderateScaleVertical(9), alignSelf: 'center'
-                }}>
-                    {!!displayName ? <Text style={{
-                        fontSize: textScale(12),
-                        // color: colors.white,
-                        fontWeight: "500",
-                    }}>
-                        {displayName}</Text> : <Text style={{
-                            fontSize: textScale(12),
-                            color: colors.blackOpacity43,
-                            fontWeight: "500",
-                        }}>Muntazir Mehdi</Text>}
-                    <Text style={{
-                        fontSize: textScale(12),
-                        // color: colors.white,
-                        fontWeight: "500",
-                    }}>{email}</Text>
+                <View style={styles.displayview}>
+                    {!!displayName ? <Text style={styles.displaytxt}>
+                        {displayName}</Text> : <Text style={styles.nametxt}>Muntazir Mehdi</Text>}
+                    <Text style={styles.emailtxt}>{email}</Text>
                 </View>
             </View>
 
             <TouchableOpacity onPress={() => handleScreen()}
                 activeOpacity={0.5}
-                style={{
-                    flexDirection: "row",
-                    marginLeft: moderateScaleVertical(20),
-                    marginTop: moderateScale(20)
-                }}>
-                <Image style={{ tintColor: "grey", marginTop: moderateScaleVertical(5) }}
+                style={styles.homestyle}>
+                <Image style={styles.homeicon}
                     source={imagePath.profile_icon} />
-                <Text style={{
-                    // color: colors.white,
-                    fontSize: textScale(15), fontWeight: "500",
-                    paddingLeft: moderateVerticalScale(10),
-                    paddingTop: moderateScale(5)
-                }}
+                <Text style={styles.hometxt}
                 >{strings.HOME}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
-                style={{
-                    flexDirection: "row",
-                    marginLeft: moderateScaleVertical(22),
-                    marginTop: moderateScale(15)
-                }}>
-                <Image style={{ tintColor: "grey", }}
+                style={styles.searchstyle}>
+                <Image style={styles.searchicon}
                     source={imagePath.search_icon} />
-                <Text style={{
-                    // color: colors.white,
-                    fontSize: textScale(15), fontWeight: "500",
-                    paddingLeft: moderateVerticalScale(10),
-                    paddingTop: moderateScale(5)
-                }}
+                <Text style={styles.searchtxt}
                 >{strings.SEARCH}</Text>
             </TouchableOpacity>
 
@@ -194,7 +132,6 @@ function CustomDrawer(props) {
                 style={{
 
                     marginLeft: moderateScaleVertical(25),
-                    // marginTop: moderateScale(15),
                     paddingTop: moderateScaleVertical(370),
 
                 }}>
@@ -221,4 +158,105 @@ function CustomDrawer(props) {
         </DrawerContentScrollView>
     );
 }
+
+const styles = StyleSheet.create({
+
+    container:
+    {
+        height: height / 5
+    },
+    drawercontext:
+    {
+        backgroundColor: colors.blackOpacity20,
+
+    },
+    imageview:
+    {
+        alignItems: "flex-end",
+        paddingVertical: moderateScaleVertical(10),
+        paddingRight: moderateScaleVertical(10),
+    },
+    imagestyle:
+    {
+        backgroundColor: colors.white,
+        paddingVertical: moderateScaleVertical(8),
+        paddingHorizontal: moderateScaleVertical(8)
+    },
+    imgview: {
+        justifyContent: "center",
+        alignItems: "center",
+        height: "50%",
+        width: "50%",
+        alignSelf: "center",
+        marginTop: moderateScale(1),
+    },
+    img: {
+        height: moderateVerticalScale(100),
+        width: width / 3.6,
+        borderRadius: moderateScale(width / 7),
+    },
+    profileimage:
+    {
+        height: moderateVerticalScale(100),
+        width: width / 3.6,
+        borderRadius: moderateScale(width / 7),
+    },
+    displayview:
+    {
+        paddingVertical: moderateScaleVertical(5),
+        marginTop: moderateScaleVertical(9), alignSelf: 'center'
+    },
+    displaytxt:
+    {
+        fontSize: textScale(12),
+        // color: colors.white,
+        fontWeight: "500",
+    },
+    nametxt:
+    {
+        fontSize: textScale(12),
+        color: colors.blackOpacity43,
+        fontWeight: "500",
+    },
+    emailtxt:
+    {
+        fontSize: textScale(12),
+        // color: colors.white,
+        fontWeight: "500",
+    },
+    homestyle:
+    {
+        flexDirection: "row",
+        marginLeft: moderateScaleVertical(20),
+        marginTop: moderateScale(20)
+    },
+    homeicon:
+    {
+        tintColor: colors.grayOpacity51,
+        marginTop: moderateScaleVertical(5)
+    },
+    hometxt: {
+        // color: colors.white,
+        fontSize: textScale(15), fontWeight: "500",
+        paddingLeft: moderateVerticalScale(10),
+        paddingTop: moderateScale(5)
+    },
+    searchstyle:
+    {
+        flexDirection: "row",
+        marginLeft: moderateScaleVertical(22),
+        marginTop: moderateScale(15)
+    },
+    searchicon:
+    {
+        tintColor: colors.grayOpacity51,
+    },
+    searchtxt:
+    {
+        // color: colors.white,
+        fontSize: textScale(15), fontWeight: "500",
+        paddingLeft: moderateVerticalScale(10),
+        paddingTop: moderateScale(5)
+    },
+})
 export default CustomDrawer;

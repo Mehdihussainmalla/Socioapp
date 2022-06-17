@@ -1,13 +1,10 @@
 //import liraries
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
-import { AuthContext } from "./AuthProvider";
-import auth from '@react-native-firebase/auth';
-import IntroStack from './IntroStack';
-import { useSelector } from 'react-redux';
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
