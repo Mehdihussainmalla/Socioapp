@@ -12,12 +12,10 @@ import { styles } from './styles';
 import auth from "@react-native-firebase/auth";
 import navigationStrings from '../../navigation/navigationStrings';
 const PhoneLogin = ({ navigation }) => {
-    // const { phoneLogin } = useContext(AuthContext);
-    // console.log(phoneLogin, "phone login is")
     const [countryCode, setCountryCode] = useState("91");
     const [countryFlag, setCountryFlag] = useState("IN");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [confirm, setConfirm] = useState(null);
+   
 
 
     const numberLogin = async (countryCode, phoneNumber) => {

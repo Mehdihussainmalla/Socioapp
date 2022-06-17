@@ -67,6 +67,16 @@
 			</dict>
 		</dict>
 	</dict>
+
+<key>NSCameraUsageDescription</key>
+  <string>This app requires camera permissions</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>photo description</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>photo library</string>
+   <key>NSMicrophoneUsageDescription</key>
+  <string>Micro phone permissions</string>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>

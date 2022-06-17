@@ -40,14 +40,12 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      {/* <AuthProvider> */}
         <FlashMessage
           //  hideStatusBar={true}
           //  statusBarHeight={sta.currentHeight}
           duration={2000}
           position="top" />
         <Routes />
-      {/* </AuthProvider> */}
     </Provider>
 
 

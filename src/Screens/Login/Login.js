@@ -114,11 +114,6 @@ const Login = ({ navigation }) => {
         }
     }
 
-    //........forget password...........//
-    const ForgetPassword = () => {
-        actions.ForgetPassword(email);
-    }
-
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>

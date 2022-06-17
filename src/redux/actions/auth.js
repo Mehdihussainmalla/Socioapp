@@ -65,22 +65,8 @@ export const Logout = async () => {
         })
 
     } catch (error) {
+        console.log(error,"cannot logout")
 
     }
 }
-//..................forget password............//
-export const forgetPass = async (email) => {
-    console.log(email, "email is ")
-    try {
-        await auth().sendPasswordResetEmail(email).then((res) => {
-            dispatch({
-                type: types.FORGOTPASSWORD,
-            })
-            console.log(res, "res>>>>>")
 
-        })
-    } catch (error) {
-        console.log(error, "error occurred during forget password")
-
-    }
-}

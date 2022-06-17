@@ -20,14 +20,6 @@ export const userStatus = (state = initialState, action) => {
                 ...state
             }
         }
-
-        case types.FORGOTPASSWORD:
-            {
-                const data = action.payload
-                console.log(data, "data from reducer is")
-                return { userData: data }
-            }
-
         case types.LOGOUT:
             removeData().then((res) => {
                 console.log(res, "res from reducer>>")
