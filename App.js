@@ -18,12 +18,14 @@ const App = () => {
       console.log(res, "res is>>>>>")
       actions.loginData(res);
     })
+    // console.log(res)
     setTimeout(() => {
       SplashScreen.hide();    
 
     }, 2000);
     getLanguage();
   }, [])
+ 
   const getLanguage = async () => {
     try {
       const lng = await AsyncStorage.getItem('language')

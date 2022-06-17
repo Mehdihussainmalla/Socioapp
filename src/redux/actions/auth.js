@@ -2,6 +2,7 @@ import store from "../store";
 import types from "../types";
 import auth from "@react-native-firebase/auth"
 import { showMessage } from "react-native-flash-message";
+import { setLogin } from "../../utils/utils";
 const { dispatch } = store;
 
 //.................signup.................//
@@ -38,6 +39,7 @@ export const loginData = (data) => {
         payload: data
 
     })
+    setLogin(data)
 }
 export const signIn = async (email, password) => {
     console.log(email, password)
@@ -65,7 +67,7 @@ export const Logout = async () => {
         })
 
     } catch (error) {
-        console.log(error,"cannot logout")
+        console.log(error, "cannot logout")
 
     }
 }

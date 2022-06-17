@@ -16,5 +16,7 @@ export { default as Cart } from "./Cart/Cart";
 export { default as Settings } from "./Settings/Settings";
 
 //...............product screens..........//
+
+export {default as Admin} from "./Admin/Admin";
 export { default as Products } from "./Products/Products";
 

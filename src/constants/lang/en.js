@@ -25,5 +25,6 @@ export default {
     SPANISH:"spanish",
     URDU:"urdu",
     FRENCH:"french",
-    ENGLISH:"english"
+    ENGLISH:"english",
+    ADMIN:"admin"
 }

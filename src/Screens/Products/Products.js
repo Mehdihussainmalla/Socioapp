@@ -75,10 +75,10 @@ const Products = () => {
             cropping: true,
         }).then(image => {
             console.log(image);
-            // const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
-            // console.log("image uri is >>",imageUri)
-            // updateState({imageUri:productImage});
-            // console.log(productImage);
+            const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
+            console.log(imageUri, "image is")
+            updateState({ productImg: imageUri })
+            console.log(productImg, "profile image is")
         });
 
     }

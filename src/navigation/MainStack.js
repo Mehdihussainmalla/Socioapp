@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Home, Products, SearchScreen, Settings } from '../Screens';
+import { Admin, Home, Products, SearchScreen, Settings } from '../Screens';
 import DrawerStack from './DrawerStack';
 import navigationStrings from './navigationStrings';
 import TabStack from './TabStack';
@@ -26,6 +26,9 @@ const MainStack = (Stack) => {
             <Stack.Screen name={navigationStrings.PRODUCTS}
                options={{ headerShown: false }}
                component={Products} />
+            <Stack.Screen name={navigationStrings.ADMIN}
+               options={{ headerShown: false }}
+               component={Admin} />
          </Stack.Navigator>
       </>
    );

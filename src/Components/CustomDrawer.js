@@ -22,7 +22,7 @@ function CustomDrawer(props) {
     // console.log("user is ", user?._user?.email)
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
-    // console.log(userData, "userdata from drawer");
+    console.log(userData, "userdata from drawer");
     const email = userData?.email;
     const displayName = userData?.displayName;
     const photo = userData?.photoURL;
@@ -139,6 +139,30 @@ function CustomDrawer(props) {
                 }}
                 >{strings.SEARCH}</Text>
             </TouchableOpacity>
+
+
+            {/*//..............admin...............................  */}
+            <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.ADMIN)}
+                activeOpacity={0.5}
+                style={{
+                    flexDirection: "row",
+                    marginLeft: moderateScaleVertical(25),
+                    marginTop: moderateScale(15)
+                }}>
+                <Image style={{
+                    tintColor: "white", marginTop: 8,
+                    width: width / 16, height: height / 35
+                }}
+                    source={imagePath.setting_icon} />
+                <Text style={{
+                    color: colors.white,
+                    fontSize: textScale(15), fontWeight: "500",
+                    paddingLeft: moderateVerticalScale(10),
+                    paddingTop: moderateScale(5)
+                }}
+                >{strings.ADMIN}</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SETTINGS)}
                 activeOpacity={0.5}
                 style={{

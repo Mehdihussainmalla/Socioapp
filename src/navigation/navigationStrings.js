@@ -12,5 +12,6 @@ export default {
     SLIDER: "Slider",
     CART: "Cart",
     SETTINGS: "Settings",
-    PRODUCTS: "Products"
+    PRODUCTS: "Products",
+    ADMIN:"Admin"
 }

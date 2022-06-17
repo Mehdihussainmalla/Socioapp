@@ -95,11 +95,6 @@ const Home = (props) => {
                         source={imagePath.add_icon} />
                 </TouchableOpacity> */}
             </View>
-          <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={()=>navigation.navigate(navigationStrings.PRODUCTS)}>
-                <Text style={{fontSize:textScale(14),color:colors.blackOpacity66,}}>hhhh</Text>
-                </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
