@@ -15,14 +15,19 @@ export const signUp = (data) => {
 
 }
 export const SignUpHandle = async (email, password) => {
-    console.log(email, password, "email and password is:-")
+    // console.log(email, password, "email and password is:-")
 
     try {
         const user = await auth().createUserWithEmailAndPassword(email, password);
-        console.log(user, "sign up data")
+        // console.log(user, "sign up data")
+        showMessage({
+            message: "login sucessfully",
+            type: "success"
+        })
+        // alert("login sucessfully")
         signIn(email, password);
     } catch (error) {
-        console.log(error, "error occurred")
+        console.log(error, "the input fields are incorrect")
 
     }
 
@@ -46,7 +51,7 @@ export const signIn = async (email, password) => {
 
     try {
         let user = await auth().signInWithEmailAndPassword(email, password);
-        alert("login sucessfully")
+        // alert("login sucessfully")
         // console.log(user, "user>>")
         loginData(user)
 

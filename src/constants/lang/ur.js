@@ -20,6 +20,7 @@ export default {
     PHONE_LOGIN: "فون لاگ ان",
     CHANGE_LANGUAGE: "زبان تبدیل کریں",
     CLOSE: "بند کریں",
+    ADMIN:"منتظم"
     // HINDI: "ہندی",
     // ARABIC: "عربی",
     // SPANISH: "ہسپانوی",

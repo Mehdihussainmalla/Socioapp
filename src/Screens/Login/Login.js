@@ -86,9 +86,10 @@ const Login = ({ navigation }) => {
     }
     //................language change................//
     const onchangeLange = (key, data) => {
-        console.log(key, "key is>", data, "ddidd")
+        setIsModalVisible(false)
+        console.log(key, "key is>", data, "data is")
         changeLanguage(key);
-        RNRestart.Restart();
+        // RNRestart.Restart();
 
     }
     //..........google login.........//

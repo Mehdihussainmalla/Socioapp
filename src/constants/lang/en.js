@@ -35,5 +35,6 @@ export default {
     DESCRIPTION:"description",
     RATING:"rating",
     PRICE:"price",
-    SUBMIT:"Submit"
+    SUBMIT:"Submit",
+    ADMIN:"Admin"
 }
