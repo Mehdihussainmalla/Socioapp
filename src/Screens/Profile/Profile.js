@@ -9,6 +9,7 @@ import { textScale } from '../../styles/responsiveSize'
 import { moderateScale } from 'react-native-size-matters'
 import actions from '../../redux/actions'
 import { useSelector } from 'react-redux'
+import strings from '../../constants/lang'
 
 
 const Profile = () => {

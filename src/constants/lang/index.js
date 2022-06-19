@@ -9,7 +9,7 @@ let strings = new LocalizedStrings({
 })
 export const changeLanguage = async (languagekey) => {
     await AsyncStorage.setItem("language", languagekey)
-    // strings.setLanguage(languagekey)    
+    strings.setLanguage(languagekey)    
 }
 
 export default strings;
