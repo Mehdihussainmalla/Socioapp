@@ -33,7 +33,7 @@ export const SignUpHandle = async (email, password) => {
 //...............login..................//
 
 export const loginData = (data) => {
-    console.log(data, "login data from actions")
+    // console.log(data, "login data from actions")
     dispatch({
         type: types.LOGIN,
         payload: data
@@ -46,12 +46,14 @@ export const signIn = async (email, password) => {
 
     try {
         let user = await auth().signInWithEmailAndPassword(email, password);
-        console.log(user, "user>>")
+        alert("login sucessfully")
+        // console.log(user, "user>>")
         loginData(user)
 
 
     } catch (error) {
         console.log(error, "errror occurred")
+        alert(" There is no user record corresponding to this identifier")
 
     }
 
