@@ -102,21 +102,22 @@ const Products = ({ navigation }) => {
         fileName = name + Date.now() + '.' + extension;  //.........time stamp..............//
 
         setUploading(true)
-        setTransferred(0);
+        // setTransferred(0);
 
         const storageRef = storage().ref(`photos/${fileName}`);
-        const task = storageRef.putFile(uploadUri);
+        // const task = storageRef.putFile(uploadUri);
 
-        task.on('state_changed', taskSnapshot => {
-            console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+        // task.on('state_changed', taskSnapshot => {
+        //     console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
 
-            Math.round(setTransferred(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100)
-        });
+        //     Math.round(setTransferred(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100)
+        // });
 
         try {
-            await task;
+            await storageRef.putFile(uploadUri);
+            // await task;
             const url = await storageRef.getDownloadURL();
-            setUploading(false)
+            // setUploading(false)
             return url
 
         } catch (error) {
@@ -219,17 +220,18 @@ const Products = ({ navigation }) => {
 
             </View>
 
-            {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
+            {/* {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
                 <Text>{transferred} % completed</Text>
                 <ActivityIndicator size={"large"}
                     color={colors.redB}
                 />
 
 
-            </View> : <ButtonComp onPress={onSubmit}
+            </View> :  */}
+            <ButtonComp onPress={onSubmit}
                 ButtonText={strings.SUBMIT}
             />
-            }
+            {/* } */}
 
         </Wrappercontainer>
     );
