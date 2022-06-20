@@ -84,25 +84,27 @@ const Products = ({ navigation }) => {
         }).then(image => {
             console.log(image);
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
+            console.log(image?.path, "image path is")
             // console.log(imageUri, "image is")
             updateState({ productImg: imageUri })
             // console.log(productImg, "profile image is")
         });
     }
 
-//...............upload image into storage in firbase...........//
+    //...............upload image into storage in firbase...........//
     const uploadImage = async () => {
         const uploadUri = productImg;
-        console.log(uploadUri, "image uri is")
-        let fileName = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
-        // console.log(fileName, "file name is >>")
+        let fileName = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);  //.......create file name
         const extension = fileName.split('.').pop();
         const name = fileName.split('.').slice(0, -1).join('.');
-        fileName = name + Date.now() + '.' + extension;
+        fileName = name + Date.now() + '.' + extension;  //.........time stamp..............//
 
         setUploading(true)
         setTransferred(0);
-        const task = storage().ref(fileName).putFile(uploadUri);
+
+        const storageRef = storage().ref(`photos/${fileName}`);
+        const task = storageRef.putFile(uploadUri);
+
         task.on('state_changed', taskSnapshot => {
             console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
 
@@ -111,12 +113,15 @@ const Products = ({ navigation }) => {
 
         try {
             await task;
+            const url = await storageRef.getDownloadURL();
             setUploading(false)
             Alert.alert(
                 "image uploaded sucessfully to firestore")
+            return url
 
         } catch (error) {
             console.log(error, "error occurred")
+            return null
 
         }
 
@@ -126,9 +131,36 @@ const Products = ({ navigation }) => {
     //............firestore.............//  
 
 
-    // const onSubmit =async () => {       
+    const onSubmit = async () => {
+        const imageUrl = await uploadImage();
+        // console.log(imageUrl, "image url is>>>")
+        try {
+            await firestore().collection('products').add({
+                productImage: productImg,
+                productName: productName,
+                productCategory: productCategory,
+                description: description,
+                price: price,
+                rating: rating,
 
-    //............................................................................//      
+            }).then((res) => {
+                console.log(res, "res>>> is")
+                console.log("product added sucessfully!!")
+            })
+        }
+        catch (error) {
+            console.log(error, "something went wrong during firestore")
+        }
+
+
+
+
+
+
+
+    }
+
+    // ............................................................................//      
     // await firestore().collection("products").add({
 
     //     productImage: productImg,
@@ -139,7 +171,7 @@ const Products = ({ navigation }) => {
     //     rating: rating,
     // })
     // navigation.navigate(navigationStrings.HOME)
-    // }
+
 
 
     return (
@@ -147,6 +179,9 @@ const Products = ({ navigation }) => {
             <View style={styles.container}>
                 <Header isBackIcon={true}
                     title={strings.PRODUCTS} />
+                <Image
+                    style={styles.imgstyle}
+                    source={{ uri: productImg }} />
                 <TouchableOpacity
                     onPress={onSelectImage}
                     activeOpacity={0.5}
@@ -158,11 +193,7 @@ const Products = ({ navigation }) => {
                 </TouchableOpacity>
                 <View style={styles.input1}>
                     <TextInputComponent
-                        input={{
-                            borderRadius: 10, borderWidth: 1,
-                            color: colors.blackOpacity66,
-                            fontSize: textScale(14),
-                        }}
+                        input={styles.txtinput1}
                         placeholder={strings.PRODUCT_NAME}
                         value={productName}
                         onChangeText={(productName) => updateState({ productName })}
@@ -171,11 +202,7 @@ const Products = ({ navigation }) => {
 
                 <View style={styles.input1}>
                     <TextInputComponent
-                        input={{
-                            borderRadius: 10, borderWidth: 1,
-                            color: colors.blackOpacity66,
-                            fontSize: textScale(14)
-                        }}
+                        input={styles.txtinput1}
                         placeholder={strings.PRODUCT_CATEGORY}
                         value={productCategory}
                         onChangeText={(productCategory) => updateState({ productCategory })}
@@ -183,11 +210,7 @@ const Products = ({ navigation }) => {
                 </View>
                 <View style={styles.input1}>
                     <TextInputComponent
-                        input={{
-                            borderRadius: 10, borderWidth: 1,
-                            color: colors.blackOpacity66,
-                            fontSize: textScale(14)
-                        }}
+                        input={styles.txtinput1}
                         placeholder={strings.DESCRIPTION}
                         value={description}
                         onChangeText={(description) => updateState({ description })}
@@ -197,10 +220,7 @@ const Products = ({ navigation }) => {
 
                 <View style={styles.input1}>
                     <TextInputComponent
-                        input={{
-                            borderRadius: 10, borderWidth: 1, fontSize: textScale(14),
-                            color: colors.blackOpacity66
-                        }}
+                        input={styles.txtinput1}
                         placeholder={strings.PRICE}
                         value={price}
                         onChangeText={(price) => updateState({ price })}
@@ -208,10 +228,7 @@ const Products = ({ navigation }) => {
                 </View>
                 <View style={styles.input1}>
                     <TextInputComponent
-                        input={{
-                            borderRadius: 10, borderWidth: 1, fontSize: textScale(14),
-                            color: colors.blackOpacity66
-                        }}
+                        input={styles.txtinput1}
                         placeholder={strings.RATING}
                         value={rating}
                         onChangeText={(rating) => updateState({ rating })}
@@ -223,9 +240,14 @@ const Products = ({ navigation }) => {
             {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
                 <Text>{transferred} % completed</Text>
                 <ActivityIndicator size={"large"}
-                    color={colors.redB} />
-            </View> : <ButtonComp onPress={uploadImage}
-                ButtonText={strings.SUBMIT} />}
+                    color={colors.redB}
+                />
+
+
+            </View> : <ButtonComp onPress={onSubmit}
+                ButtonText={strings.SUBMIT}
+            />
+            }
 
         </Wrappercontainer>
     );

@@ -13,14 +13,28 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignSelf: "center",
         alignItems: "baseline",
+
     },
     imagetext: {
-        fontSize: textScale(14),
+        fontSize: textScale(16),
         alignSelf: "center",
         alignItems: "center",
-        color: colors.DarkBlue
+        color: colors.DarkBlue,
+        fontWeight:"500"
     },
     input1: {
         marginTop: moderateVerticalScale(10)
     },
+    txtinput1: {
+        borderRadius: moderateScale(10),
+        borderWidth: moderateScale(1),
+        color: colors.blackOpacity66,
+        fontSize: textScale(14),
+    },
+    imgstyle:
+    {
+        height: "20%", width: "70%",
+        justifyContent: "center",
+        alignSelf: "center"
+    }
 });

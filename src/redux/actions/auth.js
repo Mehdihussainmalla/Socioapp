@@ -64,10 +64,10 @@ export const signIn = async (email, password) => {
 
 }
 //............logout...............//
-export const Logout = async () => {
+export const Logout =  () => {
     try {
 
-        await auth().signOut();
+        // await auth().signOut();
         dispatch({
             type: types.LOGOUT,
 

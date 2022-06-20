@@ -26,10 +26,6 @@ function CustomDrawer(props) {
 
     const handleLogout = () => {
         actions.Logout();
-        showMessage({
-            message: "Logout Sucessfully",
-            type: "success"
-        })
     }
 
     const handleScreen = () => {

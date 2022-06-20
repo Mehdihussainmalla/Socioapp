@@ -21,37 +21,47 @@ import strings from '../../constants/lang';
 import firestore from '@react-native-firebase/firestore';
 
 const Home = ({ navigation, route }) => {
-    const productDetails = route?.params?.data;
 
-    const image = productDetails?.productImage;
-    // console.log(image, "image is ")
-    // console.log(productDetails, "details are")
     const [snapState, setSnapState] = useState(0);
+    const [products, setproducts] = useState(null);
+    const [loading, setloading] = useState(true);
 
-    // useEffect(() => {
-    //     const fetchData=async()=>{
-    //         try {
-    //           const list=[];
-    //          await   firestore().collection("products").get().then((res)=>{
-    //             console.log(res,"res>>>> from home is>>")
-    //         //    res.forEach(doc=>{
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const list = [];
+                await firestore().collection("products").get().then((res) => {
+                    // console.log(res.size, "res>>>> from home is>>")
+                    res.forEach(doc => {
 
-    //         //         const {productDetails, userId, productImage,rate, price}=doc.data()
-    //         //         list.push({
-    //         //             key:userId
-    //         //         })
-    //         //         console.log(list,"list is>>>>>>>>>>>>>")
-    //         //     })
+                        const { productDetails, userId, productImage, rating, price, description } = doc.data();
+                        list.push({
+                            key: doc.id,
+                            productDetails,
+                            description,
+                            productImage,
+                            rating,
+                            price,
 
-    //           })  
-    //         } catch (error) {
-    //             console.log(error, "error occurred")
-                
-    //         }
-    //     }
-    //     fetchData();
 
-    // }, [])
+                        })
+                        setproducts(list);
+                        if(loading){
+                            setloading(false)
+                        }
+                        console.log(list, "list is")
+
+                    })
+
+                })
+            } catch (error) {
+                console.log(error, "error occurred")
+
+            }
+        }
+        fetchData();
+
+    }, [])
 
 
     const data = [{
@@ -127,43 +137,43 @@ const Home = ({ navigation, route }) => {
             </TouchableOpacity>
             {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
-                <View>
+            <View>
 
-                    <Carousel layout="stack"
-                        data={data}
-                        itemHeight={ITEM_HEIGHT}
-                        // sliderHeight={100}
-                        sliderWidth={SLIDER_WIDTH}
-                        itemWidth={moderateScale(width - 70)}
-                        renderItem={renderItem}
-                        onSnapToItem={index => setSnapState(index)}
-                        scrollEnabled={data.length > 1 ? true : false}
+                <Carousel layout="stack"
+                    data={data}
+                    itemHeight={ITEM_HEIGHT}
+                    // sliderHeight={100}
+                    sliderWidth={SLIDER_WIDTH}
+                    itemWidth={moderateScale(width - 70)}
+                    renderItem={renderItem}
+                    onSnapToItem={index => setSnapState(index)}
+                    scrollEnabled={data.length > 1 ? true : false}
 
-                    />
+                />
 
-                    <Pagination
-                        activeDotIndex={snapState}
-                        containerStyle={styles.containerstyle}
-                        dotColor={colors.redB}
-                        dotStyle={styles.dotstyle}
-                        inactiveDotStyle={styles.inactivedotstyle}
-                        inactiveDotColor={colors.black}
-                        inactiveDotOpacity={0.4}
-                        activeOpacity={0.8}
-                        dotContainerStyle={styles.dotcontainer}
-                        dotsLength={data.length}
+                <Pagination
+                    activeDotIndex={snapState}
+                    containerStyle={styles.containerstyle}
+                    dotColor={colors.redB}
+                    dotStyle={styles.dotstyle}
+                    inactiveDotStyle={styles.inactivedotstyle}
+                    inactiveDotColor={colors.black}
+                    inactiveDotOpacity={0.4}
+                    activeOpacity={0.8}
+                    dotContainerStyle={styles.dotcontainer}
+                    dotsLength={data.length}
 
-                    />
-                </View>
+                />
+            </View>
 
-                <CardView />
-                <View style={styles.viewstyle}>
-                    <Text style={styles.accessorries}>{strings.ACCESSORIES} {strings.ADMIN} </Text>
-                </View>
-                <View>
-                    <ElectronicCard />
+            <CardView />
+            <View style={styles.viewstyle}>
+                <Text style={styles.accessorries}>{strings.ACCESSORIES} {strings.ADMIN} </Text>
+            </View>
+            <View>
+                <ElectronicCard />
 
-                </View>
+            </View>
 
             {/* </ScrollView> */}
         </Wrappercontainer>
