@@ -39,8 +39,6 @@ const Products = ({ navigation }) => {
     const updateState = (data) => setState(() => ({ ...state, ...data }));
 
     //............firestore.............//  
-
-
     const onSubmit = async () => {
 
         await firestore().collection("products").add({
