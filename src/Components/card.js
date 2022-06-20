@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react
 import { moderateScale } from 'react-native-size-matters';
 import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
-import { width } from '../styles/responsiveSize';
+import { textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
 
 // create a component
@@ -21,7 +21,7 @@ const CardView = () => {
                     // console.log(res.size, "res>>>> from home is>>")
                     res.forEach(doc => {
 
-                        const { productCategory, userId, productImage, rating, price, description } = doc.data();
+                        const { productCategory, userId, productImage, rating, price, description, productName } = doc.data();
                         list.push({
                             key: doc.id,
                             productCategory,
@@ -29,6 +29,7 @@ const CardView = () => {
                             productImage,
                             rating,
                             price,
+                            productName
 
 
                         })
@@ -50,56 +51,65 @@ const CardView = () => {
 
     }, [])
 
-    // const cardData = [{
-    //     key: 1,
-    //     image: imagePath.fruits_stock,
-    //     description: "fresh fruits"
-    // },
-    // {
-    //     key: 2,
-    //     image: imagePath.spices_hub,
-    //     description: "fresh fruits"
-    // },
-    // {
-    //     key: 3,
-    //     image: imagePath.fruits_stock,
-    //     description: "fresh fruits"
-    // },
-    // {
-    //     key: 4,
-    //     image: imagePath.spices_hub,
-    //     description: "fresh fruits"
-    // },
-    // {
-    //     key: 5,
-    //     image: imagePath.fruits_stock,
-    //     description: "fresh fruits"
-    // },
-    // ]
     const renderItem = ({ item }) => {
         console.log(item, "items for flast list are")
-        // return (
-        //     <TouchableOpacity
-        //         activeOpacity={0.7}
-        //         style={{
-        //             borderWidth: 0.5, borderRadius: 5, marginVertical: 5,
-        //             marginRight: 10, height: moderateScale(130),
-        //             justifyContent: "center", marginTop: 30,
-        //             backgroundColor: colors.blackOpacity20
-        //         }}>
-        //         <Image style={{
-        //             width: width / 3,
-        //             height: moderateScale(110),
-        //             marginHorizontal: 10,
-        //             marginTop: 10
+        return (
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={{
+                    borderWidth: 0.5,
+                    borderRadius: 5,
+                    marginVertical: 5,
+                    marginRight: 10,
+                    height: moderateScale(200),
+                    justifyContent: "center",
+                    marginTop: 10,
 
-        //         }} source={item.image} />
-        //         <Text style={{
-        //             color: colors.green, fontWeight: "500",
-        //             marginBottom: 10, marginHorizontal: 5,
-        //         }}>{item.description}</Text>
-        //     </TouchableOpacity>
-        // )
+                }}>
+                <Image style={{
+                    width: width / 3,
+                    height: moderateScale(110),
+                    marginHorizontal: moderateScale(10),
+                    marginTop: moderateScale(10)
+
+                }} source={{ uri: item.productImage }} />
+                <Text style={{
+                    color: colors.redColor,
+                    fontWeight: "600",
+                    marginBottom: moderateScale(1),
+                    justifyContent: "center",
+                    alignSelf: "center"
+                    // marginHorizontal:moderateScale(15),
+                }}>{item.productName}</Text>
+
+                <Text style={{
+                    fontSize: textScale(14),
+                    backgroundColor: "red",
+                    color: colors.white,
+                    fontWeight: "500",
+                    marginBottom: moderateScale(1),
+                    alignSelf: "center",
+                }}>{item.price}</Text>
+
+                <Text style={{
+                    fontWeight: "500",
+                    marginBottom: 1,
+                    marginHorizontal: moderateScale(8)
+                }}>{item.description}</Text>
+                <Text style={{
+                    fontWeight: "300",
+                    // marginTop: 2,
+                    marginHorizontal: moderateScale(8),
+                }}>{item.productCategory}</Text>
+                <Text style={{
+                    fontSize: textScale(18),
+                    color: colors.yellowC,
+                    fontWeight: "500",
+                    marginHorizontal: moderateScale(8),
+                }}>{item.rating}</Text>
+
+            </TouchableOpacity>
+        )
 
     }
 

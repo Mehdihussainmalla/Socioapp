@@ -145,6 +145,7 @@ const Products = ({ navigation }) => {
 
             }).then((res) => {
                 console.log(res, "res>>> is")
+                navigation.navigate(navigationStrings.HOME)
                 console.log("product added sucessfully!!")
             })
         }
