@@ -38,7 +38,7 @@ const Products = ({ navigation }) => {
 
     });
 
-    const { productImg, productCategory, productName, description, price, rating } = state;
+    const { productImage, productCategory, productName, description, price, rating } = state;
     const updateState = (data) => setState(() => ({ ...state, ...data }));
 
 
@@ -86,14 +86,19 @@ const Products = ({ navigation }) => {
             const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
             console.log(image?.path, "image path is")
             // console.log(imageUri, "image is")
-            updateState({ productImg: imageUri })
+            updateState({ productImage: imageUri })
             // console.log(productImg, "profile image is")
         });
     }
 
     //...............upload image into storage in firbase...........//
     const uploadImage = async () => {
-        const uploadUri = productImg;
+        if (productImage == null) {
+            return null;
+        }
+
+        const uploadUri = productImage;
+        // console.log(uploadUri,"uri issss")
         let fileName = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);  //.......create file name
         const extension = fileName.split('.').pop();
         const name = fileName.split('.').slice(0, -1).join('.');
@@ -115,8 +120,6 @@ const Products = ({ navigation }) => {
             await task;
             const url = await storageRef.getDownloadURL();
             setUploading(false)
-            Alert.alert(
-                "image uploaded sucessfully to firestore")
             return url
 
         } catch (error) {
@@ -136,7 +139,7 @@ const Products = ({ navigation }) => {
         // console.log(imageUrl, "image url is>>>")
         try {
             await firestore().collection('products').add({
-                productImage: productImg,
+                productImage: imageUrl,
                 productName: productName,
                 productCategory: productCategory,
                 description: description,
@@ -144,37 +147,17 @@ const Products = ({ navigation }) => {
                 rating: rating,
 
             }).then((res) => {
-                console.log(res, "res>>> is")
+                //  console.log(res, "res>>> is")
                 navigation.navigate(navigationStrings.HOME)
-                console.log("product added sucessfully!!")
+
             })
+
         }
+
         catch (error) {
             console.log(error, "something went wrong during firestore")
         }
-
-
-
-
-
-
-
     }
-
-    // ............................................................................//      
-    // await firestore().collection("products").add({
-
-    //     productImage: productImg,
-    //     productName: productName,
-    //     productCategory: productCategory,
-    //     description: description,
-    //     price: price,
-    //     rating: rating,
-    // })
-    // navigation.navigate(navigationStrings.HOME)
-
-
-
     return (
         <Wrappercontainer>
             <View style={styles.container}>
@@ -182,7 +165,8 @@ const Products = ({ navigation }) => {
                     title={strings.PRODUCTS} />
                 <Image
                     style={styles.imgstyle}
-                    source={{ uri: productImg }} />
+                    source={{ uri: productImage }}
+                />
                 <TouchableOpacity
                     onPress={onSelectImage}
                     activeOpacity={0.5}

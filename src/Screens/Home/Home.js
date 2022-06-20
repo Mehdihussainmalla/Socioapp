@@ -18,50 +18,11 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
 import strings from '../../constants/lang';
-import firestore from '@react-native-firebase/firestore';
 
-const Home = ({ navigation, route }) => {
+const Home = ({ navigation}) => {
+    
 
     const [snapState, setSnapState] = useState(0);
-    const [products, setproducts] = useState(null);
-    const [loading, setloading] = useState(true);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const list = [];
-                await firestore().collection("products").get().then((res) => {
-                    // console.log(res.size, "res>>>> from home is>>")
-                    res.forEach(doc => {
-
-                        const { productDetails, userId, productImage, rating, price, description } = doc.data();
-                        list.push({
-                            key: doc.id,
-                            productDetails,
-                            description,
-                            productImage,
-                            rating,
-                            price,
-
-
-                        })
-                        setproducts(list);
-                        if(loading){
-                            setloading(false)
-                        }
-                        console.log(list, "list is")
-
-                    })
-
-                })
-            } catch (error) {
-                console.log(error, "error occurred")
-
-            }
-        }
-        fetchData();
-
-    }, [])
 
 
     const data = [{
@@ -166,9 +127,9 @@ const Home = ({ navigation, route }) => {
                 />
             </View>
 
-            <CardView />
+            <CardView  />
             <View style={styles.viewstyle}>
-                <Text style={styles.accessorries}>{strings.ACCESSORIES} {strings.ADMIN} </Text>
+                <Text style={styles.accessorries}>{strings.ACCESSORIES} </Text>
             </View>
             <View>
                 <ElectronicCard />

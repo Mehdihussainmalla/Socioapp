@@ -17,11 +17,13 @@ const CardView = () => {
         const fetchData = async () => {
             try {
                 const list = [];
-                await firestore().collection("products").get().then((res) => {
+                await firestore().collection("products").orderBy("productName", "desc")
+                
+                .get().then((res) => {
                     // console.log(res.size, "res>>>> from home is>>")
                     res.forEach(doc => {
 
-                        const { productCategory, userId, productImage, rating, price, description, productName } = doc.data();
+                        const { productCategory, productImage, rating, price, description, productName } = doc.data();
                         list.push({
                             key: doc.id,
                             productCategory,
@@ -37,7 +39,8 @@ const CardView = () => {
                         if (loading) {
                             setloading(false)
                         }
-                        console.log(list, "list is")
+                        // console.log(productImg,"product image is") 
+                         console.log(list, "list is")
 
                     })
 
@@ -52,16 +55,16 @@ const CardView = () => {
     }, [])
 
     const renderItem = ({ item }) => {
-        console.log(item, "items for flast list are")
+        // console.log(item, "items for flast list are")
         return (
             <TouchableOpacity
                 activeOpacity={0.7}
                 style={{
-                    borderWidth: 0.5,
+                    borderWidth: 0.4,
                     borderRadius: 5,
                     marginVertical: 5,
                     marginRight: 10,
-                    height: moderateScale(200),
+                    height: moderateScale(210),
                     justifyContent: "center",
                     marginTop: 10,
 
@@ -79,7 +82,6 @@ const CardView = () => {
                     marginBottom: moderateScale(1),
                     justifyContent: "center",
                     alignSelf: "center"
-                    // marginHorizontal:moderateScale(15),
                 }}>{item.productName}</Text>
 
                 <Text style={{
@@ -110,6 +112,7 @@ const CardView = () => {
 
             </TouchableOpacity>
         )
+        
 
     }
 

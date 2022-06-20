@@ -89,10 +89,6 @@ const renderItem = ({ item }) => {
                 height: height / 4.9,
                 marginHorizontal: 5,
 
-                // marginVertical: 30,
-                // borderRadius: 10,
-                // borderWidth: 0.5,
-                // backgroundColor: "red"
             }}>
 
             <Image
