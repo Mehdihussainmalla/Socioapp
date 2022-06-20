@@ -27,9 +27,9 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 const Login = ({ navigation }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
     const strongRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,20}$/;
-    // console.log(route?.params,"route data")
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const [hide, setHide] = useState();
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -46,35 +46,50 @@ const Login = ({ navigation }) => {
 
     const data = [email, password];
     const handleLogin = () => {
-
-        if (email === "") {
-
-            // console.log('please enter email')
-        }
-
-        else if (!emailRegex.test(email)) {
+        if (email == "") {
             showMessage({
-                message: "Please enter email",
-                type: "danger",
+                message: "please enter email",
+                type: "danger"
             })
-        }
-        else if (!strongRegex.test(password)) {
+            alert('please enter email')
+        } else if (!emailRegex.test(email)) {
+
             showMessage({
-                message: "Please enter password",
-                type: "danger",
+                message: "enter valid email",
+                type: "success"
             })
+            alert('enter valid email')
         }
-        else {
+        else if (password == "") {
+            showMessage({
+                message: "please enter password",
+                type: "success"
+            })
+
+            alert('enter password')
+        } else if (!strongRegex.test(password)) {
+
+            showMessage({
+                message: "please enter valid password",
+                type: "success"
+            })
+            alert('enter valid password')
+        } else {
             actions.signIn(email, password)
-            //  login(email, password)
-
+            // alert("login sucessfully")
+            // showMessage({
+            //     message: "login sucessfully",
+            //     type: "success"
+            // })
+           
         }
     }
     //................language change................//
     const onchangeLange = (key, data) => {
-        console.log(key, "key is>", data, "ddidd")
+        setIsModalVisible(false)
+        console.log(key, "key is>", data, "data is")
         changeLanguage(key);
-        RNRestart.Restart();
+        // RNRestart.Restart();
 
     }
     //..........google login.........//

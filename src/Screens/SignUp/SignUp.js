@@ -24,54 +24,39 @@ const SignUp = ({ navigation }) => {
     const emailRegex = /^[\w-\.\_\$]{2,}@([\w]{3,5}\.)[\w]{2,4}$/;
     const strongRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,20}$/;
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmpassword] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmpassword] = useState("");
     const [hide, setHide] = useState();
     const [hideIcon, setHideIcon] = useState();
 
     const handleSignup = () => {
-        if (email === "") {
-            // console.log('please enter email')
+        if (email == "") {
+            alert("please enter email")
+
+        } else if (!emailRegex.test(email)) {
+            alert("please enter valid email")
         }
-
-        else if (!emailRegex.test(email)) {
-            showMessage({
-                message: "Please enter your email",
-                type: "danger",
-            })
+        else if (password == "") {
+            alert("please enter password")
         }
-
-        // else if (password === "") {
-        //     console.log('please enter password')
-        // }
-
+        else if (password.length < 6) {
+            alert("minimum password length should be six characters")
+        }
         else if (!strongRegex.test(password)) {
-            showMessage({
-                message: "Please enter your password",
-                type: "danger",
-            })
+            alert("please enter valid password")
         }
-
+        else if (confirmPassword == "") {
+            alert("please enter confirm password")
+        }
+        else if (password != confirmPassword || confirmPassword != password) {
+            alert("password and confirm password didnot match")
+        }
         else {
-            if (password === confirmPassword) {
-                actions.SignUpHandle(email,password)
-                // register(email, password)
-                showMessage({
-                    message: "Signup sucessfully",
-                    type: "success"
-                })
-            }
-            else {
-                showMessage({
-                    message: "please confirm password",
-                    type: "danger"
-                })
-            }
+            actions.SignUpHandle(email, password)
         }
+
     }
-
-
     return (
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>

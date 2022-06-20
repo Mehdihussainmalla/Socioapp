@@ -15,14 +15,19 @@ export const signUp = (data) => {
 
 }
 export const SignUpHandle = async (email, password) => {
-    console.log(email, password, "email and password is:-")
+    // console.log(email, password, "email and password is:-")
 
     try {
         const user = await auth().createUserWithEmailAndPassword(email, password);
-        console.log(user, "sign up data")
+        // console.log(user, "sign up data")
+        showMessage({
+            message: "login sucessfully",
+            type: "success"
+        })
+        // alert("login sucessfully")
         signIn(email, password);
     } catch (error) {
-        console.log(error, "error occurred")
+        console.log(error, "the input fields are incorrect")
 
     }
 
@@ -33,7 +38,7 @@ export const SignUpHandle = async (email, password) => {
 //...............login..................//
 
 export const loginData = (data) => {
-    console.log(data, "login data from actions")
+    // console.log(data, "login data from actions")
     dispatch({
         type: types.LOGIN,
         payload: data
@@ -46,12 +51,14 @@ export const signIn = async (email, password) => {
 
     try {
         let user = await auth().signInWithEmailAndPassword(email, password);
-        console.log(user, "user>>")
+        // alert("login sucessfully")
+        // console.log(user, "user>>")
         loginData(user)
 
 
     } catch (error) {
         console.log(error, "errror occurred")
+        alert(" There is no user record corresponding to this identifier")
 
     }
 

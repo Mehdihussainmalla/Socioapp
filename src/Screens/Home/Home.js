@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View, Text,
     TouchableOpacity,
@@ -11,13 +11,14 @@ import { styles } from './styles';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import navigationStrings from '../../navigation/navigationStrings';
-import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
-import { moderateScaleVertical, textScale, width } from '../../styles/responsiveSize';
+import { moderateScale } from 'react-native-size-matters';
+import { width } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
 import strings from '../../constants/lang';
+import firestore from '@react-native-firebase/firestore';
 
 const Home = ({ navigation, route }) => {
     const productDetails = route?.params?.data;
@@ -26,6 +27,31 @@ const Home = ({ navigation, route }) => {
     // console.log(image, "image is ")
     // console.log(productDetails, "details are")
     const [snapState, setSnapState] = useState(0);
+
+    // useEffect(() => {
+    //     const fetchData=async()=>{
+    //         try {
+    //           const list=[];
+    //          await   firestore().collection("products").get().then((res)=>{
+    //             console.log(res,"res>>>> from home is>>")
+    //         //    res.forEach(doc=>{
+
+    //         //         const {productDetails, userId, productImage,rate, price}=doc.data()
+    //         //         list.push({
+    //         //             key:userId
+    //         //         })
+    //         //         console.log(list,"list is>>>>>>>>>>>>>")
+    //         //     })
+
+    //           })  
+    //         } catch (error) {
+    //             console.log(error, "error occurred")
+                
+    //         }
+    //     }
+    //     fetchData();
+
+    // }, [])
 
 
     const data = [{
@@ -99,7 +125,7 @@ const Home = ({ navigation, route }) => {
                 <Image style={styles.searchicon}
                     source={imagePath.search_icon} />
             </TouchableOpacity>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
                 <View>
 
@@ -132,14 +158,14 @@ const Home = ({ navigation, route }) => {
 
                 <CardView />
                 <View style={styles.viewstyle}>
-                    <Text style={styles.accessorries}>{strings.ACCESSORIES} </Text>
+                    <Text style={styles.accessorries}>{strings.ACCESSORIES} {strings.ADMIN} </Text>
                 </View>
                 <View>
                     <ElectronicCard />
 
                 </View>
 
-            </ScrollView>
+            {/* </ScrollView> */}
         </Wrappercontainer>
 
     );

@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 const Routes = () => {
 
     const userData = useSelector((state) => state?.userStatus?.userData);
-    console.log(userData, "userdata>>>>>>>>>")
+    // console.log(userData, "userdata>>>>>>>>>")
 
     return (
         <NavigationContainer>
