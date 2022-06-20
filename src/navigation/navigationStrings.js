@@ -13,5 +13,6 @@ export default {
     CART: "Cart",
     SETTINGS: "Settings",
     PRODUCTS: "Products",
-    ADMIN:"Admin"
+    ADMIN:"Admin", 
+    ACCESSORIES:" Accessories"
 }

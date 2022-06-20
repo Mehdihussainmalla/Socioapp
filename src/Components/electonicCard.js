@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import {
     View, Text,
     StyleSheet,
@@ -10,6 +10,8 @@ import {
 import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import { height, textScale, width } from '../styles/responsiveSize';
+import firestore from '@react-native-firebase/firestore';
+
 
 const electronicData = [{
     key: 1,
@@ -78,6 +80,23 @@ const electronicData = [{
 },
 ]
 
+// useEffect(() => {
+
+//     const fetchData = async () => {
+//         try {
+//             const list = [];
+//             firestore().collection('products').orderBy("productName", 'desc').get().then((res) => {
+//                 console.log(res, "res is >>>>")
+//             })
+//         } catch (error) {
+
+//         }
+//     }
+//     fetchData();
+
+// }, [])
+
+
 const renderItem = ({ item }) => {
     // console.log(item?.image, "dfdfjf>>>>>")
     return (
@@ -121,7 +140,7 @@ const ElectronicCard = () => {
                 numColumns={3}
                 data={electronicData}
                 renderItem={renderItem}
-                // keyExtractor={item => item.id}
+            // keyExtractor={item => item.id}
             />
         </View>
     );

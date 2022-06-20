@@ -20,10 +20,7 @@ export const SignUpHandle = async (email, password) => {
     try {
         const user = await auth().createUserWithEmailAndPassword(email, password);
         // console.log(user, "sign up data")
-        showMessage({
-            message: "login sucessfully",
-            type: "success"
-        })
+       
         // alert("login sucessfully")
         signIn(email, password);
     } catch (error) {
@@ -51,14 +48,20 @@ export const signIn = async (email, password) => {
 
     try {
         let user = await auth().signInWithEmailAndPassword(email, password);
-        // alert("login sucessfully")
-        // console.log(user, "user>>")
+        showMessage({
+            message: "login sucessfully",
+            type: "success"
+        })
         loginData(user)
 
 
     } catch (error) {
         console.log(error, "errror occurred")
-        alert(" There is no user record corresponding to this identifier")
+        showMessage({
+            message:"There is no user record corresponding to this identifier",
+            type:"danger"
+        })
+        // alert(" There is no user record corresponding to this identifier")
 
     }
 

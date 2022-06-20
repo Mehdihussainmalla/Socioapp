@@ -1,15 +1,15 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useContext } from 'react'
+import React from 'react'
 import Wrappercontainer from '../../Components/wrappercontainer'
 import Header from '../../Components/Header'
 import imagePath from '../../constants/imagePath'
-import { AuthContext } from '../../navigation/AuthProvider'
 import colors from '../../styles/colors';
 import { textScale } from '../../styles/responsiveSize'
 import { moderateScale } from 'react-native-size-matters'
 import actions from '../../redux/actions'
 import { useSelector } from 'react-redux'
-import strings from '../../constants/lang'
+import { styles } from './style'
+
 
 
 const Profile = () => {
@@ -29,14 +29,9 @@ const Profile = () => {
           <Header isBackIcon={true} title={"My Profile"} />
           <View>
 
-            <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-              <View style={{ height: "38%", marginTop: 10, marginHorizontal: 10 }} >
-                {!!image ? <Image style={{
-                  width: 80,
-                  height: 80,
-                  // borderRadius: 0.5,
-                  // borderWidth: 1
-                }}
+            <View style={styles.container}>
+              <View style={styles.imgstyle} >
+                {!!image ? <Image style={styles.img}
                   source={{ uri: image }}
                 /> : <Image style={{
                   width: 80,
@@ -47,57 +42,49 @@ const Profile = () => {
                   source={imagePath.profile_pic}
                 />}
               </View>
-              <View style={{ marginTop: 20 }}>
+              <View style={styles.displayview}>
                 {!!displayName ?
 
-                  <Text style={{ fontWeight: "700", color: colors.blackOpacity66 }}>
+                  <Text style={styles.displaystyle}>
                     {displayName}
                   </Text> :
-                  <Text style={{ fontWeight: "700", color: colors.blackOpacity66 }}>
+                  <Text style={styles.name}>
                     Muntazir Mehdi
                   </Text>}
-                <Text style={{ fontWeight: "400", color: colors.blackOpacity43 }}>
+                <Text style={styles.email}>
                   {email}
                 </Text>
-                <Text style={{ color: colors.green }}>SILVER MEMBER</Text>
+                <Text style={styles.member}>SILVER MEMBER</Text>
               </View>
             </View>
 
-            <View style={{ marginHorizontal: 8, marginTop: 10 }}>
-              <Text style={{ color: colors.blackOpacity43 }}>2465 points Away to becoming Gold member</Text>
+            <View style={styles.descstyle}>
+              <Text style={styles.desc}>2465 points Away to becoming Gold member</Text>
             </View>
           </View>
 
-          <View style={{
-            backgroundColor: "#F7CB00", marginVertical: 10, paddingVertical: 20, flexDirection: "row", justifyContent: "flex-start",
-            marginHorizontal: 1, borderWidth: 0.5,
-          }}>
+          <View style={styles.imagestyle}>
             <Image style={{ marginHorizontal: 1 }}
               source={imagePath.white_circle} />
-            <View style={{ flexDirection: "column", marginHorizontal: 1, }}>
-              <Text style={{ marginTop: moderateScale(5), color: colors.white, fontWeight: "800" }}>Profile</Text>
+            <View style={styles.profilestyle}>
+              <Text style={styles.profiletxt}>Profile</Text>
               <View >
-                <Text style={{ marginTop: moderateScale(10), color: colors.white, fontSize: textScale(12) }}>
+                <Text style={styles.profiledesc}>
                   Complete your profile to earn 100
                   reward points.</Text>
               </View>
             </View>
           </View>
 
-          <View style={{
-            marginHorizontal: 1,
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingVertical: 10
-          }}>
+          <View style={styles.orderstyle}>
             <TouchableOpacity activeOpacity={0.7}>
-              <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
+              <View style={styles.orderview}>
 
                 <Image
-                  style={{ marginTop: moderateScale(3) }}
+                  style={styles.ordericon}
                   source={imagePath.digital_order} />
 
-                <Text style={{ marginRight: 10, paddingLeft: 10, fontSize: textScale(13) }}>Digital orders</Text>
+                <Text style={styles.ordertxt}>Digital orders</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => alert("in process")}

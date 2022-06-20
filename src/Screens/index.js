@@ -17,6 +17,7 @@ export { default as Settings } from "./Settings/Settings";
 
 //...............product screens..........//
 
-export {default as Admin} from "./Admin/Admin";
+export { default as Admin } from "./Admin/Admin";
 export { default as Products } from "./Products/Products";
+export { default as Accessories } from "./Accessories/Accessories";
 

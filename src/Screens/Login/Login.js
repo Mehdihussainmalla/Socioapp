@@ -51,37 +51,31 @@ const Login = ({ navigation }) => {
                 message: "please enter email",
                 type: "danger"
             })
-            alert('please enter email')
+            // alert('please enter email')
         } else if (!emailRegex.test(email)) {
 
             showMessage({
-                message: "enter valid email",
-                type: "success"
+                message: "please enter valid email",
+                type: "default"
             })
-            alert('enter valid email')
+            // alert('enter valid email')
         }
         else if (password == "") {
             showMessage({
                 message: "please enter password",
-                type: "success"
+                type:"danger"
             })
 
-            alert('enter password')
+            // alert('enter password')
         } else if (!strongRegex.test(password)) {
 
             showMessage({
                 message: "please enter valid password",
-                type: "success"
+                type: "danger"
             })
-            alert('enter valid password')
+            // alert('enter valid password')
         } else {
-            actions.signIn(email, password)
-            // alert("login sucessfully")
-            // showMessage({
-            //     message: "login sucessfully",
-            //     type: "success"
-            // })
-           
+            actions.signIn(email, password)          
         }
     }
     //................language change................//

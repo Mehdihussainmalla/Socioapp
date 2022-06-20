@@ -1,4 +1,3 @@
-//import liraries
 import React, { useState } from 'react';
 import {
     View,
@@ -14,9 +13,7 @@ import Wrappercontainer from '../../Components/wrappercontainer';
 import firestore from '@react-native-firebase/firestore';
 import TextInputComponent from '../../Components/Input';
 import ButtonComp from '../../Components/Button';
-import { textScale } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
-import imagePath from '../../constants/imagePath';
 import ImagePicker from 'react-native-image-crop-picker';
 import navigationStrings from '../../navigation/navigationStrings';
 import { styles } from './styles';

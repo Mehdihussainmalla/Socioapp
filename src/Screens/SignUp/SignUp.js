@@ -32,25 +32,53 @@ const SignUp = ({ navigation }) => {
 
     const handleSignup = () => {
         if (email == "") {
-            alert("please enter email")
+            showMessage({
+                message: "please enter email",
+                type: "danger"
+            })
+            // alert("please enter email")
 
         } else if (!emailRegex.test(email)) {
-            alert("please enter valid email")
+            showMessage({
+                message: "please enter valid email",
+                type: "danger"
+            })
+            //   /  alert("please enter valid email")
         }
         else if (password == "") {
-            alert("please enter password")
+            showMessage({
+                message: "please enter password",
+                type: "danger"
+            })
+            // alert("please enter password")
         }
         else if (password.length < 6) {
+            showMessage({
+                message: "minimum password length should be six characters",
+                type: "danger"
+            })
             alert("minimum password length should be six characters")
         }
         else if (!strongRegex.test(password)) {
-            alert("please enter valid password")
+            showMessage({
+                message: "please enter valid password",
+                type: "danger"
+            })
+            // alert("please enter valid password")
         }
         else if (confirmPassword == "") {
-            alert("please enter confirm password")
+            showMessage({
+                message: "please enter confirm password",
+                type: "danger"
+            })
+            // alert("please enter confirm password")
         }
         else if (password != confirmPassword || confirmPassword != password) {
-            alert("password and confirm password didnot match")
+            showMessage({
+                message: "password and confirm password didnot match",
+                type: "danger"
+            })
+            // alert("password and confirm password didnot match")
         }
         else {
             actions.SignUpHandle(email, password)
