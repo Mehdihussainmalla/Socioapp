@@ -177,7 +177,7 @@ const Accessories = ({ navigation }) => {
                     />
 
 
-                </View> : <ButtonComp onPress={uploadImage}
+                </View> : <ButtonComp onPress={submitProduct}
                     ButtonText={"Submit"}
                 />
                 }

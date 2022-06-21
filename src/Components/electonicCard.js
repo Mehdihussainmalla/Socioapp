@@ -14,14 +14,15 @@ import { moderateScale } from 'react-native-size-matters';
 
 
 const ElectronicCard = () => {
-    const [accessory, setAccessory] = useState(null);
     const [loading, setloading] = useState(true);
+    const [products, setproducts] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const list = [];
-                await firestore().collection("accessories").orderBy("accessoryName", "desc")
+                await firestore().collection("accessories")
+                    // .orderBy("accessoryType", "asc")
 
                     .get().then((res) => {
                         // console.log(res.size, "res>>>> from home is>>")
@@ -32,11 +33,9 @@ const ElectronicCard = () => {
                                 key: doc.id,
                                 accoryImage,
                                 accessoryType,
-                                rate,
-
-
+                                rate
                             })
-                            setAccessory(list);
+                            setproducts(list);
                             if (loading) {
                                 setloading(false)
                             }
@@ -53,68 +52,63 @@ const ElectronicCard = () => {
         fetchData();
 
     }, [])
+
     const renderItem = ({ item }) => {
-        // console.log(item, "dfdfjf>>>>>")
+        console.log(item, "items are")
         return (
-           
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.liststyle}>
-                <Image
-                    style={styles.imgstyle}
-                    source={{ uri: item?.accoryImage }} />
+            <>
+                <TouchableOpacity style={styles.container}>
 
-                <Text style={styles.typestyle}>
-                    {item.accessoryType}</Text>
-                <Text style={styles.ratestyle}>{item.rate}</Text>
+                    <Image style={styles.imagestyle}
 
-            </TouchableOpacity>
-
+                        source={{ uri: item?.accoryImage }}
+                    />
+                    <Text style={{
+                        fontSize: textScale(12),
+                        alignSelf: "center",
+                        fontWeight: "500"
+                    }}>
+                        {item?.accessoryType}</Text>
+                    <Text style={{
+                        fontSize: textScale(12),
+                        alignSelf: "center",
+                        color: colors.redB
+                    }}>
+                        {item?.rate}</Text>
+                </TouchableOpacity>
+            </>
         )
-
     }
-
 
     return (
-        <View>
-            <FlatList
-                numColumns={3}
-                data={accessory}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-        </View>
-    );
+        <FlatList
+            data={products}
+            numColumns={3}
+            renderItem={renderItem}
+        />
+    )
 };
+
+
 const styles = StyleSheet.create({
-    liststyle:
-    {
+    container: {
+        // borderWidth: moderateScale(0.2),
+        borderRadius: moderateScale(5),
+        marginVertical: moderateScale(5),
+        marginRight: moderateScale(10),
+        height: moderateScale(150),
+        justifyContent: "center",
         marginTop: moderateScale(10),
-        justifyContent: 'center',
-        width: width / moderateScale(3.5),
-        height: height / moderateScale(4.9),
-        marginHorizontal: moderateScale(5),
-        // backgroundColor: "red",
+
     },
-    imgstyle:
-    {
-        width: width / moderateScale(4),
-        height: height / moderateScale(8.5),
-        alignContent: "center",
+    imagestyle: {
+        width: width / moderateScale(3),
+        height: moderateScale(110),
+        marginHorizontal: moderateScale(10),
+        marginTop: moderateScale(10),
         alignSelf: "center"
+
     },
-    typestyle:
-    {
-        alignSelf: "center",
-        fontWeight: "400",
-        fontSize: textScale(11)
-    },
-    ratestyle:
-    {
-        alignSelf: "center", fontWeight: "300",
-        fontSize: textScale(10),
-        color: "red"
-    }
 })
 
 export default ElectronicCard;

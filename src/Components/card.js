@@ -17,10 +17,10 @@ const CardView = () => {
         const fetchData = async () => {
             try {
                 const list = [];
-                await firestore().collection("products").orderBy("productName", "desc")
+                await firestore().collection("products").orderBy("productName", "asc")
 
                     .get().then((res) => {
-                        // console.log(res.size, "res>>>> from home is>>")
+                        // console.log(res.size, "res>>>> from home is>sdsds>")
                         res.forEach(doc => {
 
                             const { productCategory, productImage, rating, price, description, productName } = doc.data();
@@ -120,6 +120,7 @@ const CardView = () => {
                 data={products}
                 renderItem={renderItem}
                 showsHorizontalScrollIndicator={false}
+            
             />
         </View>
     );
@@ -140,7 +141,8 @@ const styles = StyleSheet.create({
         width: width / moderateScale(3),
         height: moderateScale(110),
         marginHorizontal: moderateScale(10),
-        marginTop: moderateScale(10)
+        marginTop: moderateScale(10),
+        alignSelf:"center"
 
     },
     namestyle: {
