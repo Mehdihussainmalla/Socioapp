@@ -82,8 +82,10 @@ const ElectronicCard = () => {
 
     return (
         <FlatList
+            // horizontal
+
             data={products}
-            numColumns={3}
+            // numColumns={3}
             renderItem={renderItem}
         />
     )

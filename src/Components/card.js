@@ -120,7 +120,7 @@ const CardView = () => {
                 data={products}
                 renderItem={renderItem}
                 showsHorizontalScrollIndicator={false}
-            
+
             />
         </View>
     );
@@ -128,13 +128,15 @@ const CardView = () => {
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: moderateScale(0.9),
+        // borderWidth: moderateScale(0.9),
         borderRadius: moderateScale(5),
         marginVertical: moderateScale(5),
-        marginRight: moderateScale(10),
-        height: moderateScale(210),
+        marginRight: moderateScale(15),
+        height: moderateScale(200),
         justifyContent: "center",
         marginTop: moderateScale(10),
+        backgroundColor: "#F5F5F5"
+
 
     },
     imagestyle: {
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
         height: moderateScale(110),
         marginHorizontal: moderateScale(10),
         marginTop: moderateScale(10),
-        alignSelf:"center"
+        alignSelf: "center"
 
     },
     namestyle: {

@@ -18,11 +18,48 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
 import strings from '../../constants/lang';
-
+import firestore from '@react-native-firebase/firestore';
 const Home = ({ navigation}) => {
-    
 
     const [snapState, setSnapState] = useState(0);
+    const [loading, setloading] = useState(true);
+    const [products, setproducts] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const list = [];
+                await firestore().collection("accessories")
+                    // .orderBy("accessoryType", "asc")
+
+                    .get().then((res) => {
+                        // console.log(res.size, "res>>>> from home is>>")
+                        res.forEach(doc => {
+
+                            const { accoryImage, accessoryType, rate } = doc.data();
+                            list.push({
+                                key: doc.id,
+                                accoryImage,
+                                accessoryType,
+                                rate
+                            })
+                            setproducts(list);
+                            if (loading) {
+                                setloading(false)
+                            }
+                            console.log(list, "list is>>>>>>")
+
+                        })
+
+                    })
+            } catch (error) {
+                console.log(error, "error occurred")
+
+            }
+        }
+        fetchData();
+
+    }, [])
 
 
     const data = [{
@@ -61,19 +98,31 @@ const Home = ({ navigation}) => {
     const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
 
     const renderItem = ({ item }) => {
-        // console.log(item, "items are")
+     console.log(item, "items from home render are")
         return (
-
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={{ width: "50%", height: "20%", marginTop: moderateScale(10) }}>
-                <Image
-                    style={{
-                        width: width / 1.22, justifyContent: 'center',
-                        borderRadius: moderateScale(10), borderWidth: moderateScale(1,)
-                    }}
-                    source={item?.image} />
+            <>
+            <TouchableOpacity style={{ width: "90%",
+             height: "20%", 
+             marginTop: moderateScale(10) }}>
+ <Image 
+            style={{
+                height:"600%",
+            width: width / 1.22,}}
+            source={{uri:item?.accoryImage}}/>
             </TouchableOpacity>
+           
+            </>
+
+            // <TouchableOpacity
+            //     activeOpacity={0.8}
+            //     style={{ width: "50%", height: "20%", marginTop: moderateScale(10) }}>
+            //     <Image
+            //         style={{
+            //             width: width / 1.22, justifyContent: 'center',
+            //             borderRadius: moderateScale(10), borderWidth: moderateScale(1,)
+            //         }}
+            //         source={item?.image} />
+            // </TouchableOpacity>
         )
     }
 
@@ -101,7 +150,7 @@ const Home = ({ navigation}) => {
             <View>
 
                 <Carousel layout="stack"
-                    data={data}
+                    data={products}
                     itemHeight={ITEM_HEIGHT}
                     // sliderHeight={100}
                     sliderWidth={SLIDER_WIDTH}
@@ -132,7 +181,7 @@ const Home = ({ navigation}) => {
                 <Text style={styles.accessorries}>{strings.ACCESSORIES} </Text>
             </View>
             <View>
-                <ElectronicCard />
+                <ElectronicCard  />
 
             </View>
 
