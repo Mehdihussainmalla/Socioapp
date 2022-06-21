@@ -10,84 +10,63 @@ import {
 import colors from '../styles/colors';
 import { height, textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
+import { moderateScale } from 'react-native-size-matters';
 
 
 const ElectronicCard = () => {
     const [accessory, setAccessory] = useState(null);
     const [loading, setloading] = useState(true);
-    const [products, setproducts] = useState(null);
 
     useEffect(() => {
-        const fetchdata = async () => {
+        const fetchData = async () => {
             try {
-
                 const list = [];
-                await firestore().collection("accessories").orderBy("accoryName", "desc").get()
-                    .then((res) => {
-                        console.log(res, "res is >>>>")
+                await firestore().collection("accessories").orderBy("accessoryName", "desc")
+
+                    .get().then((res) => {
+                        // console.log(res.size, "res>>>> from home is>>")
                         res.forEach(doc => {
-                            const { accoryImage, rate, accessoryType } = doc.data();
+
+                            const { accoryImage, accessoryType, rate } = doc.data();
                             list.push({
                                 key: doc.id,
                                 accoryImage,
+                                accessoryType,
                                 rate,
-                                accessoryType
-                            })
 
-                            console.log(list, "list isssss")
-                            setAccessory(list)
+
+                            })
+                            setAccessory(list);
                             if (loading) {
                                 setloading(false)
                             }
-                        })
-                    }
-                    )
+                            console.log(list, "list is")
 
+                        })
+
+                    })
             } catch (error) {
-                console.log(error, "error occurred ")
+                console.log(error, "error occurred")
 
             }
         }
-        fetchdata();
+        fetchData();
 
     }, [])
     const renderItem = ({ item }) => {
-        console.log(item, "dfdfjf>>>>>")
+        // console.log(item, "dfdfjf>>>>>")
         return (
-
-
+           
             <TouchableOpacity
                 activeOpacity={0.8}
-                style={{
-                    marginTop: 10,
-                    justifyContent: 'center',
-                    width: width / 3.5,
-                    height: height / 4.9,
-                    marginHorizontal: 5,
-                    // backgroundColor: "red",
-                }}>
+                style={styles.liststyle}>
                 <Image
-                    style={{
-                        width: width / 4,
-                        height: height / 8.5,
-                        alignContent: "center", alignSelf: "center"
-                    }}
+                    style={styles.imgstyle}
                     source={{ uri: item?.accoryImage }} />
 
-
-
-
-                <Text style={{
-                    alignSelf: "center",
-                    fontWeight: "400",
-                    fontSize: textScale(11)
-                }}>
+                <Text style={styles.typestyle}>
                     {item.accessoryType}</Text>
-                <Text style={{
-                    alignSelf: "center", fontWeight: "300",
-                    fontSize: textScale(10),
-                    color: "red"
-                }}>{item.rate}</Text>
+                <Text style={styles.ratestyle}>{item.rate}</Text>
 
             </TouchableOpacity>
 
@@ -107,5 +86,35 @@ const ElectronicCard = () => {
         </View>
     );
 };
+const styles = StyleSheet.create({
+    liststyle:
+    {
+        marginTop: moderateScale(10),
+        justifyContent: 'center',
+        width: width / moderateScale(3.5),
+        height: height / moderateScale(4.9),
+        marginHorizontal: moderateScale(5),
+        // backgroundColor: "red",
+    },
+    imgstyle:
+    {
+        width: width / moderateScale(4),
+        height: height / moderateScale(8.5),
+        alignContent: "center",
+        alignSelf: "center"
+    },
+    typestyle:
+    {
+        alignSelf: "center",
+        fontWeight: "400",
+        fontSize: textScale(11)
+    },
+    ratestyle:
+    {
+        alignSelf: "center", fontWeight: "300",
+        fontSize: textScale(10),
+        color: "red"
+    }
+})
 
 export default ElectronicCard;

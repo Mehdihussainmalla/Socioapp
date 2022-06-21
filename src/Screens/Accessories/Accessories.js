@@ -127,7 +127,7 @@ const Accessories = ({ navigation }) => {
 
                 accoryImage: imageUrl,
                 accessoryType: accessoryType,
-                rate: rate,        
+                rate: rate,
 
             }).then(() => {
                 navigation.navigate(navigationStrings.HOME)
@@ -155,7 +155,7 @@ const Accessories = ({ navigation }) => {
                         <Text style={styles.uploadtxt}>upload Image</Text>
                     </TouchableOpacity>
 
-                    <View style={{ marginTop: moderateScale(30) }}>
+                    <View style={styles.inputstyle}>
 
                         <TextInputComponent
                             value={accessoryType}
@@ -169,22 +169,24 @@ const Accessories = ({ navigation }) => {
                             placeholder={"rate"} />
                     </View>
                 </ScrollView>
-                <ButtonComp
+
+                {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
+                    <Text>{transferred} % completed</Text>
+                    <ActivityIndicator size={"large"}
+                        color={colors.redB}
+                    />
+
+
+                </View> : <ButtonComp onPress={uploadImage}
+                    ButtonText={"Submit"}
+                />
+                }
+                {/* <ButtonComp
                     onPress={submitProduct}
-                    ButtonText={"Submit"} />
+                    ButtonText={"Submit"} /> */}
             </View>
 
-            {/* {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
-                <Text>{transferred} % completed</Text>
-                <ActivityIndicator size={"large"}
-                    color={colors.redB}
-                />
 
-
-            </View> : <ButtonComp onPress={uploadImage}
-                ButtonText={"Submit"}
-            />
-            } */}
 
         </Wrappercontainer>
     );
@@ -223,6 +225,10 @@ const styles = StyleSheet.create({
         marginTop: moderateScale(15),
         fontSize: textScale(16),
     },
+    inputstyle:
+    {
+        marginTop: moderateScale(30)
+    }
 });
 
 export default Accessories;
