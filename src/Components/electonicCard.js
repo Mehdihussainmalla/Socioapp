@@ -1,5 +1,5 @@
 //import liraries
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View, Text,
     StyleSheet,
@@ -7,140 +7,102 @@ import {
     FlatList,
     Image
 } from 'react-native';
-import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import { height, textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
 
 
-const electronicData = [{
-    key: 1,
-    image: imagePath.cameras,
-    title: "digital cameras",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-
-},
-{
-    key: 2,
-    image: imagePath.laptops,
-    title: "high confgurations",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-
-},
-{
-    key: 3,
-    image: imagePath.watch,
-    title: "live long access",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-},
-{
-    key: 4,
-    image: imagePath.mobile,
-    title: "cheap and roboustic",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-},
-{
-    key: 5,
-    image: imagePath.cameras,
-    title: "digital cameras",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-},
-{
-    key: 6,
-    image: imagePath.mobile,
-    title: "cheap and roboustic",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-},
-{
-    key: 7,
-    image: imagePath.cameras,
-    title: "digital cameras",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-},
-{
-    key: 8,
-    image: imagePath.mobile,
-    title: "cheap and roboustic",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-},
-{
-    key: 9,
-    image: imagePath.watch,
-    title: "cheap and roboustic",
-    rate: "AED 159.99",
-    release: "releasing 21 jun 2022"
-},
-]
-
-// useEffect(() => {
-
-//     const fetchData = async () => {
-//         try {
-//             const list = [];
-//             firestore().collection('products').orderBy("productName", 'desc').get().then((res) => {
-//                 console.log(res, "res is >>>>")
-//             })
-//         } catch (error) {
-
-//         }
-//     }
-//     fetchData();
-
-// }, [])
-
-
-const renderItem = ({ item }) => {
-    // console.log(item?.image, "dfdfjf>>>>>")
-    return (
-        <TouchableOpacity
-            activeOpacity={0.8}
-            style={{
-                marginTop: 10, justifyContent: 'center',
-                width: width / 3.5,
-                height: height / 4.9,
-                marginHorizontal: 5,
-
-            }}>
-
-            <Image
-                style={{
-                    width: width / 4,
-                    height: height / 8.5,
-                    alignContent: "center", alignSelf: "center"
-                }}
-                source={item?.image} />
-            <Text style={{ alignSelf: "center", fontWeight: "400", fontSize: textScale(11) }}>{item.title}</Text>
-            <Text style={{
-                alignSelf: "center", fontWeight: "300",
-                fontSize: textScale(10),
-                color: "red"
-            }}>{item.rate}</Text>
-            <Text style={{
-                alignSelf: "center",
-                fontSize: textScale(10),
-                color: colors.blackOpacity66
-            }}>{item.release}</Text>
-        </TouchableOpacity>
-    )
-
-}
 const ElectronicCard = () => {
+    const [accessory, setAccessory] = useState(null);
+    const [loading, setloading] = useState(true);
+    const [products, setproducts] = useState(null);
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+
+                const list = [];
+                await firestore().collection("accessories").orderBy("accoryName", "desc").get()
+                    .then((res) => {
+                        console.log(res, "res is >>>>")
+                        res.forEach(doc => {
+                            const { accoryImage, rate, accessoryType } = doc.data();
+                            list.push({
+                                key: doc.id,
+                                accoryImage,
+                                rate,
+                                accessoryType
+                            })
+
+                            console.log(list, "list isssss")
+                            setAccessory(list)
+                            if (loading) {
+                                setloading(false)
+                            }
+                        })
+                    }
+                    )
+
+            } catch (error) {
+                console.log(error, "error occurred ")
+
+            }
+        }
+        fetchdata();
+
+    }, [])
+    const renderItem = ({ item }) => {
+        console.log(item, "dfdfjf>>>>>")
+        return (
+
+
+            <TouchableOpacity
+                activeOpacity={0.8}
+                style={{
+                    marginTop: 10,
+                    justifyContent: 'center',
+                    width: width / 3.5,
+                    height: height / 4.9,
+                    marginHorizontal: 5,
+                    // backgroundColor: "red",
+                }}>
+                <Image
+                    style={{
+                        width: width / 4,
+                        height: height / 8.5,
+                        alignContent: "center", alignSelf: "center"
+                    }}
+                    source={{ uri: item?.accoryImage }} />
+
+
+
+
+                <Text style={{
+                    alignSelf: "center",
+                    fontWeight: "400",
+                    fontSize: textScale(11)
+                }}>
+                    {item.accessoryType}</Text>
+                <Text style={{
+                    alignSelf: "center", fontWeight: "300",
+                    fontSize: textScale(10),
+                    color: "red"
+                }}>{item.rate}</Text>
+
+            </TouchableOpacity>
+
+        )
+
+    }
+
 
     return (
         <View>
             <FlatList
                 numColumns={3}
-                data={electronicData}
+                data={accessory}
                 renderItem={renderItem}
-            // keyExtractor={item => item.id}
+                keyExtractor={item => item.id}
             />
         </View>
     );
