@@ -1,4 +1,4 @@
-//import liraries
+
 import React, { useEffect, useState } from 'react';
 import {
     View, Text,
@@ -13,7 +13,10 @@ import firestore from '@react-native-firebase/firestore';
 import { moderateScale } from 'react-native-size-matters';
 
 
-const ElectronicCard = () => {
+const arr = [1, 2, 3, 4, 5]
+
+
+const electonicCard = () => {
     const [loading, setloading] = useState(true);
     const [products, setproducts] = useState(null);
 
@@ -22,10 +25,10 @@ const ElectronicCard = () => {
             try {
                 const list = [];
                 await firestore().collection("accessories")
-                    // .orderBy("accessoryType", "asc")
+                    // .orderBy("productName", "asc")
 
                     .get().then((res) => {
-                        // console.log(res.size, "res>>>> from home is>>")
+                        // console.log(res.size, "res>>>> from home is>sdsds>")
                         res.forEach(doc => {
 
                             const { accoryImage, accessoryType, rate } = doc.data();
@@ -33,13 +36,13 @@ const ElectronicCard = () => {
                                 key: doc.id,
                                 accoryImage,
                                 accessoryType,
-                                rate
+                                rate,
                             })
                             setproducts(list);
                             if (loading) {
                                 setloading(false)
                             }
-                            console.log(list, "list is")
+                            //  console.log(list, "list is")
 
                         })
 
@@ -54,27 +57,20 @@ const ElectronicCard = () => {
     }, [])
 
     const renderItem = ({ item }) => {
-        console.log(item, "items are")
+        console.log(item, "items areeeee")
         return (
             <>
-                <TouchableOpacity style={styles.container}>
-
-                    <Image style={styles.imagestyle}
-
-                        source={{ uri: item?.accoryImage }}
-                    />
+                <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={styles.container}>
+                    <Image
+                        style={styles.imagestyle}
+                        source={{ uri: item?.accoryImage }} />
                     <Text style={{
-                        fontSize: textScale(12),
-                        alignSelf: "center",
+                        fontSize: 12, alignSelf: "center",
                         fontWeight: "500"
-                    }}>
-                        {item?.accessoryType}</Text>
-                    <Text style={{
-                        fontSize: textScale(12),
-                        alignSelf: "center",
-                        color: colors.redB
-                    }}>
-                        {item?.rate}</Text>
+                    }}>{item.accessoryType}</Text>
+                    <Text style={{ color: colors.redB, alignSelf: "center" }}>{item?.rate}</Text>
                 </TouchableOpacity>
             </>
         )
@@ -82,35 +78,35 @@ const ElectronicCard = () => {
 
     return (
         <FlatList
-            // horizontal
-
-            data={products}
-            // numColumns={3}
             renderItem={renderItem}
+            numColumns={3}
+            data={products}
         />
-    )
+    );
 };
 
 
 const styles = StyleSheet.create({
     container: {
-        // borderWidth: moderateScale(0.2),
         borderRadius: moderateScale(5),
         marginVertical: moderateScale(5),
-        marginRight: moderateScale(10),
-        height: moderateScale(150),
+        marginRight: moderateScale(15),
+        height: moderateScale(200),
         justifyContent: "center",
-        marginTop: moderateScale(10),
-
+        marginTop: moderateScale(1),
+        backgroundColor: "#F5F5F5"
     },
     imagestyle: {
-        width: width / moderateScale(3),
+        width: width / moderateScale(4.2),
         height: moderateScale(110),
         marginHorizontal: moderateScale(10),
         marginTop: moderateScale(10),
         alignSelf: "center"
+    }
+});
 
-    },
-})
+//make this component available to the app
+export default electonicCard;
 
-export default ElectronicCard;
+
+

@@ -128,7 +128,7 @@ const CardView = () => {
 
 const styles = StyleSheet.create({
     container: {
-        // borderWidth: moderateScale(0.9),
+         borderWidth: moderateScale(0.9),
         borderRadius: moderateScale(5),
         marginVertical: moderateScale(5),
         marginRight: moderateScale(15),
