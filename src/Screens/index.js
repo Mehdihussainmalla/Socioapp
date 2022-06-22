@@ -1,7 +1,3 @@
-//.................Intro Slider...............//
-export { default as Slider } from "./Slider/Slider";
-
-
 //........Auth Stack..........//
 export { default as Login } from './Login/Login';
 export { default as SignUp } from './SignUp/SignUp';
@@ -20,5 +16,7 @@ export { default as Settings } from "./Settings/Settings";
 export { default as Admin } from "./Admin/Admin";
 export { default as Products } from "./Products/Products";
 export { default as Accessories } from "./Accessories/Accessories";
+export { default as categoryItems } from "./CategoryItems/categoryItems";
+export { default as Slider } from "./Slider/Slider";
 
 

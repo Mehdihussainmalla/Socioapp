@@ -1,61 +1,234 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-// import AppIntroSlider from "react-native-app-intro-slider";
-// const slides = [{
+//import liraries
+import React, { Component, useState } from 'react';
+import {
+    View, Text, StyleSheet, Image, ScrollView, Alert,
+    TouchableOpacity, ActivityIndicator, Platform
+} from 'react-native';
+import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
+import ButtonComp from '../../Components/Button';
+import Header from '../../Components/Header';
+import TextInputComponent from '../../Components/Input';
+import Wrappercontainer from '../../Components/wrappercontainer';
+import imagePath from '../../constants/imagePath';
+import colors from '../../styles/colors';
+import { textScale, width } from '../../styles/responsiveSize';
+import ImagePicker from 'react-native-image-crop-picker';
+import storage from "@react-native-firebase/storage";
+import firestore from '@react-native-firebase/firestore';
+import navigationStrings from '../../navigation/navigationStrings';
+import { useNavigation } from '@react-navigation/native';
 
-//     key: 1,
-//     title: 'Title 1',
-//     text: 'Description.\nSay something cool',
-//     // image: require('./assets/1.jpg'),
-//     backgroundColor: '#59b2ab',
-// },
-// {
-//     key: 2,
-//     title: 'Title 2',
-//     text: 'Other cool stuff',
-//     // image: require('./assets/2.jpg'),
-//     backgroundColor: '#febe29',
-// },
-// {
-//     key: 3,
-//     title: 'Rocket guy',
-//     text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
-//     // image: require('./assets/3.jpg'),
-//     backgroundColor: '#22bcb5',
+const ItemDetails = (props) => {
+
+    // console.log(props, "route issss")
+    const navigation=useNavigation();
+    const [uploading, setUploading] = useState(false);
+    const [transferred, setTransferred] = useState(0);
+    const [state, setState] = useState({
+        accoryImage: " ",
+        accessoryType,
+        rate,
+    });
+    const { accoryImage, accessoryType, rate } = state;
+    const updateState = (data) => setState({ ...state, ...data })
 
 
-// }]
-// console.log(slides)
 
-// const renderItem =({items})=>{
-//     console.log(items,"items are")
+    //..........image picker............//
 
-//     return(
-        
-//         <View>
+    const onSelectImage = () => {
 
-//             <Text>
+        Alert.alert(
+            "accessory picture",
+            "choose an option",
+            [{
+                text: "Camera",
+                onPress: cameraClick
+            },
+            {
+                text: "Gallery",
+                onPress: galleryClick
+            },
 
-//             </Text>
-//         </View>
-//     )
+            { text: "Cancel", onPress: () => console.log("OK Pressed"), style: "cancel" }
 
-// }
-// renderItem(slides)
 
- const Slider = () => {
+            ])
+    }
+
+
+    //.............open camera..............//
+    const cameraClick = () => {
+        ImagePicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: true,
+        }).then(image => {
+            console.log(image);
+            const imageUri = Platform.OS === "ios" ? image?.sourceURL : image?.path;
+            // console.log(imageUri, "imageuri is >>>");
+            updateState({ accoryImage: imageUri });
+        });
+
+    }
+    //............open gallery..............//
+    const galleryClick = () => {
+        ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true
+        }).then(image => {
+            console.log(image);
+            const imageUri = Platform.OS === 'ios' ? image?.sourceURL : image?.path;
+            console.log(imageUri, "image is")
+            updateState({ accoryImage: imageUri })
+            // console.log(accoryImage, "accessory image is")
+        });
+    }
+    //................create url of the image............//
+
+    const uploadImage = async () => {
+        if (accoryImage == null) {
+            return null;
+        }
+
+        const uploadUri = accoryImage;
+        let fileName = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+        const extension = fileName.split('.').pop();
+        const name = fileName.split('.').slice(0, -1).join('.');
+        fileName = name + Date.now() + '.' + extension;
+
+        setUploading(true)
+        setTransferred(0);
+
+        const storageRef = storage().ref(`gallery/${fileName}`);
+        const task = storageRef.putFile(uploadUri);
+        task.on('state_changed', taskSnapshot => {
+            console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+
+            Math.round(setTransferred(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100)
+        });
+        try {
+            await task;
+            const url = await storageRef.getDownloadURL();
+            setUploading(false)
+            return url;
+
+
+
+
+        } catch (error) {
+            console.log(error, "error occurred during url")
+            return null;
+        }
+    }
+    const submitProduct = async () => {
+
+        const imageUrl = await uploadImage();
+        // console.log(imageUrl, "image url is")
+        try {
+            await firestore().collection("itemdetails").add({
+
+                accoryImage: imageUrl,
+                accessoryType: accessoryType,
+                // rate: rate,
+
+            }).then(() => {
+                navigation.navigate(navigationStrings.HOME)
+            })
+
+        } catch (error) {
+            console.log(error, "error occurred")
+
+        }
+
+    }
+
     return (
-        <SafeAreaView>
-            <View style={{backgroundColor:"red"}}>
-                <Text>hjjhk</Text>
+        <Wrappercontainer>
+            <View style={styles.container}>
+                <Header isBackIcon={true}
+                    title={"item detais"} />
+                <ScrollView>
+                    <Image style={styles.imgstyle}
+                        source={{ uri: accoryImage }} />
+                    <TouchableOpacity
+                        onPress={onSelectImage}
+                        activeOpacity={0.5}
+                        style={styles.uploadstyle}>
+                        <Text style={styles.uploadtxt}>upload Image</Text>
+                    </TouchableOpacity>
+
+                    <View style={styles.inputstyle}>
+
+                        <TextInputComponent
+                            value={accessoryType}
+                            onChangeText={(accessoryType) => updateState({ accessoryType })}
+                            input={styles.input1}
+                            placeholder={'Accessory type'} />
+                    </View>
+                </ScrollView>
+
+                {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
+                    <Text>{transferred} % completed</Text>
+                    <ActivityIndicator size={"large"}
+                        color={colors.redB}
+                    />
+
+
+                </View> : <ButtonComp onPress={submitProduct}
+                    ButtonText={"Submit"}
+                />
+                }
+                {/* <ButtonComp
+                    onPress={submitProduct}
+                    ButtonText={"Submit"} /> */}
             </View>
 
-        </SafeAreaView>
-    )
 
 
+        </Wrappercontainer>
+    );
+};
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
 
-}
-export default Slider;
+    },
+    imgstyle:
+    {
+        width: width / moderateScale(2),
+        height: moderateScale(110),
+        marginHorizontal: moderateScale(10),
+        marginTop: moderateScale(10),
+        alignSelf: "center"
+
+    },
+    uploadstyle:
+    {
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 1
+    },
+    uploadtxt:
+    {
+        fontSize: textScale(14),
+        color: colors.redB,
+        fontWeight: "600"
+    },
+    input1:
+    {
+        borderRadius: moderateVerticalScale(10),
+        borderWidth: moderateScale(1),
+        marginTop: moderateScale(15),
+        fontSize: textScale(16),
+    },
+    inputstyle:
+    {
+        marginTop: moderateScale(30)
+    }
+});
+
+export default ItemDetails;
+

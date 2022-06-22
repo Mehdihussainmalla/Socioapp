@@ -19,7 +19,7 @@ import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
 import strings from '../../constants/lang';
 import firestore from '@react-native-firebase/firestore';
-const Home = (props) => {
+const Home = ({navigation}) => {
     // console.log(props, "props areeee")
 
     const [snapState, setSnapState] = useState(0);
@@ -88,14 +88,14 @@ const Home = (props) => {
                 </TouchableOpacity>
                 <Header title={strings.HOME} />
             </View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
                 activeOpacity={0.5}
                 style={styles.searchstyle}>
                 <Text style={styles.searchtxt}>{strings.SEARCH}</Text>
                 <Image style={styles.searchicon}
                     source={imagePath.search_icon} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <ScrollView showsVerticalScrollIndicator={false}>
 
                 <View>
@@ -133,7 +133,8 @@ const Home = (props) => {
                 </View>
                 <View>
                     <ElectronicCard 
-                    data={props}/>
+                    //  data={props}
+                    />
 
                 </View>
 

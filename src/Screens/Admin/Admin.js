@@ -5,7 +5,6 @@ import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import navigationStrings from '../../navigation/navigationStrings';
 
-import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
 
 const Admin = ({ navigation }) => {
@@ -31,10 +30,10 @@ const Admin = ({ navigation }) => {
                     <Text style={styles.btnstyle2}>Accessories</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate(navigationStrings.OFFERS)}
+                    onPress={() => navigation.navigate(navigationStrings.ITEM_DETAILS)}
                     activeOpacity={0.5}
                     style={styles.accessoriesstyle}>
-                    <Text style={styles.btnstyle2}>Offers</Text>
+                    <Text style={styles.btnstyle2}>item details</Text>
 
                 </TouchableOpacity>
             </View>

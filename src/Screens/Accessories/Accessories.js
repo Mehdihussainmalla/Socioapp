@@ -16,8 +16,12 @@ import ImagePicker from 'react-native-image-crop-picker';
 import storage from "@react-native-firebase/storage";
 import firestore from '@react-native-firebase/firestore';
 import navigationStrings from '../../navigation/navigationStrings';
+import { useNavigation } from '@react-navigation/native';
 
-const Accessories = ({ navigation }) => {
+const Accessories = (props) => {
+    
+    console.log(props, "route issss")
+    const navigation=useNavigation();
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
     const [state, setState] = useState({

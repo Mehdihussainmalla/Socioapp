@@ -13,26 +13,25 @@ import { height, textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
 import { moderateScale } from 'react-native-size-matters';
 import navigationStrings from '../navigation/navigationStrings';
+import { useNavigation } from '@react-navigation/native';
 
 const electonicCard = (props) => {
-    // console.log(props, "props are")
-    const { navigation } = props?.data;
-    //  console.log(navigation, "shdoidjs")
+    // console.log(props, "propsssss>>>>")
+    const navigation=useNavigation();
     const [loading, setloading] = useState(true);
     const [products, setproducts] = useState(null);
     const [data, setData] = useState(null)
-
-    // const [showMore, setShowMore] = useState(false) // we handle the show more state here
-    // const onShowMore = () => setShowMore(true)
-    // const onShowLess = () => setShowMore(false)
-
+    const [showMore, setShowMore] = useState([])
 
     useEffect(() => {
+
+
+
         const fetchData = async () => {
             try {
                 const list = [];
                 await firestore().collection("accessories")
-                    // .where("accessoryType", "==", )
+                    // .where("accessories", "==",)
                     .orderBy("accessoryType", "asc")
 
                     .get().then((res) => {
@@ -48,8 +47,9 @@ const electonicCard = (props) => {
                             })
 
                             const newArr = list.slice(0, 3)
+                            setShowMore(newArr)
                             setData(newArr);
-                            // setproducts(list)
+                            setproducts(list)
                             if (loading) {
                                 setloading(false)
                             }
@@ -68,6 +68,7 @@ const electonicCard = (props) => {
     }, [])
 
 
+
     const renderItem = ({ item, index }) => {
 
         // console.log(item, "items areeeee")
@@ -75,7 +76,7 @@ const electonicCard = (props) => {
         return (
 
             <TouchableOpacity
-                onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN,  {data:item} )}
+                onPress={() => navigation.navigate(navigationStrings.CATEGORY_ITEMS, { data: item})}
                 activeOpacity={0.5}
                 style={styles.container}>
                 <Image
@@ -93,15 +94,26 @@ const electonicCard = (props) => {
     }
 
     return (
+        <View>
+            <View style={{ flexDirection: "row", marginTop: 5 }}>
+                <Text
+                    style={{ color: colors.redB, fontWeight: "500", paddingRight: 20 }}
+                    onPress={() => setData(products)} >showMore</Text>
+                <Text
+                    style={{ color: colors.DarkBlue, fontWeight: "500" }}
+                    onPress={() => setData(showMore)} >showless</Text>
+            </View>
 
-        <FlatList
-            renderItem={renderItem}
-            numColumns={3}
-            data={data}
-            extraData={data}
-        />
+            <FlatList
+                renderItem={renderItem}
+                numColumns={3}
+                data={data}
+                extraData={data}
+            />
+        </View>
     )
 }
+
 
 
 const styles = StyleSheet.create({
