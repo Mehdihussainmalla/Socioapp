@@ -5,27 +5,35 @@ import {
     StyleSheet,
     TouchableOpacity,
     FlatList,
-    Image
+    Image,
+    RefreshControl
 } from 'react-native';
 import colors from '../styles/colors';
 import { height, textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
 import { moderateScale } from 'react-native-size-matters';
+import navigationStrings from '../navigation/navigationStrings';
 
-
-const arr = [1, 2, 3, 4, 5]
-
-
-const electonicCard = () => {
+const electonicCard = (props) => {
+    // console.log(props, "props are")
+    const { navigation } = props?.data;
+    //  console.log(navigation, "shdoidjs")
     const [loading, setloading] = useState(true);
     const [products, setproducts] = useState(null);
+    const [data, setData] = useState(null)
+
+    // const [showMore, setShowMore] = useState(false) // we handle the show more state here
+    // const onShowMore = () => setShowMore(true)
+    // const onShowLess = () => setShowMore(false)
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const list = [];
                 await firestore().collection("accessories")
-                    // .orderBy("productName", "asc")
+                    // .where("accessoryType", "==", )
+                    .orderBy("accessoryType", "asc")
 
                     .get().then((res) => {
                         // console.log(res.size, "res>>>> from home is>sdsds>")
@@ -38,7 +46,10 @@ const electonicCard = () => {
                                 accessoryType,
                                 rate,
                             })
-                            setproducts(list);
+
+                            const newArr = list.slice(0, 3)
+                            setData(newArr);
+                            // setproducts(list)
                             if (loading) {
                                 setloading(false)
                             }
@@ -56,34 +67,41 @@ const electonicCard = () => {
 
     }, [])
 
-    const renderItem = ({ item }) => {
-        console.log(item, "items areeeee")
+
+    const renderItem = ({ item, index }) => {
+
+        // console.log(item, "items areeeee")
+        // if (showMore) {
         return (
-            <>
-                <TouchableOpacity
-                    activeOpacity={0.5}
-                    style={styles.container}>
-                    <Image
-                        style={styles.imagestyle}
-                        source={{ uri: item?.accoryImage }} />
-                    <Text style={{
-                        fontSize: 12, alignSelf: "center",
-                        fontWeight: "500"
-                    }}>{item.accessoryType}</Text>
-                    <Text style={{ color: colors.redB, alignSelf: "center" }}>{item?.rate}</Text>
-                </TouchableOpacity>
-            </>
+
+            <TouchableOpacity
+                onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN,  {data:item} )}
+                activeOpacity={0.5}
+                style={styles.container}>
+                <Image
+                    style={styles.imagestyle}
+                    source={{ uri: item?.accoryImage }} />
+                <Text style={{
+                    fontSize: 12, alignSelf: "center",
+                    fontWeight: "500"
+                }}>{item.accessoryType}</Text>
+                <Text style={{ color: colors.redB, alignSelf: "center" }}>{item?.rate}</Text>
+            </TouchableOpacity>
+
         )
+
     }
 
     return (
+
         <FlatList
             renderItem={renderItem}
             numColumns={3}
-            data={products}
+            data={data}
+            extraData={data}
         />
-    );
-};
+    )
+}
 
 
 const styles = StyleSheet.create({
@@ -94,7 +112,8 @@ const styles = StyleSheet.create({
         height: moderateScale(200),
         justifyContent: "center",
         marginTop: moderateScale(1),
-        backgroundColor: "#F5F5F5"
+
+
     },
     imagestyle: {
         width: width / moderateScale(4.2),

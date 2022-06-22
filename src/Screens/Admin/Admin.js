@@ -16,7 +16,7 @@ const Admin = ({ navigation }) => {
             <View style={styles.container}>
                 <Header isBackIcon={true}
                     title={"Admin Block"} />
-                
+
                 <TouchableOpacity
                     onPress={() => navigation.navigate(navigationStrings.PRODUCTS)}
                     activeOpacity={0.5}
@@ -29,6 +29,12 @@ const Admin = ({ navigation }) => {
                     activeOpacity={0.5}
                     style={styles.accessoriesstyle}>
                     <Text style={styles.btnstyle2}>Accessories</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate(navigationStrings.OFFERS)}
+                    activeOpacity={0.5}
+                    style={styles.accessoriesstyle}>
+                    <Text style={styles.btnstyle2}>Offers</Text>
 
                 </TouchableOpacity>
             </View>

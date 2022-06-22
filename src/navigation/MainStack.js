@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accessories, Admin,Products, SearchScreen, Settings } from '../Screens';
+import { Accessories, Admin, Products, SearchScreen, Settings } from '../Screens';
 import DrawerStack from './DrawerStack';
 import navigationStrings from './navigationStrings';
 
@@ -27,9 +27,10 @@ const MainStack = (Stack) => {
             <Stack.Screen name={navigationStrings.ADMIN}
                options={{ headerShown: false }}
                component={Admin} />
-                <Stack.Screen name={navigationStrings.ACCESSORIES}
+            <Stack.Screen name={navigationStrings.ACCESSORIES}
                options={{ headerShown: false }}
                component={Accessories} />
+
          </Stack.Navigator>
       </>
    );
