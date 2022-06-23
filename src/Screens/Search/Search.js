@@ -6,8 +6,8 @@ import { textScale } from '../../styles/responsiveSize'
 import colors from '../../styles/colors'
 
 const SearchScreen = ({ route }) => {
-  const { data } = route?.params
-  console.log(data, "data is")
+  // const { data } = route?.params
+  // console.log(data, "data is")
   return (
     <Wrappercontainer>
       <Header isBackIcon={true}

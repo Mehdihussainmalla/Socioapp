@@ -135,11 +135,13 @@ const ItemDetails = (props) => {
                 rate: rate,
                 description: description,
 
+
             }).then(() => {
                 navigation.navigate(navigationStrings.HOME)
             })
 
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error, "error occurred")
 
         }
