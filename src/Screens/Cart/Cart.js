@@ -1,58 +1,63 @@
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
+import React from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
+
+import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
-import { height, textScale } from '../../styles/responsiveSize';
+import colors from '../../styles/colors';
 
+import { styles } from './styles';
 // create a component
-const Cart = () => {
+const Cart = ({ route }) => {
+    const item = route?.params?.data
+    // console.log(item, "data is")
     return (
         <Wrappercontainer>
-            <View style={styles.container}>
-                <View style={{
-                    flexDirection: "row",
-                    justifyContent: "flex-end"
-                }}>
-                    <Header textstyle={{}}
-                        isBackIcon={true}
-                        title={"ADD TO CART"} />
-                    <Image source={imagePath.cart} />
-                </View>
 
-                <View style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    backgroundColor: "green",
-                    marginHorizontal: moderateScale(20),
+            <View style={{ flex: 1 }}>
 
-                }}>
-                    <Image style={{ width: "100%", height: height / 4, }} source={imagePath.mobile} />
+                <View style={styles.headerstyle}>
+                    <Header isBackIcon={true}
+                    // title={item?.productName}
+                    />
+                    <View style={styles.headertxt} >
+                        <Text style={styles.nametxt}>{item?.productName}</Text>
+                        <TouchableOpacity activeOpacity={0.5}
+                            onPress={() => alert("waiting to add")}
+                        >
+                            <Image style={styles.headericon} source={imagePath.add_icon} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={{ marginTop: moderateScale(12) }}>
-                    <Text style={{
-                        paddingVertical: moderateScale(10),
-                        fontSize: textScale(15),
-                        fontWeight: "bold",
-                        paddingLeft: moderateScale(20)
-                    }}>Grand Mobile Phones</Text>
-                </View>
+                <ScrollView>
+                    <View style={styles.container}>
+                        <Image
+                            style={styles.imgstyle}
 
+                            source={{ uri: item?.productImage }} />
+                        <Text style={styles.txtstyle}>{item?.productCategory}</Text>
+                        <Text style={styles.namestyle}>{item?.productName}</Text>
+                        <Text style={styles.pricestyle}>price range: {item?.price} only</Text>
+                        <Text style={styles.descstyle}>{item?.description}</Text>
+                        <Text style={{
+                            backgroundColor: colors.redB,
+                            alignSelf: "center",
+                            marginTop: 10,
+                            color: colors.white, padding: 3, fontWeight: "700"
+                        }}> 35% discount</Text>
+                    </View>
+                </ScrollView>
             </View>
 
+            <ButtonComp
+
+                onPress={() => Alert.alert("item added sucessfully")}
+                ButtonText='Buy' />
+
+
         </Wrappercontainer>
-    );
-};
-
-// define your styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        // backgroundColor: '#2c3e50',
-    },
-});
-
-//make this component available to the app
+    )
+}
 export default Cart;

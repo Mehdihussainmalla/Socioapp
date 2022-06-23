@@ -91,7 +91,7 @@ const CardView = () => {
         // console.log(item, "items for flast list are")
         return (
             <TouchableOpacity 
-            onPress={()=>navigation.navigate(navigationStrings.SEARCH_SCREEN,{data:item})}
+            onPress={()=>navigation.navigate(navigationStrings.CART,{data:item})}
                 activeOpacity={0.7}
                 style={styles.container}>
                 <Image style={styles.imagestyle}
