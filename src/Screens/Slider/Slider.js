@@ -21,15 +21,16 @@ import { useNavigation } from '@react-navigation/native';
 const ItemDetails = (props) => {
 
     // console.log(props, "route issss")
-    const navigation=useNavigation();
+    const navigation = useNavigation();
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
     const [state, setState] = useState({
         accoryImage: " ",
         accessoryType,
         rate,
+        description,
     });
-    const { accoryImage, accessoryType, rate } = state;
+    const { accoryImage, accessoryType, rate, description } = state;
     const updateState = (data) => setState({ ...state, ...data })
 
 
@@ -131,7 +132,8 @@ const ItemDetails = (props) => {
 
                 accoryImage: imageUrl,
                 accessoryType: accessoryType,
-                // rate: rate,
+                rate: rate,
+                description: description,
 
             }).then(() => {
                 navigation.navigate(navigationStrings.HOME)
@@ -166,6 +168,19 @@ const ItemDetails = (props) => {
                             onChangeText={(accessoryType) => updateState({ accessoryType })}
                             input={styles.input1}
                             placeholder={'Accessory type'} />
+
+
+                        <TextInputComponent
+                            value={rate}
+                            onChangeText={(rate) => updateState({ rate })}
+                            input={styles.input1}
+                            placeholder={'rate'} />
+
+                        <TextInputComponent
+                            value={description}
+                            onChangeText={(description) => updateState({ description })}
+                            input={styles.input1}
+                            placeholder={'description'} />
                     </View>
                 </ScrollView>
 

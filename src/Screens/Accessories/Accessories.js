@@ -19,8 +19,8 @@ import navigationStrings from '../../navigation/navigationStrings';
 import { useNavigation } from '@react-navigation/native';
 
 const Accessories = (props) => {
-    
-    console.log(props, "route issss")
+
+    // console.log(props, "route issss")
     const navigation=useNavigation();
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
