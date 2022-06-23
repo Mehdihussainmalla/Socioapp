@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import imagePath from '../constants/imagePath';
+import navigationStrings from '../navigation/navigationStrings';
 import { moderateScaleVertical, textScale, width } from '../styles/responsiveSize';
 const Header = ({
     container = '',
@@ -14,7 +15,7 @@ const Header = ({
 }) => {
     const navigation = useNavigation();
     const goBack = () => {
-        navigation.goBack()
+        navigation.navigate(navigationStrings.HOME)
     }
     return (
         <View style={{ ...styles.container, container }}>
@@ -39,8 +40,6 @@ const Header = ({
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        // backgroundColor: '#2c3e50',
-        // paddingHorizontal:20,
         marginHorizontal: moderateScaleVertical(5)
 
     },

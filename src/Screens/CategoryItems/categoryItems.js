@@ -1,20 +1,19 @@
 //import liraries
-import React, { Component, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, ColorPropType } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, Image } from 'react-native';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import firestore from '@react-native-firebase/firestore';
 import Header from '../../Components/Header';
-import { textScale, width } from '../../styles/responsiveSize';
-import colors from '../../styles/colors';
-import { moderateScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
-
+import { styles } from './styles';
+import { useNavigation } from '@react-navigation/native';
 const CategoryItems = ({ route }) => {
     const { data } = route?.params;
     const category = data.accessoryType;
     console.log(category, "category is")
     const [products, setproducts] = useState(null);
     const [loading, setloading] = useState(true);
+    const navigation=useNavigation();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -83,65 +82,35 @@ const CategoryItems = ({ route }) => {
 
     return (
         <Wrappercontainer>
-            <Header isBackIcon={true} 
-            title={category}
-            textstyle={{fontWeight:"bold"}}/>
-            <Text style={{fontSize:textScale(12),
-                color:colors.blackOpacity66,
-                alignSelf:"center"}}>
+            <Header isBackIcon={true}
+            onPress={()=>navigation.goBack()}
+                title={category}
+                textstyle={{ fontWeight: "bold" }} />
+            {!!products ? <View>
+                <Text style={styles.headingstyle}>
                     All kinds of {category} are availabe</Text>
-            <FlatList
-                renderItem={renderItem}
-                data={products} />
+                <FlatList
+                    renderItem={renderItem}
+                    data={products} />
+            </View> :
+            <View>
+                <View style={styles.nostockstyle}>
+                    <Text style={styles.txt}>No {category} available</Text>
+                    </View>
+                    
+                    <ButtonComp
+                    btnStyle={{width:"100%",}}
+                    onPress={()=>navigation.goBack()}
+                    ButtonText={"Go Back"}/>
+                   </View>
+               
+                    }
+                    
         </Wrappercontainer>
     );
 };
 
-const styles = StyleSheet.create({
-    container:
-    {
-        padding: moderateScale(5),
-        borderWidth: 0.5,
-        margin: moderateScale(8),
-        height: moderateScale(140),
-        borderRadius: moderateScale(5),
-        flexDirection: 'row',
-    },
-    buttonstyle: {
-        width: "85%", height: moderateScale(38),
-        marginTop:moderateScale(10),
-    },
-    desc:
-    {
-        width: width / 2.3,
-        paddingLeft: moderateScale(10)
-    },
-    ratestyle:
-    {
-        color: colors.redB,
-        paddingLeft:moderateScale(10),
 
-    },
-    accorystyle:
-    {
-        textAlign: 'center',
-        fontSize: textScale(14),
-        textAlign: 'justify',
-        marginBottom: moderateScale(6),
-        paddingLeft:moderateScale(10),
-        fontWeight: "500"
-    },
-    compstyle:
-    {
-        width: width /moderateScale(2.3),
-        paddingLeft: moderateScale(10)
-    },
-    imgstyle:
-    {
-        width: width / 2.3,
-        height: width / 3,
-    }
-});
 
 export default CategoryItems;
 
