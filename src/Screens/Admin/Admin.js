@@ -36,6 +36,13 @@ const Admin = ({ navigation }) => {
                     <Text style={styles.btnstyle2}>item details</Text>
 
                 </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate(navigationStrings.OFFERS)}
+                    activeOpacity={0.5}
+                    style={styles.accessoriesstyle}>
+                    <Text style={styles.btnstyle2}>OFFERS</Text>
+
+                </TouchableOpacity>
             </View>
         </Wrappercontainer>
     );

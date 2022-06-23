@@ -16,5 +16,6 @@ export default {
     ADMIN: "Admin",
     ACCESSORIES: " Accessories",
     CATEGORY_ITEMS: "category items",
-    ITEM_DETAILS:" item details"
+    ITEM_DETAILS:" item details",
+    OFFERS:'offers'
 }
