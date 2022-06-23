@@ -7,8 +7,11 @@ import colors from '../styles/colors';
 import { textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
 import storage from "@react-native-firebase/storage";
+import { useNavigation } from '@react-navigation/native';
+import navigationStrings from '../navigation/navigationStrings';
 // create a component
 const CardView = () => {
+    const navigation=useNavigation();
 
     const [products, setproducts] = useState(null);
     const [loading, setloading] = useState(true);
@@ -87,7 +90,8 @@ const CardView = () => {
     const renderItem = ({ item }) => {
         // console.log(item, "items for flast list are")
         return (
-            <TouchableOpacity
+            <TouchableOpacity 
+            onPress={()=>navigation.navigate(navigationStrings.SEARCH_SCREEN,{data:item})}
                 activeOpacity={0.7}
                 style={styles.container}>
                 <Image style={styles.imagestyle}

@@ -6,14 +6,14 @@ import firestore from '@react-native-firebase/firestore';
 import Header from '../../Components/Header';
 import ButtonComp from '../../Components/Button';
 import { styles } from './styles';
-import { useNavigation } from '@react-navigation/native';
-const CategoryItems = ({ route }) => {
+const CategoryItems = ({ route, navigation }) => {
     const { data } = route?.params;
+
     const category = data.accessoryType;
     console.log(category, "category is")
     const [products, setproducts] = useState(null);
     const [loading, setloading] = useState(true);
-    const navigation=useNavigation();
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,7 +50,10 @@ const CategoryItems = ({ route }) => {
         fetchData();
 
     }, [])
-    const renderItem = ({ item }) => {
+
+
+
+    const renderItem = ({ item, index }) => {
         // console.log(item, "items are>>>>>")
         return (
             <View style={styles.container}>
@@ -83,7 +86,7 @@ const CategoryItems = ({ route }) => {
     return (
         <Wrappercontainer>
             <Header isBackIcon={true}
-            onPress={()=>navigation.goBack()}
+                onPress={() => navigation.goBack()}
                 title={category}
                 textstyle={{ fontWeight: "bold" }} />
             {!!products ? <View>
@@ -93,19 +96,19 @@ const CategoryItems = ({ route }) => {
                     renderItem={renderItem}
                     data={products} />
             </View> :
-            <View>
-                <View style={styles.nostockstyle}>
-                    <Text style={styles.txt}>No {category} available</Text>
+                <View>
+                    <View style={styles.nostockstyle}>
+                        <Text style={styles.txt}>No {category} available</Text>
                     </View>
-                    
+
                     <ButtonComp
-                    btnStyle={{width:"100%",}}
-                    onPress={()=>navigation.goBack()}
-                    ButtonText={"Go Back"}/>
-                   </View>
-               
-                    }
-                    
+                        btnStyle={{ width: "88%", }}
+                        onPress={() => navigation.goBack()}
+                        ButtonText={"Go Back"} />
+                </View>
+
+            }
+
         </Wrappercontainer>
     );
 };

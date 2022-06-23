@@ -22,6 +22,7 @@ import colors from '../../styles/colors';
 
 
 const Products = ({ navigation }) => {
+   
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
 
@@ -134,7 +135,7 @@ const Products = ({ navigation }) => {
 
     const onSubmit = async () => {
         const imageUrl = await uploadImage();
-        // console.log(imageUrl, "image url is>>>")
+         console.log(imageUrl, "image url is>>>")
         try {
             await firestore().collection('products').add({
                 productImage: imageUrl,

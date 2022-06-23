@@ -5,7 +5,7 @@ import colors from "../../styles/colors";
 import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
     container: {
-        flexDirection: "row" 
+        flexDirection: "row"
         // flex: 1,
         // backgroundColor: colors.blackOpacity40,
     },
@@ -62,11 +62,11 @@ export const styles = StyleSheet.create({
         marginTop: 0
     },
     dotstyle: {
-        width: 12, height: 12,
+        width: 10, height: 10,
         borderRadius: 12 / 2
     },
     inactivedotstyle: {
-        width: 20,
+        width: 15,
         height: 20,
         borderRadius: 20 / 2
     },
@@ -79,5 +79,5 @@ export const styles = StyleSheet.create({
         fontSize: textScale(14),
         fontWeight: "500"
     },
-    viewstyle:{ marginTop: moderateScale(3) }
+    viewstyle: { marginTop: moderateScale(3) }
 })

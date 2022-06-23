@@ -18,12 +18,10 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
 import strings from '../../constants/lang';
-import firestore from '@react-native-firebase/firestore';
-const Home = ({navigation}) => {
-    // console.log(props, "props areeee")
+
+const Home = ({ navigation }) => {
 
     const [snapState, setSnapState] = useState(0);
-
 
     const data = [{
 
@@ -56,6 +54,9 @@ const Home = ({navigation}) => {
     },
 
     ]
+
+    // console.log(Object.keys(data).length, "dhufhsdf")
+
     const SLIDER_WIDTH = Dimensions.get('window').width;
     const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
     const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
@@ -88,14 +89,6 @@ const Home = ({navigation}) => {
                 </TouchableOpacity>
                 <Header title={strings.HOME} />
             </View>
-            {/* <TouchableOpacity
-                onPress={() => navigation.navigate(navigationStrings.SEARCH_SCREEN)}
-                activeOpacity={0.5}
-                style={styles.searchstyle}>
-                <Text style={styles.searchtxt}>{strings.SEARCH}</Text>
-                <Image style={styles.searchicon}
-                    source={imagePath.search_icon} />
-            </TouchableOpacity> */}
             <ScrollView showsVerticalScrollIndicator={false}>
 
                 <View>
@@ -132,7 +125,7 @@ const Home = ({navigation}) => {
                     <Text style={styles.accessorries}>{strings.ACCESSORIES} </Text>
                 </View>
                 <View>
-                    <ElectronicCard 
+                    <ElectronicCard
                     //  data={props}
                     />
 
