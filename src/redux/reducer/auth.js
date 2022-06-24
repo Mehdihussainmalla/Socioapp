@@ -2,7 +2,9 @@ import { removeData, removeItem, setItem, setLogin } from "../../utils/utils";
 import types from "../types";
 import auth from "@react-native-firebase/auth"
 const initialState = {
-    userData: {}
+    userData: {},
+    products: [],
+    total: 0,
 }
 
 export const userStatus = (state = initialState, action) => {
@@ -26,6 +28,17 @@ export const userStatus = (state = initialState, action) => {
                 return { ...state.userData, userData: res }
             })
             return { ...state.userData, userData: undefined }
+
+        case types.ADD_TO_CART:
+
+            const data = action.payload
+            console.log(data, "dataaaa>>>>")
+            return { ...state, products: data }
+
+        case types.INCREMENT:
+            let dataa = action.payload
+            console.log(dataa, "dataaaaa")
+            return { ...state, total: dataa + 1 }
 
         default: return state
     }

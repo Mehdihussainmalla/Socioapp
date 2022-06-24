@@ -7,5 +7,7 @@ export default {
     LOGOUT:'LOGOUT',
     SIGNUP:"SIGNUP",
     GOOGLELOGIN:"GOOGLELOGIN",
+    ADD_TO_CART:"ADD TO CART",
+    INCREMENT:"INCREMENT"
     
 }

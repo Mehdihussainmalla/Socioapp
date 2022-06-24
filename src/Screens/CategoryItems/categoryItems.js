@@ -6,6 +6,8 @@ import firestore from '@react-native-firebase/firestore';
 import Header from '../../Components/Header';
 import ButtonComp from '../../Components/Button';
 import { styles } from './styles';
+import actions from '../../redux/actions';
+import navigationStrings from '../../navigation/navigationStrings';
 const CategoryItems = ({ route, navigation }) => {
     const { data } = route?.params;
 
@@ -51,7 +53,10 @@ const CategoryItems = ({ route, navigation }) => {
 
     }, [])
 
-
+    const addToCart = (item) => {
+        actions.addToCart(item)
+        navigation.navigate(navigationStrings.SEARCH_SCREEN)
+    }
 
     const renderItem = ({ item, index }) => {
         // console.log(item, "items are>>>>>")
@@ -74,8 +79,9 @@ const CategoryItems = ({ route, navigation }) => {
                     <Text style={styles.desc}>
                         {item?.description}</Text>
                     <ButtonComp
+                        onPress={() => addToCart(item)}
                         btnStyle={styles.buttonstyle}
-                        ButtonText='Buy' />
+                        ButtonText='Add to Cart' />
                 </View>
 
             </View>

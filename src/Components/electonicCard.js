@@ -11,9 +11,10 @@ import {
 import colors from '../styles/colors';
 import { height, textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
 import navigationStrings from '../navigation/navigationStrings';
 import { useNavigation } from '@react-navigation/native';
+import strings from '../constants/lang';
 
 const electonicCard = (props) => {
     // console.log(props, "propsssss>>>>")
@@ -78,14 +79,8 @@ const electonicCard = (props) => {
         setData(showMore)
     }
 
+    const renderItem = ({ item }) => {
 
-
-
-
-    const renderItem = ({ item, index }) => {
-
-        // console.log(item, "items areeeee")
-        // if (showMore) {
         return (
 
             <TouchableOpacity
@@ -96,11 +91,8 @@ const electonicCard = (props) => {
                 <Image
                     style={styles.imagestyle}
                     source={{ uri: item?.accoryImage }} />
-                <Text style={{
-                    fontSize: 12, alignSelf: "center",
-                    fontWeight: "500"
-                }}>{item.accessoryType}</Text>
-                <Text style={{ color: colors.redB, alignSelf: "center" }}>{item?.rate}</Text>
+                <Text style={styles.accessoryTypestyle}>{item.accessoryType}</Text>
+                <Text style={styles.ratestyle}>{item?.rate}</Text>
 
 
             </TouchableOpacity>
@@ -111,23 +103,7 @@ const electonicCard = (props) => {
 
     return (
         <View>
-            <View style={{ flexDirection: "row", marginTop: 5, justifyContent: "flex-end" }}>
 
-                {
-                    show ?
-                        <View style={styles.showhidestyle}>
-                            <Text
-                                style={styles.showhidetxt}
-                                onPress={hanldeShowMore} >showMore</Text>
-                        </View> :
-                        <View style={styles.showhidestyle}>
-                            <Text
-                                style={styles.showhidetxt}
-                                onPress={hanldeShowLess} >showless</Text>
-                        </View>
-                }
-
-            </View>
 
             <FlatList
                 renderItem={renderItem}
@@ -135,6 +111,23 @@ const electonicCard = (props) => {
                 data={data}
                 extraData={data}
             />
+            <View style={styles.textshowhidestyle}>
+
+                {
+                    show ?
+                        <View style={styles.showhidestyle}>
+                            <Text
+                                style={styles.showhidetxt}
+                                onPress={hanldeShowMore} >{strings.SHOWMORE}</Text>
+                        </View> :
+                        <View style={styles.showhidestyle}>
+                            <Text
+                                style={styles.showhidetxt}
+                                onPress={hanldeShowLess} >{strings.SHOWLESS}</Text>
+                        </View>
+                }
+
+            </View>
         </View>
     )
 }
@@ -161,14 +154,29 @@ const styles = StyleSheet.create({
     },
     showhidestyle:
     {
-        backgroundColor: colors.redB, padding: 2,
+        backgroundColor: colors.redB,
+        padding: moderateVerticalScale(2),
         borderWidth: 0.5,
-        borderRadius: 5
+        borderRadius: moderateScale(5)
     },
     showhidetxt:
     {
         color: colors.white,
         fontWeight: "500",
+    },
+    accessoryTypestyle:
+    {
+        fontSize: textScale(12),
+        alignSelf: "center",
+        fontWeight: "500"
+    },
+    ratestyle:
+        { color: colors.redB, alignSelf: "center" },
+    textshowhidestyle:
+    {
+        flexDirection: "row",
+        marginTop: moderateScale(5),
+        justifyContent: "center"
     }
 });
 

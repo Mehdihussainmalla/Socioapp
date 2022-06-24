@@ -81,4 +81,20 @@ export const Logout =  () => {
 
     }
 }
+//...............add to cart...............//
+export const addToCart =(data)=>{
+    dispatch({
+        type:types.ADD_TO_CART,
+        payload:data
+    })
+    console.log(data,"data to add items ")
+}
 
+//............increment../////
+export const Increment=(data)=>{
+    console.log(data, "dddddd")
+    dispatch({
+        type:types.INCREMENT,
+        payload:data
+    })
+}

@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     },
     drawercontext:
     {
-        backgroundColor: colors.blackOpacity20,
+        backgroundColor: colors.blackOpacity05,
 
     },
     imageview:
@@ -134,10 +134,11 @@ const styles = StyleSheet.create({
         alignItems: "flex-end",
         paddingVertical: moderateScaleVertical(10),
         paddingRight: moderateScaleVertical(10),
+        
     },
     imagestyle:
     {
-        backgroundColor: colors.white,
+        backgroundColor: colors.blackOpacity10,
         paddingVertical: moderateScaleVertical(8),
         paddingHorizontal: moderateScaleVertical(8)
     },
@@ -175,8 +176,9 @@ const styles = StyleSheet.create({
     nametxt:
     {
         fontSize: textScale(12),
-        color: colors.blackOpacity43,
+        // color: colors.blackOpacity43,
         fontWeight: "500",
+        marginTop: moderateScale(5)
     },
     emailtxt:
     {
@@ -192,7 +194,7 @@ const styles = StyleSheet.create({
     },
     homeicon:
     {
-        tintColor: colors.grayOpacity51,
+        // tintColor: colors.grayOpacity51,
         marginTop: moderateScaleVertical(5)
     },
     hometxt: {
@@ -209,12 +211,13 @@ const styles = StyleSheet.create({
     },
     searchicon:
     {
-        tintColor: colors.grayOpacity51,
+        // tintColor: colors.grayOpacity51,
     },
     searchtxt:
     {
         // color: colors.white,
-        fontSize: textScale(15), fontWeight: "500",
+        fontSize: textScale(15),
+        fontWeight: "500",
         paddingLeft: moderateVerticalScale(10),
         paddingTop: moderateScale(5)
     },
@@ -226,9 +229,10 @@ const styles = StyleSheet.create({
     },
     adminicon:
     {
-        tintColor: colors.grayOpacity51,
+        // tintColor: colors.grayOpacity51,
         marginTop: moderateScale(8),
-        width: width / moderateScale(16), height: height / moderateScale(35)
+        width: width / moderateScale(16),
+        height: height / moderateScale(35)
     },
     admintxt:
     {
@@ -245,9 +249,10 @@ const styles = StyleSheet.create({
     },
     settingicon:
     {
-        tintColor: "grey",
+        // tintColor: "grey",
         marginTop: moderateScaleVertical(8),
-        width: width / moderateScale(16), height: height / moderateScale(35)
+        width: width / moderateScale(16),
+        height: height / moderateScale(35)
     },
     settingtxt:
     {
@@ -261,7 +266,7 @@ const styles = StyleSheet.create({
     {
 
         marginLeft: moderateScaleVertical(25),
-        paddingTop: moderateScaleVertical(370),
+        paddingTop: moderateScaleVertical(360),
 
     },
     btnstyle:
@@ -270,15 +275,17 @@ const styles = StyleSheet.create({
     },
     logouticon:
     {
-        tintColor: colors.grayOpacity51,
+        // tintColor: colors.grayOpacity51,
         width: width / moderateScale(12),
     },
     logouttxt:
     {
 
-        color: colors.grayOpacity51,
-        fontSize: textScale(17), fontWeight: "500",
+        // color: colors.grayOpacity51,
+        fontSize: textScale(17),
+        fontWeight: "500",
         paddingLeft: moderateVerticalScale(10),
+
     }
 
 

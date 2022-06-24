@@ -51,7 +51,9 @@ export const styles = StyleSheet.create({
         marginTop: 10
     },
     headericon:
-    { marginLeft: 90 
+    { marginLeft: 90 ,
+        // position:"absolute",
+        paddingRight:20
     },
     nametxt:
     { paddingTop: 8, fontWeight:"bold"}

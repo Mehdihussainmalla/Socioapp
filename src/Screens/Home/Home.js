@@ -5,7 +5,7 @@ import {
     Image,
     Dimensions,
     ScrollView,
-    FlatList
+
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import { styles } from './styles';
@@ -13,7 +13,6 @@ import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import { moderateScale } from 'react-native-size-matters';
 import { sliderWidth, width } from '../../styles/responsiveSize';
-import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
@@ -53,7 +52,7 @@ const Home = (props) => {
                         if (loading) {
                             setloading(false)
                         }
-                        console.log(list, "list is")
+                        // console.log(list, "list is")
 
                     })
 
@@ -72,7 +71,7 @@ const Home = (props) => {
 
 
     const renderItem = ({ item }) => {
-        console.log(item, "items are >>>")
+        // console.log(item, "items are >>>")
         return (
             <TouchableOpacity style={{
                 borderWidth: 1,
@@ -131,7 +130,7 @@ const Home = (props) => {
                     inactiveDotOpacity={0.4}
                     inactiveDotScale={0.6}
                 />
-                
+
 
                 <CardView />
                 <View style={styles.viewstyle}>
