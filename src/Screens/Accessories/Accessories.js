@@ -21,7 +21,7 @@ import { useNavigation } from '@react-navigation/native';
 const Accessories = (props) => {
 
     // console.log(props, "route issss")
-    const navigation=useNavigation();
+    const navigation = useNavigation();
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
     const [state, setState] = useState({
@@ -99,17 +99,13 @@ const Accessories = (props) => {
         fileName = name + Date.now() + '.' + extension;
 
         setUploading(true)
-        setTransferred(0);
+        // setTransferred(0);
 
         const storageRef = storage().ref(`gallery/${fileName}`);
-        const task = storageRef.putFile(uploadUri);
-        task.on('state_changed', taskSnapshot => {
-            console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+        const storageImage = storageRef.putFile(uploadUri);
 
-            Math.round(setTransferred(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100)
-        });
         try {
-            await task;
+            await storageImage;
             const url = await storageRef.getDownloadURL();
             setUploading(false)
             return url;
@@ -175,7 +171,7 @@ const Accessories = (props) => {
                 </ScrollView>
 
                 {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
-                    <Text>{transferred} % completed</Text>
+                    {/* <Text>{transferred} % completed</Text> */}
                     <ActivityIndicator size={"large"}
                         color={colors.redB}
                     />
@@ -185,9 +181,6 @@ const Accessories = (props) => {
                     ButtonText={"Submit"}
                 />
                 }
-                {/* <ButtonComp
-                    onPress={submitProduct}
-                    ButtonText={"Submit"} /> */}
             </View>
 
 

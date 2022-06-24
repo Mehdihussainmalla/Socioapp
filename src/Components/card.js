@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import navigationStrings from '../navigation/navigationStrings';
 // create a component
 const CardView = () => {
-    const navigation=useNavigation();
+    const navigation = useNavigation();
 
     const [products, setproducts] = useState(null);
     const [loading, setloading] = useState(true);
@@ -90,8 +90,8 @@ const CardView = () => {
     const renderItem = ({ item }) => {
         // console.log(item, "items for flast list are")
         return (
-            <TouchableOpacity 
-            onPress={()=>navigation.navigate(navigationStrings.CART,{data:item})}
+            <TouchableOpacity
+                onPress={() => navigation.navigate(navigationStrings.CART, { data: item })}
                 activeOpacity={0.7}
                 style={styles.container}>
                 <Image style={styles.imagestyle}
@@ -118,7 +118,7 @@ const CardView = () => {
 
     return (
         <View>
-
+            <Text style={{ fontWeight: "700" }}>Products</Text>
             <FlatList
                 horizontal
                 data={products}
@@ -132,7 +132,7 @@ const CardView = () => {
 
 const styles = StyleSheet.create({
     container: {
-         borderWidth: moderateScale(0.9),
+        borderWidth: moderateScale(0.9),
         borderRadius: moderateScale(5),
         marginVertical: moderateScale(5),
         marginRight: moderateScale(15),

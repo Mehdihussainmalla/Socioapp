@@ -106,17 +106,17 @@ const Products = ({ navigation }) => {
         setTransferred(0);
 
         const storageRef = storage().ref(`photos/${fileName}`);
-        const task = storageRef.putFile(uploadUri);
+        const storageImage = storageRef.putFile(uploadUri);
 
-        task.on('state_changed', taskSnapshot => {
-            console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
+        // task.on('state_changed', taskSnapshot => {
+        //     console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
 
-            Math.round(setTransferred(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100)
-        });
+        //     Math.round(setTransferred(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100)
+        // });
 
         try {
 
-            await task;
+            await storageImage;
             const url = await storageRef.getDownloadURL();
             setUploading(false)
             return url
@@ -222,7 +222,7 @@ const Products = ({ navigation }) => {
             </View>
 
             {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
-                <Text>{transferred} % completed</Text>
+                {/* <Text>{transferred} % completed</Text> */}
                 <ActivityIndicator size={"large"}
                     color={colors.redB}
                 />

@@ -17,11 +17,12 @@ import { useNavigation } from '@react-navigation/native';
 
 const electonicCard = (props) => {
     // console.log(props, "propsssss>>>>")
-    const navigation=useNavigation();
+    const navigation = useNavigation();
     const [loading, setloading] = useState(true);
     const [products, setproducts] = useState(null);
     const [data, setData] = useState(null)
     const [showMore, setShowMore] = useState([])
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
 
@@ -67,6 +68,18 @@ const electonicCard = (props) => {
 
     }, [])
 
+    const hanldeShowMore = () => {
+        setShow(false)
+        setData(products)
+    }
+
+    const hanldeShowLess = () => {
+        setShow(true)
+        setData(showMore)
+    }
+
+
+
 
 
     const renderItem = ({ item, index }) => {
@@ -76,9 +89,10 @@ const electonicCard = (props) => {
         return (
 
             <TouchableOpacity
-                onPress={() => navigation.navigate(navigationStrings.CATEGORY_ITEMS, { data: item})}
+                onPress={() => navigation.navigate(navigationStrings.CATEGORY_ITEMS, { data: item })}
                 activeOpacity={0.5}
                 style={styles.container}>
+
                 <Image
                     style={styles.imagestyle}
                     source={{ uri: item?.accoryImage }} />
@@ -87,6 +101,8 @@ const electonicCard = (props) => {
                     fontWeight: "500"
                 }}>{item.accessoryType}</Text>
                 <Text style={{ color: colors.redB, alignSelf: "center" }}>{item?.rate}</Text>
+
+
             </TouchableOpacity>
 
         )
@@ -95,13 +111,22 @@ const electonicCard = (props) => {
 
     return (
         <View>
-            <View style={{ flexDirection: "row", marginTop: 5 }}>
-                <Text
-                    style={{ color: colors.redB, fontWeight: "500", paddingRight: 20 }}
-                    onPress={() => setData(products)} >showMore</Text>
-                <Text
-                    style={{ color: colors.DarkBlue, fontWeight: "500" }}
-                    onPress={() => setData(showMore)} >showless</Text>
+            <View style={{ flexDirection: "row", marginTop: 5, justifyContent: "flex-end" }}>
+
+                {
+                    show ?
+                        <View style={styles.showhidestyle}>
+                            <Text
+                                style={styles.showhidetxt}
+                                onPress={hanldeShowMore} >showMore</Text>
+                        </View> :
+                        <View style={styles.showhidestyle}>
+                            <Text
+                                style={styles.showhidetxt}
+                                onPress={hanldeShowLess} >showless</Text>
+                        </View>
+                }
+
             </View>
 
             <FlatList
@@ -133,6 +158,17 @@ const styles = StyleSheet.create({
         marginHorizontal: moderateScale(10),
         marginTop: moderateScale(10),
         alignSelf: "center"
+    },
+    showhidestyle:
+    {
+        backgroundColor: colors.redB, padding: 2,
+        borderWidth: 0.5,
+        borderRadius: 5
+    },
+    showhidetxt:
+    {
+        color: colors.white,
+        fontWeight: "500",
     }
 });
 

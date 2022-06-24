@@ -96,13 +96,13 @@ const CategoryItems = ({ route, navigation }) => {
                     renderItem={renderItem}
                     data={products} />
             </View> :
-                <View>
+                <View >
                     <View style={styles.nostockstyle}>
                         <Text style={styles.txt}>No {category} available</Text>
                     </View>
 
                     <ButtonComp
-                        btnStyle={{ width: "88%", }}
+                        btnStyle={{ width: "88%" }}
                         onPress={() => navigation.goBack()}
                         ButtonText={"Go Back"} />
                 </View>

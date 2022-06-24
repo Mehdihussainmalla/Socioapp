@@ -4,14 +4,15 @@ import {
     TouchableOpacity,
     Image,
     Dimensions,
-    ScrollView
+    ScrollView,
+    FlatList
 } from 'react-native';
 import imagePath from '../../constants/imagePath';
 import { styles } from './styles';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import { moderateScale } from 'react-native-size-matters';
-import { width } from '../../styles/responsiveSize';
+import { sliderWidth, width } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardView from '../../Components/card';
@@ -28,7 +29,6 @@ const Home = (props) => {
     const [totalOfferCount, setTotalOfferCount] = useState();
 
     useEffect(() => {
-
         fetchData();
 
     }, [])
@@ -37,14 +37,15 @@ const Home = (props) => {
             const list = [];
             await firestore().collection("offers")
                 .get().then((res) => {
-                    console.log(res.size, "res>>>> from home is>sdsds>")
+                    // console.log(res.size, "res>>>> from home is>sdsds>")
                     setTotalOfferCount(res.size)
                     res.forEach(doc => {
 
                         const { offerImage } = doc.data();
                         list.push({
                             key: doc.id,
-                            offerImage,
+                            offerImage
+
 
 
                         })
@@ -69,25 +70,24 @@ const Home = (props) => {
     const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.8);
     const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 3 / 4);
 
+
     const renderItem = ({ item }) => {
-        // console.log(item, "items from home render are")
+        console.log(item, "items are >>>")
         return (
+            <TouchableOpacity style={{
+                borderWidth: 1,
+                padding: 0,
+                borderRadius: 10,
+                alignItems: 'center',
 
-            <View
-                style={{
-                    borderWidth: 1,
-                    padding: 0,
-                    borderRadius: 10,
-                    alignItems: 'center',
-
-                }}>
-
+            }}>
                 <Image source={{ uri: item?.offerImage }}
                     style={{ width: width - 110, height: width / 2.30 }}
                     resizeMode="stretch" />
-            </View>
+            </TouchableOpacity>
         )
     }
+
 
     return (
         <Wrappercontainer >
@@ -100,41 +100,38 @@ const Home = (props) => {
                 </TouchableOpacity>
                 <Header title={strings.HOME} />
             </View>
+
+
             <ScrollView showsVerticalScrollIndicator={false}>
 
-                <View>
+                <Carousel
+                    data={products}
+                    renderItem={renderItem}
+                    layout='stack'
+                    sliderWidth={sliderWidth}
+                    itemWidth={ITEM_WIDTH}
+                    onSnapToItem={(index) => setActiveSlide(index)} />
+                <Pagination
 
-                    <Carousel
-                        data={products}
-                        renderItem={renderItem}
-                        layout='stack'
-                        onSnapToItem={(index) => setActiveSlide(index)}
-                        sliderWidth={moderateScale(width - 30)}
-                        itemWidth={moderateScale(width - 110)}
-                    />
-                    <Pagination
+                    dotsLength={totalOfferCount}
+                    activeDotIndex={activeSlide}
 
-                        dotsLength={totalOfferCount}
-                        activeDotIndex={activeSlide}
-                        // containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
-                        dotStyle={{
-                            marginVertical: moderateScale(0),
-                            width: 12,
-                            height: 12,
-                            borderRadius: 5,
+                    dotStyle={{
+                        marginVertical: moderateScale(0),
+                        width: 12,
+                        height: 12,
+                        borderRadius: 5,
+                    }}
 
-                            // backgroundColor: 'rgba(255, 255, 255, 0.92)'
-                        }}
+                    inactiveDotStyle={{
 
-                        inactiveDotStyle={{
+                        // Define styles for inactive dots here
+                    }}
 
-                            // Define styles for inactive dots here
-                        }}
-
-                        inactiveDotOpacity={0.4}
-                        inactiveDotScale={0.6}
-                    />
-                </View>
+                    inactiveDotOpacity={0.4}
+                    inactiveDotScale={0.6}
+                />
+                
 
                 <CardView />
                 <View style={styles.viewstyle}>

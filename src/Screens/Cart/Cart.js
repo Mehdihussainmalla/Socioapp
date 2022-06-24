@@ -27,7 +27,7 @@ const Cart = ({ route }) => {
                         <TouchableOpacity activeOpacity={0.5}
                             onPress={() => alert("waiting to add")}
                         >
-                            <Image style={styles.headericon} source={imagePath.add_icon} />
+                            <Image style={styles.headericon} source={imagePath.cart} />
                         </TouchableOpacity>
                     </View>
                 </View>
