@@ -1,9 +1,8 @@
 import { removeData, removeItem, setItem, setLogin } from "../../utils/utils";
 import types from "../types";
-import auth from "@react-native-firebase/auth"
+
 const initialState = {
     userData: {},
-    products: [],
     count: 0,
 }
 
@@ -36,9 +35,8 @@ export const userStatus = (state = initialState, action) => {
 
         case types.DECREMENT:
             let dataa = action.payload
-            // console.log(dataa, "dataa iss")
-
-            return { ...state, count: dataa - 1 }
+            // console.log(dataa,"decre")
+            return { ...state}
 
         default: return state
     }

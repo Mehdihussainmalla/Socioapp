@@ -5,12 +5,13 @@ import { textScale, width } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
     container: {
 
-        padding: moderateScale(5),
+        padding: moderateScale(2),
         borderWidth: 0.5,
         margin: moderateScale(5),
-        height: moderateScale(140),
+        height: moderateScale(150),
         borderRadius: moderateScale(5),
         flexDirection: 'row',
+
     },
     imgstyle:
     {
@@ -50,8 +51,9 @@ export const styles = StyleSheet.create({
     },
     counterstyle:
     {
-        flexDirection: "row", alignSelf: "center",
-        marginTop: 8
+        flexDirection: "row",
+         alignSelf: "center",
+        // marginTop: 8
     },
     decrementstyle:
     {

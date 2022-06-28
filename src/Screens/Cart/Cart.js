@@ -8,13 +8,15 @@ import { firebase } from '@react-native-firebase/auth';
 import { styles } from './styles';
 import { showMessage } from 'react-native-flash-message';
 import actions from '../../redux/actions';
+import ButtonComp from '../../Components/Button';
+import { textScale } from '../../styles/responsiveSize';
 
 
 const Cart = () => {
 
     const [cart, setCart] = useState();
     const [item, setItem] = useState();
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(0);
     const fetchData = async () => {
         try {
             const list = [];
@@ -88,7 +90,7 @@ const Cart = () => {
         setCount(count + 1);
         if (count === 5) {
             showMessage({
-                message: "maximum items will be 5 only",
+                message: "maximum selected items could be 5 only",
                 type: "info"
             })
             return setCount(count)
@@ -109,6 +111,11 @@ const Cart = () => {
             return setCount(count)
         }
     }
+
+    const buyItem = () => {
+        alert("in process for payment")
+    }
+
     const renderItem = ({ item }) => {
         // console.log(item, "item issss")
         return (
@@ -134,10 +141,22 @@ const Cart = () => {
                         <Text
                             onPress={Increment}
                             style={styles.incrementstyle}>+</Text>
-
-
                     </View>
+                    <TouchableOpacity
+                        activeOpacity={0.7}
+                        onPress={ buyItem}
+                        style={{ backgroundColor: "red" }}>
+                        <Text
 
+                            style={{
+                                fontSize: textScale(12),
+                                color: "white", fontWeight: "bold",
+                                alignSelf: "center",
+                                marginVertical: 3,
+                                bottom: 1
+
+                            }}>Buy</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
