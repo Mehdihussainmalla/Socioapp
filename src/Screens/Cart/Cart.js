@@ -5,15 +5,16 @@ import Wrappercontainer from '../../Components/wrappercontainer';
 import Header from '../../Components/Header';
 import firestore from '@react-native-firebase/firestore';
 import { firebase } from '@react-native-firebase/auth';
-import { moderateScale } from 'react-native-size-matters';
-import colors from '../../styles/colors';
-import { textScale, width } from '../../styles/responsiveSize';
+import { styles } from './styles';
+import { showMessage } from 'react-native-flash-message';
+import actions from '../../redux/actions';
 
 
 const Cart = () => {
 
     const [cart, setCart] = useState();
     const [item, setItem] = useState();
+    const [count, setCount] = useState(1);
     const fetchData = async () => {
         try {
             const list = [];
@@ -37,8 +38,6 @@ const Cart = () => {
         }
     }
 
-    // for (let x in item)
-    //     console.log(x, "items are")
     const SubmitData = async () => {
         try {
             const productList = [];
@@ -63,7 +62,7 @@ const Cart = () => {
 
 
                             })
-                            console.log(productList, "product list isss")
+                            // console.log(productList, "product list isss")
                             setCart(productList)
                         })
                     })
@@ -81,82 +80,64 @@ const Cart = () => {
         fetchData()
         SubmitData()
     }, [])
+    //..............counting............//
 
+    const Increment = () => {
+        actions.Increment(count)
+        // alert("one item selected")
+        setCount(count + 1);
+        if (count === 5) {
+            showMessage({
+                message: "maximum items will be 5 only",
+                type: "info"
+            })
+            return setCount(count)
+        }
+
+
+    }
+
+    const Decrement = () => {
+        actions.Decrement(count)
+        setCount(count - 1)
+        if (count === 0) {
+            showMessage({
+                message: "no item selected",
+                type: "danger"
+
+            })
+            return setCount(count)
+        }
+    }
     const renderItem = ({ item }) => {
         // console.log(item, "item issss")
         return (
-            <View style={{
 
-                padding: moderateScale(5),
-                borderWidth: 0.5,
-                margin: moderateScale(5),
-                height: moderateScale(140),
-                borderRadius: moderateScale(5),
-                flexDirection: 'row',
-            }}>
-
-
-
+            <View style={styles.container}>
                 <Image
-                    style={{
-                        width: width / 2.3,
-                        height: width / 3,
-                    }}
+                    style={styles.imgstyle}
                     source={{ uri: item?.productImage }} />
-                <View style={{
-                    width: width / moderateScale(2.3),
-                    paddingLeft: moderateScale(10)
-                }}>
+                <View style={styles.textstyle}>
 
-                    <Text style={{
-                        // marginTop: 10,
-                        paddingLeft: 10,
-                        fontSize: textScale(14),
-                        fontWeight: "800"
-                    }}>{item?.productName}</Text>
-                    <Text style={{
-                        fontWeight: "600",
-                        fontSize: textScale(12),
-                        paddingLeft: 20,
-                        color: colors.blackOpacity70,
-
-                    }}>{item?.productCategory}</Text>
-                    <Text style={{ color: colors.redB, paddingLeft: 10 }}>{item?.price}</Text>
-                    <Text style={{
-                        fontWeight: "600",
-                        fontSize: textScale(12),
-                        paddingLeft: 10,
-                        color: colors.blackOpacity70,
-                    }}>{item?.description}</Text>
+                    <Text style={styles.productnamestyle}>{item?.productName}</Text>
+                    <Text style={styles.categorystyle}>{item?.productCategory}</Text>
+                    <Text style={styles.pricestyle}>{item?.price}</Text>
+                    <Text style={styles.descriptionstyle}>{item?.description}</Text>
 
 
-                    <View style={{
-                        flexDirection: "row", alignSelf: "center",
-                        marginTop: 8
-                    }}>
-                        <Text style={{
-                            fontSize: textScale(20),
-                            backgroundColor: colors.blackOpacity40,
-                            color: colors.white,
-                            fontWeight: "bold",
-                            marginBottom: 8,
-                            paddingHorizontal: 5,
-                            alignSelf: "center"
-                        }}>-</Text>
-                        <Text style={{ fontSize: textScale(20) }}> {0} </Text>
+                    <View style={styles.counterstyle}>
+                        <Text
+                            onPress={Decrement}
+                            style={styles.decrementstyle}>-</Text>
+                        <Text style={styles.numberstyle}> {count} </Text>
 
-                        <Text style={{
-                            fontSize: textScale(20),
-                            backgroundColor: colors.blackOpacity40,
-                            color: colors.white,
-                            fontWeight: "bold",
-                            marginBottom: 8,
-                            paddingHorizontal: 5,
-                            alignSelf: "center",
+                        <Text
+                            onPress={Increment}
+                            style={styles.incrementstyle}>+</Text>
 
-                        }}>+</Text>
 
                     </View>
+
                 </View>
             </View>
         )
@@ -166,9 +147,13 @@ const Cart = () => {
 
             <Header
                 isBackIcon={true} />
+
             <FlatList
+
                 renderItem={renderItem}
-                data={cart} />
+                data={cart}
+            />
+
 
 
         </Wrappercontainer>
@@ -176,10 +161,4 @@ const Cart = () => {
     );
 };
 
-// define your styles
-const styles = StyleSheet.create({
-
-});
-
-//make this component available to the app
 export default Cart;

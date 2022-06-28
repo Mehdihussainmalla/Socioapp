@@ -20,7 +20,7 @@ export const SignUpHandle = async (email, password) => {
     try {
         const user = await auth().createUserWithEmailAndPassword(email, password);
         // console.log(user, "sign up data")
-       
+
         // alert("login sucessfully")
         signIn(email, password);
     } catch (error) {
@@ -48,7 +48,7 @@ export const signIn = async (email, password) => {
 
     try {
         let user = await auth().signInWithEmailAndPassword(email, password);
-        console.log(user,"userrrrrrr")
+        console.log(user, "userrrrrrr")
         showMessage({
             message: "login sucessfully",
             type: "success"
@@ -59,8 +59,8 @@ export const signIn = async (email, password) => {
     } catch (error) {
         console.log(error, "errror occurred")
         showMessage({
-            message:"There is no user record corresponding to this identifier",
-            type:"danger"
+            message: "There is no user record corresponding to this identifier",
+            type: "danger"
         })
         // alert(" There is no user record corresponding to this identifier")
 
@@ -68,7 +68,7 @@ export const signIn = async (email, password) => {
 
 }
 //............logout...............//
-export const Logout =  () => {
+export const Logout = () => {
     try {
 
         // await auth().signOut();
@@ -83,19 +83,28 @@ export const Logout =  () => {
     }
 }
 //...............add to cart...............//
-export const addToCart =(data)=>{
+export const addToCart = (data) => {
     dispatch({
-        type:types.ADD_TO_CART,
-        payload:data
+        type: types.ADD_TO_CART,
+        payload: data
     })
-    console.log(data,"data to add items ")
+    console.log(data, "data to add items ")
 }
 
-//............increment../////
-export const Increment=(data)=>{
-    console.log(data, "dddddd")
+//............increment........//
+export const Increment = (data) => {
+    console.log(data, "increment")
     dispatch({
-        type:types.INCREMENT,
-        payload:data
+        type: types.INCREMENT,
+        payload: data
+    })
+}
+
+//........decrement........//
+export const Decrement = (data) => {
+    console.log(data, "decrement")
+    dispatch({
+        type: types.DECREMENT,
+        payload: data
     })
 }
