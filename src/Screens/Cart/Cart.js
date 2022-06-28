@@ -1,97 +1,185 @@
 //import liraries
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Alert, ImageBackground } from 'react-native';
-
-import ButtonComp from '../../Components/Button';
-import Header from '../../Components/Header';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import Wrappercontainer from '../../Components/wrappercontainer';
-import imagePath from '../../constants/imagePath';
+import Header from '../../Components/Header';
+import firestore from '@react-native-firebase/firestore';
+import { firebase } from '@react-native-firebase/auth';
+import { moderateScale } from 'react-native-size-matters';
 import colors from '../../styles/colors';
-import actions from "../../redux/actions"
-import { styles } from './styles';
-import navigationStrings from '../../navigation/navigationStrings';
-import { useDispatch } from 'react-redux';
-import types from '../../redux/types';
+import { textScale, width } from '../../styles/responsiveSize';
 
 
+const Cart = () => {
 
-// create a component
-const Cart = ({ route, navigation }) => {
-    // const data = useSelector((state) => state)
-    // console.log(data, "data isssssssss>>>")
+    const [cart, setCart] = useState();
+    const [item, setItem] = useState();
+    const fetchData = async () => {
+        try {
+            const list = [];
+            await firestore().collection(`CartpgXBxIEkYgOWdbfjT6A5UdRhRS42`).get()
+                .then((res) => {
+                    // console.log(res, "res is")
+                    res.forEach(doc => {
+                        const { productId, Uid, productName } = doc.data();
+                        list.push({
+                            productId: productId,
+                            productName: productName,
+                            Uid: Uid
+                        })
+                        // console.log(list, "list is")
+                        setItem(list)
+                    })
+                })
+        } catch (error) {
+            console.log(error, "error occurred")
 
-    const item = route?.params?.data
-    // console.log(item, "data is")
-    const [itemCount, setItemCount] = useState(0);
-
-    const addToCart = (item) => {
-        console.log(item, "items are")
-        actions.addToCart(item)
-        navigation.navigate(navigationStrings.SEARCH_SCREEN)
+        }
     }
-const dispatch =useDispatch()
-    const increment = () => {
-   dispatch({
-    type:types.INCREMENT
-   })
-        //  setItemCount(actions.Increment(itemCount))
-    }
-    return (
-        <Wrappercontainer>
-            {item ?
-                <View style={{ flex: 1 }}>
 
-                    <View style={styles.headerstyle}>
-                        <Header isBackIcon={true}
+    // for (let x in item)
+    //     console.log(x, "items are")
+    const SubmitData = async () => {
+        try {
+            const productList = [];
 
-                        />
-                        <View style={styles.headertxt} >
-                            <Text style={styles.nametxt}>{item?.productName}</Text>
-                            <TouchableOpacity activeOpacity={0.5}
+            for (let index in item) {
+                let productid = item[index].productId;
+                //  console.log(productid)
 
-                            >
+                firestore().collection(`products`)
+                    .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
+                    .get().then((res) => {
+                        console.log(res.size, "res is")
+                        res.forEach(doc => {
+                            const { productCategory, productName, description, rating, price, productImage } = doc.data();
+                            productList.push({
+                                productCategory: productCategory,
+                                productName: productName,
+                                productImage: productImage,
+                                description: description,
+                                price: price,
+                                rating: rating,
 
-                                <ImageBackground style={styles.headericon} source={imagePath.cart}>
-                                    <Text style={{ fontSize: 15, color: "red" }}>Add{itemCount}</Text>
-                                </ImageBackground>
 
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-
-                    <ScrollView>
-                        <View style={styles.container}>
-                            <Image
-                                style={styles.imgstyle}
-
-                                source={{ uri: item?.productImage }} />
-                            <Text style={styles.txtstyle}>{item?.productCategory}</Text>
-                            <Text style={styles.namestyle}>{item?.productName}</Text>
-                            <Text style={styles.pricestyle}>price range: {item?.price} only</Text>
-                            <Text style={styles.descstyle}>{item?.description}</Text>
-                            <Text style={{
-                                backgroundColor: colors.redB,
-                                alignSelf: "center",
-                                marginTop: 10,
-                                color: colors.white, padding: 3, fontWeight: "700"
-                            }}> 35% discount</Text>
-                        </View>
-
-                    </ScrollView>
-                    <ButtonComp
-                    onPress={increment}
-                        // onPress={() => addToCart([item])}
-                        ButtonText='Add To Cart' />
-                </View>
-
-                :
-                <Text>empty cart</Text>
+                            })
+                            console.log(productList, "product list isss")
+                            setCart(productList)
+                        })
+                    })
             }
 
 
+        } catch (error) {
+            console.log(error, "error occurred")
+
+        }
+    }
+
+
+    useEffect(() => {
+        fetchData()
+        SubmitData()
+    }, [])
+
+    const renderItem = ({ item }) => {
+        // console.log(item, "item issss")
+        return (
+            <View style={{
+
+                padding: moderateScale(5),
+                borderWidth: 0.5,
+                margin: moderateScale(5),
+                height: moderateScale(140),
+                borderRadius: moderateScale(5),
+                flexDirection: 'row',
+            }}>
+
+
+
+                <Image
+                    style={{
+                        width: width / 2.3,
+                        height: width / 3,
+                    }}
+                    source={{ uri: item?.productImage }} />
+                <View style={{
+                    width: width / moderateScale(2.3),
+                    paddingLeft: moderateScale(10)
+                }}>
+
+                    <Text style={{
+                        // marginTop: 10,
+                        paddingLeft: 10,
+                        fontSize: textScale(14),
+                        fontWeight: "800"
+                    }}>{item?.productName}</Text>
+                    <Text style={{
+                        fontWeight: "600",
+                        fontSize: textScale(12),
+                        paddingLeft: 20,
+                        color: colors.blackOpacity70,
+
+                    }}>{item?.productCategory}</Text>
+                    <Text style={{ color: colors.redB, paddingLeft: 10 }}>{item?.price}</Text>
+                    <Text style={{
+                        fontWeight: "600",
+                        fontSize: textScale(12),
+                        paddingLeft: 10,
+                        color: colors.blackOpacity70,
+                    }}>{item?.description}</Text>
+
+
+                    <View style={{
+                        flexDirection: "row", alignSelf: "center",
+                        marginTop: 8
+                    }}>
+                        <Text style={{
+                            fontSize: textScale(20),
+                            backgroundColor: colors.blackOpacity40,
+                            color: colors.white,
+                            fontWeight: "bold",
+                            marginBottom: 8,
+                            paddingHorizontal: 5,
+                            alignSelf: "center"
+                        }}>-</Text>
+                        <Text style={{ fontSize: textScale(20) }}> {0} </Text>
+
+                        <Text style={{
+                            fontSize: textScale(20),
+                            backgroundColor: colors.blackOpacity40,
+                            color: colors.white,
+                            fontWeight: "bold",
+                            marginBottom: 8,
+                            paddingHorizontal: 5,
+                            alignSelf: "center",
+
+                        }}>+</Text>
+
+                    </View>
+                </View>
+            </View>
+        )
+    }
+    return (
+        <Wrappercontainer>
+
+            <Header
+                isBackIcon={true} />
+            <FlatList
+                renderItem={renderItem}
+                data={cart} />
 
 
         </Wrappercontainer>
-    )
-}
+
+    );
+};
+
+// define your styles
+const styles = StyleSheet.create({
+
+});
+
+//make this component available to the app
 export default Cart;

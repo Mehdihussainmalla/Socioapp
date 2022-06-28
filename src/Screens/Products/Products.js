@@ -108,11 +108,6 @@ const Products = ({ navigation }) => {
         const storageRef = storage().ref(`photos/${fileName}`);
         const storageImage = storageRef.putFile(uploadUri);
 
-        // task.on('state_changed', taskSnapshot => {
-        //     console.log(`${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`);
-
-        //     Math.round(setTransferred(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) * 100)
-        // });
 
         try {
 

@@ -18,6 +18,7 @@ export { default as Products } from "./Products/Products";
 export { default as Accessories } from "./Accessories/Accessories";
 export { default as categoryItems } from "./CategoryItems/categoryItems";
 export { default as Slider } from "./Slider/Slider";
-export {default as Offers } from "./Offers/Offers";
+export { default as Offers } from "./Offers/Offers";
+export { default as ProductScreen } from "./ProductScreen/ProductScreen";
 
 

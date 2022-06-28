@@ -91,7 +91,7 @@ const CardView = () => {
         // console.log(item, "items for flast list are")
         return (
             <TouchableOpacity
-                onPress={() => navigation.navigate(navigationStrings.CART, { data: item })}
+                onPress={() => navigation.navigate(navigationStrings.PRODUCT_SCREEN, { data: item })}
                 activeOpacity={0.7}
                 style={styles.container}>
                 <Image style={styles.imagestyle}
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         borderWidth: moderateScale(0.9),
         borderRadius: moderateScale(5),
         marginVertical: moderateScale(5),
-        marginRight: moderateScale(15),
+        marginRight: moderateScale(14),
         height: moderateScale(200),
         justifyContent: "center",
         marginTop: moderateScale(10),
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         width: width / moderateScale(3),
         height: moderateScale(110),
         marginHorizontal: moderateScale(10),
-        marginTop: moderateScale(10),
+        marginTop: moderateScale(11),
         alignSelf: "center"
 
     },

@@ -48,6 +48,7 @@ export const signIn = async (email, password) => {
 
     try {
         let user = await auth().signInWithEmailAndPassword(email, password);
+        console.log(user,"userrrrrrr")
         showMessage({
             message: "login sucessfully",
             type: "success"
