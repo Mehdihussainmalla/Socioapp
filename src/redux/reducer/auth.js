@@ -36,7 +36,13 @@ export const userStatus = (state = initialState, action) => {
         case types.DECREMENT:
             let dataa = action.payload
             // console.log(dataa,"decre")
-            return { ...state}
+            return { ...state }
+        //..........add to cart data............//
+
+        case types.ADD_TO_CART:
+            let res = action.payload
+            console.log(res, "res are")
+            return { ...state.userData, userData: res }
 
         default: return state
     }

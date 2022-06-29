@@ -34,5 +34,6 @@ export default {
     category: require("../assets/images/category.png"),
     cart: require("../assets/images/cart-icon.png"),
     admin_icon: require("../assets/images/admin.png"),
+    delete_icon: require("../assets/images/delete-icon.png")
 
 }
