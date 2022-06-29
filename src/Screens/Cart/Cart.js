@@ -17,6 +17,7 @@ const Cart = () => {
     const [cart, setCart] = useState();
     const [item, setItem] = useState();
     const [data, setData] = useState();
+    const [final, setFinal] = useState([]);
     const [count, setCount] = useState(0);
     const fetchData = async () => {
         try {
@@ -96,8 +97,8 @@ const Cart = () => {
                                 price: rate,
                                 productImage: accoryImage
                             })
-                            console.log(arr, "new array is ")
-                            setData(arr)
+                            // console.log(arr, "new array is ")
+                            setData([...arr, ...cart])  //.........merge two states
                         })
                     })
 
@@ -109,12 +110,13 @@ const Cart = () => {
         }
 
     }
-    const newArr= [...cart,...data];
-    console.log(newArr,"new arr is>>>")
+    // console.log(data, "data>>>")
+    //..................................................//
     useEffect(() => {
         fetchData()
         SubmitData()
         itemDetails()
+
     }, [])
     //..............counting............//
 
@@ -198,13 +200,14 @@ const Cart = () => {
         <Wrappercontainer>
             <View style={{ flexDirection: "row" }}>
                 <Header
-                    isBackIcon={true} />
+                    isBackIcon={true}
+                    title={"Cart"} />
                 <Text style={{ color: colors.redB, fontSize: 20 }}>{count}</Text>
             </View>
             <FlatList
-
+                 showsVerticalScrollIndicator={false}
                 renderItem={renderItem}
-                data={newArr}
+                data={data}
             />
 
 
