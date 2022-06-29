@@ -11,6 +11,7 @@ import firestore from '@react-native-firebase/firestore';
 import { useSelector } from 'react-redux';
 import navigationStrings from '../../navigation/navigationStrings';
 
+
 const ProductScreen = ({ navigation, route }) => {
     const item = route?.params?.data
     const productId = item.key;
@@ -29,14 +30,15 @@ const ProductScreen = ({ navigation, route }) => {
                 productName: productName
 
             })
-            actions.addToCart([item])
+            // actions.addToCart([item])
+            navigation.navigate(navigationStrings.CART)
         } catch (error) {
             console.log(error, "error occurred")
 
         }
 
     }
-    
+
     return (
         <Wrappercontainer>
             {item ?
@@ -71,7 +73,7 @@ const ProductScreen = ({ navigation, route }) => {
 
                     </ScrollView>
                     <ButtonComp
-                       onPress={addToCart}
+                        onPress={addToCart}
                         ButtonText='Add To Cart' />
                 </View>
 

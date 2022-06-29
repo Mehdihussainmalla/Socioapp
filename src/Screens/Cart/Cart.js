@@ -8,14 +8,15 @@ import { firebase } from '@react-native-firebase/auth';
 import { styles } from './styles';
 import { showMessage } from 'react-native-flash-message';
 import actions from '../../redux/actions';
-import ButtonComp from '../../Components/Button';
 import { textScale } from '../../styles/responsiveSize';
+import colors from '../../styles/colors';
 
 
 const Cart = () => {
 
     const [cart, setCart] = useState();
     const [item, setItem] = useState();
+    const [data, setData] = useState();
     const [count, setCount] = useState(0);
     const fetchData = async () => {
         try {
@@ -30,7 +31,7 @@ const Cart = () => {
                             productName: productName,
                             Uid: Uid
                         })
-                        // console.log(list, "list is")
+                        //  console.log(list, "list is")
                         setItem(list)
                     })
                 })
@@ -51,7 +52,7 @@ const Cart = () => {
                 firestore().collection(`products`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
-                        console.log(res.size, "res is")
+                        //  console.log(res.size, "res is")
                         res.forEach(doc => {
                             const { productCategory, productName, description, rating, price, productImage } = doc.data();
                             productList.push({
@@ -76,17 +77,49 @@ const Cart = () => {
 
         }
     }
+    //.................item details..............//
+    const itemDetails = async () => {
+        try {
+            const arr = [];
+            for (let index in item) {
+                let productid = item[index].productId;
+                console.log(productid, "product id isss")
+                firestore().collection(`accessories`)
+                    .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
+                    .get().then((res) => {
+                        console.log(res.size, "res is>>>>>")
+                        res.forEach(doc => {
+                            const { accessoryType, rate, accoryImage } = doc.data();
+                            arr.push({
+                                productName: accessoryType,
+                                // description: description,
+                                price: rate,
+                                productImage: accoryImage
+                            })
+                            console.log(arr, "new array is ")
+                            setData(arr)
+                        })
+                    })
 
 
+            }
+        } catch (error) {
+            console.log(error, "error occurred")
+
+        }
+
+    }
+    const newArr= [...cart,...data];
+    console.log(newArr,"new arr is>>>")
     useEffect(() => {
         fetchData()
         SubmitData()
+        itemDetails()
     }, [])
     //..............counting............//
 
     const Increment = () => {
         actions.Increment(count)
-        // alert("one item selected")
         setCount(count + 1);
         if (count === 5) {
             showMessage({
@@ -95,8 +128,6 @@ const Cart = () => {
             })
             return setCount(count)
         }
-
-
     }
 
     const Decrement = () => {
@@ -118,11 +149,13 @@ const Cart = () => {
 
     const renderItem = ({ item }) => {
         // console.log(item, "item issss")
+
         return (
 
             <View style={styles.container}>
                 <Image
                     style={styles.imgstyle}
+
                     source={{ uri: item?.productImage }} />
                 <View style={styles.textstyle}>
 
@@ -144,7 +177,7 @@ const Cart = () => {
                     </View>
                     <TouchableOpacity
                         activeOpacity={0.7}
-                        onPress={ buyItem}
+                        onPress={buyItem}
                         style={{ backgroundColor: "red" }}>
                         <Text
 
@@ -163,14 +196,15 @@ const Cart = () => {
     }
     return (
         <Wrappercontainer>
-
-            <Header
-                isBackIcon={true} />
-
+            <View style={{ flexDirection: "row" }}>
+                <Header
+                    isBackIcon={true} />
+                <Text style={{ color: colors.redB, fontSize: 20 }}>{count}</Text>
+            </View>
             <FlatList
 
                 renderItem={renderItem}
-                data={cart}
+                data={newArr}
             />
 
 

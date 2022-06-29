@@ -8,57 +8,80 @@ import ButtonComp from '../../Components/Button';
 import { styles } from './styles';
 import actions from '../../redux/actions';
 import navigationStrings from '../../navigation/navigationStrings';
+import { useSelector } from 'react-redux';
 const CategoryItems = ({ route, navigation }) => {
+
+    const userData = useSelector((state) => state?.userStatus?.userData?.user);
+    const Uid = userData?.uid
+    // console.log(Uid,"userdata isss")
+
     const { data } = route?.params;
+    const productId = data?.key
+    const productName = data?.accessoryType;
+    // console.log(productName)
+    // console.log(id,"idddd")
+    // console.log(data,"data is")
 
     const category = data.accessoryType;
     console.log(category, "category is")
     const [products, setproducts] = useState(null);
     const [loading, setloading] = useState(true);
 
+    const fetchData = async () => {
+        try {
+            const list = [];
+            await firestore().collection("itemdetails")
+                .where("accessoryType", "==", category)
+                .get().then((res) => {
+                    // console.log(res.size, "res >>>>>>>")
+                    res.forEach(doc => {
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const list = [];
-                await firestore().collection("itemdetails")
-                    .where("accessoryType", "==", category)
-                    .get().then((res) => {
-                        console.log(res.size, "res >>>>>>>")
-                        res.forEach(doc => {
-
-                            const { accoryImage, accessoryType, rate, description } = doc.data();
-                            list.push({
-                                key: doc.id,
-                                accoryImage,
-                                accessoryType,
-                                rate,
-                                description
-                            })
-                            setproducts(list);
-                            if (loading) {
-                                setloading(false)
-                            }
-                            console.log(list, "list is")
-
+                        const { accoryImage, rate, description,accessoryType } = doc.data();
+                        list.push({
+                            key: doc.id,
+                            accoryImage,
+                            accessoryType,
+                            rate,
+                            description
                         })
+                        setproducts(list);
+                        if (loading) {
+                            setloading(false)
+                        }
+                        // console.log(list, "list is")
 
                     })
-            } catch (error) {
-                console.log(error, "error occurred")
 
-            }
+                })
+        } catch (error) {
+            console.log(error, "error occurred")
+
         }
+    }
+    //..............add data to cart........//
+
+    const firebaseCart = async () => {
+        try {
+            await firestore().collection(`Cart${Uid}`).add({
+                productName: productName,
+                Uid: Uid,
+                productId: productId,
+            })
+            navigation.navigate(navigationStrings.CART)
+        } catch (error) {
+            console.log(error, "error occurred")
+
+        }
+
+    }
+
+    useEffect(() => {
         fetchData();
 
     }, [])
 
-    const addToCart = (item) => {
-        actions.addToCart(item)
-        navigation.navigate(navigationStrings.SEARCH_SCREEN)
-    }
 
-    const renderItem = ({ item, index }) => {
+    const renderItem = ({ item }) => {
         // console.log(item, "items are>>>>>")
         return (
             <View style={styles.container}>
@@ -79,7 +102,7 @@ const CategoryItems = ({ route, navigation }) => {
                     <Text style={styles.desc}>
                         {item?.description}</Text>
                     <ButtonComp
-                        onPress={() => addToCart(item)}
+                        onPress={firebaseCart}
                         btnStyle={styles.buttonstyle}
                         ButtonText='Add to Cart' />
                 </View>
