@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image } from 'react-native';
 import Wrappercontainer from '../../Components/wrappercontainer';
-import firestore from '@react-native-firebase/firestore';
+import firestore, { firebase } from '@react-native-firebase/firestore';
 import Header from '../../Components/Header';
 import ButtonComp from '../../Components/Button';
 import { styles } from './styles';
@@ -36,7 +36,7 @@ const CategoryItems = ({ route, navigation }) => {
                     // console.log(res.size, "res >>>>>>>")
                     res.forEach(doc => {
 
-                        const { accoryImage, rate, description,accessoryType } = doc.data();
+                        const { accoryImage, rate, description, accessoryType } = doc.data();
                         list.push({
                             key: doc.id,
                             accoryImage,
@@ -80,9 +80,25 @@ const CategoryItems = ({ route, navigation }) => {
 
     }, [])
 
+  //  ............update item.............//
+
+    // const updateItem = async (id) => {
+    //     // console.log(id, "id iss")
+
+    //     try {
+    //         await firebase.firestore().collection(`itemdetails`).doc(`${id}`)
+    //             .update({
+    //                 rate: "$1499 - $5099"
+    //             })
+    //     } catch (error) {
+    //         console.log(error, "error occurred")
+
+    //     }
+    // }
+
 
     const renderItem = ({ item }) => {
-        // console.log(item, "items are>>>>>")
+        const Id = item.key;
         return (
             <View style={styles.container}>
 
@@ -102,7 +118,8 @@ const CategoryItems = ({ route, navigation }) => {
                     <Text style={styles.desc}>
                         {item?.description}</Text>
                     <ButtonComp
-                        onPress={firebaseCart}
+                         //onPress={() => updateItem(Id)}
+                         onPress={firebaseCart}
                         btnStyle={styles.buttonstyle}
                         ButtonText='Add to Cart' />
                 </View>
@@ -118,6 +135,7 @@ const CategoryItems = ({ route, navigation }) => {
                 onPress={() => navigation.goBack()}
                 title={category}
                 textstyle={{ fontWeight: "bold" }} />
+            
             {!!products ? <View>
                 <Text style={styles.headingstyle}>
                     All kinds of {category} are availabe</Text>

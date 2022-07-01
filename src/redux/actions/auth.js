@@ -88,7 +88,7 @@ export const addToCart = (data) => {
         type: types.ADD_TO_CART,
         payload: data
     })
-    console.log(data, "data to add items ")
+//   console.log(data, "data to add items ")
 }
 
 //............increment........//
@@ -108,3 +108,13 @@ export const Decrement = (data) => {
         payload: data
     })
 }
+
+//...........delete item.........//
+// export const deleteItem=(id)=>{
+//     console.log(id,"id is>>>>>")
+//     dispatch({
+//         type:types.DELETE_ITEM,
+//         payload:id
+//     })
+
+// }

@@ -17,7 +17,7 @@ const App = () => {
 
     getLanguage();
     getLogin().then((res) => {
-      console.log(res, "res is>>>>>")
+      // console.log(res, "res is>>>>>")
       actions.loginData(res);
     })
     // console.log(res)
@@ -31,7 +31,7 @@ const App = () => {
   const getLanguage = async () => {
     try {
        const lng = await AsyncStorage.getItem('language')
-       console.log("Language changed", lng)
+      //  console.log("Language changed", lng)
        changeLanguage(lng)
       if (!!lng) {
         changeLanguage(lng)

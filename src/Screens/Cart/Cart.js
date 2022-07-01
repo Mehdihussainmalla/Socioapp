@@ -12,6 +12,7 @@ import { textScale } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import imagePath from '../../constants/imagePath';
 import { useSelector } from 'react-redux';
+import { log } from 'react-native-reanimated';
 
 
 const Cart = () => {
@@ -21,7 +22,6 @@ const Cart = () => {
     const [cart, setCart] = useState();
     const [item, setItem] = useState();
     const [data, setData] = useState();
-    const [final, setFinal] = useState([]);
     const [count, setCount] = useState(0);
     const fetchData = async () => {
         try {
@@ -96,7 +96,7 @@ const Cart = () => {
                 firestore().collection(`accessories`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
-                        console.log(res.size, "res is>>>>>")
+                        // console.log(res.size, "res is>>>>>")
                         res.forEach(doc => {
                             const { accessoryType, rate, accoryImage } = doc.data();
                             arr.push({
@@ -108,7 +108,7 @@ const Cart = () => {
                             })
                             //  console.log(arr, "new array is ")
                             setData([...arr, ...cart]);  //.........merge two states
-
+                            // actions.addToCart(cart)
                         })
                     })
 
@@ -120,13 +120,14 @@ const Cart = () => {
         }
 
     }
-    // console.log(data, "data>>>")
+    //  console.log(data, "data>>>")
+
     //..................................................//
     useEffect(() => {
         fetchData()
         SubmitData()
         itemDetails()
-        addCart()
+
 
 
     }, [])
@@ -157,28 +158,52 @@ const Cart = () => {
         }
     }
     //........sent data into the redux.........//
-    const addCart = () => {
-        // actions.addToCart(data)
-    }
-
-
-
-
     //............delete item.............//
-    const deleteItem = (data) => {
-   const userDeletion= firestore()
-        .collection(`Cart${Uid}`).doc().delete(`productName`).then((res)=>{
-            console.log(res,"resssss>>>>>")
-        });
-        console.log(userDeletion,"user deletion is")
+    const deleteItem = async (id) => {
+        // console.log(productId, "productid is")
+        await firestore().collection(`Cart${Uid}`)
+            .where(`productId`, "==", `${id}`).get()
+            .then((res) => {
+                // console.log(res.size, "res iss")
+                res.forEach((doc) => {
+                    console.log(doc, "doc iss")
+                    const { productId, productName } = doc.data();
+                    // console.log(productId, "product id issss")
+                    deleteData(productId)
+                })
+            })
     }
+    const deleteData = async (productId) => {
+        try {
+            await firebase.firestore().collection(`Cart${Uid}`).doc(`${productId}`).delete()
+                .then(() => {
+                    console.log("res iss")
+                })
 
-    // const buyItem = () => {
-    //     alert("in process for payment")
+        } catch (error) {
+            console.log(error, "error occurred")
+        }
+    }
+    // console.log(data,"data")
+    //.............update ................//
+    // const updateItem = async (id) => {
+    //     // console.log(id, "id iss")
+
+    //     try {
+    //         await firebase.firestore().collection(`CartpgXBxIEkYgOWdbfjT6A5UdR`).doc(`${id}`)
+    //             .update({
+    //                 price: "$398 - $598"
+    //             })
+    //     } catch (error) {
+    //         console.log(error, "error occurred")
+
+    //     }
     // }
 
+
     const renderItem = ({ item }) => {
-        // console.log(item, "item issss")
+        const Id = item.id;
+        //  console.log(productId, "item issss")
         return (
 
             <View style={styles.container}>
@@ -191,7 +216,7 @@ const Cart = () => {
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <Text style={styles.productnamestyle}>{item?.productName}</Text>
                         <TouchableOpacity
-                            onPress={deleteItem}
+                            onPress={() => deleteItem(Id)}
                             activeOpacity={0.7}
                             style={{
                                 //  marginLeft: 50,
@@ -220,7 +245,7 @@ const Cart = () => {
                     </View>
                     <TouchableOpacity
                         activeOpacity={0.7}
-                        // onPress={buyItem}
+                        // onPress={()=>updateItem(Id)}
                         style={{ backgroundColor: "red" }}>
                         <Text
 

@@ -7,7 +7,7 @@ import Wrappercontainer from '../../Components/wrappercontainer';
 import actions from '../../redux/actions';
 import colors from '../../styles/colors';
 import { styles } from './styles';
-import firestore from '@react-native-firebase/firestore';
+import firestore, { firebase } from '@react-native-firebase/firestore';
 import { useSelector } from 'react-redux';
 import navigationStrings from '../../navigation/navigationStrings';
 
@@ -17,6 +17,7 @@ const ProductScreen = ({ navigation, route }) => {
     const productId = item.key;
     // console.log(item, "itemmmmm")
     const productName = item?.productName
+    const price = item.price;
     const userData = useSelector((state) => state?.userStatus)
     const Uid = userData?.userData?.user?.uid; //.....user login id through useSelector
     //  console.log(Uid,"userdata is >>>>>>")
@@ -30,7 +31,7 @@ const ProductScreen = ({ navigation, route }) => {
                 productName: productName
 
             })
-            // actions.addToCart([item])
+             actions.addToCart([item])
             navigation.navigate(navigationStrings.CART)
         } catch (error) {
             console.log(error, "error occurred")
@@ -38,6 +39,20 @@ const ProductScreen = ({ navigation, route }) => {
         }
 
     }
+    //..........update ............//
+    // const updateItem = async (id) => {
+    //     console.log(id, "id iss")
+
+    //     try {
+    //         await firebase.firestore().collection(`products`).doc(`${id}`)
+    //             .update({
+    //                 price: "$1499 - $5099"
+    //             })
+    //     } catch (error) {
+    //         console.log(error, "error occurred")
+
+    //     }
+    // }
 
     return (
         <Wrappercontainer>
@@ -73,6 +88,7 @@ const ProductScreen = ({ navigation, route }) => {
 
                     </ScrollView>
                     <ButtonComp
+                        // onPress={()=>updateItem(productId)}
                         onPress={addToCart}
                         ButtonText='Add To Cart' />
                 </View>

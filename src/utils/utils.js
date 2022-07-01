@@ -194,12 +194,14 @@ export async function clearLoginUser() {
 //.......................//
 export async function setLogin(data) {
     data = JSON.stringify(data);
+    // console.log(data,"data >>>>>>>>")
     return AsyncStorage.setItem('userData', data);
 }
 
 export async function getLogin() {
     try {
         const userData = await AsyncStorage.getItem('userData')
+        // console.log(userData,"userdata isss")
         return userData != null ? JSON.parse(userData) : null;
     } catch (e) {
         console.log("user_data get error")
@@ -208,7 +210,8 @@ export async function getLogin() {
 //...............remove data..............//
 export const removeData = async () => {
     try {
-        await AsyncStorage.removeItem('userData')
+    const data=    await AsyncStorage.removeItem('userData')
+    // console.log(data,"data issssss")
 
 
     } catch (error) {

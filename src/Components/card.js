@@ -56,35 +56,7 @@ const CardView = () => {
 
     }, [])
 
-    // const deletePost = (postId) => {
-    //     // console.log("post is", postId)
 
-    //     firestore().collection("products").doc(postId).get().then((res) => {
-
-    //         if (res.exists) {
-    //             const { productImage } = res.data();
-    //             if (productImage != null) {
-    //                 const storageRef = storage().refFromURL(productImage);
-    //                 const imageRef = storage().ref(storageRef.fullPath);
-    //                 imageRef.delete().then(() => {
-    //                     console.log(`${productImage} has been deleted sucessfully`)
-    //                     deleteFirestoreData(productImage);
-    //                 }).catch((error) => {
-    //                     console.log(error, "error occurred during post deletion")
-    //                 })
-
-    //             }
-    //         }
-    //     })
-    // }
-    // const deleteFirestoreData = (postId) => {
-    //     firestore().collection("products").doc(postId).delete().then(() => {
-    //         alert("post deleted sucessfully")
-    //     }).catch((error) => {
-    //         console.log(error, "error occurred")
-    //     })
-
-    // }
 
 
     const renderItem = ({ item }) => {
