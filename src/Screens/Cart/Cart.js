@@ -124,8 +124,9 @@ const Cart = () => {
 
     //..................................................//
     useEffect(() => {
-        fetchData()
         SubmitData()
+        fetchData()
+        
         itemDetails()
 
 
@@ -268,7 +269,7 @@ const Cart = () => {
                 <Header
                     isBackIcon={true}
                     title={"Cart"} />
-                <Text style={{ color: colors.redB, fontSize: 20 }}>{count}</Text>
+                
             </View>
             <FlatList
                 showsVerticalScrollIndicator={false}

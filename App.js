@@ -17,7 +17,7 @@ const App = () => {
 
     getLanguage();
     getLogin().then((res) => {
-      // console.log(res, "res is>>>>>")
+       console.log(res, "res is>>>>>")
       actions.loginData(res);
     })
     // console.log(res)

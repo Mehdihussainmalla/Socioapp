@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
     DrawerContentScrollView,
 } from '@react-navigation/drawer';
@@ -8,19 +8,19 @@ import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import { height, moderateScaleVertical, textScale, width } from '../styles/responsiveSize';
 import { moderateScale, moderateVerticalScale } from 'react-native-size-matters';
-import { showMessage } from 'react-native-flash-message';
 import strings from '../constants/lang';
 import actions from '../redux/actions';
 import { useSelector } from 'react-redux';
 
 function CustomDrawer(props) {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
-    console.log(userData, "userdata from drawer");
+    // console.log(userData, "userdata from drawer");
     const email = userData?.email;
     const displayName = userData?.displayName;
     const photo = userData?.photoURL;
     const Uid = userData?.uid;
     const { navigation } = props;
+
 
     const handleLogout = () => {
         actions.Logout();
@@ -30,6 +30,8 @@ function CustomDrawer(props) {
         navigation.navigate(navigationStrings.HOME)
 
     }
+
+
     return (
         <DrawerContentScrollView style={styles.drawercontext} {...props}>
 
@@ -39,8 +41,8 @@ function CustomDrawer(props) {
                     onPress={() => navigation.closeDrawer()}
                     style={styles.imageview}>
                     <Image source={imagePath.close_icon}
-                        style={styles.imagestyle} />
-
+                        style={styles.imagestyle}
+                    />
                 </TouchableOpacity>
 
                 <View style={styles.imgview}>
@@ -85,7 +87,7 @@ function CustomDrawer(props) {
                 <Text style={styles.admintxt}
                 >{strings.ADMIN}</Text>
             </TouchableOpacity>
-
+            {/* //..........settings....................... */}
             <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SETTINGS)}
                 activeOpacity={0.5}
                 style={styles.settingstyle}>
@@ -138,7 +140,8 @@ const styles = StyleSheet.create({
     {
         backgroundColor: colors.blackOpacity10,
         paddingVertical: moderateScaleVertical(8),
-        paddingHorizontal: moderateScaleVertical(8)
+        paddingHorizontal: moderateScaleVertical(8),
+
     },
     imgview: {
         justifyContent: "center",
@@ -183,6 +186,7 @@ const styles = StyleSheet.create({
         fontSize: textScale(12),
         // color: colors.white,
         fontWeight: "500",
+        color:colors.redB
     },
     homestyle:
     {
@@ -193,13 +197,15 @@ const styles = StyleSheet.create({
     homeicon:
     {
         // tintColor: colors.grayOpacity51,
-        marginTop: moderateScaleVertical(5)
+        marginTop: moderateScaleVertical(5),
+        // tintColor:"red"
     },
     hometxt: {
         // color: colors.white,
         fontSize: textScale(15), fontWeight: "500",
         paddingLeft: moderateVerticalScale(10),
-        paddingTop: moderateScale(5)
+        paddingTop: moderateScale(5),
+
     },
     searchstyle:
     {
@@ -250,7 +256,8 @@ const styles = StyleSheet.create({
         // tintColor: "grey",
         marginTop: moderateScaleVertical(8),
         width: width / moderateScale(16),
-        height: height / moderateScale(35)
+        height: height / moderateScale(35),
+
     },
     settingtxt:
     {

@@ -143,7 +143,7 @@ const CategoryItems = ({ route, navigation }) => {
                     renderItem={renderItem}
                     data={products} />
             </View> :
-                <View >
+                <View style={{flex : 1}}>
                     <View style={styles.nostockstyle}>
                         <Text style={styles.txt}>No {category} available</Text>
                     </View>
