@@ -14,11 +14,13 @@ import { styles } from './style'
 
 const Profile = () => {
   // const { user, logout } = useContext(AuthContext);
-  const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
-  // console.log(userData, "userData from profile")
+  const userData = useSelector((state) => state?.userStatus?.userData?.user);
+  //  console.log(userData, "userData from profile")
   const email = userData?.email;
   const image = userData?.PhotoURL;
   const displayName = userData?.displayName;
+  const Uid = userData?.uid;
+
   const handleLogout = () => {
     actions.Logout();
   }
@@ -51,10 +53,13 @@ const Profile = () => {
                   <Text style={styles.name}>
                     Muntazir Mehdi
                   </Text>}
-                <Text style={styles.email}>
-                  {email}
-                </Text>
-                <Text style={styles.member}>SILVER MEMBER</Text>
+                {email ? <Text style={styles.email}>{email}</Text>
+                  :
+                  <Text>forexample@gmail.com</Text>}
+                {Uid ? <Text style={styles.member}>id:{Uid}</Text>
+                  :
+                  <Text style={styles.member}>SILVER MEMBER</Text>
+                }
               </View>
             </View>
 

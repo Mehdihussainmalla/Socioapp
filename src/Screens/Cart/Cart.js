@@ -184,7 +184,7 @@ const Cart = () => {
             console.log(error, "error occurred")
         }
     }
-    // console.log(data,"data")
+
     //.............update ................//
     // const updateItem = async (id) => {
     //     // console.log(id, "id iss")

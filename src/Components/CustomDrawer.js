@@ -14,14 +14,12 @@ import actions from '../redux/actions';
 import { useSelector } from 'react-redux';
 
 function CustomDrawer(props) {
-    // const { user, logout } = useContext(AuthContext);
-    // console.log("user is ", user?._user?.email)
-
-    const userData = useSelector((state) => state?.userStatus?.userData?.user?._auth?._user?._user);
-    // console.log(userData, "userdata from drawer");
+    const userData = useSelector((state) => state?.userStatus?.userData?.user);
+    console.log(userData, "userdata from drawer");
     const email = userData?.email;
     const displayName = userData?.displayName;
     const photo = userData?.photoURL;
+    const Uid = userData?.uid;
     const { navigation } = props;
 
     const handleLogout = () => {
@@ -56,7 +54,7 @@ function CustomDrawer(props) {
                 <View style={styles.displayview}>
                     {!!displayName ? <Text style={styles.displaytxt}>
                         {displayName}</Text> : <Text style={styles.nametxt}>Muntazir Mehdi</Text>}
-                    <Text style={styles.emailtxt}>{email}</Text>
+                    {email ? <Text style={styles.emailtxt}>{email}</Text> : <Text>forexample@gmail.com</Text>}
                 </View>
             </View>
 
@@ -134,7 +132,7 @@ const styles = StyleSheet.create({
         alignItems: "flex-end",
         paddingVertical: moderateScaleVertical(10),
         paddingRight: moderateScaleVertical(10),
-        
+
     },
     imagestyle:
     {
