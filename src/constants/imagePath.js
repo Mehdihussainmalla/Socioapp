@@ -41,6 +41,7 @@ export default {
     car: require("../assets/images/car.png"),
     swap: require("../assets/images/swap.png"),
     dollar: require("../assets/images/dollar.png"),
+    UPI: require("../assets/images/upi.png"),
     
 
 }
