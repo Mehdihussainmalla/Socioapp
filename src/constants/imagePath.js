@@ -36,6 +36,11 @@ export default {
     admin_icon: require("../assets/images/admin.png"),
     delete_icon: require("../assets/images/delete-icon.png"),
     remove_icon: require("../assets/images/deleteicon.png"),
-    save_for_later: require("../assets/images/save-for-later.png")
+    save_for_later: require("../assets/images/save-for-later.png"),
+    arrow: require("../assets/images/forwardarrow.png"),
+    car: require("../assets/images/car.png"),
+    swap: require("../assets/images/swap.png"),
+    dollar: require("../assets/images/dollar.png"),
+    
 
 }

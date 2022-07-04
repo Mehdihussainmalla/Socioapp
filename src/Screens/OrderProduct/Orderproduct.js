@@ -5,13 +5,14 @@ import Dropdown from '../../Components/Dropdown';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
+import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { textScale, width } from '../../styles/responsiveSize';
 
 const numbering = [{ id: 1, num: 1 }, { id: 2, num: 2 }, { id: 3, num: 3 }, { id: 4, num: 4 },]
 
 
-const OrderProduct = ({ route }) => {
+const OrderProduct = ({ route,navigation }) => {
     const data = route?.params?.item;
     const productName = data.productName;
     const productImage = data?.productImage;
@@ -138,14 +139,17 @@ const OrderProduct = ({ route }) => {
                             <Text style={{ alignSelf: "center", color: colors.blackB, fontWeight: "600" }}>{`$4000 \nview price details`}</Text>
                         </View>
 
-                        <View style={{
+                        <TouchableOpacity
+                        onPress={()=>navigation.navigate(navigationStrings.ORDER_SUMMARY)}
+                        activeOpacity={0.8}
+                         style={{
                             flex: 0.5,
                             justifyContent: 'center',
                             borderWidth: 0.5,
                             backgroundColor: colors.redB
                         }}>
                             <Text style={{ alignSelf: "center", color: colors.white, fontWeight: "600", fontSize: textScale(16) }}>Continue</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>

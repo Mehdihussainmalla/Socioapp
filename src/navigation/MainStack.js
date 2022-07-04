@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accessories, Admin, categoryItems, Offers, OrderProduct, Products, ProductScreen, SearchScreen, Settings, Slider } from '../Screens';
+import { Accessories, Admin, categoryItems, Offers, OrderProduct, OrderSummary, Products, ProductScreen, SearchScreen, Settings, Slider } from '../Screens';
 
 import DrawerStack from './DrawerStack';
 import navigationStrings from './navigationStrings';
@@ -47,6 +47,9 @@ const MainStack = (Stack) => {
             <Stack.Screen name={navigationStrings.ORDER_PRODUCT}
                options={{ headerShown: false }}
                component={OrderProduct} />
+               <Stack.Screen name={navigationStrings.ORDER_SUMMARY}
+               options={{ headerShown: false }}
+               component={OrderSummary} />
 
          </Stack.Navigator>
       </>
