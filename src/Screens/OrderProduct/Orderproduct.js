@@ -1,13 +1,16 @@
 //import liraries
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import Dropdown from '../../Components/Dropdown';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
 import colors from '../../styles/colors';
 import { textScale, width } from '../../styles/responsiveSize';
 
-// create a component
+const numbering = [{ id: 1, num: 1 }, { id: 2, num: 2 }, { id: 3, num: 3 }, { id: 4, num: 4 },]
+
+
 const OrderProduct = ({ route }) => {
     const data = route?.params?.item;
     const productName = data.productName;
@@ -17,6 +20,12 @@ const OrderProduct = ({ route }) => {
     const price = data?.price;
     const rating = data?.rating;
     // console.log(data, "hfshdfj")
+
+    const [selectedItem, setSelectedItem] = useState(null)
+
+    const onSelect = (item) => {
+        setSelectedItem(item)
+    }
 
 
     return (
@@ -42,18 +51,19 @@ const OrderProduct = ({ route }) => {
                         </View>
                     </View>
                     <View style={{
-                        marginTop: 10, borderWidth: 0.9,
+                        marginTop: 10,
+                        borderWidth: 0.4,
                         width: "20%", flexDirection: "row",
                         alignSelf: "flex-start"
                     }}>
-                        <Text style={{ paddingTop: 10, paddingLeft: 2 }}>Qty: 1</Text>
-                        <TouchableOpacity
-                            activeOpacity={0.5}>
-                            <Image
-                                source={imagePath.drop_down_icon} />
-                        </TouchableOpacity>
+                        <Text style={{ paddingTop: 10, paddingLeft: 2 }}>Qty: </Text>
+                        <Dropdown
+                            value={selectedItem}
+                            data={numbering}
+                            onSelect={onSelect}
+                        />
                     </View>
-                    <View style={{ marginVertical: 2 }}>
+                    <View style={{ marginTop: 5 }}>
                         <Text style={{ color: colors.blackOpacity66 }}>Delivery by Tue Jul 16</Text>
                     </View>
                     <View style={{
@@ -109,6 +119,13 @@ const OrderProduct = ({ route }) => {
                         </View>
                     </View>
 
+
+                    {/* <Dropdown
+                        value={selectedItem}
+                        data={numbering}
+                        onSelect={onSelect}
+                    /> */}
+
                     <View style={{
                         marginTop: 155, height: "12%",
                         borderRadius: 10, flexDirection: "row"
@@ -120,6 +137,7 @@ const OrderProduct = ({ route }) => {
                         }}>
                             <Text style={{ alignSelf: "center", color: colors.blackB, fontWeight: "600" }}>{`$4000 \nview price details`}</Text>
                         </View>
+
                         <View style={{
                             flex: 0.5,
                             justifyContent: 'center',
