@@ -13,9 +13,10 @@ import colors from '../../styles/colors';
 import imagePath from '../../constants/imagePath';
 import { useSelector } from 'react-redux';
 import { log } from 'react-native-reanimated';
+import navigationStrings from '../../navigation/navigationStrings';
 
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
     //  console.log(Uid,"userdata isss")
@@ -126,7 +127,6 @@ const Cart = () => {
     useEffect(() => {
         SubmitData()
         fetchData()
-        
         itemDetails()
 
 
@@ -246,7 +246,7 @@ const Cart = () => {
                     </View>
                     <TouchableOpacity
                         activeOpacity={0.7}
-                        // onPress={()=>updateItem(Id)}
+                        onPress={() => navigation.navigate(navigationStrings.ORDER_PRODUCT,{item:item})}
                         style={{ backgroundColor: "red" }}>
                         <Text
 
@@ -269,7 +269,7 @@ const Cart = () => {
                 <Header
                     isBackIcon={true}
                     title={"Cart"} />
-                
+
             </View>
             <FlatList
                 showsVerticalScrollIndicator={false}

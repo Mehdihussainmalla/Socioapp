@@ -18,5 +18,7 @@ export default {
     CATEGORY_ITEMS: "category items",
     ITEM_DETAILS: " item details",
     OFFERS: 'offers',
-    PRODUCT_SCREEN: "Product screen"
+    PRODUCT_SCREEN: "Product screen",
+    ORDER_PRODUCT: "Order product",
+    
 }

@@ -12,7 +12,7 @@ export default {
     back_arrow: require("../assets/images/back-arrow.png"),
     logout_icon: require("../assets/images/logout.png"),
     setting_icon: require("../assets/images/settings.png"),
-    drop_down_icon: require("../assets/images/ic_down.png"),
+    drop_down_icon: require("../assets/images/dropdown.png"),
     language_icon: require("../assets/images/language-icon.png"),
     langs_icon: require("../assets/images/langs-icon.png"),
     bgc_icon: require("../assets/images/bgc-icon.png"),
@@ -34,6 +34,8 @@ export default {
     category: require("../assets/images/category.png"),
     cart: require("../assets/images/cart-icon.png"),
     admin_icon: require("../assets/images/admin.png"),
-    delete_icon: require("../assets/images/delete-icon.png")
+    delete_icon: require("../assets/images/delete-icon.png"),
+    remove_icon: require("../assets/images/deleteicon.png"),
+    save_for_later: require("../assets/images/save-for-later.png")
 
 }
