@@ -19,7 +19,12 @@ const OrderProduct = ({ route, navigation }) => {
     const category = data?.productCategory;
     const price = data?.price;
     const rating = data?.rating;
-    // console.log(data, "hfshdfj")
+    const details = data?.Details;
+    const totalPrice = data?.totalprice;
+    const deliveryCharges = data?.deliveryCharges;
+    const discount = data?.discount;
+
+    // console.log(discount, "hfshdfj")
 
     const [selectedItem, setSelectedItem] = useState(null)
 
@@ -44,8 +49,8 @@ const OrderProduct = ({ route, navigation }) => {
                             <View style={styles.pricestyle}>
                                 <Text style={styles.amountrange}>{price}<Text style={styles.pricetxt}>  23% off</Text></Text>
                             </View>
-
-                            <View style={styles.ratestyle}>
+                            <Text style={{ paddingLeft: 5, }}>{category}</Text>
+                            <View style={styles.ratingstyle}>
                                 <Text style={styles.ratingtxt}>{rating}</Text>
                             </View>
                         </View>
@@ -82,7 +87,7 @@ const OrderProduct = ({ route, navigation }) => {
                         <Text style={styles.detailstyle}>Product details</Text>
                         <Text style={styles.indetailstyle}>Details</Text>
                         <View>
-                            <Text>{`Travel with a laptop and set up your workstation anywhere without hassle. Reply to emails, join a video  call, or complete tasks in a jiffy, by keeping this portable device handy `}</Text>
+                            <Text>{`${details}`}</Text>
                         </View>
                     </View>
 
@@ -90,29 +95,29 @@ const OrderProduct = ({ route, navigation }) => {
                         <Text style={styles.pricedetailtxt}>Price Details</Text>
                         <View style={styles.itemstyle}>
                             <Text>Price (2 items)</Text>
-                            <Text> $4,500</Text>
+                            <Text> $600</Text>
                         </View>
                         <View style={styles.itemstyle}>
                             <Text>Discount</Text>
-                            <Text style={{ color: colors.green }}>- $500</Text>
+                            <Text style={{ color: colors.green }}>- {discount}</Text>
                         </View>
                         <View style={styles.itemstyle}>
                             <Text>Delivery Charges</Text>
-                            <Text style={styles.freestyle}>Free</Text>
+                            <Text style={styles.freestyle}>{deliveryCharges}</Text>
                         </View>
                         <View style={styles.chargeconatiner}></View>
-                        <View style={styles.totalamountstyle}>
+                        <View style={styles.totalamount}>
                             <Text style={styles.totalcharge}>Total Charges</Text>
-                            <Text style={styles.amounttxt}>$4000</Text>
+                            <Text style={styles.amounttxt}>{totalPrice}</Text>
                         </View>
                         <View style={styles.messagestyle}>
-                            <Text style={styles.messagetxt}>you will save $500 on this order</Text>
+                            <Text style={styles.messagetxt}>you will save {discount} on this order</Text>
                         </View>
                     </View>
 
                     <View style={styles.buttoncontainer}>
                         <View style={styles.ratebutton}>
-                            <Text style={styles.ratebtn}>{`$4000`}</Text>
+                            <Text style={styles.ratebtn}>{totalPrice}</Text>
                             <Text style={styles.pricedesc}>view price details</Text>
                         </View>
 

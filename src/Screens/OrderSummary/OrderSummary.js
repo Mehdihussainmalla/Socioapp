@@ -90,7 +90,7 @@ const OrderSummary = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    {/* <Text style={{ fontWeight: "600" }}>{!!Name ? Name : null}</Text> */}
+
                     <Text style={{ fontWeight: "600" }}>{email}</Text>
                 </View>
                 <View style={{ marginTop: 8 }}>

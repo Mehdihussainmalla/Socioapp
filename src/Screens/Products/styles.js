@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     imageview: {
-        marginTop: moderateScale(10),
-        flex: 0.1,
+        marginTop: moderateScale(2),
+        // flex: 0.1,
         justifyContent: "center",
         alignSelf: "center",
         alignItems: "baseline",
@@ -33,7 +33,8 @@ export const styles = StyleSheet.create({
     },
     imgstyle:
     {
-        height: "20%", width: "70%",
+        height: "20%",
+         width: "70%",
         justifyContent: "center",
         alignSelf: "center"
     }

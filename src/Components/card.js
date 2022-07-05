@@ -24,7 +24,9 @@ const CardView = () => {
                         // console.log(res.size, "res>>>> from home is>sdsds>")
                         res.forEach(doc => {
 
-                            const { productCategory, productImage, rating, price, description, productName } = doc.data();
+                            const { productCategory, productImage, rating,
+                                 price, description, productName, Details, 
+                                 deliveryCharges,discount,totalPrice } = doc.data();
                             list.push({
                                 key: doc.id,
                                 productCategory,
@@ -32,7 +34,11 @@ const CardView = () => {
                                 productImage,
                                 rating,
                                 price,
-                                productName
+                                productName,
+                                Details,
+                                deliveryCharges,
+                                discount,
+                                totalPrice,
 
 
                             })
@@ -40,7 +46,7 @@ const CardView = () => {
                             if (loading) {
                                 setloading(false)
                             }
-                            //  console.log(list, "list is")
+                            // console.log(list, "list is")
 
                         })
 

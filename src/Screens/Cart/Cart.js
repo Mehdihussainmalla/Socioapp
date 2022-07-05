@@ -36,7 +36,7 @@ const Cart = ({ navigation }) => {
                             productName: productName,
                             Uid: Uid
                         })
-                        //   console.log(list, "list is")
+                        //console.log(list, "list is")
                         setItem(list)
                     })
                 })
@@ -60,8 +60,9 @@ const Cart = ({ navigation }) => {
                     .get().then((res) => {
                         // console.log(res.size, "res is")
                         res.forEach(doc => {
-                            
-                            const { productCategory, productName, description, rating, price, productImage } = doc.data();
+
+                            const { productCategory, productName, description, rating,
+                                discount, price, productImage, Details, deliveryCharges, totalPrice } = doc.data();
                             productList.push({
                                 id: doc.id,
                                 productCategory: productCategory,
@@ -70,10 +71,14 @@ const Cart = ({ navigation }) => {
                                 description: description,
                                 price: price,
                                 rating: rating,
+                                Details: Details,
+                                deliveryCharges: deliveryCharges,
+                                totalprice: totalPrice,
+                                discount: discount,
 
 
                             })
-                            //  console.log(productList, "product list isss")
+                            // console.log(productList, "product list isss")
                             setCart(productList)
 
                         })
@@ -101,13 +106,14 @@ const Cart = ({ navigation }) => {
                         // console.log(res.size, "res is>>>>>")
                         res.forEach(doc => {
                             // console.log(doc,"doc")
-                            const { accessoryType, rate, accoryImage } = doc.data();
+                            const { accessoryType, rate, accoryImage, description, } = doc.data();
                             arr.push({
                                 id: doc.id,
                                 productName: accessoryType,
-                                // description: description,
+                                description: description,
                                 price: rate,
-                                productImage: accoryImage
+                                productImage: accoryImage,
+
                             })
                             // console.log(arr, "new array is ")
                             setData([...arr, ...cart]);  //.........merge two states
@@ -168,7 +174,7 @@ const Cart = ({ navigation }) => {
             .then((res) => {
                 res.forEach((doc) => {
                     console.log(doc, "doc iss")
-                    const { productId} = doc.data();
+                    const { productId } = doc.data();
                     deleteData(productId)
                 })
             })
@@ -203,7 +209,7 @@ const Cart = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         const Id = item.id;
-        // console.log(productId, "item issss")
+        // console.log(item, "item issss")
         return (
 
             <View style={styles.container}>

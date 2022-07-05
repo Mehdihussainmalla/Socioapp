@@ -47,14 +47,16 @@ export const styles = StyleSheet.create({
     ratingstyle:
     {
         backgroundColor: "green",
-        width: "20%",
-        marginLeft: moderateVerticalScale(5)
+        width: "30%",
+        marginLeft: moderateVerticalScale(5),
+        marginTop: 2
     },
     ratingtxt:
     {
-        fontSize: textScale(25),
+        fontSize: textScale(20),
         alignSelf: "center",
         color: colors.yellowB,
+        paddingTop: moderateScale(5)
     },
     dropdownstyle:
     {

@@ -1,6 +1,6 @@
 //import liraries
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
@@ -20,8 +20,9 @@ const AddressDetails = () => {
                 <TextInputComponent
                     input={{ borderWidth: 0.9, marginVertical: 10, }}
                     placeholder='Phone Number (Required)*' />
-                <Text style={{ color: "blue", fontWeight: "300", paddingLeft: 10 }}>+Add Alternative phone number</Text>
-
+                <TouchableOpacity activeOpacity={0.5}>
+                    <Text style={{ color: "blue", fontWeight: "300", paddingLeft: 10 }}>+Add Alternative phone number</Text>
+                </TouchableOpacity>
 
                 <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 15 }}>
                     <View style={{ flex: 0.5 }}>
@@ -42,8 +43,12 @@ const AddressDetails = () => {
                             <Image
                                 style={{ tintColor: "white", marginTop: 6, marginLeft: 0 }}
                                 source={imagePath.GPS} />
-                            <Text style={{ color: colors.white, paddingTop: 6, fontWeight: "600", padding: 2 }}>use my current location</Text>
-
+                            <TouchableOpacity activeOpacity={0.5}>
+                                <Text style={{
+                                    color: colors.white, paddingTop: 6,
+                                    fontWeight: "600", padding: 2
+                                }}>use my current location</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
@@ -66,25 +71,34 @@ const AddressDetails = () => {
                 <TextInputComponent
                     input={{ borderWidth: 0.9, marginTop: 15 }}
                     placeholder='Road name, Area, Colony (Required)*' />
-                <View style={{ marginTop: 16 }}>
+                <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={{ marginTop: 16 }}>
                     <Text style={{ fontWeight: "300", color: "blue" }}>+Add nearby famous ghop/mall/LandMark</Text>
-                </View>
+                </TouchableOpacity>
 
                 <View style={{ marginTop: 16 }}>
                     <Text style={{ fontWeight: "500", color: colors.blackOpacity66 }}>Type of address</Text>
                 </View>
                 <View style={{ flexDirection: "row", marginTop: 20 }}>
-                    <View style={{
-                        flexDirection: "row", justifyContent: "flex-start", flex: 0.3,
-                        borderWidth: 0.5, borderRadius: 20,
-                    }}>
+                    <TouchableOpacity
+                        activeOpacity={0.5}
+                        style={{
+                            flexDirection: "row", justifyContent: "flex-start", flex: 0.3,
+                            borderWidth: 0.5, borderRadius: 20,
+                        }}>
                         <Image
                             style={{ tintColor: "blue" }}
                             source={imagePath.Home_icon} />
-                        <Text style={{ paddingLeft: 10, alignSelf: "center", fontWeight: "500", color: colors.blackOpacity66 }}>Home</Text>
+                        <Text style={{
+                            paddingLeft: 10, alignSelf: "center",
+                            fontWeight: "500", color: colors.blackOpacity66
+                        }}>Home</Text>
 
-                    </View >
-                    <View style={{ flexDirection: "row", justifyContent: "center", flex: 0.5, marginLeft: 20, borderWidth: 0.5, borderRadius: 20, }}>
+                    </TouchableOpacity >
+                    <TouchableOpacity
+                        activeOpacity={0.5}
+                        style={{ flexDirection: "row", justifyContent: "center", flex: 0.5, marginLeft: 20, borderWidth: 0.5, borderRadius: 20, }}>
                         <Image
                             style={{ tintColor: "blue", marginTop: 8 }}
                             source={imagePath.OFFICE_ICON} />
@@ -92,7 +106,7 @@ const AddressDetails = () => {
                             paddingLeft: 10, alignSelf: "center",
                             fontWeight: "500", color: colors.blackOpacity66
                         }}>Work</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <ButtonComp
                     btnStyle={{ marginTop: 134, width: "95%", marginLeft: 10 }}

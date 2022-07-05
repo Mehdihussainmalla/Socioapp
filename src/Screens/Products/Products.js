@@ -22,7 +22,7 @@ import colors from '../../styles/colors';
 
 
 const Products = ({ navigation }) => {
-   
+
     const [uploading, setUploading] = useState(false);
     const [transferred, setTransferred] = useState(0);
 
@@ -33,10 +33,15 @@ const Products = ({ navigation }) => {
         description: "",
         price: "",
         rating: "",
+        Details: "",
+        totalPrice: "",
+        discount: "",
+        deliveryCharges: ""
 
     });
 
-    const { productImage, productCategory, productName, description, price, rating } = state;
+    const { productImage, productCategory, productName, description, price, rating, Details,
+        discount, totalPrice, deliveryCharges } = state;
     const updateState = (data) => setState(() => ({ ...state, ...data }));
 
 
@@ -130,7 +135,7 @@ const Products = ({ navigation }) => {
 
     const onSubmit = async () => {
         const imageUrl = await uploadImage();
-         console.log(imageUrl, "image url is>>>")
+        //  console.log(imageUrl, "image url is>>>")
         try {
             await firestore().collection('products').add({
                 productImage: imageUrl,
@@ -139,6 +144,11 @@ const Products = ({ navigation }) => {
                 description: description,
                 price: price,
                 rating: rating,
+                Details: Details,
+                deliveryCharges: deliveryCharges,
+                discount: discount,
+                totalPrice: totalPrice,
+
 
             }).then((res) => {
                 //  console.log(res, "res>>> is")
@@ -213,7 +223,42 @@ const Products = ({ navigation }) => {
                         onChangeText={(rating) => updateState({ rating })}
                     />
                 </View>
+                {/* //......................................................new items .....................// */}
+                <View style={styles.input1}>
+                    <TextInputComponent
+                        input={styles.txtinput1}
+                        placeholder={"Details"}
+                        value={Details}
+                        onChangeText={(Details) => updateState({ Details })}
+                    />
+                </View>
 
+                <View style={styles.input1}>
+                    <TextInputComponent
+                        input={styles.txtinput1}
+                        placeholder={"total price"}
+                        value={totalPrice}
+                        onChangeText={(totalPrice) => updateState({ totalPrice })}
+                    />
+                </View>
+                <View style={styles.input1}>
+                    <TextInputComponent
+                        input={styles.txtinput1}
+                        placeholder={"Discount"}
+                        value={discount}
+                        onChangeText={(discount) => updateState({ discount })}
+                    />
+                </View>
+
+                <View style={styles.input1}>
+                    <TextInputComponent
+                        input={styles.txtinput1}
+                        placeholder={"Delivery Charges"}
+                        value={deliveryCharges}
+                        onChangeText={(deliveryCharges) => updateState({ deliveryCharges })}
+                    />
+                </View>
+                {/* //....................................................... */}
             </View>
 
             {uploading ? <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -224,7 +269,9 @@ const Products = ({ navigation }) => {
 
 
             </View> :
-                <ButtonComp onPress={onSubmit}
+                <ButtonComp
+                    btnStyle={{ marginTop: 20, }}
+                    onPress={onSubmit}
                     ButtonText={strings.SUBMIT}
                 />
             }

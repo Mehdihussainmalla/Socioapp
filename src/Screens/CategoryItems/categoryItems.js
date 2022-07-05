@@ -2,25 +2,24 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image } from 'react-native';
 import Wrappercontainer from '../../Components/wrappercontainer';
-import firestore, { firebase } from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import Header from '../../Components/Header';
 import ButtonComp from '../../Components/Button';
 import { styles } from './styles';
-import actions from '../../redux/actions';
 import navigationStrings from '../../navigation/navigationStrings';
 import { useSelector } from 'react-redux';
 const CategoryItems = ({ route, navigation }) => {
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    // console.log(Uid,"userdata isss")
+    console.log(Uid, "userdata isss")
 
     const { data } = route?.params;
     const productId = data?.key
     const productName = data?.accessoryType;
     // console.log(productName)
     // console.log(id,"idddd")
-    // console.log(data,"data is")
+    console.log(data, "data is")
 
     const category = data.accessoryType;
     console.log(category, "category is")
@@ -36,19 +35,20 @@ const CategoryItems = ({ route, navigation }) => {
                     // console.log(res.size, "res >>>>>>>")
                     res.forEach(doc => {
 
-                        const { accoryImage, rate, description, accessoryType } = doc.data();
+                        const { accoryImage, rate, description, accessoryType, } = doc.data();
                         list.push({
                             key: doc.id,
                             accoryImage,
                             accessoryType,
                             rate,
-                            description
+                            description,
+                    
                         })
                         setproducts(list);
                         if (loading) {
                             setloading(false)
                         }
-                        // console.log(list, "list is")
+                         console.log(list, "list is")
 
                     })
 
@@ -80,7 +80,7 @@ const CategoryItems = ({ route, navigation }) => {
 
     }, [])
 
-  //  ............update item.............//
+    //  ............update item.............//
 
     // const updateItem = async (id) => {
     //     // console.log(id, "id iss")
@@ -99,6 +99,7 @@ const CategoryItems = ({ route, navigation }) => {
 
     const renderItem = ({ item }) => {
         const Id = item.key;
+        // console.log(item,"itemmmmmmmmmmm")
         return (
             <View style={styles.container}>
 
@@ -118,8 +119,8 @@ const CategoryItems = ({ route, navigation }) => {
                     <Text style={styles.desc}>
                         {item?.description}</Text>
                     <ButtonComp
-                         //onPress={() => updateItem(Id)}
-                         onPress={firebaseCart}
+                        //onPress={() => updateItem(Id)}
+                        onPress={firebaseCart}
                         btnStyle={styles.buttonstyle}
                         ButtonText='Add to Cart' />
                 </View>
@@ -135,7 +136,7 @@ const CategoryItems = ({ route, navigation }) => {
                 onPress={() => navigation.goBack()}
                 title={category}
                 textstyle={{ fontWeight: "bold" }} />
-            
+
             {!!products ? <View>
                 <Text style={styles.headingstyle}>
                     All kinds of {category} are availabe</Text>
@@ -143,7 +144,7 @@ const CategoryItems = ({ route, navigation }) => {
                     renderItem={renderItem}
                     data={products} />
             </View> :
-                <View style={{flex : 1}}>
+                <View style={{ flex: 1 }}>
                     <View style={styles.nostockstyle}>
                         <Text style={styles.txt}>No {category} available</Text>
                     </View>
