@@ -1,4 +1,5 @@
 //import liraries
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Dropdown from '../../Components/Dropdown';
@@ -11,7 +12,7 @@ import { styles } from './style';
 const numbering = [{ id: 1, num: 1 }, { id: 2, num: 2 }, { id: 3, num: 3 }, { id: 4, num: 4 },]
 
 
-const OrderProduct = ({ route, navigation }) => {
+const OrderProduct = ({ route, }) => {
     const data = route?.params?.item;
     const productName = data.productName;
     const productImage = data?.productImage;
@@ -24,18 +25,20 @@ const OrderProduct = ({ route, navigation }) => {
     const deliveryCharges = data?.deliveryCharges;
     const discount = data?.discount;
 
-    // console.log(discount, "hfshdfj")
+    //  console.log(data, "hfshdfj")
 
     const [selectedItem, setSelectedItem] = useState(null)
 
     const onSelect = (item) => {
         setSelectedItem(item)
     }
-
+    const navigation = useNavigation();
 
     return (
         <Wrappercontainer>
-            <Header isBackIcon={true}
+            <Header
+                onPress={() => navigation.goBack()}
+                isBackIcon={true}
                 title={"OrderProduct"} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
@@ -49,7 +52,7 @@ const OrderProduct = ({ route, navigation }) => {
                             <View style={styles.pricestyle}>
                                 <Text style={styles.amountrange}>{price}<Text style={styles.pricetxt}>  23% off</Text></Text>
                             </View>
-                            <Text style={{ paddingLeft: 5, }}>{category}</Text>
+                            <Text style={styles.categorytxt}>{category}</Text>
                             <View style={styles.ratingstyle}>
                                 <Text style={styles.ratingtxt}>{rating}</Text>
                             </View>
@@ -63,21 +66,21 @@ const OrderProduct = ({ route, navigation }) => {
                             onSelect={onSelect}
                         />
                     </View>
-                    <View style={{ marginTop: 5 }}>
+                    <View style={styles.timeview}>
                         <Text style={styles.timestyle}>Delivery by Tue Jul 16</Text>
                     </View>
                     <View style={styles.removestyle}>
                         <View style={styles.flexstyle}>
                             <View style={styles.saveimgstyle}>
                                 <Image
-                                    style={{ tintColor: "blue" }}
+                                    style={styles.img}
                                     source={imagePath.save_for_later} />
                                 <Text style={styles.savetxt} >Save for later</Text>
                             </View>
                         </View>
                         <View style={styles.removecontainer}>
                             <View style={styles.removestyling}>
-                                <Image style={{ marginTop: 1, tintColor: "blue" }}
+                                <Image style={styles.img}
                                     source={imagePath.remove_icon} />
                                 <Text style={styles.removetxt} >Remove</Text>
                             </View>
@@ -91,7 +94,7 @@ const OrderProduct = ({ route, navigation }) => {
                         </View>
                     </View>
 
-                    <View style={{ marginTop: 10 }}>
+                    <View style={styles.prictetotal}>
                         <Text style={styles.pricedetailtxt}>Price Details</Text>
                         <View style={styles.itemstyle}>
                             <Text>Price (2 items)</Text>

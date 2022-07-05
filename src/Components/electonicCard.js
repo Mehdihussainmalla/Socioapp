@@ -33,21 +33,26 @@ const electonicCard = (props) => {
             try {
                 const list = [];
                 await firestore().collection("accessories")
-                    // .where("accessories", "==",)
                     .orderBy("accessoryType", "asc")
-
                     .get().then((res) => {
                         // console.log(res.size, "res>>>> from home is>sdsds>")
                         res.forEach(doc => {
 
-                            const { accoryImage, accessoryType, rate } = doc.data();
+                            const { accoryImage, accessoryType, rating, productName,
+                                productCategory, price, Details, totalPrice, discount, deliveryCharges } = doc.data();
                             list.push({
                                 key: doc.id,
                                 accoryImage,
                                 accessoryType,
-                                rate,
+                                rating,
+                                productName,
+                                productCategory,
+                                price,
+                                Details,
+                                totalPrice,
+                                discount,
+                                deliveryCharges,
                             })
-
                             const newArr = list.slice(0, 3)
                             setShowMore(newArr)
                             setData(newArr);
@@ -80,6 +85,12 @@ const electonicCard = (props) => {
     }
 
     const renderItem = ({ item }) => {
+        console.log(item, "items are")
+        const name = item.accessoryType;
+        const myArray = name.split(" ")
+        const slice6words = myArray.slice(0, 2);
+        const accessoryType = slice6words.join(' ');
+
 
         return (
 
@@ -91,8 +102,9 @@ const electonicCard = (props) => {
                 <Image
                     style={styles.imagestyle}
                     source={{ uri: item?.accoryImage }} />
-                <Text style={styles.accessoryTypestyle}>{item.accessoryType}</Text>
-                <Text style={styles.ratestyle}>{item?.rate}</Text>
+                <Text style={styles.accessoryTypestyle}>{accessoryType}</Text>
+                <Text style={styles.pricetxt}>{item?.price}</Text>
+                <Text style={styles.ratestyle}>{item?.rating}</Text>
 
 
             </TouchableOpacity>
@@ -177,6 +189,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: moderateScale(5),
         justifyContent: "center"
+    },
+    pricetxt:
+    {
+        fontSize: textScale(12),
+        alignSelf: "center",
+        fontWeight: "500"
     }
 });
 

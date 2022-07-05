@@ -18,7 +18,7 @@ import navigationStrings from '../../navigation/navigationStrings';
 const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    // console.log(Uid, "userdata isss")
+    //  console.log(Uid, "userdata isss")
     const [cart, setCart] = useState();
     const [item, setItem] = useState();
     const [data, setData] = useState();
@@ -78,7 +78,7 @@ const Cart = ({ navigation }) => {
 
 
                             })
-                            // console.log(productList, "product list isss")
+                            //  console.log(productList, "product list isss")
                             setCart(productList)
 
                         })
@@ -106,13 +106,20 @@ const Cart = ({ navigation }) => {
                         // console.log(res.size, "res is>>>>>")
                         res.forEach(doc => {
                             // console.log(doc,"doc")
-                            const { accessoryType, rate, accoryImage, description, } = doc.data();
+                            const { accessoryType, rating, accoryImage, totalPrice, deliveryCharges,
+                                discount, Details, price, productCategory
+                            } = doc.data();
                             arr.push({
                                 id: doc.id,
                                 productName: accessoryType,
-                                description: description,
-                                price: rate,
+                                rating: rating,
                                 productImage: accoryImage,
+                                totalprice: totalPrice,
+                                Details: Details,
+                                deliveryCharges: deliveryCharges,
+                                discount: discount,
+                                price: price,
+                                productCategory: productCategory
 
                             })
                             // console.log(arr, "new array is ")
@@ -209,7 +216,10 @@ const Cart = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         const Id = item.id;
-        // console.log(item, "item issss")
+        const category = item.productCategory;
+        const myArray = category.split(" ")
+        const slice6words = myArray.slice(0, 2);
+        const productCategory = slice6words.join(' ');
         return (
 
             <View style={styles.container}>
@@ -230,7 +240,7 @@ const Cart = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.categorystyle}>{item?.productCategory}</Text>
+                    <Text style={styles.categorystyle}>{productCategory}</Text>
                     <Text style={styles.pricestyle}>{item?.price}</Text>
                     <Text style={styles.descriptionstyle}>{item?.description}</Text>
 

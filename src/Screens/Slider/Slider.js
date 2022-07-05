@@ -26,11 +26,18 @@ const ItemDetails = (props) => {
     const [transferred, setTransferred] = useState(0);
     const [state, setState] = useState({
         accoryImage: " ",
-        accessoryType,
-        rate,
-        description,
+        accessoryType: '',
+        rating: "",
+        productName: "",
+        price: "",
+        Details: "",
+        totalPrice: "",
+        discount: "",
+        deliveryCharges: "",
+        productCategory,
     });
-    const { accoryImage, accessoryType, rate, description } = state;
+    const { accoryImage, accessoryType, rating, Details, productName,
+        totalPrice, deliveryCharges, discount, price, productCategory } = state;
     const updateState = (data) => setState({ ...state, ...data })
 
 
@@ -132,9 +139,15 @@ const ItemDetails = (props) => {
 
                 accoryImage: imageUrl,
                 accessoryType: accessoryType,
-                rate: rate,
-                description: description,
-
+                rating: rating,
+                productName: productName,
+                Details: Details,
+                price: price,
+                totalPrice: totalPrice,
+                rating: rating,
+                discount: discount,
+                deliveryCharges: deliveryCharges,
+                productCategory: productCategory
 
             }).then(() => {
                 navigation.navigate(navigationStrings.HOME)
@@ -171,18 +184,54 @@ const ItemDetails = (props) => {
                             input={styles.input1}
                             placeholder={'Accessory type'} />
 
+                        <TextInputComponent
+                            value={productName}
+                            onChangeText={(productName) => updateState({ productName })}
+                            input={styles.input1}
+                            placeholder={'product name'} />
+                        {/* ....new data */}
+                        <TextInputComponent
+                            value={Details}
+                            onChangeText={(Details) => updateState({ Details })}
+                            input={styles.input1}
+                            placeholder={'details'} />
+
 
                         <TextInputComponent
-                            value={rate}
-                            onChangeText={(rate) => updateState({ rate })}
+                            value={price}
+                            onChangeText={(price) => updateState({ price })}
                             input={styles.input1}
-                            placeholder={'rate'} />
+                            placeholder={'price'} />
 
                         <TextInputComponent
-                            value={description}
-                            onChangeText={(description) => updateState({ description })}
+                            value={discount}
+                            onChangeText={(discount) => updateState({ discount })}
                             input={styles.input1}
-                            placeholder={'description'} />
+                            placeholder={'Discount'} />
+
+                        <TextInputComponent
+                            value={deliveryCharges}
+                            onChangeText={(deliveryCharges) => updateState({ deliveryCharges })}
+                            input={styles.input1}
+                            placeholder={'delivery charges'} />
+
+                        <TextInputComponent
+                            value={totalPrice}
+                            onChangeText={(totalPrice) => updateState({ totalPrice })}
+                            input={styles.input1}
+                            placeholder={'total price'} />
+
+                        <TextInputComponent
+                            value={rating}
+                            onChangeText={(rating) => updateState({ rating })}
+                            input={styles.input1}
+                            placeholder={'rating'} />
+
+                        <TextInputComponent
+                            value={productCategory}
+                            onChangeText={(productCategory) => updateState({ productCategory })}
+                            input={styles.input1}
+                            placeholder={'category'} />
                     </View>
                 </ScrollView>
 

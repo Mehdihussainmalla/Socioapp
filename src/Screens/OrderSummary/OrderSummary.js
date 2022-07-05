@@ -78,7 +78,9 @@ const OrderSummary = ({ navigation }) => {
     return (
         <Wrappercontainer>
             <View style={{ flex: 1.5, }}>
-                <Header isBackIcon={true} />
+                <Header
+                    onPress={() => navigation.goBack()}
+                    isBackIcon={true} />
                 <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "space-between" }}>
 
                     <Text style={{ fontWeight: "600" }}>Deliver To:</Text>

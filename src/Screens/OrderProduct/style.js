@@ -51,6 +51,10 @@ export const styles = StyleSheet.create({
         marginLeft: moderateVerticalScale(5),
         marginTop: 2
     },
+    categorytxt:
+    {
+        paddingLeft: moderateScale(5)
+    },
     ratingtxt:
     {
         fontSize: textScale(20),
@@ -74,6 +78,10 @@ export const styles = StyleSheet.create({
     timestyle:
     {
         color: colors.blackOpacity66
+    },
+    timeview:
+    {
+        marginTop: moderateScale(5)
     },
     removestyle:
     {
@@ -107,6 +115,11 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'center',
     },
+    img:
+    {
+        marginTop: moderateScale(1),
+        tintColor: colors.blue
+    },
     removetxt:
     {
         alignSelf: "center",
@@ -121,6 +134,7 @@ export const styles = StyleSheet.create({
         fontWeight: "500",
         paddingTop: moderateScale(15)
     },
+    prictetotal:{marginTop:moderateScale(10)},
     pricedetailtxt:
     {
         fontWeight: "600"
@@ -204,6 +218,10 @@ export const styles = StyleSheet.create({
     amounttxt:
     {
         fontWeight: "600"
+    },
+    pricetotal:
+    {
+        marginTop: moderateScale(10)
     }
 
 

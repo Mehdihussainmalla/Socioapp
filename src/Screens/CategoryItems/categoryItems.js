@@ -12,17 +12,15 @@ const CategoryItems = ({ route, navigation }) => {
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    console.log(Uid, "userdata isss")
+    // console.log(Uid, "userdata isss")
 
     const { data } = route?.params;
     const productId = data?.key
     const productName = data?.accessoryType;
-    // console.log(productName)
-    // console.log(id,"idddd")
-    console.log(data, "data is")
+    // console.log(data, "data is")
 
     const category = data.accessoryType;
-    console.log(category, "category is")
+    // console.log(category, "category is")
     const [products, setproducts] = useState(null);
     const [loading, setloading] = useState(true);
 
@@ -35,20 +33,20 @@ const CategoryItems = ({ route, navigation }) => {
                     // console.log(res.size, "res >>>>>>>")
                     res.forEach(doc => {
 
-                        const { accoryImage, rate, description, accessoryType, } = doc.data();
+                        const { accoryImage, rating, productName, accessoryType,price } = doc.data();
                         list.push({
                             key: doc.id,
                             accoryImage,
                             accessoryType,
-                            rate,
-                            description,
-                    
+                            rating,
+                            productName,
+                            price
                         })
                         setproducts(list);
                         if (loading) {
                             setloading(false)
                         }
-                         console.log(list, "list is")
+                        //  console.log(list, "list is")
 
                     })
 
@@ -98,8 +96,8 @@ const CategoryItems = ({ route, navigation }) => {
 
 
     const renderItem = ({ item }) => {
-        const Id = item.key;
-        // console.log(item,"itemmmmmmmmmmm")
+        // const Id = item.key;
+        //  console.log(item,"itemmmmmmmmmmm")
         return (
             <View style={styles.container}>
 
@@ -115,9 +113,9 @@ const CategoryItems = ({ route, navigation }) => {
                         {item?.accessoryType}
                     </Text>
                     <Text style={styles.ratestyle}>
-                        {item.rate}</Text>
+                        {item?.price}</Text>
                     <Text style={styles.desc}>
-                        {item?.description}</Text>
+                        {item?.productName}</Text>
                     <ButtonComp
                         //onPress={() => updateItem(Id)}
                         onPress={firebaseCart}

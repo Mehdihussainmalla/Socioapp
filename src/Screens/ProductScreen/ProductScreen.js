@@ -15,7 +15,7 @@ import navigationStrings from '../../navigation/navigationStrings';
 const ProductScreen = ({ navigation, route }) => {
     const item = route?.params?.data
     const productId = item.key;
-   console.log(item, "itemmmmm")
+  // console.log(item, "itemmmmm")
     const productName = item?.productName
     const price = item.price;
     const userData = useSelector((state) => state?.userStatus?.userData)

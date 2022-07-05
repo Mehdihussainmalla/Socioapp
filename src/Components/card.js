@@ -25,8 +25,8 @@ const CardView = () => {
                         res.forEach(doc => {
 
                             const { productCategory, productImage, rating,
-                                 price, description, productName, Details, 
-                                 deliveryCharges,discount,totalPrice } = doc.data();
+                                price, description, productName, Details,
+                                deliveryCharges, discount, totalPrice } = doc.data();
                             list.push({
                                 key: doc.id,
                                 productCategory,
@@ -65,6 +65,12 @@ const CardView = () => {
 
     const renderItem = ({ item }) => {
         // console.log(item, "items for flast list are")
+        const description = item.description;
+        const myArray = description.split(" ")
+        const slice6words = myArray.slice(0, 3);
+        const string = slice6words.join(' ');
+
+
         return (
             <TouchableOpacity
                 onPress={() => navigation.navigate(navigationStrings.PRODUCT_SCREEN, { data: item })}
@@ -73,16 +79,12 @@ const CardView = () => {
                 <Image style={styles.imagestyle}
                     source={{ uri: item.productImage }} />
 
-                {/* <TouchableOpacity onPress={() => deletePost(item.key)}>
-                    <Text style={{ alignSelf: "center", color: "white",
-                     backgroundColor: "red" }}>delete</Text>
-                </TouchableOpacity> */}
                 <Text style={styles.namestyle}>{item.productName}</Text>
 
                 <View style={styles.priceview}>
                     <Text style={styles.pricestyle}>{item.price}</Text>
                 </View>
-                <Text style={styles.descstyle}>{item.description}</Text>
+                <Text style={styles.descstyle}>{string}</Text>
                 <Text style={styles.productstyle}>{item.productCategory}</Text>
                 <Text style={styles.ratingstyle}>{item.rating}</Text>
 
@@ -111,7 +113,6 @@ const styles = StyleSheet.create({
         borderWidth: moderateScale(0.9),
         borderRadius: moderateScale(5),
         marginVertical: moderateScale(5),
-        marginRight: moderateScale(14),
         height: moderateScale(200),
         justifyContent: "center",
         marginTop: moderateScale(10),
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     imagestyle: {
         width: width / moderateScale(3),
         height: moderateScale(110),
-        marginHorizontal: moderateScale(10),
+        // marginHorizontal: moderateScale(10),
         marginTop: moderateScale(11),
         alignSelf: "center"
 
@@ -145,18 +146,20 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontWeight: "500",
         marginBottom: moderateScale(1),
-        alignSelf: "center",
+        // alignSelf: "center",
     },
     descstyle:
     {
         fontWeight: "500",
         marginBottom: moderateScale(1),
-        marginHorizontal: moderateScale(8)
+        marginHorizontal: moderateScale(8),
+        alignSelf:"center"
     },
     productstyle:
     {
         fontWeight: "300",
         marginHorizontal: moderateScale(8),
+        alignSelf:"center"
     },
     ratingstyle:
     {
@@ -164,6 +167,7 @@ const styles = StyleSheet.create({
         color: colors.yellowC,
         fontWeight: "500",
         marginHorizontal: moderateScale(8),
+        alignSelf:"center"
     }
 })
 
