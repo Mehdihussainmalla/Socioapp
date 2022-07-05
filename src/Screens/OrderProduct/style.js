@@ -35,6 +35,10 @@ export const styles = StyleSheet.create({
     {
         paddingLeft: moderateScale(5)
     },
+    amountrange:
+    {
+        color: colors.redB
+    },
     pricetxt:
     {
         color: colors.green,
@@ -129,7 +133,7 @@ export const styles = StyleSheet.create({
     {
         color: colors.green
     },
-    chargecontainer:
+    chargeconatiner:
     {
         borderWidth: moderateScale(0.5),
         marginTop: moderateScale(8)
@@ -147,7 +151,7 @@ export const styles = StyleSheet.create({
     },
     buttoncontainer:
     {
-        marginTop: moderateScale(155),
+        marginTop: moderateScale(100),
         height: "12%",
         borderRadius: moderateScale(10),
         flexDirection: "row"
@@ -162,8 +166,14 @@ export const styles = StyleSheet.create({
     ratebtn:
     {
         alignSelf: "center",
-        color: colors.blackB,
+        color: colors.black,
         fontWeight: "600"
+    },
+    pricedesc:
+    {
+        justifyContent: 'center',
+        color: colors.redB,
+        alignSelf: "center"
     },
     continuebtnstyle:
     {
@@ -178,6 +188,22 @@ export const styles = StyleSheet.create({
         color: colors.white,
         fontWeight: "600",
         fontSize: textScale(16)
+    },
+    totalamount:
+    {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: moderateScale(10)
+    },
+    totalcharge:
+    {
+        fontWeight: "600"
+    },
+    amounttxt:
+    {
+        fontWeight: "600"
     }
+
+
 
 })

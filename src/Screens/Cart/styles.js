@@ -29,6 +29,11 @@ export const styles = StyleSheet.create({
         fontSize: textScale(14),
         fontWeight: "800"
     },
+    deletestyle:
+    {
+        alignSelf: "flex-end",
+        marginTop: 5
+    },
     categorystyle:
     {
         fontWeight: "600",

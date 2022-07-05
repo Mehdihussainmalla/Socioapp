@@ -2,11 +2,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
-import imagePath from '../constants/imagePath';
 import colors from '../styles/colors';
 import { textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
-import storage from "@react-native-firebase/storage";
 import { useNavigation } from '@react-navigation/native';
 import navigationStrings from '../navigation/navigationStrings';
 // create a component

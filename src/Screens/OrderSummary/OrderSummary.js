@@ -9,7 +9,8 @@ import colors from '../../styles/colors';
 import { height, width } from '../../styles/responsiveSize';
 import firestore, { firebase } from '@react-native-firebase/firestore';
 import { styles } from './style';
-const OrderSummary = () => {
+import navigationStrings from '../../navigation/navigationStrings';
+const OrderSummary = ({ navigation }) => {
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const email = userData?.email;
@@ -36,25 +37,18 @@ const OrderSummary = () => {
                                 rating,
                                 price,
                                 productName
-
-
                             })
                             setShowList(list);
-                            console.log(list, "list is")
-
+                            // console.log(list, "list is")
                         })
-
                     })
             } catch (error) {
                 console.log(error, "error occurred")
-
             }
         }
         fetchData();
 
     }, [])
-
-
     const renderItem = ({ item }) => {
         //  console.log(item, "items are")
         const description = item.description;
@@ -63,8 +57,7 @@ const OrderSummary = () => {
         const string = slice6words.join(' ');
         // console.log(string, "string")
         return (
-            <TouchableOpacity 
-                // onPress={() => navigation.navigate(navigationStrings.PRODUCT_SCREEN, { data: item })}
+            <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.container}>
                 <Image style={styles.imagestyle}
@@ -90,7 +83,7 @@ const OrderSummary = () => {
 
                     <Text style={{ fontWeight: "600" }}>Deliver To:</Text>
                     <TouchableOpacity
-                        onPress={() => alert("changing address")}
+                        onPress={() => navigation.navigate(navigationStrings.ADDRESS_DETAILS)}
                         activeOpacity={0.5}
                         style={{ borderWidth: 0.5, padding: 4 }}>
                         <Text style={{ color: "blue" }}>Change</Text>
@@ -167,22 +160,22 @@ const OrderSummary = () => {
                         </View>
                     </View>
 
-                    <View style={{ flexDirection: "row", justifyContent: "space-between",marginBottom:1}}>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 1 }}>
                         <Text style={{ fontWeight: "600" }}>Similar Products</Text>
 
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             activeOpacity={0.5}
                             style={{ borderWidth: 0.4, padding: 4 }}>
-                            <Text 
-                            style={{ color: "blue" }}>View all</Text>
+                            <Text
+                                style={{ color: "blue" }}>View all</Text>
                         </TouchableOpacity>
 
                     </View>
                 </View>
             </View>
-           
+
             <FlatList
-            
+                showsHorizontalScrollIndicator={false}
                 horizontal
                 data={showList}
                 renderItem={renderItem}

@@ -42,6 +42,8 @@ export default {
     swap: require("../assets/images/swap.png"),
     dollar: require("../assets/images/dollar.png"),
     UPI: require("../assets/images/upi.png"),
+    GPS: require("../assets/images/gps.png"),
+    OFFICE_ICON: require("../assets/images/officess.png"),
     
 
 }

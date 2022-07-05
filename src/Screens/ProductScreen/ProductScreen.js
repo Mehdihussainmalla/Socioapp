@@ -15,11 +15,11 @@ import navigationStrings from '../../navigation/navigationStrings';
 const ProductScreen = ({ navigation, route }) => {
     const item = route?.params?.data
     const productId = item.key;
-    // console.log(item, "itemmmmm")
+    //  console.log(item, "itemmmmm")
     const productName = item?.productName
     const price = item.price;
-    const userData = useSelector((state) => state?.userStatus)
-    const Uid = userData?.userData?.user?.uid; //.....user login id through useSelector
+    const userData = useSelector((state) => state?.userStatus?.userData)
+    const Uid = userData?.user?.uid; //.....user login id through useSelector
     //  console.log(Uid,"userdata is >>>>>>")
 
     const addToCart = async () => {
@@ -31,7 +31,7 @@ const ProductScreen = ({ navigation, route }) => {
                 productName: productName
 
             })
-             actions.addToCart([item])
+            //  actions.addToCart([item])
             navigation.navigate(navigationStrings.CART)
         } catch (error) {
             console.log(error, "error occurred")

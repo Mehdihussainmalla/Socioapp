@@ -12,14 +12,13 @@ import { textScale } from '../../styles/responsiveSize';
 import colors from '../../styles/colors';
 import imagePath from '../../constants/imagePath';
 import { useSelector } from 'react-redux';
-import { log } from 'react-native-reanimated';
 import navigationStrings from '../../navigation/navigationStrings';
 
 
 const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    //  console.log(Uid,"userdata isss")
+    // console.log(Uid, "userdata isss")
     const [cart, setCart] = useState();
     const [item, setItem] = useState();
     const [data, setData] = useState();
@@ -29,7 +28,7 @@ const Cart = ({ navigation }) => {
             const list = [];
             await firestore().collection(`CartpgXBxIEkYgOWdbfjT6A5UdRhRS42`).get()
                 .then((res) => {
-                    // console.log(res, "res is")
+                    // console.log(res.size, "res is>>>>>>>>>>>")
                     res.forEach(doc => {
                         const { productId, Uid, productName } = doc.data();
                         list.push({
@@ -54,13 +53,14 @@ const Cart = ({ navigation }) => {
             for (let index in item) {
                 let productid = item[index].productId;
 
-                //  console.log(productid)
+                //  console.log(productid,"productid isss")
 
                 firestore().collection(`products`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
-                        //  console.log(res.size, "res is")
+                        // console.log(res.size, "res is")
                         res.forEach(doc => {
+                            
                             const { productCategory, productName, description, rating, price, productImage } = doc.data();
                             productList.push({
                                 id: doc.id,
@@ -73,8 +73,9 @@ const Cart = ({ navigation }) => {
 
 
                             })
-                            // console.log(productList, "product list isss")
+                            //  console.log(productList, "product list isss")
                             setCart(productList)
+
                         })
                     })
             }
@@ -93,12 +94,13 @@ const Cart = ({ navigation }) => {
             const arr = [];
             for (let index in item) {
                 let productid = item[index].productId;
-                // console.log(productid, "product id isss")
+                //  console.log(productid, "product id isss")
                 firestore().collection(`accessories`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
                         // console.log(res.size, "res is>>>>>")
                         res.forEach(doc => {
+                            // console.log(doc,"doc")
                             const { accessoryType, rate, accoryImage } = doc.data();
                             arr.push({
                                 id: doc.id,
@@ -107,7 +109,7 @@ const Cart = ({ navigation }) => {
                                 price: rate,
                                 productImage: accoryImage
                             })
-                            //  console.log(arr, "new array is ")
+                            // console.log(arr, "new array is ")
                             setData([...arr, ...cart]);  //.........merge two states
                             // actions.addToCart(cart)
                         })
@@ -121,7 +123,7 @@ const Cart = ({ navigation }) => {
         }
 
     }
-    //  console.log(data, "data>>>")
+    // console.log(data, "data>>>")
 
     //..................................................//
     useEffect(() => {
@@ -158,18 +160,15 @@ const Cart = ({ navigation }) => {
             return setCount(count)
         }
     }
-    //........sent data into the redux.........//
+
     //............delete item.............//
     const deleteItem = async (id) => {
-        // console.log(productId, "productid is")
         await firestore().collection(`Cart${Uid}`)
             .where(`productId`, "==", `${id}`).get()
             .then((res) => {
-                // console.log(res.size, "res iss")
                 res.forEach((doc) => {
                     console.log(doc, "doc iss")
-                    const { productId, productName } = doc.data();
-                    // console.log(productId, "product id issss")
+                    const { productId} = doc.data();
                     deleteData(productId)
                 })
             })
@@ -204,7 +203,7 @@ const Cart = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         const Id = item.id;
-        //  console.log(productId, "item issss")
+        // console.log(productId, "item issss")
         return (
 
             <View style={styles.container}>
@@ -219,11 +218,7 @@ const Cart = ({ navigation }) => {
                         <TouchableOpacity
                             onPress={() => deleteItem(Id)}
                             activeOpacity={0.7}
-                            style={{
-                                //  marginLeft: 50,
-                                alignSelf: "flex-end",
-                                marginTop: 5
-                            }}>
+                            style={styles.deletestyle}>
                             <Image style={{ tintColor: colors.redB }}
                                 source={imagePath.delete_icon} />
                         </TouchableOpacity>
@@ -246,7 +241,7 @@ const Cart = ({ navigation }) => {
                     </View>
                     <TouchableOpacity
                         activeOpacity={0.7}
-                        onPress={() => navigation.navigate(navigationStrings.ORDER_PRODUCT,{item:item})}
+                        onPress={() => navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })}
                         style={{ backgroundColor: "red" }}>
                         <Text
 

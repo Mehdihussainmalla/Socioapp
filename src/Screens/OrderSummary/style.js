@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { ColorSpace } from "react-native-reanimated";
 import { moderateScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
 import { textScale, width } from "../../styles/responsiveSize";

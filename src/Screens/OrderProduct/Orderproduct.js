@@ -42,7 +42,7 @@ const OrderProduct = ({ route, navigation }) => {
                             <Text style={styles.productnamestyle}>{productName}</Text>
                             <Text style={styles.descstyle}>{description}</Text>
                             <View style={styles.pricestyle}>
-                                <Text>{price}<Text style={styles.pricetxt}>  23% off</Text></Text>
+                                <Text style={styles.amountrange}>{price}<Text style={styles.pricetxt}>  23% off</Text></Text>
                             </View>
 
                             <View style={styles.ratestyle}>
@@ -64,13 +64,15 @@ const OrderProduct = ({ route, navigation }) => {
                     <View style={styles.removestyle}>
                         <View style={styles.flexstyle}>
                             <View style={styles.saveimgstyle}>
-                                <Image style={{ marginTop: 0 }} source={imagePath.save_for_later} />
+                                <Image
+                                    style={{ tintColor: "blue" }}
+                                    source={imagePath.save_for_later} />
                                 <Text style={styles.savetxt} >Save for later</Text>
                             </View>
                         </View>
                         <View style={styles.removecontainer}>
                             <View style={styles.removestyling}>
-                                <Image style={{ marginTop: 1 }}
+                                <Image style={{ marginTop: 1, tintColor: "blue" }}
                                     source={imagePath.remove_icon} />
                                 <Text style={styles.removetxt} >Remove</Text>
                             </View>
@@ -90,7 +92,6 @@ const OrderProduct = ({ route, navigation }) => {
                             <Text>Price (2 items)</Text>
                             <Text> $4,500</Text>
                         </View>
-                        {/* { flexDirection: "row", justifyContent: "space-between", marginTop: 10 } */}
                         <View style={styles.itemstyle}>
                             <Text>Discount</Text>
                             <Text style={{ color: colors.green }}>- $500</Text>
@@ -100,9 +101,9 @@ const OrderProduct = ({ route, navigation }) => {
                             <Text style={styles.freestyle}>Free</Text>
                         </View>
                         <View style={styles.chargeconatiner}></View>
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10 }}>
-                            <Text style={{ fontWeight: "600" }}>Total Charges</Text>
-                            <Text style={{ fontWeight: "600" }}>$4000</Text>
+                        <View style={styles.totalamountstyle}>
+                            <Text style={styles.totalcharge}>Total Charges</Text>
+                            <Text style={styles.amounttxt}>$4000</Text>
                         </View>
                         <View style={styles.messagestyle}>
                             <Text style={styles.messagetxt}>you will save $500 on this order</Text>
@@ -111,7 +112,8 @@ const OrderProduct = ({ route, navigation }) => {
 
                     <View style={styles.buttoncontainer}>
                         <View style={styles.ratebutton}>
-                            <Text style={styles.ratebtn}>{`$4000 \nview price details`}</Text>
+                            <Text style={styles.ratebtn}>{`$4000`}</Text>
+                            <Text style={styles.pricedesc}>view price details</Text>
                         </View>
 
                         <TouchableOpacity

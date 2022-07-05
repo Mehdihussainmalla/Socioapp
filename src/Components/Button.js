@@ -40,7 +40,6 @@ export default function ButtonComp({
 const styles = StyleSheet.create({
     btnStyle: {
         height: moderateScale(48),
-        // width: moderateScale(328),
         marginLeft: moderateVerticalScale(24),
         marginRight: moderateVerticalScale(24),
         backgroundColor: colors.redB,

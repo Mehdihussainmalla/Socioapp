@@ -20,6 +20,7 @@ export default {
     OFFERS: 'offers',
     PRODUCT_SCREEN: "Product screen",
     ORDER_PRODUCT: "Order product",
-    ORDER_SUMMARY: "Order Summary"
+    ORDER_SUMMARY: "Order Summary",
+    ADDRESS_DETAILS: "Address details"
 
 }

@@ -44,13 +44,8 @@ const styles = StyleSheet.create({
         height: moderateScale(40),
         borderRadius: verticalScale(5),
         padding: moderateScaleVertical(10),
+        fontWeight:"500",
+        color: colors.blackOpacity66,
 
     },
-    text: {
-
-        color: colors.black,
-        fontSize: textScale(16)
-
-
-    }
 })
