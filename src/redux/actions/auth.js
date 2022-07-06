@@ -35,7 +35,7 @@ export const SignUpHandle = async (email, password) => {
 //...............login..................//
 
 export const loginData = (data) => {
-    // console.log(data, "login data from actions")
+    //  console.log(data, "login data from actions")
     dispatch({
         type: types.LOGIN,
         payload: data
@@ -71,7 +71,7 @@ export const signIn = async (email, password) => {
 export const Logout = () => {
     try {
 
-        // await auth().signOut();
+        //  await auth().signOut();
         dispatch({
             type: types.LOGOUT,
 

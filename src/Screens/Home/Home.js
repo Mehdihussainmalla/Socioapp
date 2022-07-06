@@ -116,7 +116,7 @@ const Home = ({ navigation }) => {
                     inactiveDotColor={colors.black}
                     inactiveDotOpacity={0.4}
                     activeOpacity={0.8}
-                    dotContainerStyle={{ marginHorizontal: 2, paddingTop: 5 }}
+                    dotContainerStyle={styles.dotcontainer}
                 />
 
 

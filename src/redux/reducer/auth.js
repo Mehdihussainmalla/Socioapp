@@ -17,6 +17,7 @@ export const userStatus = (state = initialState, action) => {
                 userData: data
             }
         }
+    
         case types.SIGNUP: {
             return {
                 ...state

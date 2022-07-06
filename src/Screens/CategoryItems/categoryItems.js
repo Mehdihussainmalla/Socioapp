@@ -12,7 +12,7 @@ const CategoryItems = ({ route, navigation }) => {
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    // console.log(Uid, "userdata isss")
+    // console.log(Uid, "userData isss")
 
     const { data } = route?.params;
     const productId = data?.key
@@ -20,7 +20,6 @@ const CategoryItems = ({ route, navigation }) => {
     // console.log(data, "data is")
 
     const category = data.accessoryType;
-    // console.log(category, "category is")
     const [products, setproducts] = useState(null);
     const [loading, setloading] = useState(true);
 

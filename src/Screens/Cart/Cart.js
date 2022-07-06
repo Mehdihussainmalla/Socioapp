@@ -18,7 +18,7 @@ import navigationStrings from '../../navigation/navigationStrings';
 const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    //  console.log(Uid, "userdata isss")
+    //  console.log(userData, "userdata isss")
     const [cart, setCart] = useState();
     const [item, setItem] = useState([]);
     const [data, setData] = useState([]);
@@ -28,9 +28,9 @@ const Cart = ({ navigation }) => {
     const fetchData = async () => {
         try {
             const list = [];
-            await firestore().collection(`CartpgXBxIEkYgOWdbfjT6A5UdRhRS42`).get()
+            await firestore().collection(`Cart${Uid}`).get()
                 .then((res) => {
-                    
+                    //    console.log(res.size,"res>>>>>>>>>>>>") 
                     res.forEach(doc => {
                         const { productId, Uid, productName } = doc.data();
                         list.push({
@@ -38,12 +38,11 @@ const Cart = ({ navigation }) => {
                             productName: productName,
                             Uid: Uid
                         })
-                        setItem(list)
-                        console.log(list, "list")
                     })
 
-                    // setItem(list)
-                    // console.log(item.length, "item length is") done 6
+                    setItem(list)
+                    //   console.log(list,"list")
+                    //console.log(item, "item  is") 
                 })
         } catch (error) {
             console.log(error, "error occurred")
@@ -59,12 +58,12 @@ const Cart = ({ navigation }) => {
                 let productid = item[index].productId;
 
                 //  console.log(productid,"productid isss")
-                const productList = [];
+
                 firestore().collection(`products`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
-                        // console.log(res.size, "res is")
-                        
+                        console.log(res.size, "res is")
+                        const productList = [];
                         res.forEach(doc => {
 
                             const { productCategory, productName, description, rating,
@@ -82,10 +81,10 @@ const Cart = ({ navigation }) => {
                                 totalprice: totalPrice,
                                 discount: discount,
                             })
-                            console.log(productList, "product list isss")
-                        setCart(productList)
-                        console.log(cart.length,"cart length")
+                            // console.log(productList, "product list isss")
+                            setCart(productList)
                         })
+
                     })
             }
 
@@ -95,7 +94,6 @@ const Cart = ({ navigation }) => {
 
         }
     }
-    console.log(cart, "cart")
 
     //.................item details..............//
     const itemDetails = async () => {
@@ -127,11 +125,11 @@ const Cart = ({ navigation }) => {
                                 productCategory: productCategory
 
                             })
-                            console.log(arr, "new array is ")
+                            // console.log(arr, "new array is ")
                             setData([...arr, ...cart]);  //.........merge two states
-                            console.log(data.length,"data length")
+                            //console.log(data.length,"data length")
                         })
-                       
+
                     })
             }
         } catch (error) {
@@ -175,29 +173,29 @@ const Cart = ({ navigation }) => {
         }
     }
 
-    //............delete item.............//
-    // const deleteItem = async (id) => {
-    //     await firestore().collection(`Cart${Uid}`)
-    //         .where(`productId`, "==", `${id}`).get()
-    //         .then((res) => {
-    //             res.forEach((doc) => {
-    //                 console.log(doc, "doc iss")
-    //                 const { productId } = doc.data();
-    //                 deleteData(productId)
-    //             })
-    //         })
-    // }
-    // const deleteData = async (productId) => {
-    //     try {
-    //         await firebase.firestore().collection(`Cart${Uid}`).doc(`${productId}`).delete()
-    //             .then(() => {
-    //                 console.log("res iss")
-    //             })
+    // ............delete item.............//
+    const deleteItem = async (id) => {
+        await firestore().collection(`Cart${Uid}`)
+            .where(`productId`, "==", `${id}`).get()
+            .then((res) => {
+                res.forEach((doc) => {
+                    console.log(doc, "doc iss")
+                    const { productId } = doc.data();
+                    deleteData(productId)
+                })
+            })
+    }
+    const deleteData = async (productId) => {
+        try {
+            await firebase.firestore().collection(`Cart${Uid}`).doc(`${productId}`).delete()
+                .then(() => {
+                    console.log("res iss")
+                })
 
-    //     } catch (error) {
-    //         console.log(error, "error occurred")
-    //     }
-    // }
+        } catch (error) {
+            console.log(error, "error occurred")
+        }
+    }
 
     //.............update ................//
     // const updateItem = async (id) => {

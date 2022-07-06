@@ -13,11 +13,11 @@ import navigationStrings from '../../navigation/navigationStrings';
 import ButtonComp from '../../Components/Button';
 const OrderSummary = ({ navigation }) => {
 
-    const userData = useSelector((state) => state?.userStatus?.userData?.user);
+    const userData = useSelector((state) => state?.userStatus?.userData?.user?._user);
     const email = userData?.email;
     const Name = userData?.displayName;
     const id = userData?.uid;
-
+    // console.log(Name, "Name from order summary")
     const [showList, setShowList] = useState();
     useEffect(() => {
         const fetchData = async () => {
@@ -85,6 +85,7 @@ const OrderSummary = ({ navigation }) => {
                 <View style={styles.delivertstyle}>
 
                     <Text style={styles.delivertxt}>Deliver To:</Text>
+                    
                     <TouchableOpacity
                         onPress={() => navigation.navigate(navigationStrings.ADDRESS_DETAILS)}
                         activeOpacity={0.5}
@@ -93,7 +94,7 @@ const OrderSummary = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <View>
-
+                <Text style={{fontWeight:"500", color:"blue"}}>{Name}</Text>
                     <Text style={styles.emailtxt}>{email}</Text>
                 </View>
                 <View style={styles.addressstyle}>

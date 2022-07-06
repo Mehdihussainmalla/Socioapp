@@ -63,7 +63,7 @@ const Login = ({ navigation }) => {
         else if (password == "") {
             showMessage({
                 message: "please enter password",
-                type:"danger"
+                type: "danger"
             })
 
             // alert('enter password')
@@ -75,7 +75,7 @@ const Login = ({ navigation }) => {
             })
             // alert('enter valid password')
         } else {
-            actions.signIn(email, password)          
+            actions.signIn(email, password)
         }
     }
     //................language change................//
@@ -89,11 +89,13 @@ const Login = ({ navigation }) => {
     //..........google login.........//
     const googlelogin = async () => {
         try {
-            const { idToken } = await GoogleSignin.signIn();
-            // console.log(idToken, "user info is >>")
+            const credentials = await GoogleSignin.signIn();
+            const idToken = credentials.idToken;
+            console.log(credentials, "user info is >>")
             const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-            await auth().signInWithCredential(googleCredential);
-            actions.loginData(googleCredential)
+            let data = await auth().signInWithCredential(googleCredential);
+            // console.log(data, "mewgdsdsd>>>>>>>")
+            actions.loginData(data)
             showMessage({
                 message: "login sucessfully",
                 type: "success"

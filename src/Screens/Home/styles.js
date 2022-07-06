@@ -3,6 +3,7 @@ import { moderateScale, moderateVerticalScale } from "react-native-size-matters"
 import colors from "../../styles/colors";
 import { moderateScaleVertical, textScale, width } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
+    
     container: {
         flexDirection: "row"
     },
