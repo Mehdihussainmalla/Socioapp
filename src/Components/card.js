@@ -116,15 +116,18 @@ const styles = StyleSheet.create({
         height: moderateScale(200),
         justifyContent: "center",
         marginTop: moderateScale(10),
-        backgroundColor: "#F5F5F5"
+        backgroundColor: "#F5F5F5",
+        marginHorizontal:moderateScale(5)
+        
+
 
 
     },
     imagestyle: {
         width: width / moderateScale(3),
         height: moderateScale(110),
-        // marginHorizontal: moderateScale(10),
-        marginTop: moderateScale(11),
+        //  marginHorizontal: moderateScale(10),
+        marginTop: moderateScale(8),
         alignSelf: "center"
 
     },
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
     priceview:
     {
         backgroundColor: colors.redB,
-        marginHorizontal: moderateScale(40)
+        marginHorizontal: moderateScale(25)
     },
     pricestyle:
     {

@@ -59,7 +59,7 @@ const OrderSummary = ({ navigation }) => {
         return (
             <TouchableOpacity
                 activeOpacity={0.7}
-                style={styles.container}>
+                style={styles.itemcontainer}>
                 <Image style={styles.imagestyle}
                     source={{ uri: item.productImage }} />
                 <Text style={styles.namestyle}>{item.productName}</Text>
@@ -77,99 +77,99 @@ const OrderSummary = ({ navigation }) => {
 
     return (
         <Wrappercontainer>
-            <View style={{ flex: 1.5, }}>
+            <View style={styles.container}>
                 <Header
                     onPress={() => navigation.goBack()}
                     isBackIcon={true} />
-                <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "space-between" }}>
+                <View style={styles.delivertstyle}>
 
-                    <Text style={{ fontWeight: "600" }}>Deliver To:</Text>
+                    <Text style={styles.delivertxt}>Deliver To:</Text>
                     <TouchableOpacity
                         onPress={() => navigation.navigate(navigationStrings.ADDRESS_DETAILS)}
                         activeOpacity={0.5}
-                        style={{ borderWidth: 0.5, padding: 4 }}>
-                        <Text style={{ color: "blue" }}>Change</Text>
+                        style={styles.changestyle}>
+                        <Text style={styles.changetxt}>Change</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
 
-                    <Text style={{ fontWeight: "600" }}>{email}</Text>
+                    <Text style={styles.emailtxt}>{email}</Text>
                 </View>
-                <View style={{ marginTop: 8 }}>
-                    <Text style={{ color: colors.blackOpacity66 }}>{`code brew labs sector 28 Madhya Marg chandigarh. pincode : 160022`}</Text>
-                    <Text style={{ color: colors.blackOpacity70 }}>{`contact:+916005927575`}</Text>
+                <View style={styles.addressstyle}>
+                    <Text style={styles.addtxt}>{`code brew labs sector 28 Madhya Marg chandigarh. pincode : 160022`}</Text>
+                    <Text style={styles.contacttxt}>{`contact:+916005927575`}</Text>
                 </View>
                 <Text style={{}}>------------------------------------------------------</Text>
-                <View style={{ flex: 0.2, }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
-                        <View style={{ flexDirection: "row", justifyContent: "flex-start", flex: 0.7 }}>
+                <View style={styles.mainview}>
+                    <View style={styles.itemview}>
+                        <View style={styles.iconstyle}>
                             <Image
-                                style={{ tintColor: "blue" }}
+                                style={styles.tintstyle}
                                 source={imagePath.car} />
 
-                            <Text style={{ fontWeight: "600", paddingLeft: 29 }}>Delivery by Jul 16</Text>
+                            <Text style={styles.delivertime}>Delivery by Jul 16</Text>
 
                         </View>
                         <View>
                             <Image
-                                style={{ tintColor: "blue" }}
+                                style={styles.tintstyle}
                                 source={imagePath.arrow} />
                         </View>
                     </View>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
-                        <View style={{ flexDirection: "row", justifyContent: "flex-start", flex: 0.7 }}>
+                    <View style={styles.itemview}>
+                        <View style={styles.iconstyle}>
                             <Image
-                                style={{ tintColor: "blue" }}
+                                style={styles.tintstyle}
                                 source={imagePath.swap} />
 
-                            <Text style={{ fontWeight: "400", paddingLeft: 29 }}>10 Days Return policy</Text>
+                            <Text style={styles.txtstyle}>10 Days Return policy</Text>
 
                         </View>
                         <View>
                             <Image
-                                style={{ tintColor: "blue" }}
+                                style={styles.tintstyle}
                                 source={imagePath.arrow} />
                         </View>
                     </View>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
-                        <View style={{ flexDirection: "row", justifyContent: "flex-start", flex: 0.7 }}>
+                    <View style={styles.itemview}>
+                        <View style={styles.iconstyle}>
                             <Image
-                                style={{ tintColor: "blue" }}
+                                style={styles.tintstyle}
                                 source={imagePath.dollar} />
 
-                            <Text style={{ fontWeight: "400", paddingLeft: 29 }}>cash on Delivery</Text>
+                            <Text style={styles.txtstyle}>cash on Delivery</Text>
 
                         </View>
                         <View>
                             <Image
-                                style={{ tintColor: "blue" }}
+                                style={styles.tintstyle}
                                 source={imagePath.arrow} />
                         </View>
                     </View>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 15 }}>
-                        <View style={{ flexDirection: "row", justifyContent: "flex-start", flex: 0.7 }}>
+                    <View style={styles.mainview}>
+                        <View style={styles.itemview}>
                             <Image
-                                style={{ tintColor: "blue", height: height / 30, width: width / 12 }}
+                                style={styles.upiicon}
                                 source={imagePath.UPI} />
 
-                            <Text style={{ fontWeight: "400", paddingLeft: 29 }}>Pay with UPI</Text>
+                            <Text style={styles.upitxt}>Pay with UPI</Text>
 
                         </View>
                         <View>
                             <Image
-                                style={{ tintColor: "blue" }}
+                                style={styles.tintstyle}
                                 source={imagePath.arrow} />
                         </View>
                     </View>
 
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 1 }}>
-                        <Text style={{ fontWeight: "600" }}>Similar Products</Text>
+                    <View style={styles.similarproduct}>
+                        <Text style={styles.similartxt}>Similar Products</Text>
 
                         <TouchableOpacity
                             activeOpacity={0.5}
-                            style={{ borderWidth: 0.4, padding: 4 }}>
+                            style={styles.viewallstyle}>
                             <Text
-                                style={{ color: "blue" }}>View all</Text>
+                                style={styles.viewalltxt}>View all</Text>
                         </TouchableOpacity>
 
                     </View>
