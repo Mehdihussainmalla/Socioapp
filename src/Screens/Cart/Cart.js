@@ -1,6 +1,6 @@
 //import liraries
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import Header from '../../Components/Header';
 import firestore from '@react-native-firebase/firestore';
@@ -138,7 +138,7 @@ const Cart = ({ navigation }) => {
         }
 
     }
-    console.log(data, "data>>>")
+    // console.log(data, "data>>>")
 
     //..................................................//
     useEffect(() => {

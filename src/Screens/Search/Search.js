@@ -1,27 +1,25 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
-import Header from '../../Components/Header';
-import Wrappercontainer from '../../Components/wrappercontainer';
 
 // create a component
 const SearchScreen = () => {
-  const userData=useSelector((state)=>state?.userStatus?.products);
-  console.log(userData,"userdata is >>>>>>")
   return (
-    <Wrappercontainer>
-      <Header isBackIcon={true} />
+    <View style={styles.container}>
       <Text>SearchScreen</Text>
-    </Wrappercontainer>
-
+    </View>
   );
 };
 
 // define your styles
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2c3e50',
+  },
 });
+
+//make this component available to the app
 export default SearchScreen;
-
-

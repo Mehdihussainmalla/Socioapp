@@ -25,7 +25,7 @@ const OrderProduct = ({ route, }) => {
     const deliveryCharges = data?.deliveryCharges;
     const discount = data?.discount;
 
-     console.log(data, "hfshdfj")
+     //console.log(data, "hfshdfj")
 
 
 //    const finalprice=totalPrice-discount+deliveryCharges;

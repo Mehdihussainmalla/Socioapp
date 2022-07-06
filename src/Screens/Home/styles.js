@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     },
     Carouselstyle:
     {
-        borderWidth: 5,
+       // borderWidth: 5,
         padding: 0,
         alignItems: 'center',
         marginHorizontal: 10
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     Carouselimg:
     {
         width: width - 0,
-        height: width / 2.40,
+        height: width / 2.0,
         borderRadius: 10,
     },
     drawerstyle: {
