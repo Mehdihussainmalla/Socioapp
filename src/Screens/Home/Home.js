@@ -18,11 +18,10 @@ import CardView from '../../Components/card';
 import ElectronicCard from '../../Components/electonicCard';
 import strings from '../../constants/lang';
 import firestore from '@react-native-firebase/firestore';
-const Home = (props) => {
-    const { navigation } = props;
-    //    console.log(props,"props are")
-
-    const [products, setproducts] = useState(null);
+import colors from '../../styles/colors';
+const Home = ({ navigation }) => {
+    // const { navigation } = props;
+    const [products, setproducts] = useState([]);
     const [loading, setloading] = useState(true);
     const [activeSlide, setActiveSlide] = useState();
     const [totalOfferCount, setTotalOfferCount] = useState();
@@ -33,9 +32,9 @@ const Home = (props) => {
     }, [])
     const fetchData = async () => {
         try {
-            const list = [];
             await firestore().collection("offers")
                 .get().then((res) => {
+                    const list = [];
                     // console.log(res.size, "res>>>> from home is>sdsds>")
                     setTotalOfferCount(res.size)
                     res.forEach(doc => {
@@ -44,17 +43,16 @@ const Home = (props) => {
                         list.push({
                             key: doc.id,
                             offerImage
-
-
-
                         })
-                        setproducts(list);
+
                         if (loading) {
                             setloading(false)
                         }
                         // console.log(list, "list is")
 
                     })
+
+                    setproducts(list);
 
                 })
         } catch (error) {
@@ -73,15 +71,10 @@ const Home = (props) => {
     const renderItem = ({ item }) => {
         // console.log(item, "items are >>>")
         return (
-            <TouchableOpacity style={{
-                borderWidth: 1,
-                padding: 0,
-                borderRadius: 10,
-                alignItems: 'center',
 
-            }}>
+            <TouchableOpacity style={styles.Carouselstyle}>
                 <Image source={{ uri: item?.offerImage }}
-                    style={{ width: width - 110, height: width / 2.30 }}
+                    style={styles.Carouselimg}
                     resizeMode="stretch" />
             </TouchableOpacity>
         )
@@ -107,28 +100,23 @@ const Home = (props) => {
                     data={products}
                     renderItem={renderItem}
                     layout='stack'
-                    sliderWidth={sliderWidth}
-                    itemWidth={ITEM_WIDTH}
+                    sliderWidth={moderateScale(width - 50)}
+                    itemWidth={moderateScale(width - 0)}
+                    scrollEnabled={products.length > 1 ? true : false}
+                    horizontal
                     onSnapToItem={(index) => setActiveSlide(index)} />
                 <Pagination
 
                     dotsLength={totalOfferCount}
                     activeDotIndex={activeSlide}
-
-                    dotStyle={{
-                        marginVertical: moderateScale(0),
-                        width: 12,
-                        height: 12,
-                        borderRadius: 5,
-                    }}
-
-                    inactiveDotStyle={{
-
-                        // Define styles for inactive dots here
-                    }}
-
+                    containerStyle={styles.containerstyle}
+                    dotColor={colors.redB}
+                    dotStyle={styles.dotstyle}
+                    inactiveDotStyle={styles.inactivestyle}
+                    inactiveDotColor={colors.black}
                     inactiveDotOpacity={0.4}
-                    inactiveDotScale={0.6}
+                    activeOpacity={0.8}
+                    dotContainerStyle={{ marginHorizontal: 2, paddingTop: 5 }}
                 />
 
 

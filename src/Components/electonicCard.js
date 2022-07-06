@@ -85,7 +85,7 @@ const electonicCard = (props) => {
     }
 
     const renderItem = ({ item }) => {
-        console.log(item, "items are")
+        // console.log(item, "items are")
         const name = item.accessoryType;
         const myArray = name.split(" ")
         const slice6words = myArray.slice(0, 2);

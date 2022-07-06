@@ -25,8 +25,11 @@ const OrderProduct = ({ route, }) => {
     const deliveryCharges = data?.deliveryCharges;
     const discount = data?.discount;
 
-    //  console.log(data, "hfshdfj")
+     console.log(data, "hfshdfj")
 
+
+//    const finalprice=totalPrice-discount+deliveryCharges;
+//    console.log(finalprice,"price")
     const [selectedItem, setSelectedItem] = useState(null)
 
     const onSelect = (item) => {
@@ -50,7 +53,8 @@ const OrderProduct = ({ route, }) => {
                             <Text style={styles.productnamestyle}>{productName}</Text>
                             <Text style={styles.descstyle}>{description}</Text>
                             <View style={styles.pricestyle}>
-                                <Text style={styles.amountrange}>{price}<Text style={styles.pricetxt}>  23% off</Text></Text>
+                                <Text style={styles.amountrange}>{price}<Text 
+                                style={styles.pricetxt}>  23% off</Text></Text>
                             </View>
                             <Text style={styles.categorytxt}>{category}</Text>
                             <View style={styles.ratingstyle}>
@@ -97,8 +101,8 @@ const OrderProduct = ({ route, }) => {
                     <View style={styles.prictetotal}>
                         <Text style={styles.pricedetailtxt}>Price Details</Text>
                         <View style={styles.itemstyle}>
-                            <Text>Price (2 items)</Text>
-                            <Text> $600</Text>
+                            <Text>Price (1 item)</Text>
+                            <Text>{price}</Text>
                         </View>
                         <View style={styles.itemstyle}>
                             <Text>Discount</Text>

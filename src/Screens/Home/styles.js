@@ -1,13 +1,24 @@
-import React from "react";
 import { StyleSheet } from "react-native"
 import { moderateScale, moderateVerticalScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
-import { moderateScaleVertical, textScale } from "../../styles/responsiveSize";
+import { moderateScaleVertical, textScale, width } from "../../styles/responsiveSize";
 export const styles = StyleSheet.create({
     container: {
         flexDirection: "row"
-        // flex: 1,
-        // backgroundColor: colors.blackOpacity40,
+    },
+    Carouselstyle:
+    {
+        borderWidth: 5,
+        padding: 0,
+        alignItems: 'center',
+        marginHorizontal: 10
+
+    },
+    Carouselimg:
+    {
+        width: width - 0,
+        height: width / 2.40,
+        borderRadius: 10,
     },
     drawerstyle: {
         flexDirection: "row",
@@ -58,20 +69,21 @@ export const styles = StyleSheet.create({
         marginRight: moderateVerticalScale(10)
     },
     containerstyle: {
-        paddingVertical: 0,
-        marginTop: 0
+        paddingVertical: moderateScale(0),
+        marginTop: moderateScale(0)
     },
     dotstyle: {
-        width: 10, height: 10,
-        borderRadius: 12 / 2
+        width: moderateScale(10),
+        height: moderateScale(10),
+        borderRadius: moderateScale(12 / 2)
     },
     inactivedotstyle: {
-        width: 15,
-        height: 20,
-        borderRadius: 20 / 2
+        width: moderateScale(15),
+        height: moderateScale(20),
+        borderRadius: moderateScale(20 / 2)
     },
     dotcontainer: {
-        marginHorizontal: 2,
+        marginHorizontal: moderateScale(2),
         paddingTop: 0
     },
     accessorries:
@@ -79,5 +91,31 @@ export const styles = StyleSheet.create({
         fontSize: textScale(14),
         fontWeight: "500"
     },
-    viewstyle: { marginTop: moderateScale(3) }
+    viewstyle: {
+        marginTop: moderateScale(3)
+
+    },
+    containerstyle: {
+        paddingVertical: 0,
+
+        marginTop: moderateScale(2)
+    },
+    dotstyle:
+    {
+        width: moderateScale(12),
+        height: moderateScale(12),
+        borderRadius: moderateScale(12 / 2)
+    },
+    inactivestyle:
+    {
+        width: moderateScale(20),
+        height: moderateScale(20),
+        borderRadius: moderateScale(20 / 2)
+    },
+    dotcontainer:
+    {
+        marginHorizontal: moderateScale(2),
+        paddingTop: moderateScale(5)
+    },
+
 })

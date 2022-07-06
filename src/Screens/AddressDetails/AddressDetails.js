@@ -7,10 +7,13 @@ import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
 import colors from '../../styles/colors';
-const AddressDetails = () => {
+const AddressDetails = ({navigation}) => {
+    
     return (
         <Wrappercontainer>
-            <Header isBackIcon={true}
+            <Header 
+            onPress={()=>navigation.goBack()}
+            isBackIcon={true}
                 title={"Add Address Details"} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <TextInputComponent
@@ -74,7 +77,7 @@ const AddressDetails = () => {
                 <TouchableOpacity
                     activeOpacity={0.5}
                     style={{ marginTop: 16 }}>
-                    <Text style={{ fontWeight: "300", color: "blue" }}>+Add nearby famous ghop/mall/LandMark</Text>
+                    <Text style={{ fontWeight: "300", color: "blue" }}>+Add nearby famous shop/mall/LandMark</Text>
                 </TouchableOpacity>
 
                 <View style={{ marginTop: 16 }}>
@@ -98,7 +101,8 @@ const AddressDetails = () => {
                     </TouchableOpacity >
                     <TouchableOpacity
                         activeOpacity={0.5}
-                        style={{ flexDirection: "row", justifyContent: "center", flex: 0.5, marginLeft: 20, borderWidth: 0.5, borderRadius: 20, }}>
+                        style={{ flexDirection: "row", justifyContent: "center",
+                         flex: 0.5, marginLeft: 20, borderWidth: 0.5, borderRadius: 20, }}>
                         <Image
                             style={{ tintColor: "blue", marginTop: 8 }}
                             source={imagePath.OFFICE_ICON} />
@@ -109,7 +113,7 @@ const AddressDetails = () => {
                     </TouchableOpacity>
                 </View>
                 <ButtonComp
-                    btnStyle={{ marginTop: 134, width: "95%", marginLeft: 10 }}
+                    btnStyle={{ marginTop: 127, width: "95%", marginLeft: 10 }}
                     ButtonText='Save Address' />
             </ScrollView>
         </Wrappercontainer>

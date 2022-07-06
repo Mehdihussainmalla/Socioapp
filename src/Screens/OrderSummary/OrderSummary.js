@@ -10,6 +10,7 @@ import { height, width } from '../../styles/responsiveSize';
 import firestore, { firebase } from '@react-native-firebase/firestore';
 import { styles } from './style';
 import navigationStrings from '../../navigation/navigationStrings';
+import ButtonComp from '../../Components/Button';
 const OrderSummary = ({ navigation }) => {
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
@@ -140,13 +141,14 @@ const OrderSummary = ({ navigation }) => {
                             <Text style={styles.txtstyle}>cash on Delivery</Text>
 
                         </View>
+
                         <View>
                             <Image
                                 style={styles.tintstyle}
                                 source={imagePath.arrow} />
                         </View>
                     </View>
-                    <View style={styles.mainview}>
+                    <View style={styles.upistyle}>
                         <View style={styles.itemview}>
                             <Image
                                 style={styles.upiicon}
@@ -157,11 +159,10 @@ const OrderSummary = ({ navigation }) => {
                         </View>
                         <View>
                             <Image
-                                style={styles.tintstyle}
+                                style={styles.upiiconstyle}
                                 source={imagePath.arrow} />
                         </View>
                     </View>
-
                     <View style={styles.similarproduct}>
                         <Text style={styles.similartxt}>Similar Products</Text>
 
@@ -182,6 +183,13 @@ const OrderSummary = ({ navigation }) => {
                 data={showList}
                 renderItem={renderItem}
             />
+
+            <TouchableOpacity
+                activeOpacity={0.8}>
+                <ButtonComp
+                    ButtonText='Proceed for payment' />
+
+            </TouchableOpacity>
 
         </Wrappercontainer>
     );

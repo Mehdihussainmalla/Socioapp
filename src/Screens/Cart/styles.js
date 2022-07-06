@@ -23,6 +23,11 @@ export const styles = StyleSheet.create({
         width: width / moderateScale(2.3),
         paddingLeft: moderateScale(10)
     },
+    productstyle:
+    {
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
     productnamestyle:
     {
         paddingLeft: 10,
@@ -57,7 +62,7 @@ export const styles = StyleSheet.create({
     counterstyle:
     {
         flexDirection: "row",
-         alignSelf: "center",
+        alignSelf: "center",
         // marginTop: 8
     },
     decrementstyle:

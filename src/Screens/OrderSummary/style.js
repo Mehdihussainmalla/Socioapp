@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
         height: moderateScale(135),
         justifyContent: "center",
         paddingHorizontal: 10,
+
     },
     imagestyle: {
         width: width / moderateScale(3),
@@ -101,11 +102,18 @@ export const styles = StyleSheet.create({
     {
         flex: 0.2,
     },
+    upistyle:
+    {
+        flexDirection: "row",
+
+        justifyContent: "space-between",
+    },
     itemview:
     {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginTop: moderateScale(15)
+        marginTop: moderateScale(10),
+
     },
     iconstyle:
     {
@@ -115,7 +123,8 @@ export const styles = StyleSheet.create({
     },
     tintstyle:
     {
-        tintColor: colors.blue
+        tintColor: colors.blue,
+
     },
     delivertime:
     {
@@ -131,8 +140,10 @@ export const styles = StyleSheet.create({
     upiicon:
     {
         tintColor: colors.blue,
-        height: height / moderateScale(30),
-        width: width / moderateScale(12)
+        height: height / moderateScale(35),
+        width: width / moderateScale(12),
+        alignSelf: "center"
+
     },
     upitxt:
     {
@@ -143,7 +154,13 @@ export const styles = StyleSheet.create({
     {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: moderateScale(1)
+        marginBottom: moderateScale(1),
+        marginTop: 3
+    },
+    upiiconstyle:
+    {
+        marginTop: moderateScale(12),
+        tintColor: colors.blue
     },
     similartxt:
     {
@@ -152,12 +169,14 @@ export const styles = StyleSheet.create({
     viewallstyle:
     {
         borderWidth: moderateScale(0.4),
-        padding: moderateScale(4)
+        padding: moderateScale(4),
+        // marginTop:5
     },
     viewalltxt:
-    { color:colors.blue
-     },
-     
+    {
+        color: colors.blue
+    },
+
 
 
 

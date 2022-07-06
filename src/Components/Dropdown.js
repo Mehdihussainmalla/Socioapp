@@ -34,11 +34,11 @@ const Dropdown = ({
             </TouchableOpacity>
             {showOptions && (<View>{data.map((item, index) => {
                 return (
-                    <TouchableOpacity
+                    <TouchableOpacity 
                         onPress={() => onSelectedItem(item)}
                         activeOpacity={0.8}>
 
-                        <Text key={(String(index))}>{item.num}</Text>
+                        <Text key={item.toString()}>{item.num}</Text>
                     </TouchableOpacity>
                 )
             })}
