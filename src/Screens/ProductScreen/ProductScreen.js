@@ -10,6 +10,7 @@ import { styles } from './styles';
 import firestore, { firebase } from '@react-native-firebase/firestore';
 import { useSelector } from 'react-redux';
 import navigationStrings from '../../navigation/navigationStrings';
+import strings from '../../constants/lang';
 
 
 const ProductScreen = ({ navigation, route }) => {
@@ -76,21 +77,16 @@ const ProductScreen = ({ navigation, route }) => {
                                 source={{ uri: item?.productImage }} />
                             <Text style={styles.txtstyle}>{item?.productCategory}</Text>
                             <Text style={styles.namestyle}>{item?.productName}</Text>
-                            <Text style={styles.pricestyle}>price range: {item?.price} only</Text>
+                            <Text style={styles.pricestyle}>{strings.PRICE_RANGE} {item?.price} only</Text>
                             <Text style={styles.descstyle}>{item?.description}</Text>
-                            <Text style={{
-                                backgroundColor: colors.redB,
-                                alignSelf: "center",
-                                marginTop: 10,
-                                color: colors.white, padding: 3, fontWeight: "700"
-                            }}> 35% discount</Text>
+                            <Text style={styles.discountstyle}> {strings.DISCOUNT}</Text>
                         </View>
 
                     </ScrollView>
                     <ButtonComp
                         // onPress={()=>updateItem(productId)}
                         onPress={addToCart}
-                        ButtonText='Add To Cart' />
+                        ButtonText={strings.ADD_TO_CART} />
                 </View>
 
                 :

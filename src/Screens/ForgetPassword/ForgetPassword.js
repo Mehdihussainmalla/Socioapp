@@ -1,6 +1,6 @@
 //import liraries
-import React, { useState, useContext } from 'react';
-import { View, Text, KeyboardAvoidingView, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, KeyboardAvoidingView, ScrollView, } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';

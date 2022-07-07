@@ -8,6 +8,7 @@ import ButtonComp from '../../Components/Button';
 import { styles } from './styles';
 import navigationStrings from '../../navigation/navigationStrings';
 import { useSelector } from 'react-redux';
+import strings from '../../constants/lang';
 const CategoryItems = ({ route, navigation }) => {
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
@@ -119,7 +120,7 @@ const CategoryItems = ({ route, navigation }) => {
                         //onPress={() => updateItem(Id)}
                         onPress={firebaseCart}
                         btnStyle={styles.buttonstyle}
-                        ButtonText='Add to Cart' />
+                        ButtonText={strings.ADD_TO_CART} />
                 </View>
 
             </View>

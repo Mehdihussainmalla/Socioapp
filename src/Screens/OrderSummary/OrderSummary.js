@@ -1,23 +1,22 @@
 //import liraries
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
-import colors from '../../styles/colors';
-import { height, width } from '../../styles/responsiveSize';
-import firestore, { firebase } from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import { styles } from './style';
 import navigationStrings from '../../navigation/navigationStrings';
 import ButtonComp from '../../Components/Button';
+import strings from '../../constants/lang';
 const OrderSummary = ({ navigation }) => {
 
-    const userData = useSelector((state) => state?.userStatus?.userData?.user?._user);
+    const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const email = userData?.email;
     const Name = userData?.displayName;
     const id = userData?.uid;
-    // console.log(Name, "Name from order summary")
+    // console.log(userData, "Name from order summary")
     const [showList, setShowList] = useState();
     useEffect(() => {
         const fetchData = async () => {
@@ -85,16 +84,16 @@ const OrderSummary = ({ navigation }) => {
                 <View style={styles.delivertstyle}>
 
                     <Text style={styles.delivertxt}>Deliver To:</Text>
-                    
+
                     <TouchableOpacity
                         onPress={() => navigation.navigate(navigationStrings.ADDRESS_DETAILS)}
                         activeOpacity={0.5}
                         style={styles.changestyle}>
-                        <Text style={styles.changetxt}>Change</Text>
+                        <Text style={styles.changetxt}>{strings.CHANGE}</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
-                <Text style={{fontWeight:"500", color:"blue"}}>{Name}</Text>
+                    <Text style={styles.nametxt}>{Name}</Text>
                     <Text style={styles.emailtxt}>{email}</Text>
                 </View>
                 <View style={styles.addressstyle}>
@@ -109,7 +108,7 @@ const OrderSummary = ({ navigation }) => {
                                 style={styles.tintstyle}
                                 source={imagePath.car} />
 
-                            <Text style={styles.delivertime}>Delivery by Jul 16</Text>
+                            <Text style={styles.delivertime}>{strings.DATE_DELIVERY}</Text>
 
                         </View>
                         <View>
@@ -124,7 +123,7 @@ const OrderSummary = ({ navigation }) => {
                                 style={styles.tintstyle}
                                 source={imagePath.swap} />
 
-                            <Text style={styles.txtstyle}>10 Days Return policy</Text>
+                            <Text style={styles.txtstyle}>{strings.RETURN_POLICY}</Text>
 
                         </View>
                         <View>
@@ -139,7 +138,7 @@ const OrderSummary = ({ navigation }) => {
                                 style={styles.tintstyle}
                                 source={imagePath.dollar} />
 
-                            <Text style={styles.txtstyle}>cash on Delivery</Text>
+                            <Text style={styles.txtstyle}>{strings.CASH_ON_DELIVERY}</Text>
 
                         </View>
 
@@ -155,7 +154,7 @@ const OrderSummary = ({ navigation }) => {
                                 style={styles.upiicon}
                                 source={imagePath.UPI} />
 
-                            <Text style={styles.upitxt}>Pay with UPI</Text>
+                            <Text style={styles.upitxt}>{strings.PAY_UPI}</Text>
 
                         </View>
                         <View>
@@ -165,13 +164,13 @@ const OrderSummary = ({ navigation }) => {
                         </View>
                     </View>
                     <View style={styles.similarproduct}>
-                        <Text style={styles.similartxt}>Similar Products</Text>
+                        <Text style={styles.similartxt}>{strings.SIMILAR_PRODUCTS}</Text>
 
                         <TouchableOpacity
                             activeOpacity={0.5}
                             style={styles.viewallstyle}>
                             <Text
-                                style={styles.viewalltxt}>View all</Text>
+                                style={styles.viewalltxt}>{strings.VIEWALL}</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -188,7 +187,7 @@ const OrderSummary = ({ navigation }) => {
             <TouchableOpacity
                 activeOpacity={0.8}>
                 <ButtonComp
-                    ButtonText='Proceed for payment' />
+                    ButtonText={strings.PROCEED_FOR_PAYMENT} />
 
             </TouchableOpacity>
 

@@ -13,7 +13,7 @@ import colors from '../../styles/colors';
 import imagePath from '../../constants/imagePath';
 import { useSelector } from 'react-redux';
 import navigationStrings from '../../navigation/navigationStrings';
-
+import strings from '../../constants/lang';
 
 const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
@@ -96,56 +96,61 @@ const Cart = ({ navigation }) => {
     }
 
     //.................item details..............//
-    const itemDetails = async () => {
-        try {
 
-            for (let index in item) {
-                let productid = item[index].productId;
-                //  console.log(productid, "product id isss")
-                firestore().collection(`accessories`)
-                    .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
-                    .get().then((res) => {
-                        const arr = [];
-                        // console.log(res.size, "res is>>>>>")
-                        res.forEach(doc => {
-                            // console.log(doc,"doc")
-                            const { accessoryType, rating, accoryImage, totalPrice, deliveryCharges,
-                                discount, Details, price, productCategory
-                            } = doc.data();
-                            arr.push({
-                                id: doc.id,
-                                productName: accessoryType,
-                                rating: rating,
-                                productImage: accoryImage,
-                                totalprice: totalPrice,
-                                Details: Details,
-                                deliveryCharges: deliveryCharges,
-                                discount: discount,
-                                price: price,
-                                productCategory: productCategory
+    // console.log(data, "data>>>")
+
+    //..................................................//
+    useEffect(() => {
+
+        const itemDetails = async () => {
+            try {
+
+                for (let index in item) {
+                    let productid = item[index].productId;
+                    //  console.log(productid, "product id isss")
+                    firestore().collection(`accessories`)
+                        .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
+                        .get().then((res) => {
+                            const arr = [];
+                            // console.log(res.size, "res is>>>>>")
+                            res.forEach(doc => {
+                                // console.log(doc,"doc")
+                                const { accessoryType, rating, accoryImage, totalPrice, deliveryCharges,
+                                    discount, Details, price, productCategory
+                                } = doc.data();
+                                arr.push({
+                                    id: doc.id,
+                                    productName: accessoryType,
+                                    rating: rating,
+                                    productImage: accoryImage,
+                                    totalprice: totalPrice,
+                                    Details: Details,
+                                    deliveryCharges: deliveryCharges,
+                                    discount: discount,
+                                    price: price,
+                                    productCategory: productCategory
+
+                                })
 
                             })
                             // console.log(arr, "new array is ")
                             setData([...arr, ...cart]);  //.........merge two states
                             //console.log(data.length,"data length")
-                        })
 
-                    })
+                        })
+                }
+            } catch (error) {
+                console.log(error, "error occurred")
+
             }
-        } catch (error) {
-            console.log(error, "error occurred")
 
         }
+        itemDetails()
 
-    }
-    // console.log(data, "data>>>")
-
-    //..................................................//
-    useEffect(() => {
         SubmitData()
         fetchData()
-        itemDetails()
     }, [])
+
     //..............counting............//
 
     const Increment = () => {
@@ -257,17 +262,10 @@ const Cart = ({ navigation }) => {
                     <TouchableOpacity
                         activeOpacity={0.7}
                         onPress={() => navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })}
-                        style={{ backgroundColor: "red" }}>
+                        style={styles.buystyle}>
                         <Text
 
-                            style={{
-                                fontSize: textScale(12),
-                                color: "white", fontWeight: "bold",
-                                alignSelf: "center",
-                                marginVertical: 3,
-                                bottom: 1
-
-                            }}>Buy</Text>
+                            style={styles.buytxt}>{strings.BUY}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -275,10 +273,10 @@ const Cart = ({ navigation }) => {
     }
     return (
         <Wrappercontainer>
-            <View style={{ flexDirection: "row" }}>
+            <View style={styles.headstyle}>
                 <Header
                     isBackIcon={true}
-                    title={"Cart"} />
+                    title={strings.CART} />
 
             </View>
             <FlatList

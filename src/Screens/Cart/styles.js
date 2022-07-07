@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     container: {
 
         padding: moderateScale(2),
-        borderWidth: 0.5,
+        borderWidth: moderateScale(0.5),
         margin: moderateScale(5),
         height: moderateScale(150),
         borderRadius: moderateScale(5),
@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     },
     imgstyle:
     {
-        width: width / 2.3,
-        height: width / 3,
+        width: width / moderateScale(2.3),
+        height: width / moderateScale(3),
     },
     textstyle:
     {
@@ -30,20 +30,20 @@ export const styles = StyleSheet.create({
     },
     productnamestyle:
     {
-        paddingLeft: 10,
+        paddingLeft: moderateScale(10),
         fontSize: textScale(14),
         fontWeight: "800"
     },
     deletestyle:
     {
         alignSelf: "flex-end",
-        marginTop: 5
+        marginTop: moderateScale(5)
     },
     categorystyle:
     {
         fontWeight: "600",
         fontSize: textScale(12),
-        paddingLeft: 20,
+        paddingLeft: moderateScale(20),
         color: colors.blackOpacity70,
 
     },
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
     {
         fontWeight: "600",
         fontSize: textScale(12),
-        paddingLeft: 10,
+        paddingLeft: moderateScale(10),
         color: colors.blackOpacity70,
     },
     counterstyle:
@@ -71,8 +71,8 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.blackOpacity40,
         color: colors.white,
         fontWeight: "bold",
-        marginBottom: 8,
-        paddingHorizontal: 5,
+        marginBottom: moderateScale(8),
+        paddingHorizontal: moderateScale(5),
         alignSelf: "center"
     },
     incrementstyle:
@@ -81,8 +81,8 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.blackOpacity40,
         color: colors.white,
         fontWeight: "bold",
-        marginBottom: 8,
-        paddingHorizontal: 4,
+        marginBottom: moderateScale(8),
+        paddingHorizontal: moderateScale(4),
         alignSelf: "center",
 
     },
@@ -90,5 +90,20 @@ export const styles = StyleSheet.create({
     {
         fontSize: textScale(20),
         color: colors.redD
-    }
+    },
+    buystyle:
+        { backgroundColor: colors.redB },
+    buytxt:
+    {
+        fontSize: textScale(12),
+        color: colors.white,
+        fontWeight: "bold",
+        alignSelf: "center",
+        marginVertical: moderateScale(3),
+        bottom: moderateScale(1)
+    },
+    headstyle:
+    {
+        flexDirection: "row"
+    },
 })

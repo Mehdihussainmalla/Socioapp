@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { moderateScale } from "react-native-size-matters";
 import colors from "../../styles/colors";
 
 
@@ -8,33 +9,36 @@ export const styles = StyleSheet.create({
     {
         flexDirection: "row",
         justifyContent: "space-between",
-       
+
     }
     , headerstyle:
     {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginRight: 220,
+        marginRight: moderateScale(220),
     }
     , container:
     {
-        marginVertical: 20,
+        marginVertical: moderateScale(20),
     },
     imgstyle:
     {
-        height: "70%", width: "70%", alignSelf: "center"
+        height: "70%",
+        width: "70%",
+        alignSelf: "center"
     },
     txtstyle:
     {
         color: colors.blackC,
-        fontWeight: "bold", alignSelf: "center",
-        marginTop: 10
+        fontWeight: "bold",
+        alignSelf: "center",
+        marginTop: moderateScale(10),
     },
     namestyle:
     {
         color: colors.blackC,
         alignSelf: "center",
-        marginTop: 10,
+        marginTop: moderateScale(10),
         fontWeight: "500"
     },
     pricestyle:
@@ -42,19 +46,29 @@ export const styles = StyleSheet.create({
         color: colors.redB,
         fontWeight: "bold",
         alignSelf: "center",
-        marginTop: 10
+        marginTop: moderateScale(10)
     },
     descstyle:
     {
         color: colors.blackC,
         alignSelf: "center",
-        marginTop: 10
+        marginTop: moderateScale(10)
+    },
+    discountstyle:
+    {
+        backgroundColor: colors.redB,
+        alignSelf: "center",
+        marginTop: moderateScale(10),
+        color: colors.white,
+        padding: moderateScale(3),
+        fontWeight: "700"
     },
     headericon:
-    { marginLeft: 90 ,
+    {
+        marginLeft: moderateScale(90),
         // position:"absolute",
-        paddingRight:20
+        paddingRight: moderateScale(20)
     },
     nametxt:
-    { paddingTop: 8, fontWeight:"bold"}
+        { paddingTop: 8, fontWeight: "bold" }
 })

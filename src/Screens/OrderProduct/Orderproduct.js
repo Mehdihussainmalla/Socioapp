@@ -6,6 +6,7 @@ import Dropdown from '../../Components/Dropdown';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
+import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { styles } from './style';
@@ -25,11 +26,11 @@ const OrderProduct = ({ route, }) => {
     const deliveryCharges = data?.deliveryCharges;
     const discount = data?.discount;
 
-     //console.log(data, "hfshdfj")
+    //console.log(data, "hfshdfj")
 
 
-//    const finalprice=totalPrice-discount+deliveryCharges;
-//    console.log(finalprice,"price")
+    //    const finalprice=totalPrice-discount+deliveryCharges;
+    //    console.log(finalprice,"price")
     const [selectedItem, setSelectedItem] = useState(null)
 
     const onSelect = (item) => {
@@ -42,7 +43,7 @@ const OrderProduct = ({ route, }) => {
             <Header
                 onPress={() => navigation.goBack()}
                 isBackIcon={true}
-                title={"OrderProduct"} />
+                title={strings.ORDER_PRODUCT} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <View style={styles.productstyle}>
@@ -53,8 +54,8 @@ const OrderProduct = ({ route, }) => {
                             <Text style={styles.productnamestyle}>{productName}</Text>
                             <Text style={styles.descstyle}>{description}</Text>
                             <View style={styles.pricestyle}>
-                                <Text style={styles.amountrange}>{price}<Text 
-                                style={styles.pricetxt}>  23% off</Text></Text>
+                                <Text style={styles.amountrange}>{price}<Text
+                                    style={styles.pricetxt}> {strings.DISCOUNT}</Text></Text>
                             </View>
                             <Text style={styles.categorytxt}>{category}</Text>
                             <View style={styles.ratingstyle}>
@@ -63,7 +64,7 @@ const OrderProduct = ({ route, }) => {
                         </View>
                     </View>
                     <View style={styles.dropdownstyle}>
-                        <Text style={styles.droptxt}>Qty: </Text>
+                        <Text style={styles.droptxt}>{strings.QTY} </Text>
                         <Dropdown
                             value={selectedItem}
                             data={numbering}
@@ -71,7 +72,7 @@ const OrderProduct = ({ route, }) => {
                         />
                     </View>
                     <View style={styles.timeview}>
-                        <Text style={styles.timestyle}>Delivery by Tue Jul 16</Text>
+                        <Text style={styles.timestyle}>{strings.DATE_DELIVERY}</Text>
                     </View>
                     <View style={styles.removestyle}>
                         <View style={styles.flexstyle}>
@@ -79,60 +80,60 @@ const OrderProduct = ({ route, }) => {
                                 <Image
                                     style={styles.img}
                                     source={imagePath.save_for_later} />
-                                <Text style={styles.savetxt} >Save for later</Text>
+                                <Text style={styles.savetxt} >{strings.SAVE_LATER}</Text>
                             </View>
                         </View>
                         <View style={styles.removecontainer}>
                             <View style={styles.removestyling}>
                                 <Image style={styles.img}
                                     source={imagePath.remove_icon} />
-                                <Text style={styles.removetxt} >Remove</Text>
+                                <Text style={styles.removetxt} >{strings.REMOVE}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={{ marginTop: 8 }}>
-                        <Text style={styles.detailstyle}>Product details</Text>
-                        <Text style={styles.indetailstyle}>Details</Text>
+                        <Text style={styles.detailstyle}>{strings.PRODUCT_DETAILS}</Text>
+                        <Text style={styles.indetailstyle}>{strings.DETAILS}</Text>
                         <View>
                             <Text>{`${details}`}</Text>
                         </View>
                     </View>
 
                     <View style={styles.prictetotal}>
-                        <Text style={styles.pricedetailtxt}>Price Details</Text>
+                        <Text style={styles.pricedetailtxt}>{strings.PRICE_DETAILS}</Text>
                         <View style={styles.itemstyle}>
-                            <Text>Price (1 item)</Text>
+                            <Text>{strings.PRICE_ITEM}</Text>
                             <Text>{price}</Text>
                         </View>
                         <View style={styles.itemstyle}>
-                            <Text>Discount</Text>
+                            <Text>{strings.discount}</Text>
                             <Text style={{ color: colors.green }}>- {discount}</Text>
                         </View>
                         <View style={styles.itemstyle}>
-                            <Text>Delivery Charges</Text>
+                            <Text>{strings.DELIVERY_CHARGES}</Text>
                             <Text style={styles.freestyle}>{deliveryCharges}</Text>
                         </View>
                         <View style={styles.chargeconatiner}></View>
                         <View style={styles.totalamount}>
-                            <Text style={styles.totalcharge}>Total Charges</Text>
+                            <Text style={styles.totalcharge}>{strings.TOTAL_CHARGES}</Text>
                             <Text style={styles.amounttxt}>{totalPrice}</Text>
                         </View>
                         <View style={styles.messagestyle}>
-                            <Text style={styles.messagetxt}>you will save {discount} on this order</Text>
+                            <Text style={styles.messagetxt}>{strings.SAVE}{discount}{strings.ORDER}</Text>
                         </View>
                     </View>
 
                     <View style={styles.buttoncontainer}>
                         <View style={styles.ratebutton}>
                             <Text style={styles.ratebtn}>{totalPrice}</Text>
-                            <Text style={styles.pricedesc}>view price details</Text>
+                            <Text style={styles.pricedesc}>{strings.PRICE_DETAILS}</Text>
                         </View>
 
                         <TouchableOpacity
                             onPress={() => navigation.navigate(navigationStrings.ORDER_SUMMARY)}
                             activeOpacity={0.8}
                             style={styles.continuebtnstyle}>
-                            <Text style={styles.continuebtn}>Continue</Text>
+                            <Text style={styles.continuebtn}>{strings.CONTINUE}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

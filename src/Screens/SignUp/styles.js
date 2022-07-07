@@ -47,12 +47,55 @@ export const styles = StyleSheet.create({
         justifyContent: "space-between"
         // backgroundColor: colors.greyA
     },
+    passstyle:
+    {
+        fontSize: textScale(14),
+        color: colors.black,
+    },
+    eyestyle:
+    {
+        paddingRight: moderateScale(10)
+    },
+    showeye:
+    {
+        marginTop: moderateScale(8)
+    },
+
+    hidestyle:
+    {
+        paddingRight: moderateScale(10)
+    },
+    btnstyle:
+    {
+        marginTop: moderateScaleVertical(90)
+    },
+
+    hideeye:
+    {
+        marginTop: moderateScale(8)
+    },
+
+    cnfmpassstyle:
+    {
+        fontSize: textScale(14),
+        color: colors.black
+    },
     usertext: {
 
         marginTop: moderateScaleVertical(10),
         flexDirection: "row",
         justifyContent: "center",
         marginHorizontal: moderateScaleVertical(27)
+    },
+    alreadyusertxt:
+    {
+        fontSize: textScale(12),
+        paddingHorizontal: moderateScale(10)
+    },
+    logintxt:
+    {
+        fontSize: textScale(12),
+        color: colors.blue
     }
 
 

@@ -11,6 +11,7 @@ import { moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 import { styles } from './styles';
 import auth from "@react-native-firebase/auth";
 import navigationStrings from '../../navigation/navigationStrings';
+import strings from '../../constants/lang';
 const PhoneLogin = ({ navigation }) => {
     const [countryCode, setCountryCode] = useState("91");
     const [countryFlag, setCountryFlag] = useState("IN");
@@ -43,26 +44,16 @@ const PhoneLogin = ({ navigation }) => {
 
     }
 
+    // const getLogin = (countryCode, phoneNumber) => {
 
-
-
-
-
-
-
-
-
-
-    const getLogin = (countryCode, phoneNumber) => {
-
-        // let res = phoneLogin(countryCode, phoneNumber)
-        // console.log(res,"resss>>")
-        // if (!!res) {
-        //     navigation.navigate(navigationStrings.OTPSCREEN)
-        // } else {
-        //     alert('something went wrong')
-        // }
-    }
+    //     // let res = phoneLogin(countryCode, phoneNumber)
+    //     // console.log(res,"resss>>")
+    //     // if (!!res) {
+    //     //     navigation.navigate(navigationStrings.OTPSCREEN)
+    //     // } else {
+    //     //     alert('something went wrong')
+    //     // }
+    // }
 
     return (
         <Wrappercontainer>
@@ -72,10 +63,10 @@ const PhoneLogin = ({ navigation }) => {
                 <ScrollView>
                     <View style={styles.titleview}>
                         <Text style={styles.textheading}>
-                            Enter you phone number
+                            {strings.ENTER_PHONE_NUMBER}
                         </Text>
                         <Text style={styles.desctext}>
-                            Enter 6 digit code sent to you at {`+${countryCode + phoneNumber}`}
+                            {strings.ENTER_CODE}{`+${countryCode + phoneNumber}`}
                         </Text>
                     </View>
 
@@ -98,7 +89,7 @@ const PhoneLogin = ({ navigation }) => {
 
                                 value={phoneNumber}
                                 onChangeText={(phoneNumber) => setPhoneNumber(phoneNumber)}
-                                placeholder='enter phone number' />
+                                placeholder={strings.ENTER_PHONE_NUMBER} />
                         </View>
                         {/* {alert(phoneNumber )} */}
                     </View>
@@ -110,7 +101,7 @@ const PhoneLogin = ({ navigation }) => {
                         onPress={() => numberLogin(countryCode, phoneNumber)}
                         // onPress={() => getLogin(countryCode, phoneNumber)}
                         // onPress={() => getLogin()}
-                        ButtonText='Login' />
+                        ButtonText={strings.LOGIN} />
                 </View>
             </KeyboardAvoidingView>
         </Wrappercontainer>

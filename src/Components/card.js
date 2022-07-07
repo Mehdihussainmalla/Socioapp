@@ -7,6 +7,7 @@ import { textScale, width } from '../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import navigationStrings from '../navigation/navigationStrings';
+import strings from '../constants/lang';
 // create a component
 const CardView = () => {
     const navigation = useNavigation();
@@ -96,7 +97,7 @@ const CardView = () => {
 
     return (
         <View>
-            <Text style={{ fontWeight: "700" }}>Products</Text>
+            <Text style={{ fontWeight: "700" }}>{strings.PRODUCTS}</Text>
             <FlatList
                 horizontal
                 data={products}

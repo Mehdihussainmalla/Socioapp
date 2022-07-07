@@ -14,15 +14,15 @@ const Header = ({
 
 }) => {
     const navigation = useNavigation();
-    const goBack = () => {
-        navigation.navigate(navigationStrings.HOME)
-    }
+    // const goBack = () => {
+    //     navigation.navigate(navigationStrings.HOME)
+    // }
     return (
         <View style={{ ...styles.container, container }}>
             {!!isBackIcon && (
 
                 <TouchableOpacity activeOpacity={0.5}
-                    onPress={!!onPress ? onPress : () => goBack()} >
+                    onPress={ () => navigation.goBack()} >
                     <Image style={{...styles.imageStyle, ...imageStyle}} source={imagePath.back_arrow} />
                 </TouchableOpacity>
             )}

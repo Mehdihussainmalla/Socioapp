@@ -75,7 +75,7 @@ const Home = ({ navigation }) => {
             <TouchableOpacity style={styles.Carouselstyle}>
                 <Image source={{ uri: item?.offerImage }}
                     style={styles.Carouselimg}
-                    resizeMode="stretch" />
+                    resizeMode={strings.STRECH} />
             </TouchableOpacity>
         )
     }

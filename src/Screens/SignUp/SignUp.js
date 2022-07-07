@@ -106,16 +106,16 @@ const SignUp = ({ navigation }) => {
                             value={password}
                             secureTextEntry={hide}
                             onChangeText={(password) => setPassword(password)}
-                            input={{ fontSize: textScale(14), color: colors.black, }}
+                            input={styles.passstyle}
                             placeholder={strings.ENTER_PASSWORD} />
                         {hide ? <TouchableOpacity onPress={() => setHide(false)}
-                            style={{ paddingRight: 10 }}>
-                            <Image style={{ marginTop: 8 }}
+                            style={styles.eyestyle}>
+                            <Image style={styles.showeye}
                                 source={imagePath.show_eye} />
                         </TouchableOpacity> :
-                            <TouchableOpacity style={{ paddingRight: 10 }}
+                            <TouchableOpacity style={styles.hidestyle}
                                 onPress={() => setHide(true)}>
-                                <Image style={{ marginTop: 8 }} source={imagePath.hide_eye} />
+                                <Image style={styles.hideeye} source={imagePath.hide_eye} />
                             </TouchableOpacity>
                         }
                     </View>
@@ -124,17 +124,17 @@ const SignUp = ({ navigation }) => {
                             value={confirmPassword}
                             secureTextEntry={hideIcon}
                             onChangeText={(confirmPassword) => setConfirmpassword(confirmPassword)}
-                            input={{ fontSize: textScale(14), color: colors.black }}
+                            input={styles.cnfmpassstyle}
                             placeholder={strings.CONFIRM_PASSWORD} />
 
                         {hideIcon ? <TouchableOpacity onPress={() => setHideIcon(false)}
-                            style={{ paddingRight: 10 }}>
-                            <Image style={{ marginTop: 8 }}
+                            style={styles.eyestyle}>
+                            <Image style={styles.showeye}
                                 source={imagePath.show_eye} />
                         </TouchableOpacity> :
-                            <TouchableOpacity style={{ paddingRight: 10 }}
+                            <TouchableOpacity style={styles.hidestyle}
                                 onPress={() => setHideIcon(true)}>
-                                <Image style={{ marginTop: 8 }} source={imagePath.hide_eye} />
+                                <Image style={styles.hideeye} source={imagePath.hide_eye} />
                             </TouchableOpacity>
                         }
                     </View>
@@ -142,20 +142,14 @@ const SignUp = ({ navigation }) => {
             </SafeAreaView>
             <ButtonComp
                 onPress={handleSignup}
-                btnStyle={{ marginTop: moderateScaleVertical(90), }}
+                btnStyle={styles.btnstyle}
                 ButtonText={strings.SIGN_UP} />
 
             <View style={styles.usertext}>
-                <Text style={{
-                    fontSize: textScale(12),
-                    paddingHorizontal: 10
-                }}>{strings.ALREADY_USER}</Text>
+                <Text style={styles.alreadyusertxt}>{strings.ALREADY_USER}</Text>
                 <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.LOGIN)}
                     activeOpacity={0.5}>
-                    <Text style={{
-                        fontSize: textScale(12),
-                        color: colors.blue
-                    }}>{strings.LOGIN}</Text>
+                    <Text style={styles.logintxt}>{strings.LOGIN}</Text>
                 </TouchableOpacity>
 
             </View>

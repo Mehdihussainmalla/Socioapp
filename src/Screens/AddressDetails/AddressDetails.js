@@ -6,7 +6,9 @@ import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
+import strings from '../../constants/lang';
 import colors from '../../styles/colors';
+import { styles } from './style';
 const AddressDetails = ({navigation}) => {
     
     return (
@@ -14,114 +16,90 @@ const AddressDetails = ({navigation}) => {
             <Header 
             onPress={()=>navigation.goBack()}
             isBackIcon={true}
-                title={"Add Address Details"} />
+                title={strings.ADDRESS_DETAILS} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <TextInputComponent
-                    input={{ borderWidth: 0.9, marginVertical: 20, }}
-                    placeholder='Full Name (Required)*' />
+                    input={styles.fullnametxt}
+                    placeholder={strings.FULL_NAME} />
 
                 <TextInputComponent
-                    input={{ borderWidth: 0.9, marginVertical: 10, }}
-                    placeholder='Phone Number (Required)*' />
+                    input={styles.phonestyle}
+                    placeholder={strings.PHONE_REQUIRED} />
                 <TouchableOpacity activeOpacity={0.5}>
-                    <Text style={{ color: "blue", fontWeight: "300", paddingLeft: 10 }}>+Add Alternative phone number</Text>
+                    <Text style={styles.alternatenumber}>
+                        {strings.ADD_ALTERNATE_NUMBER}</Text>
                 </TouchableOpacity>
 
-                <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 15 }}>
-                    <View style={{ flex: 0.5 }}>
+                <View style={styles.mainstylepincode}>
+                    <View style={styles.pinview}>
                         <TextInputComponent
-                            input={{ borderWidth: 0.9 }}
-                            placeholder='Pincode(Required)*' />
+                            input={styles.pincodeinput}
+                            placeholder={strings.PINCODE} />
                     </View>
-                    <View style={{
-                        flex: 0.5,
-                        marginRight: 10,
-                        marginTop: 5
-                    }}>
-                        <View style={{
-                            backgroundColor: "blue",
-                            flexDirection: "row",
-                            justifyContent: 'center',
-                        }}>
+                    <View style={styles.locationstyle}>
+                        <View style={styles.gpsstyle}>
                             <Image
-                                style={{ tintColor: "white", marginTop: 6, marginLeft: 0 }}
+                                style={styles.gpsicon}
                                 source={imagePath.GPS} />
                             <TouchableOpacity activeOpacity={0.5}>
-                                <Text style={{
-                                    color: colors.white, paddingTop: 6,
-                                    fontWeight: "600", padding: 2
-                                }}>use my current location</Text>
+                                <Text style={styles.currentstyle}>{strings.CURRENT_LOCATION}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
 
-                <View style={{ flexDirection: "row", justifyContent: 'center', marginTop: 15 }}>
-                    <View style={{ flex: 0.5 }}>
+                <View style={styles.statecitystyle}>
+                    <View style={styles.statestyle}>
                         <TextInputComponent
-                            input={{ borderWidth: 0.9, }}
-                            placeholder='State (Required)*' />
+                            input={styles.stateinput}
+                            placeholder={strings.STATE_REQUIRED} />
                     </View>
-                    <View style={{ flex: 0.5 }}>
+                    <View style={styles.citystyle}>
                         <TextInputComponent
-                            input={{ borderWidth: 0.9 }}
-                            placeholder='City(Required)*' />
+                            input={styles.cityinput}
+                            placeholder={strings.CITY}/>
                     </View>
                 </View>
                 <TextInputComponent
-                    input={{ borderWidth: 0.9, marginTop: 15 }}
-                    placeholder='House No.,Building Name (Required)*' />
+                    input={styles.houseinput}
+                    placeholder={strings.HOUSE}/>
                 <TextInputComponent
-                    input={{ borderWidth: 0.9, marginTop: 15 }}
-                    placeholder='Road name, Area, Colony (Required)*' />
+                    input={styles.roadinput}
+                    placeholder={strings.ROAD} />
                 <TouchableOpacity
                     activeOpacity={0.5}
-                    style={{ marginTop: 16 }}>
-                    <Text style={{ fontWeight: "300", color: "blue" }}>+Add nearby famous shop/mall/LandMark</Text>
+                    style={styles.showstyle}>
+                    <Text style={styles.showtxt}>{strings.SHOW}</Text>
                 </TouchableOpacity>
 
-                <View style={{ marginTop: 16 }}>
-                    <Text style={{ fontWeight: "500", color: colors.blackOpacity66 }}>Type of address</Text>
+                <View style={styles.typestyle}>
+                    <Text style={styles.typetxt}>{strings.TYPE}</Text>
                 </View>
-                <View style={{ flexDirection: "row", marginTop: 20 }}>
+                <View style={styles.typeaddress}>
                     <TouchableOpacity
                         activeOpacity={0.5}
-                        style={{
-                            flexDirection: "row", justifyContent: "flex-start", flex: 0.3,
-                            borderWidth: 0.5, borderRadius: 20,
-                        }}>
+                        style={styles.homeiconstyle}>
                         <Image
-                            style={{ tintColor: "blue" }}
+                            style={styles.homeicon}
                             source={imagePath.Home_icon} />
-                        <Text style={{
-                            paddingLeft: 10, alignSelf: "center",
-                            fontWeight: "500", color: colors.blackOpacity66
-                        }}>Home</Text>
+                        <Text style={styles.hometxt}>{strings.HOME}</Text>
 
                     </TouchableOpacity >
                     <TouchableOpacity
                         activeOpacity={0.5}
-                        style={{ flexDirection: "row", justifyContent: "center",
-                         flex: 0.5, marginLeft: 20, borderWidth: 0.5, borderRadius: 20, }}>
+                        style={styles.workiconstyle}>
                         <Image
-                            style={{ tintColor: "blue", marginTop: 8 }}
+                            style={styles.officeicon}
                             source={imagePath.OFFICE_ICON} />
-                        <Text style={{
-                            paddingLeft: 10, alignSelf: "center",
-                            fontWeight: "500", color: colors.blackOpacity66
-                        }}>Work</Text>
+                        <Text style={styles.officetxt}>{strings.WORK}</Text>
                     </TouchableOpacity>
                 </View>
                 <ButtonComp
-                    btnStyle={{ marginTop: 127, width: "95%", marginLeft: 10 }}
-                    ButtonText='Save Address' />
+                    btnStyle={styles.btnstyle}
+                    ButtonText={strings.SAVE_ADDRESS} />
             </ScrollView>
         </Wrappercontainer>
     );
 };
 
-
-const styles = StyleSheet.create({
-
-});
 export default AddressDetails;

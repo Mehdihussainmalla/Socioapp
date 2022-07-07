@@ -7,11 +7,12 @@ export const styles = StyleSheet.create({
     itemcontainer: {
         // borderWidth: 0.9,
         borderRadius: moderateScale(5),
-        marginVertical: moderateScale(20),
+        // marginVertical: moderateScale(25),
         marginRight: moderateScale(10),
         height: moderateScale(135),
         justifyContent: "center",
-        paddingHorizontal: 10,
+        paddingHorizontal:moderateScale(10),
+        marginTop: moderateScale(15)
 
     },
     imagestyle: {
@@ -80,6 +81,11 @@ export const styles = StyleSheet.create({
     },
     changetxt:
     {
+        color: colors.blue
+    },
+    nametxt:
+    {
+        fontWeight: "500",
         color: colors.blue
     },
     emailtxt:
@@ -155,7 +161,7 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: moderateScale(1),
-        marginTop: 3
+        marginTop: 0
     },
     upiiconstyle:
     {
