@@ -196,7 +196,7 @@ export const styles = StyleSheet.create({
         flex: 0.5,
         justifyContent: 'center',
         borderWidth: moderateScale(0.5),
-        backgroundColor: colors.redB
+        backgroundColor: colors.blue
     },
     continuebtn:
     {

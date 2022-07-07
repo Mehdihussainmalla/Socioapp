@@ -95,7 +95,6 @@ const Cart = ({ navigation }) => {
         }
     }
 
-    //.................item details..............//
 
     // console.log(data, "data>>>")
 

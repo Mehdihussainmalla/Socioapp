@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         borderWidth: moderateScale(0.9),
         marginVertical: moderateScale(10),
     },
-    alternatenumber:
+    alternatenumstyle:
     {
         color: colors.blue,
         fontWeight: "300",
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     },
     gpsstyle:
     {
-        backgroundColor: "blue",
+        backgroundColor:colors.blue,
         flexDirection: "row",
         justifyContent: 'center',
     },
@@ -100,6 +100,21 @@ export const styles = StyleSheet.create({
         fontWeight: "300",
         color: colors.blue
     },
+    closebtn:
+    {
+        backgroundColor: colors.blue,
+        width: width / moderateScale(5),
+        borderRadius: moderateScale(10),
+        marginLeft: moderateScale(10)
+    },
+    closetxt:
+    {
+        color: colors.white,
+        fontWeight: "500",
+        paddingLeft: moderateScale(20),
+        padding: moderateScale(5)
+    },
+
     typestyle:
     {
         marginTop: moderateScale(16)
@@ -156,8 +171,9 @@ export const styles = StyleSheet.create({
     },
     btnstyle:
     {
-        marginTop: moderateScale(115),
-        width:"95%",
-        marginLeft: moderateScale(10)
+        marginTop: moderateScale(110),
+        width: "95%",
+        marginLeft: moderateScale(10),
+        // backgroundColor:colors.blue
     }
 })

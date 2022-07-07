@@ -73,7 +73,7 @@ export default {
     ADDRESS_DETAILS: "Add Address Details",
     FULL_NAME: 'Full Name (Required)*',
     PHONE_REQUIRED: 'Phone Number (Required)*',
-    ADD_ALTERNATE_NUMBER: "+Add Alternative phone number",
+    ADD_ALTERNATE_NUMBER: "Add Alternative phone number",
     PINCODE: 'Pincode(Required)*',
     CURRENT_LOCATION: "use my current location",
     STATE_REQUIRED: "State (Required)*",
@@ -84,4 +84,9 @@ export default {
     TYPE: "Type of address",
     WORK: "Work",
     SAVE_ADDRESS: 'Save Address',
+    NEARBY_ADDRESS:'enter nearby address',
+    ORDERSUMMARY:"order summary"
+
+
+    
 }

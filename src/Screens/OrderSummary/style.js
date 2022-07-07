@@ -7,12 +7,12 @@ export const styles = StyleSheet.create({
     itemcontainer: {
         // borderWidth: 0.9,
         borderRadius: moderateScale(5),
-        // marginVertical: moderateScale(25),
         marginRight: moderateScale(10),
         height: moderateScale(135),
         justifyContent: "center",
         paddingHorizontal:moderateScale(10),
-        marginTop: moderateScale(15)
+        // marginTop: moderateScale(250)
+    
 
     },
     imagestyle: {
@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
     },
     container:
     {
-        flex: 1.5,
+        flex: 0.8,
     },
     delivertstyle:
     {
@@ -86,15 +86,17 @@ export const styles = StyleSheet.create({
     nametxt:
     {
         fontWeight: "500",
-        color: colors.blue
+        color: colors.blue,
+    
     },
     emailtxt:
     {
+       
         fontWeight: "600"
     },
     addressstyle:
     {
-        marginTop: moderateScale(8)
+       // marginTop: moderateScale(8)
     },
     addtxt:
     {
@@ -106,7 +108,8 @@ export const styles = StyleSheet.create({
     },
     mainview:
     {
-        flex: 0.2,
+         marginTop:10
+        // flex: 0.2,
     },
     upistyle:
     {
@@ -118,7 +121,7 @@ export const styles = StyleSheet.create({
     {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginTop: moderateScale(10),
+        marginTop: moderateScale(5),
 
     },
     iconstyle:
@@ -154,14 +157,15 @@ export const styles = StyleSheet.create({
     upitxt:
     {
         fontWeight: "400",
-        paddingLeft: moderateScale(29)
+        paddingLeft: moderateScale(20)
     },
     similarproduct:
     {
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: moderateScale(1),
-        marginTop: 0
+        marginTop:moderateScale(10),
+      
     },
     upiiconstyle:
     {
@@ -170,20 +174,40 @@ export const styles = StyleSheet.create({
     },
     similartxt:
     {
+        padding:moderateScale(5),
         fontWeight: "600"
     },
     viewallstyle:
     {
         borderWidth: moderateScale(0.4),
         padding: moderateScale(4),
-        // marginTop:5
+        marginTop:moderateScale(5)
     },
     viewalltxt:
     {
-        color: colors.blue
+        color: colors.blue,
+
+    },
+    addressview:
+    { 
+        backgroundColor: colors.blackOpacity05, 
+        marginVertical:moderateScale(5),
+       
     },
 
-
+addresstxt:
+{ 
+    color:colors.blackOpacity66,
+    padding:moderateScale(2)
+},
+flatlistview:
+{
+    marginTop:moderateScale(10)
+},
+btnstyle:
+{ 
+    marginTop:moderateScale(100),
+},
 
 
 

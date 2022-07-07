@@ -92,7 +92,7 @@ export const styles = StyleSheet.create({
         color: colors.redD
     },
     buystyle:
-        { backgroundColor: colors.redB },
+        { backgroundColor: colors.blue },
     buytxt:
     {
         fontSize: textScale(12),

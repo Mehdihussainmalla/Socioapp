@@ -9,7 +9,6 @@ import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
-import imagePath from '../../constants/imagePath';
 import colors from '../../styles/colors';
 import { textScale, width } from '../../styles/responsiveSize';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -17,6 +16,7 @@ import storage from "@react-native-firebase/storage";
 import firestore from '@react-native-firebase/firestore';
 import navigationStrings from '../../navigation/navigationStrings';
 import { useNavigation } from '@react-navigation/native';
+import strings from '../../constants/lang';
 
 const Accessories = (props) => {
 
@@ -165,7 +165,7 @@ const Accessories = (props) => {
         <Wrappercontainer>
             <View style={styles.container}>
                 <Header isBackIcon={true}
-                    title={"Accessories"} />
+                    title={strings.ACCESSORIES} />
                 <ScrollView>
                     <Image style={styles.imgstyle}
                         source={{ uri: accoryImage }} />

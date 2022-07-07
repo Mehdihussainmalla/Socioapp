@@ -1,6 +1,6 @@
 //import liraries
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList,ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
@@ -10,6 +10,7 @@ import { styles } from './style';
 import navigationStrings from '../../navigation/navigationStrings';
 import ButtonComp from '../../Components/Button';
 import strings from '../../constants/lang';
+import colors from '../../styles/colors';
 const OrderSummary = ({ navigation }) => {
 
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
@@ -18,37 +19,71 @@ const OrderSummary = ({ navigation }) => {
     const id = userData?.uid;
     // console.log(userData, "Name from order summary")
     const [showList, setShowList] = useState();
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
+    const [address, setAddress] = useState([]);
+
+    const getAddress = async () => {
+        try {
+            await firestore().collection(`AddAddress`).get().then((res) => {
                 const list = [];
-                await firestore().collection("products")
+                res.forEach(doc => {
+                    const { fullName, phoneNumber, alternateNumnber, pincode,
+                        stateName, city, houseNumber, roadName, landMark } = doc.data();
+                    list.push({
+                        fullName,
+                        phoneNumber,
+                        alternateNumnber,
+                        pincode,
+                        stateName,
+                        city,
+                        houseNumber,
+                        roadName,
+                        landMark
 
-                    .get().then((res) => {
-                        // console.log(res.size, "res>>>> from home is>sdsds>")
-                        res.forEach(doc => {
-
-                            const { productCategory, productImage, rating, price, description, productName } = doc.data();
-                            list.push({
-                                key: doc.id,
-                                productCategory,
-                                description,
-                                productImage,
-                                rating,
-                                price,
-                                productName
-                            })
-                            setShowList(list);
-                            // console.log(list, "list is")
-                        })
                     })
-            } catch (error) {
-                console.log(error, "error occurred")
-            }
+                })
+                // console.log(list,"list is")
+                setAddress(list)
+            })
+
+        } catch (error) {
+            console.log(error, "error occurred")
+
         }
+    }
+
+    const fetchData = async () => {
+        try {
+            const list = [];
+            await firestore().collection("products")
+
+                .get().then((res) => {
+                    // console.log(res.size, "res>>>> from home is>sdsds>")
+                    res.forEach(doc => {
+
+                        const { productCategory, productImage, rating, price, description, productName } = doc.data();
+                        list.push({
+                            key: doc.id,
+                            productCategory,
+                            description,
+                            productImage,
+                            rating,
+                            price,
+                            productName
+                        })
+                        setShowList(list);
+                        // console.log(list, "list is")
+                    })
+                })
+        } catch (error) {
+            console.log(error, "error occurred")
+        }
+    }
+    useEffect(() => {
         fetchData();
+        getAddress();
 
     }, [])
+
     const renderItem = ({ item }) => {
         //  console.log(item, "items are")
         const description = item.description;
@@ -77,12 +112,14 @@ const OrderSummary = ({ navigation }) => {
 
     return (
         <Wrappercontainer>
+            <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.container}>
                 <Header
                     onPress={() => navigation.goBack()}
-                    isBackIcon={true} />
-                <View style={styles.delivertstyle}>
-
+                    isBackIcon={true}
+                    title={strings.ORDERSUMMARY} />
+                    
+                         <View style={styles.delivertstyle}>
                     <Text style={styles.delivertxt}>Deliver To:</Text>
 
                     <TouchableOpacity
@@ -92,14 +129,26 @@ const OrderSummary = ({ navigation }) => {
                         <Text style={styles.changetxt}>{strings.CHANGE}</Text>
                     </TouchableOpacity>
                 </View>
+
+                {address.map((item) => {
+                    // console.log(item, "items aree")
+                    return (
+                        <View style={styles.addressview}>
+                            <Text style={styles.addresstxt}>{item?.fullName}</Text>
+                            <Text style={styles.addresstxt}>{item?.houseNumber}</Text>
+                            <Text style={styles.addresstxt}>{item?.phoneNumber}</Text>
+                            <Text style={styles.addresstxt}>{item?.pincode}</Text>
+                            <Text style={styles.addresstxt}>{item?.stateName}</Text>
+                            <Text style={styles.addresstxt}>{item?.city}</Text>
+
+                        </View>
+                    )
+                })}
                 <View>
                     <Text style={styles.nametxt}>{Name}</Text>
                     <Text style={styles.emailtxt}>{email}</Text>
                 </View>
-                <View style={styles.addressstyle}>
-                    <Text style={styles.addtxt}>{`code brew labs sector 28 Madhya Marg chandigarh. pincode : 160022`}</Text>
-                    <Text style={styles.contacttxt}>{`contact:+916005927575`}</Text>
-                </View>
+
                 <Text style={{}}>------------------------------------------------------</Text>
                 <View style={styles.mainview}>
                     <View style={styles.itemview}>
@@ -177,20 +226,22 @@ const OrderSummary = ({ navigation }) => {
                 </View>
             </View>
 
+            <View style={styles.flatlistview}>
             <FlatList
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 data={showList}
                 renderItem={renderItem}
             />
-
+            </View>
             <TouchableOpacity
                 activeOpacity={0.8}>
                 <ButtonComp
+              btnStyle={styles.btnstyle}
                     ButtonText={strings.PROCEED_FOR_PAYMENT} />
 
             </TouchableOpacity>
-
+            </ScrollView>
         </Wrappercontainer>
     );
 };

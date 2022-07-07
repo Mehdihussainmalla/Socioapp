@@ -33,7 +33,7 @@ export default function TabStack() {
                 <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redE : colors.black }}
+                            <Image style={{ tintColor: focused ? colors.blue : colors.blackOpacity66 }}
                                 source={imagePath.Home_icon} />
                         )
                     }
@@ -43,7 +43,7 @@ export default function TabStack() {
                 <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redC : colors.black, }}
+                            <Image style={{ tintColor: focused ? colors.blue : colors.blackOpacity66 }}
                                 source={imagePath.cart} />
                         )
                     }
@@ -53,7 +53,7 @@ export default function TabStack() {
                 <Tab.Screen options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image style={{ tintColor: focused ? colors.redC : colors.black }}
+                            <Image style={{ tintColor: focused ? colors.blue : colors.blackOpacity66 }}
                                 source={imagePath.profile_icon} />
                         )
                     }
