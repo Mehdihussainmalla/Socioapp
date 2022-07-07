@@ -21,6 +21,7 @@ export default {
     PRODUCT_SCREEN: "Product screen",
     ORDER_PRODUCT: "Order product",
     ORDER_SUMMARY: "Order Summary",
-    ADDRESS_DETAILS: "Address details"
+    ADDRESS_DETAILS: "Address details",
+
 
 }

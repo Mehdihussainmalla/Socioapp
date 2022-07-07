@@ -44,7 +44,7 @@ const AddressDetails = ({ navigation }) => {
         setEnable(false)
     }
 
-    const deliverAddress=()=>{
+    const deliverAddress = () => {
         setAddressType(false)
     }
 
@@ -127,7 +127,9 @@ const AddressDetails = ({ navigation }) => {
                             <Image
                                 style={styles.gpsicon}
                                 source={imagePath.GPS} />
-                            <TouchableOpacity activeOpacity={0.5}>
+                            <TouchableOpacity 
+                          
+                            activeOpacity={0.5}>
                                 <Text style={styles.currentstyle}>{strings.CURRENT_LOCATION}</Text>
                             </TouchableOpacity>
                         </View>
@@ -189,17 +191,18 @@ const AddressDetails = ({ navigation }) => {
                     <Text style={styles.typetxt}>{strings.TYPE}</Text>
                 </View>
                 <View style={styles.typeaddress}>
+
                     <TouchableOpacity
-                    onPress={deliverAddress}
                         activeOpacity={0.5}
                         style={styles.homeiconstyle}>
                         <Image
                             style={styles.homeicon}
                             source={imagePath.Home_icon} />
                         <Text style={styles.hometxt}>{strings.HOME}</Text>
-
                     </TouchableOpacity >
+
                     <TouchableOpacity
+                        // onPress={deliverAddress}
                         activeOpacity={0.5}
                         style={styles.workiconstyle}>
                         <Image
@@ -207,6 +210,7 @@ const AddressDetails = ({ navigation }) => {
                             source={imagePath.OFFICE_ICON} />
                         <Text style={styles.officetxt}>{strings.WORK}</Text>
                     </TouchableOpacity>
+
                 </View>
                 <ButtonComp
                     onPress={addressCollection}

@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     },
     gpsstyle:
     {
-        backgroundColor:colors.blue,
+        backgroundColor: colors.blue,
         flexDirection: "row",
         justifyContent: 'center',
     },
@@ -136,6 +136,7 @@ export const styles = StyleSheet.create({
         flex: 0.3,
         borderWidth: moderateScale(0.5),
         borderRadius: moderateScale(20),
+        // backgroundColor:"grey"
     },
     homeicon:
     {
@@ -152,8 +153,8 @@ export const styles = StyleSheet.create({
     {
         flexDirection: "row",
         justifyContent: "center",
-        flex: 0.5,
-        marginLeft: moderateScale(20),
+        flex: 0.4,
+        marginLeft: moderateScale(25),
         borderWidth: moderateScale(0.5),
         borderRadius: moderateScale(20),
     },

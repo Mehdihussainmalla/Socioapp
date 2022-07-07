@@ -17,8 +17,6 @@ const MainStack = (Stack) => {
             <Stack.Screen name={navigationStrings.SEARCH_SCREEN}
                options={{ headerShown: false }}
                component={SearchScreen} />
-
-
             <Stack.Screen name={navigationStrings.SETTINGS}
                options={{ headerShown: false }}
                component={Settings} />
@@ -53,7 +51,7 @@ const MainStack = (Stack) => {
             <Stack.Screen name={navigationStrings.ADDRESS_DETAILS}
                options={{ headerShown: false }}
                component={AddressDetails} />
-
+           
          </Stack.Navigator>
       </>
    );
