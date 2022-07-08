@@ -172,7 +172,7 @@ export const styles = StyleSheet.create({
     },
     btnstyle:
     {
-        marginTop: moderateScale(110),
+        marginTop: moderateScale(155),
         width: "95%",
         marginLeft: moderateScale(10),
         // backgroundColor:colors.blue

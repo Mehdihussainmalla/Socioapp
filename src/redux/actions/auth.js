@@ -62,7 +62,6 @@ export const signIn = async (email, password) => {
             message: "There is no user record corresponding to this identifier",
             type: "danger"
         })
-        // alert(" There is no user record corresponding to this identifier")
 
     }
 
@@ -88,7 +87,7 @@ export const addToCart = (data) => {
         type: types.ADD_TO_CART,
         payload: data
     })
-//   console.log(data, "data to add items ")
+ console.log(data, "data to add items ")
 }
 
 //............increment........//

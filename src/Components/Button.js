@@ -11,6 +11,7 @@ export default function ButtonComp({
     btnStyle = {},
     buttonTxt = {},
     btnIcon,
+    imgIcon,
     onPress = () => { },
 }) {
     return (
@@ -22,7 +23,7 @@ export default function ButtonComp({
                 ...btnStyle,
             }}
             onPress={onPress}>
-            {!!btnIcon ? <Image source={btnIcon} style={styles.imgIcon} /> : <View />}
+            {!!btnIcon ? <Image source={btnIcon} style={{ ...styles.imgIcon, ...imgIcon }} /> : <View />}
 
 
             <Text style={{
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "center",
-    
+
     },
     buttonTxt: {
         fontSize: textScale(14),
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
     },
     imgIcon: {
         // position: 'absolute',
-        marginLeft: moderateScale(19)
+        marginLeft: moderateScale(19),
+
     }
 });

@@ -134,7 +134,7 @@ export const styles = StyleSheet.create({
         fontWeight: "500",
         paddingTop: moderateScale(15)
     },
-    prictetotal:{marginTop:moderateScale(10)},
+    prictetotal: { marginTop: moderateScale(10) },
     pricedetailtxt:
     {
         fontWeight: "600"
@@ -167,7 +167,8 @@ export const styles = StyleSheet.create({
     },
     buttoncontainer:
     {
-        marginTop: moderateScale(100),
+
+        marginTop: moderateScale(180),
         height: "12%",
         borderRadius: moderateScale(10),
         flexDirection: "row"

@@ -206,7 +206,7 @@ flatlistview:
 },
 btnstyle:
 { 
-    marginTop:moderateScale(100),
+    marginTop:moderateScale(155),
 },
 
 

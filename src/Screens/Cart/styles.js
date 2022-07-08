@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
     {
         fontWeight: "600",
         fontSize: textScale(12),
-        paddingLeft: moderateScale(20),
+        paddingLeft: moderateScale(12),
         color: colors.blackOpacity70,
 
     },

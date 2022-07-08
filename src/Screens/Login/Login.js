@@ -134,35 +134,25 @@ const Login = ({ navigation }) => {
         <Wrappercontainer>
             <SafeAreaView style={styles.container}>
 
-                <View style={{ alignItems: "flex-end", alignContent: "flex-end", flexDirection: "column" }}>
+                <View style={styles.langstyle}>
                     <TouchableOpacity
-                        style={{ backgroundColor: colors.backgroundGreyB }}
+                        style={styles.langbtn}
                         activeOpacity={0.5}
                         onPress={handleModal}>
-                        <Text style={{
-                            color: colors.black,
-                            fontWeight: "400",
-                            fontSize: textScale(13),
-                        }}>
+                        <Text style={styles.langtxt}>
                             {strings.CHANGE_LANGUAGE}
                         </Text>
                     </TouchableOpacity>
                 </View>
                 <Modal isVisible={isModalVisible}>
 
-                    <View style={{ height: "50%", }}>
+                    <View style={styles.modalstyle}>
                         <ScrollView>
                             <TouchableOpacity
                                 activeOpacity={0.5}
                                 onPress={() => onchangeLange('ur')}
-                                style={{
-
-                                    paddingVertical: moderateScaleVertical(6)
-                                }}>
-                                <Text style={{
-                                    fontSize: textScale(20), color: colors.white,
-                                    alignSelf: "center"
-                                }}>
+                                style={styles.langnameview}>
+                                <Text style={styles.langtxt}>
                                     {strings.URDU}
                                 </Text>
                             </TouchableOpacity>
@@ -170,14 +160,8 @@ const Login = ({ navigation }) => {
                             <TouchableOpacity
                                 onPress={() => onchangeLange('hi')}
                                 activeOpacity={0.5}
-                                style={{
-                                    // marginTop: moderateScaleVertical(5),
-                                    paddingVertical: moderateScaleVertical(6)
-                                }}>
-                                <Text style={{
-                                    fontSize: textScale(20), color: colors.white,
-                                    alignSelf: "center"
-                                }}>
+                                style={styles.langnameview}>
+                                <Text style={styles.langtxt}>
                                     {strings.HINDI}
                                 </Text>
                             </TouchableOpacity>
@@ -185,14 +169,8 @@ const Login = ({ navigation }) => {
                             <TouchableOpacity
                                 activeOpacity={0.5}
                                 onPress={() => onchangeLange('ar')}
-                                style={{
-                                    // marginTop: moderateScaleVertical(5),
-                                    paddingVertical: moderateScaleVertical(6)
-                                }}>
-                                <Text style={{
-                                    fontSize: textScale(20), color: colors.white,
-                                    alignSelf: "center"
-                                }}>
+                                style={styles.langnameview}>
+                                <Text style={styles.langtxt}>
                                     {strings.ARABIC}
                                 </Text>
                             </TouchableOpacity>
@@ -200,14 +178,8 @@ const Login = ({ navigation }) => {
                             <TouchableOpacity
                                 activeOpacity={0.5}
                                 onPress={() => onchangeLange('sp')}
-                                style={{
-                                    // marginTop: moderateScaleVertical(5),
-                                    paddingVertical: moderateScaleVertical(6)
-                                }}>
-                                <Text style={{
-                                    fontSize: textScale(20), color: colors.white,
-                                    alignSelf: "center"
-                                }}>
+                                style={styles.langnameview}>
+                                <Text style={styles.langtxt}>
                                     {strings.SPANISH}
                                 </Text>
                             </TouchableOpacity>
@@ -215,14 +187,8 @@ const Login = ({ navigation }) => {
                             <TouchableOpacity
                                 activeOpacity={0.5}
                                 onPress={() => onchangeLange('en')}
-                                style={{
-                                    marginTop: moderateScaleVertical(1),
-                                    paddingVertical: moderateScaleVertical(6)
-                                }}>
-                                <Text style={{
-                                    fontSize: textScale(20), color: colors.white,
-                                    alignSelf: "center"
-                                }}>
+                                style={styles.langstyle}>
+                                <Text style={styles.langtxt}>
                                     {strings.ENGLISH}
                                 </Text>
                             </TouchableOpacity>
@@ -230,25 +196,16 @@ const Login = ({ navigation }) => {
                             <TouchableOpacity
                                 activeOpacity={0.5}
                                 onPress={() => onchangeLange('fr')}
-                                style={{
-                                    // marginTop: moderateScaleVertical(),
-                                    paddingVertical: moderateScaleVertical(6)
-                                }}>
-                                <Text style={{
-                                    fontSize: textScale(18), color: colors.white,
-                                    alignSelf: "center"
-                                }}>
+                                style={styles.langnameview}>
+                                <Text style={styles.langtxt}>
                                     {strings.FRENCH}
                                 </Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={handleModal}
                                 activeOpacity={0.5}
-                                style={{ alignContent: "flex-end", alignItems: "flex-end", }}>
-                                <Text style={{
-                                    color: colors.redD,
-                                    fontSize: textScale(14), fontWeight: "500"
-                                }}>{strings.CLOSE}</Text>
+                                style={styles.closestyle}>
+                                <Text style={styles.closetxt}>{strings.CLOSE}</Text>
                             </TouchableOpacity>
                         </ScrollView>
                     </View>
@@ -262,11 +219,7 @@ const Login = ({ navigation }) => {
                         <TextInputComponent
                             value={email}
                             onChangeText={(email) => setEmail(email)}
-                            input={{
-                                fontSize: textScale(14),
-                                color: colors.blackB,
-                                borderWidth: 0.9, paddingHorizontal: moderateScaleVertical(10),
-                            }}
+                            input={styles.emailstyle}
                             placeholder={strings.ENTER_EMAIL} />
                     </View>
 
@@ -275,40 +228,28 @@ const Login = ({ navigation }) => {
                             value={password}
                             secureTextEntry={hide}
                             onChangeText={(password) => setPassword(password)}
-                            input={{
-
-                                fontSize: textScale(14),
-                                color: colors.black
-                            }}
+                            input={styles.passstyle}
                             placeholder={strings.ENTER_PASSWORD} />
-                        <View style={{ paddingRight: 10, }}>
+                        <View style={styles.hideshowstyle}>
                             {hide ?
                                 <TouchableOpacity onPress={() => setHide(false)}>
-                                    <Image style={{ marginTop: 8, }}
+                                    <Image style={styles.showeyestyle}
                                         source={imagePath.show_eye} />
                                 </TouchableOpacity>
 
                                 :
                                 <TouchableOpacity onPress={() => setHide(true)}>
-                                    <Image style={{ marginTop: 8, }}
+                                    <Image style={styles.eyestyle}
                                         source={imagePath.hide_eye} />
                                 </TouchableOpacity>}
 
                         </View>
                     </View>
-                    <View style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        marginTop: moderateScaleVertical(10),
-                        paddingVertical: moderateScaleVertical(10),
-
-                    }}>
+                    <View style={styles.loginforgetstyle}>
                         <TouchableOpacity
                             onPress={() => navigation.navigate(navigationStrings.PHONELOGIN)}
                             activeOpacity={0.5}>
-                            <Text style={{
-                                color: colors.blue, paddingHorizontal: 30
-                            }}>{strings.PHONE_LOGIN}</Text>
+                            <Text style={styles.phonestyle}>{strings.PHONE_LOGIN}</Text>
                         </TouchableOpacity>
 
 
@@ -322,27 +263,24 @@ const Login = ({ navigation }) => {
                     <ButtonComp
                         onPress={handleLogin}
                         // onPress={()=>navigation.navigate(navigationStrings.HOME,login(email,password))}
-                        btnStyle={{ marginTop: moderateScaleVertical(50) }}
+                        btnStyle={styles.loginbtn}
                         ButtonText={strings.LOGIN} />
 
                     <ButtonComp
                         onPress={() => googlelogin()}
                         // onPress={handleGoogle}
                         btnIcon={imagePath.google_icon}
-                        btnStyle={{ marginTop: moderateScaleVertical(20) }}
+                        btnStyle={styles.googlebtn}
                         ButtonText={strings.GOOGLE_LOGIN} />
 
 
                     <ButtonComp
                         onPress={() => facebookLogin()}
                         btnIcon={imagePath.facebook_icon}
-                        btnStyle={{ marginTop: moderateScaleVertical(20) }}
+                        imgIcon={{ tintColor: colors.white }}
+                        btnStyle={styles.facebookbtn}
                         ButtonText={strings.FB_LOGIN} />
-                    <View style={{
-                        marginTop: moderateScaleVertical(10),
-                        flexDirection: "row", justifyContent: "center",
-                        marginHorizontal: moderateScaleVertical(27)
-                    }}>
+                    <View style={styles.bottomstyle}>
                         <Text style={styles.bottomdesc}>{strings.NEW_HERE}</Text>
                         <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SIGNUP)}
                             activeOpacity={0.5}>
