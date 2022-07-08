@@ -92,7 +92,9 @@ export const styles = StyleSheet.create({
         color: colors.redD
     },
     buystyle:
-        { backgroundColor: colors.blue },
+        { backgroundColor: colors.blue ,
+        
+        marginTop:20},
     buytxt:
     {
         fontSize: textScale(12),

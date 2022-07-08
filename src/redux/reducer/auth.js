@@ -17,7 +17,7 @@ export const userStatus = (state = initialState, action) => {
                 userData: data
             }
         }
-    
+
         case types.SIGNUP: {
             return {
                 ...state
@@ -42,15 +42,14 @@ export const userStatus = (state = initialState, action) => {
         //..........add to cart data............//
 
         case types.ADD_TO_CART:
-            // let newArr = state.list.concat(action.payload)
-            // console.log(action.payload, "items concatenated")
-            // return {
-            //     ...state,
-            //     list: newArr
-            // }
-        let res = action.payload
-        console.log(res, "res are")
-        return { ...state.userData, userData: res }
+            let item = action.payload
+
+            console.log(item, "item>>>>>>")
+        // return {
+        //     ...state,
+        //     list: [...state.list, action.payload]
+        // }
+
 
         //........delete item..........//
         // case types.DELETE_ITEM:

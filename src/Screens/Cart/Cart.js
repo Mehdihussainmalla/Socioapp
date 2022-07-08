@@ -17,7 +17,6 @@ import strings from '../../constants/lang';
 const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    //  console.log(Uid, "userdata isss")
     const [cart, setCart] = useState();
     const [item, setItem] = useState([]);
     const [data, setData] = useState([]);
@@ -35,9 +34,9 @@ const Cart = ({ navigation }) => {
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
                         const arr = [];
-                        console.log(res.size, "res is>>>>>")
+                        //console.log(res.size, "res is>>>>>")
                         res.forEach(doc => {
-                            // console.log(doc,"doc")
+                            //   console.log(doc,"doc")
                             const { accessoryType, rating, accoryImage, totalPrice, deliveryCharges,
                                 discount, Details, price, productCategory
                             } = doc.data();
@@ -54,9 +53,9 @@ const Cart = ({ navigation }) => {
                                 productCategory: productCategory
 
                             })
-                            // console.log(arr, "new array is ")
                             setData([...arr, ...cart]);
                         })
+
                     })
             }
         } catch (error) {
@@ -81,12 +80,9 @@ const Cart = ({ navigation }) => {
                             productName: productName,
                             Uid: Uid
                         })
-
+                        setItem(list)
                     })
-                    // console.log(list, "list")
-                    setItem(list)
-                    // console.log(item,"items are")
-
+                   // console.log(list, "list")
                 })
         } catch (error) {
             console.log(error, "error occurred")
@@ -124,9 +120,10 @@ const Cart = ({ navigation }) => {
                                 totalprice: totalPrice,
                                 discount: discount,
                             })
-                            // console.log(productList, "product list isss")
+                            //  console.log(productList, "product list isss")
                             setCart(productList)
                         })
+
 
                     })
             }
@@ -163,36 +160,36 @@ const Cart = ({ navigation }) => {
         }
     }
 
-    const Decrement = () => {
-        actions.Decrement(count)
-        setCount(count - 1)
-        if (count === 0) {
-            showMessage({
-                message: "no item selected",
-                type: "danger"
+    // const Decrement = () => {
+    //     actions.Decrement(count)
+    //     setCount(count - 1)
+    //     if (count === 0) {
+    //         showMessage({
+    //             message: "no item selected",
+    //             type: "danger"
 
-            })
-            return setCount(count)
-        }
-    }
+    //         })
+    //         return setCount(count)
+    //     }
+    // }
 
     // ............delete item.............//
-    const deleteItem = async (id) => {
-        await firestore().collection(`Cart${Uid}`)
-            .where(`productId`, "==", `${id}`).get()
-            .then((res) => {
-                res.forEach((doc) => {
-                    console.log(doc, "doc iss")
-                    const { productId } = doc.data();
-                    deleteData(productId)
-                })
-            })
-    }
+    // const deleteItem = async (id) => {
+    //     await firestore().collection(`Cart${Uid}`)
+    //         .where(`productId`, "==", `${id}`).get()
+    //         .then((res) => {
+    //             res.forEach((doc) => {
+    //                 console.log(doc, "doc iss")
+    //                 const { productId } = doc.data();
+    //                 deleteData(productId)
+    //             })
+    //         })
+    // }
     const deleteData = async (productId) => {
         try {
             await firebase.firestore().collection(`Cart${Uid}`).doc(`${productId}`).delete()
-                .then(() => {
-                    console.log("res iss")
+                .then((res) => {
+                    console.log(res,"res iss")
                 })
 
         } catch (error) {
@@ -217,8 +214,8 @@ const Cart = ({ navigation }) => {
 
 
     const renderItem = ({ item }) => {
-        console.log(item,"item details")
-        // const Id = item.id;
+        // console.log(item,"item details")
+        const Id = item.id;
         const category = item.productCategory;
         const myArray = category.split(" ")
         const slice6words = myArray.slice(0, 2);
@@ -235,7 +232,7 @@ const Cart = ({ navigation }) => {
                     <View style={styles.productstyle}>
                         <Text style={styles.productnamestyle}>{item?.productName}</Text>
                         <TouchableOpacity
-                             onPress={() => deleteItem(Id)}
+                            onPress={() => deleteData(Id)}
                             activeOpacity={0.7}
                             style={styles.deletestyle}>
                             <Image style={{ tintColor: colors.redB }}
@@ -248,16 +245,16 @@ const Cart = ({ navigation }) => {
                     <Text style={styles.descriptionstyle}>{item?.description}</Text>
 
 
-                    <View style={styles.counterstyle}>
+                    {/* <View style={styles.counterstyle}>
                         <Text
-                            onPress={Decrement}
+                            // onPress={Decrement}
                             style={styles.decrementstyle}>-</Text>
                         <Text style={styles.numberstyle}> {count} </Text>
 
                         <Text
-                            onPress={Increment}
+                            // onPress={Increment}
                             style={styles.incrementstyle}>+</Text>
-                    </View>
+                    </View> */}
                     <TouchableOpacity
                         activeOpacity={0.7}
                         onPress={() => navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })}

@@ -87,7 +87,7 @@ export const addToCart = (data) => {
         type: types.ADD_TO_CART,
         payload: data
     })
- console.log(data, "data to add items ")
+    console.log(data, "data to add items ")
 }
 
 //............increment........//

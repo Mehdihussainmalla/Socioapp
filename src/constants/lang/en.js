@@ -84,9 +84,10 @@ export default {
     TYPE: "Type of address",
     WORK: "Work",
     SAVE_ADDRESS: 'Save Address',
-    NEARBY_ADDRESS:'enter nearby address',
-    ORDERSUMMARY:"order summary"
+    NEARBY_ADDRESS: 'enter nearby address',
+    ORDERSUMMARY: "order summary",
+    EMPTY_CART: "empty cart"
 
 
-    
+
 }

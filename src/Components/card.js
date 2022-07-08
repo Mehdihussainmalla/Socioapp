@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: moderateScale(10),
         backgroundColor: "#F5F5F5",
-        marginHorizontal:moderateScale(5)
-        
+        marginHorizontal: moderateScale(5)
+
 
 
 
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         width: width / moderateScale(3),
         height: moderateScale(110),
         //  marginHorizontal: moderateScale(10),
-        marginTop: moderateScale(8),
+        marginTop: moderateScale(12),
         alignSelf: "center"
 
     },
@@ -157,13 +157,13 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         marginBottom: moderateScale(1),
         marginHorizontal: moderateScale(8),
-        alignSelf:"center"
+        alignSelf: "center"
     },
     productstyle:
     {
         fontWeight: "300",
         marginHorizontal: moderateScale(8),
-        alignSelf:"center"
+        alignSelf: "center"
     },
     ratingstyle:
     {
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         color: colors.yellowC,
         fontWeight: "500",
         marginHorizontal: moderateScale(8),
-        alignSelf:"center"
+        alignSelf: "center"
     }
 })
 
