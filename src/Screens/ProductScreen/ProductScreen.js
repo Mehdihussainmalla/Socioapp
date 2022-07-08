@@ -18,7 +18,7 @@ const ProductScreen = ({ navigation, route }) => {
     data.push(item)
     console.log(data, "dataaaaa")
     const productId = item.key;
-    console.log(item, "itemmmmm")
+    // console.log(item, "itemmmmm")
     const productName = item?.productName
     const price = item.price;
     const userData = useSelector((state) => state?.userStatus?.userData)
@@ -27,12 +27,12 @@ const ProductScreen = ({ navigation, route }) => {
 
     const addToCart = async () => {
         try {
-            // await firestore().collection(`Cart${Uid}`).add({
-            //     productId: productId,
-            //     Uid: Uid,
-            //     productName: productName
+            await firestore().collection(`Cart${Uid}`).add({
+                productId: productId,
+                Uid: Uid,
+                productName: productName
 
-            // })
+            })
             navigation.navigate(navigationStrings.CART)
 
         } catch (error) {
@@ -42,9 +42,6 @@ const ProductScreen = ({ navigation, route }) => {
 
     }
 
-    const details = (data) => {
-        actions.addToCart(data)
-    }
     //..........update ............//
     // const updateItem = async (id) => {
     //     console.log(id, "id iss")
@@ -89,8 +86,8 @@ const ProductScreen = ({ navigation, route }) => {
 
                     </ScrollView>
                     <ButtonComp
-                        onPress={() => details(data)}
-                        // onPress={addToCart}
+                    
+                        onPress={addToCart}
                         ButtonText={strings.ADD_TO_CART} />
                 </View>
 

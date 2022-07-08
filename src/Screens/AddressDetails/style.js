@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
         color: colors.white,
         paddingTop: moderateScale(6),
         fontWeight: "600",
-        padding: moderateScale(2)
+        padding: moderateScale(5)
     },
     statecitystyle:
     {
@@ -93,7 +93,9 @@ export const styles = StyleSheet.create({
     },
     showstyle:
     {
-        marginTop: moderateScale(16)
+        marginTop: moderateScale(16),
+        marginLeft:moderateScale(10),
+      
     },
     showtxt:
     {

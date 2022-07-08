@@ -22,6 +22,7 @@ export default {
     ORDER_PRODUCT: "Order product",
     ORDER_SUMMARY: "Order Summary",
     ADDRESS_DETAILS: "Address details",
+    PAYMENT_SCREEN: "Payment screen"
 
 
 }

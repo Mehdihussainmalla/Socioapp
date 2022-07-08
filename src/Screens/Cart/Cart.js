@@ -22,21 +22,27 @@ const Cart = ({ navigation }) => {
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
 
+    useEffect(() => {
+        SubmitData()
+        fetchData()
+    }, [])
 
 
-    const itemDetails = async () => {
+
+
+
+    const itemDetails = async (item) => {
+        var arr = [];
         try {
-
             for (let index in item) {
                 let productid = item[index].productId;
-                //   console.log(productid, "product id isss")
                 firestore().collection(`accessories`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
-                        const arr = [];
-                        //console.log(res.size, "res is>>>>>")
+
+                        // console.log(res, "res firebase is>>>>>")
                         res.forEach(doc => {
-                            //   console.log(doc,"doc")
+                            //   console.log(doc,"doc doc")
                             const { accessoryType, rating, accoryImage, totalPrice, deliveryCharges,
                                 discount, Details, price, productCategory
                             } = doc.data();
@@ -51,30 +57,28 @@ const Cart = ({ navigation }) => {
                                 discount: discount,
                                 price: price,
                                 productCategory: productCategory
-
                             })
-                            setData([...arr, ...cart]);
                         })
-
+                        setData([...arr, ...data]);
+                        // setData([...arr, ...cart]);
                     })
+
             }
+
         } catch (error) {
             console.log(error, "error occurred")
 
         }
-
     }
-
 
     const fetchData = async () => {
         try {
             const list = [];
             await firestore().collection(`Cart${Uid}`).get()
                 .then((res) => {
-                    //    console.log(res.size,"res>>>>>>>>>>>>") 
+                    console.log("cart res", res)
                     res.forEach(doc => {
                         const { productId, Uid, productName } = doc.data();
-                        //console.log(productId,"cart")
                         list.push({
                             productId: productId,
                             productName: productName,
@@ -82,7 +86,8 @@ const Cart = ({ navigation }) => {
                         })
                         setItem(list)
                     })
-                   // console.log(list, "list")
+                    // console.log(list, "list++")
+                    itemDetails(list)
                 })
         } catch (error) {
             console.log(error, "error occurred")
@@ -96,9 +101,6 @@ const Cart = ({ navigation }) => {
 
             for (let index in item) {
                 let productid = item[index].productId;
-
-                // console.log(productid,"productid isss")
-
                 firestore().collection(`products`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
@@ -135,16 +137,6 @@ const Cart = ({ navigation }) => {
         }
     }
 
-
-    // console.log(data, "data>>>")
-
-    //..................................................//
-    useEffect(() => {
-        itemDetails()
-
-        SubmitData()
-        fetchData()
-    }, [])
 
     //..............counting............//
 
@@ -189,7 +181,7 @@ const Cart = ({ navigation }) => {
         try {
             await firebase.firestore().collection(`Cart${Uid}`).doc(`${productId}`).delete()
                 .then((res) => {
-                    console.log(res,"res iss")
+                    console.log(res, "res iss")
                 })
 
         } catch (error) {

@@ -64,8 +64,7 @@ const AddressDetails = ({ navigation }) => {
                 roadName: roadName,
                 landMark: landMark
             })
-                .then((res) => {
-                    // console.log(res, "response for address is")
+                .then(() => {
                     navigation.navigate(navigationStrings.ORDER_SUMMARY)
                 })
 

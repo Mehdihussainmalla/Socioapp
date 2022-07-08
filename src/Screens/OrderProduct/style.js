@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
     removestyle:
     {
         flexDirection: "row",
-        borderWidth: moderateScale(0.17),
+        borderWidth: moderateScale(0.5),
         marginVertical: moderateScale(8),
         paddingTop: moderateScale(5),
         height: width / moderateScale(12)
@@ -168,7 +168,7 @@ export const styles = StyleSheet.create({
     buttoncontainer:
     {
 
-        marginTop: moderateScale(180),
+        marginTop: moderateScale(122),
         height: "12%",
         borderRadius: moderateScale(10),
         flexDirection: "row"

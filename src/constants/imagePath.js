@@ -44,6 +44,7 @@ export default {
     UPI: require("../assets/images/upi.png"),
     GPS: require("../assets/images/gps.png"),
     OFFICE_ICON: require("../assets/images/officess.png"),
-    
+    Radio_Icon: require("../assets/images/radio-btn.png")
+
 
 }

@@ -38,7 +38,7 @@ const Dropdown = ({
                         onPress={() => onSelectedItem(item)}
                         activeOpacity={0.8}>
 
-                        <Text key={item.toString()}>{item.num}</Text>
+                        <Text key={index}>{item.num}</Text>
                     </TouchableOpacity>
                 )
             })}

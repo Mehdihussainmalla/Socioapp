@@ -1,4 +1,4 @@
-import { removeData, removeItem, setItem, setLogin } from "../../utils/utils";
+import { removeData } from "../../utils/utils";
 import types from "../types";
 
 const initialState = {
@@ -43,12 +43,7 @@ export const userStatus = (state = initialState, action) => {
 
         case types.ADD_TO_CART:
             let item = action.payload
-
             console.log(item, "item>>>>>>")
-        // return {
-        //     ...state,
-        //     list: [...state.list, action.payload]
-        // }
 
 
         //........delete item..........//

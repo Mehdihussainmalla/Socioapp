@@ -237,6 +237,7 @@ const OrderSummary = ({ navigation }) => {
             <TouchableOpacity
                 activeOpacity={0.8}>
                 <ButtonComp
+                onPress={()=>navigation.navigate(navigationStrings.PAYMENT_SCREEN)}
               btnStyle={styles.btnstyle}
                     ButtonText={strings.PROCEED_FOR_PAYMENT} />
 
