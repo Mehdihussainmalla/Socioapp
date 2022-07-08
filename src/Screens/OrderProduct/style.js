@@ -168,7 +168,7 @@ export const styles = StyleSheet.create({
     buttoncontainer:
     {
 
-        marginTop: moderateScale(122),
+        marginTop: moderateScale(170),
         height: "12%",
         borderRadius: moderateScale(10),
         flexDirection: "row"

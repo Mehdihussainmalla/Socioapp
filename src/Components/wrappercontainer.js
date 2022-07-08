@@ -7,8 +7,8 @@ import { moderateScaleVertical } from '../styles/responsiveSize';
 const WrapperContainer = ({
   children,
   bgColor = colors.white,
-  statusBarColor = colors.DarkBlue,
-  barStyle = 'dark-content',
+  statusBarColor = colors.blackOpacity10,
+  barStyle ="dark-content",
 }) => {
   return (
     <SafeAreaView

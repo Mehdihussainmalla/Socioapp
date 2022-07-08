@@ -42,7 +42,7 @@ const Cart = ({ navigation }) => {
 
                         // console.log(res, "res firebase is>>>>>")
                         res.forEach(doc => {
-                            //   console.log(doc,"doc doc")
+                            // console.log(doc,"doc doc")
                             const { accessoryType, rating, accoryImage, totalPrice, deliveryCharges,
                                 discount, Details, price, productCategory
                             } = doc.data();
@@ -76,7 +76,7 @@ const Cart = ({ navigation }) => {
             const list = [];
             await firestore().collection(`Cart${Uid}`).get()
                 .then((res) => {
-                    console.log("cart res", res)
+                    //console.log("cart res", res)
                     res.forEach(doc => {
                         const { productId, Uid, productName } = doc.data();
                         list.push({
@@ -84,10 +84,13 @@ const Cart = ({ navigation }) => {
                             productName: productName,
                             Uid: Uid
                         })
-                        setItem(list)
+
                     })
+                    setItem(list)
                     // console.log(list, "list++")
                     itemDetails(list)
+
+
                 })
         } catch (error) {
             console.log(error, "error occurred")
@@ -104,7 +107,7 @@ const Cart = ({ navigation }) => {
                 firestore().collection(`products`)
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
-                        console.log(res.size, "res is")
+                        //console.log(res.size, "res is")
                         const productList = [];
                         res.forEach(doc => {
                             const { productCategory, productName, description, rating,
@@ -122,9 +125,10 @@ const Cart = ({ navigation }) => {
                                 totalprice: totalPrice,
                                 discount: discount,
                             })
-                            //  console.log(productList, "product list isss")
-                            setCart(productList)
+                            // console.log(productList, "product list isss")
+
                         })
+                        setCart(productList)
 
 
                     })
@@ -140,17 +144,17 @@ const Cart = ({ navigation }) => {
 
     //..............counting............//
 
-    const Increment = () => {
-        actions.Increment(count)
-        setCount(count + 1);
-        if (count === 5) {
-            showMessage({
-                message: "maximum selected items could be 5 only",
-                type: "info"
-            })
-            return setCount(count)
-        }
-    }
+    // const Increment = () => {
+    //     actions.Increment(count)
+    //     setCount(count + 1);
+    //     if (count === 5) {
+    //         showMessage({
+    //             message: "maximum selected items could be 5 only",
+    //             type: "info"
+    //         })
+    //         return setCount(count)
+    //     }
+    // }
 
     // const Decrement = () => {
     //     actions.Decrement(count)
@@ -181,7 +185,7 @@ const Cart = ({ navigation }) => {
         try {
             await firebase.firestore().collection(`Cart${Uid}`).doc(`${productId}`).delete()
                 .then((res) => {
-                    console.log(res, "res iss")
+                    //console.log(res, "res iss")
                 })
 
         } catch (error) {
