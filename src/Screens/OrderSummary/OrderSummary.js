@@ -1,6 +1,6 @@
 //import liraries
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList,ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
@@ -26,12 +26,12 @@ const OrderSummary = ({ navigation }) => {
             await firestore().collection(`AddAddress`).get().then((res) => {
                 const list = [];
                 res.forEach(doc => {
-                    const { fullName, phoneNumber, alternateNumnber, pincode,
+                    const { fullName, phoneNumber, alternateNumber, pincode,
                         stateName, city, houseNumber, roadName, landMark } = doc.data();
                     list.push({
                         fullName,
                         phoneNumber,
-                        alternateNumnber,
+                        alternateNumber,
                         pincode,
                         stateName,
                         city,
@@ -113,135 +113,135 @@ const OrderSummary = ({ navigation }) => {
     return (
         <Wrappercontainer>
             <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.container}>
-                <Header
-                    onPress={() => navigation.goBack()}
-                    isBackIcon={true}
-                    title={strings.ORDERSUMMARY} />
-                    
-                         <View style={styles.delivertstyle}>
-                    <Text style={styles.delivertxt}>Deliver To:</Text>
+                <View style={styles.container}>
+                    <Header
+                        onPress={() => navigation.goBack()}
+                        isBackIcon={true}
+                        title={strings.ORDERSUMMARY} />
 
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate(navigationStrings.ADDRESS_DETAILS)}
-                        activeOpacity={0.5}
-                        style={styles.changestyle}>
-                        <Text style={styles.changetxt}>{strings.CHANGE}</Text>
-                    </TouchableOpacity>
-                </View>
-
-                {address.map((item) => {
-                    // console.log(item, "items aree")
-                    return (
-                        <View style={styles.addressview}>
-                            <Text style={styles.addresstxt}>{item?.fullName}</Text>
-                            <Text style={styles.addresstxt}>{item?.houseNumber}</Text>
-                            <Text style={styles.addresstxt}>{item?.phoneNumber}</Text>
-                            <Text style={styles.addresstxt}>{item?.pincode}</Text>
-                            <Text style={styles.addresstxt}>{item?.stateName}</Text>
-                            <Text style={styles.addresstxt}>{item?.city}</Text>
-
-                        </View>
-                    )
-                })}
-                <View>
-                    <Text style={styles.nametxt}>{Name}</Text>
-                    <Text style={styles.emailtxt}>{email}</Text>
-                </View>
-
-                <Text style={{}}>------------------------------------------------------</Text>
-                <View style={styles.mainview}>
-                    <View style={styles.itemview}>
-                        <View style={styles.iconstyle}>
-                            <Image
-                                style={styles.tintstyle}
-                                source={imagePath.car} />
-
-                            <Text style={styles.delivertime}>{strings.DATE_DELIVERY}</Text>
-
-                        </View>
-                        <View>
-                            <Image
-                                style={styles.tintstyle}
-                                source={imagePath.arrow} />
-                        </View>
-                    </View>
-                    <View style={styles.itemview}>
-                        <View style={styles.iconstyle}>
-                            <Image
-                                style={styles.tintstyle}
-                                source={imagePath.swap} />
-
-                            <Text style={styles.txtstyle}>{strings.RETURN_POLICY}</Text>
-
-                        </View>
-                        <View>
-                            <Image
-                                style={styles.tintstyle}
-                                source={imagePath.arrow} />
-                        </View>
-                    </View>
-                    <View style={styles.itemview}>
-                        <View style={styles.iconstyle}>
-                            <Image
-                                style={styles.tintstyle}
-                                source={imagePath.dollar} />
-
-                            <Text style={styles.txtstyle}>{strings.CASH_ON_DELIVERY}</Text>
-
-                        </View>
-
-                        <View>
-                            <Image
-                                style={styles.tintstyle}
-                                source={imagePath.arrow} />
-                        </View>
-                    </View>
-                    <View style={styles.upistyle}>
-                        <View style={styles.itemview}>
-                            <Image
-                                style={styles.upiicon}
-                                source={imagePath.UPI} />
-
-                            <Text style={styles.upitxt}>{strings.PAY_UPI}</Text>
-
-                        </View>
-                        <View>
-                            <Image
-                                style={styles.upiiconstyle}
-                                source={imagePath.arrow} />
-                        </View>
-                    </View>
-                    <View style={styles.similarproduct}>
-                        <Text style={styles.similartxt}>{strings.SIMILAR_PRODUCTS}</Text>
+                    <View style={styles.delivertstyle}>
+                        <Text style={styles.delivertxt}>Deliver To:</Text>
 
                         <TouchableOpacity
+                            onPress={() => navigation.navigate(navigationStrings.ADDRESS_DETAILS)}
                             activeOpacity={0.5}
-                            style={styles.viewallstyle}>
-                            <Text
-                                style={styles.viewalltxt}>{strings.VIEWALL}</Text>
+                            style={styles.changestyle}>
+                            <Text style={styles.changetxt}>{strings.CHANGE}</Text>
                         </TouchableOpacity>
+                    </View>
 
+                    {address.map((item) => {
+                        // console.log(item, "items aree")
+                        return (
+                            <View style={styles.addressview}>
+                                <Text style={styles.addresstxt}>{item?.fullName}</Text>
+                                <Text style={styles.addresstxt}>{item?.houseNumber}</Text>
+                                <Text style={styles.addresstxt}>{item?.phoneNumber}</Text>
+                                <Text style={styles.addresstxt}>{item?.pincode}</Text>
+                                <Text style={styles.addresstxt}>{item?.stateName}</Text>
+                                <Text style={styles.addresstxt}>{item?.city}</Text>
+
+                            </View>
+                        )
+                    })}
+                    <View>
+                        <Text style={styles.nametxt}>{Name}</Text>
+                        <Text style={styles.emailtxt}>{email}</Text>
+                    </View>
+
+                    <Text style={{}}>------------------------------------------------------</Text>
+                    <View style={styles.mainview}>
+                        <View style={styles.itemview}>
+                            <View style={styles.iconstyle}>
+                                <Image
+                                    style={styles.tintstyle}
+                                    source={imagePath.car} />
+
+                                <Text style={styles.delivertime}>{strings.DATE_DELIVERY}</Text>
+
+                            </View>
+                            <View>
+                                <Image
+                                    style={styles.tintstyle}
+                                    source={imagePath.arrow} />
+                            </View>
+                        </View>
+                        <View style={styles.itemview}>
+                            <View style={styles.iconstyle}>
+                                <Image
+                                    style={styles.tintstyle}
+                                    source={imagePath.swap} />
+
+                                <Text style={styles.txtstyle}>{strings.RETURN_POLICY}</Text>
+
+                            </View>
+                            <View>
+                                <Image
+                                    style={styles.tintstyle}
+                                    source={imagePath.arrow} />
+                            </View>
+                        </View>
+                        <View style={styles.itemview}>
+                            <View style={styles.iconstyle}>
+                                <Image
+                                    style={styles.tintstyle}
+                                    source={imagePath.dollar} />
+
+                                <Text style={styles.txtstyle}>{strings.CASH_ON_DELIVERY}</Text>
+
+                            </View>
+
+                            <View>
+                                <Image
+                                    style={styles.tintstyle}
+                                    source={imagePath.arrow} />
+                            </View>
+                        </View>
+                        <View style={styles.upistyle}>
+                            <View style={styles.itemview}>
+                                <Image
+                                    style={styles.upiicon}
+                                    source={imagePath.UPI} />
+
+                                <Text style={styles.upitxt}>{strings.PAY_UPI}</Text>
+
+                            </View>
+                            <View>
+                                <Image
+                                    style={styles.upiiconstyle}
+                                    source={imagePath.arrow} />
+                            </View>
+                        </View>
+                        <View style={styles.similarproduct}>
+                            <Text style={styles.similartxt}>{strings.SIMILAR_PRODUCTS}</Text>
+
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                style={styles.viewallstyle}>
+                                <Text
+                                    style={styles.viewalltxt}>{strings.VIEWALL}</Text>
+                            </TouchableOpacity>
+
+                        </View>
                     </View>
                 </View>
-            </View>
 
-            <View style={styles.flatlistview}>
-            <FlatList
-                showsHorizontalScrollIndicator={false}
-                horizontal
-                data={showList}
-                renderItem={renderItem}
-            />
-            </View>
-            <TouchableOpacity
-                activeOpacity={0.8}>
-                <ButtonComp
-                onPress={()=>navigation.navigate(navigationStrings.PAYMENT_SCREEN)}
-              btnStyle={styles.btnstyle}
-                    ButtonText={strings.PROCEED_FOR_PAYMENT} />
+                <View style={styles.flatlistview}>
+                    <FlatList
+                        showsHorizontalScrollIndicator={false}
+                        horizontal
+                        data={showList}
+                        renderItem={renderItem}
+                    />
+                </View>
+                <TouchableOpacity
+                    activeOpacity={0.8}>
+                    <ButtonComp
+                        onPress={() => navigation.navigate(navigationStrings.PAYMENT_SCREEN)}
+                        btnStyle={styles.btnstyle}
+                        ButtonText={strings.PROCEED_FOR_PAYMENT} />
 
-            </TouchableOpacity>
+                </TouchableOpacity>
             </ScrollView>
         </Wrappercontainer>
     );

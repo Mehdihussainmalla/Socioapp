@@ -1,14 +1,10 @@
-//import liraries
-import { FirebaseStorageTypes } from '@react-native-firebase/storage';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text,  ScrollView, TouchableOpacity } from 'react-native';
 import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import imagePath from '../../constants/imagePath';
-import strings, { changeLanguage } from '../../constants/lang';
-import colors from '../../styles/colors';
 import { styles } from './style';
 import firestore from '@react-native-firebase/firestore';
 import navigationStrings from '../../navigation/navigationStrings';
@@ -19,7 +15,7 @@ const AddressDetails = ({ navigation }) => {
     const [state, setState] = useState({
         fullName: "",
         phoneNumber: "",
-        alternateNumnber: "",
+        alternateNumber: "",
         pincode: "",
         stateName: "",
         city: "",
@@ -27,7 +23,7 @@ const AddressDetails = ({ navigation }) => {
         roadName: "",
         landMark: "",
     })
-    const { fullName, phoneNumber, alternateNumnber, pincode,
+    const { fullName, phoneNumber, alternateNumber, pincode,
         stateName, city, houseNumber, roadName, landMark } = state;
     const updateState = data => setState({ ...state, ...data })
 
@@ -56,7 +52,7 @@ const AddressDetails = ({ navigation }) => {
             await firestore().collection(`AddAddress`).add({
                 fullName: fullName,
                 phoneNumber: phoneNumber,
-                alternateNumnber: alternateNumnber,
+                alternateNumber: alternateNumber,
                 pincode: pincode,
                 stateName: stateName,
                 city: city,
@@ -100,8 +96,8 @@ const AddressDetails = ({ navigation }) => {
                 </TouchableOpacity> :
                     <View>
                         <TextInputComponent
-                            value={alternateNumnber}
-                            onChangeText={(alternateNumnber) => updateState({ alternateNumnber })}
+                            value={alternateNumber}
+                            onChangeText={(alternateNumber) => updateState({ alternateNumber })}
                             input={styles.phonestyle}
                             placeholder={strings.ADD_ALTERNATE_NUMBER} />
                         <View style={styles.closebtn}>

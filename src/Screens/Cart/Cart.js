@@ -6,7 +6,6 @@ import Header from '../../Components/Header';
 import firestore from '@react-native-firebase/firestore';
 import { firebase } from '@react-native-firebase/auth';
 import { styles } from './styles';
-import { showMessage } from 'react-native-flash-message';
 import actions from '../../redux/actions';
 import colors from '../../styles/colors';
 import imagePath from '../../constants/imagePath';
