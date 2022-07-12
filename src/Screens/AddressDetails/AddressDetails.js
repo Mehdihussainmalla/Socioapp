@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text,  ScrollView, TouchableOpacity ,Image} from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
@@ -15,8 +15,8 @@ import { useSelector } from 'react-redux';
 const AddressDetails = ({ navigation }) => {
 
 
-    const userData=useSelector((state)=>state?.userStatus?.userData?.user);
-    const Uid=userData?.uid;
+    const userData = useSelector((state) => state?.userStatus?.userData?.user);
+    const Uid = userData?.uid;
     // console.log(Uid,"userdata>>>>>")
     const [state, setState] = useState({
         fullName: "",
@@ -35,9 +35,6 @@ const AddressDetails = ({ navigation }) => {
 
     const [show, setShow] = useState(true);
     const [enable, setEnable] = useState(true);
-    const [addressType, setAddressType] = useState(true);
-
-
     const onClick = () => {
         setShow(false)
 
@@ -45,11 +42,6 @@ const AddressDetails = ({ navigation }) => {
     const shopAddress = () => {
         setEnable(false)
     }
-
-    const deliverAddress = () => {
-        setAddressType(false)
-    }
-
     //................firebase collection ...............//
 
     const addressCollection = async () => {
@@ -128,9 +120,9 @@ const AddressDetails = ({ navigation }) => {
                             <Image
                                 style={styles.gpsicon}
                                 source={imagePath.GPS} />
-                            <TouchableOpacity 
-                          
-                            activeOpacity={0.5}>
+                            <TouchableOpacity
+
+                                activeOpacity={0.5}>
                                 <Text style={styles.currentstyle}>{strings.CURRENT_LOCATION}</Text>
                             </TouchableOpacity>
                         </View>

@@ -16,6 +16,7 @@ import strings from '../../constants/lang';
 const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
+    // console.log(Uid,"dsajdasldsadhs")
     const [cart, setCart] = useState([]);
     const [item, setItem] = useState([]);
     const [data, setData] = useState([]);
@@ -202,7 +203,7 @@ const Cart = ({ navigation }) => {
 
     const buyItem = (item) => {
    
-         console.log(item, "item>>>>")
+        //  console.log(item, "item>>>>")
          navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })
     }
 

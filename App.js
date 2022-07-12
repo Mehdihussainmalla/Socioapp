@@ -4,17 +4,17 @@ import React, { useEffect } from 'react';
 import FlashMessage from 'react-native-flash-message';
 import { Provider } from 'react-redux';
 import strings, { changeLanguage } from './src/constants/lang';
-import { AuthProvider } from './src/navigation/AuthProvider';
 import Routes from './src/navigation/Routes';
 import actions from './src/redux/actions';
 import store from './src/redux/store';
 import { getLogin } from './src/utils/utils';
 import SplashScreen from 'react-native-splash-screen'
-
+import {requestUserPermission,notificationListner} from "./src/utils/notificationServices";
 const App = () => {
 
   useEffect(() => {
-
+    requestUserPermission();
+    notificationListner();
     getLanguage();
     getLogin().then((res) => {
       //  console.log(res, "res is>>>>>")

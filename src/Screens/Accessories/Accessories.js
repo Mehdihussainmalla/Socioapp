@@ -121,9 +121,6 @@ const Accessories = (props) => {
             setUploading(false)
             return url;
 
-
-
-
         } catch (error) {
             console.log(error, "error occurred during url")
             return null;

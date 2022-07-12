@@ -24,7 +24,7 @@ const OrderSummary = ({ navigation }) => {
     const getAddress = async () => {
         try {
             await firestore().collection(`AddAddress${id}`).get().then((res) => {
-                console.log(res.size,"size>>>>>")
+                // console.log(res.size, "size>>>>>")
                 const list = [];
                 res.forEach(doc => {
                     const { fullName, phoneNumber, alternateNumber, pincode,
@@ -120,7 +120,7 @@ const OrderSummary = ({ navigation }) => {
                         isBackIcon={true}
                         title={strings.ORDERSUMMARY} />
 
-                    <View style={styles.delivertstyle}>
+                    {address ? <View style={styles.delivertstyle}>
                         <Text style={styles.delivertxt}>Deliver To:</Text>
 
                         <TouchableOpacity
@@ -129,7 +129,20 @@ const OrderSummary = ({ navigation }) => {
                             style={styles.changestyle}>
                             <Text style={styles.changetxt}>{strings.CHANGE}</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View> :
+                        <View style={{ marginTop: 10 }}>
+                            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                <Text style={{ color: colors.blue, paddingTop: 5, fontWeight: "500" }}>Add Address</Text>
+                                <TouchableOpacity
+                                    onPress={() => navigation.navigate(navigationStrings.ADDRESS_DETAILS)}
+                                    activeOpacity={0.8}>
+                                    <Image
+                                        style={{ tintColor: colors.blue }}
+                                        source={imagePath.add_img} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    }
 
                     {address.map((item) => {
                         // console.log(item, "items aree")
@@ -235,14 +248,17 @@ const OrderSummary = ({ navigation }) => {
                         renderItem={renderItem}
                     />
                 </View>
-                <TouchableOpacity
-                    activeOpacity={0.8}>
+
+                {!!address ? <ButtonComp
+                    onPress={() => navigation.navigate(navigationStrings.PAYMENT_SCREEN)}
+                    btnStyle={styles.btnstyle}
+                    ButtonText={strings.PROCEED_FOR_PAYMENT} />
+                    :
                     <ButtonComp
                         onPress={() => navigation.navigate(navigationStrings.PAYMENT_SCREEN)}
-                        btnStyle={styles.btnstyle}
-                        ButtonText={strings.PROCEED_FOR_PAYMENT} />
+                        btnStyle={styles.btnstylesss}
+                        ButtonText={strings.PROCEED_FOR_PAYMENT} />}
 
-                </TouchableOpacity>
             </ScrollView>
         </Wrappercontainer>
     );

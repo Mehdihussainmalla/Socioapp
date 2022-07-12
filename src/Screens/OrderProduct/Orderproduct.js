@@ -34,7 +34,7 @@ const OrderProduct = ({ route, }) => {
         <Wrappercontainer>
             <Header isBackIcon={true}
                 title={strings.ORDER_PRODUCT} />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
                     <View style={styles.productstyle}>
                         <Image

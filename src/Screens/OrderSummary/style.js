@@ -208,7 +208,10 @@ btnstyle:
 { 
     marginTop:moderateScale(155),
 },
-
+btnstylesss:
+{ 
+    marginTop:moderateScale(255),
+},
 
 
 })
