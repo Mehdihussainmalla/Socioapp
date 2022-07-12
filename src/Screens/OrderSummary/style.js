@@ -190,7 +190,7 @@ export const styles = StyleSheet.create({
     },
     addressview:
     { 
-        backgroundColor: colors.blackOpacity05, 
+        // backgroundColor: colors.blackOpacity05, 
         marginVertical:moderateScale(5),
        
     },

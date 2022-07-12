@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text,  ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text,  ScrollView, TouchableOpacity ,Image} from 'react-native';
 import ButtonComp from '../../Components/Button';
 import Header from '../../Components/Header';
 import TextInputComponent from '../../Components/Input';
@@ -8,10 +8,16 @@ import imagePath from '../../constants/imagePath';
 import { styles } from './style';
 import firestore from '@react-native-firebase/firestore';
 import navigationStrings from '../../navigation/navigationStrings';
+import strings from '../../constants/lang';
+import { useSelector } from 'react-redux';
 
 
 const AddressDetails = ({ navigation }) => {
 
+
+    const userData=useSelector((state)=>state?.userStatus?.userData?.user);
+    const Uid=userData?.uid;
+    // console.log(Uid,"userdata>>>>>")
     const [state, setState] = useState({
         fullName: "",
         phoneNumber: "",
@@ -49,7 +55,7 @@ const AddressDetails = ({ navigation }) => {
     const addressCollection = async () => {
         try {
 
-            await firestore().collection(`AddAddress`).add({
+            await firestore().collection(`AddAddress${Uid}`).add({
                 fullName: fullName,
                 phoneNumber: phoneNumber,
                 alternateNumber: alternateNumber,

@@ -23,7 +23,8 @@ const OrderSummary = ({ navigation }) => {
 
     const getAddress = async () => {
         try {
-            await firestore().collection(`AddAddress`).get().then((res) => {
+            await firestore().collection(`AddAddress${id}`).get().then((res) => {
+                console.log(res.size,"size>>>>>")
                 const list = [];
                 res.forEach(doc => {
                     const { fullName, phoneNumber, alternateNumber, pincode,

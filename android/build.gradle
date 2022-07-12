@@ -44,6 +44,10 @@ allprojects {
         maven {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
+           
+        }
+         maven {
+            url "https://artifactory.paytm.in/libs-release-local"
         }
         mavenCentral {
             // We don't want to fetch react-native from Maven Central as there are

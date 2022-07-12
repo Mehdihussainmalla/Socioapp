@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     container:
     {
         height: "50%",
-        width: "100%%",
+        width: "100%",
         marginVertical: moderateScale(20),
     },
     productstyle:
@@ -16,7 +16,8 @@ export const styles = StyleSheet.create({
     },
     imgstyle:
     {
-        height: "100%", width: "40%"
+        height: "100%",
+         width: "40%"
     },
     namestyle:
     {
@@ -168,7 +169,7 @@ export const styles = StyleSheet.create({
     buttoncontainer:
     {
 
-        marginTop: moderateScale(170),
+        marginTop: moderateScale(150),
         height: "12%",
         borderRadius: moderateScale(10),
         flexDirection: "row"

@@ -2,6 +2,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import DropdownComponent from '../../Components/Dropdown';
 import Dropdown from '../../Components/Dropdown';
 import Header from '../../Components/Header';
 import Wrappercontainer from '../../Components/wrappercontainer';
@@ -10,7 +11,7 @@ import strings from '../../constants/lang';
 import navigationStrings from '../../navigation/navigationStrings';
 import colors from '../../styles/colors';
 import { styles } from './style';
-const numbering = [{ id: 1, num: 1 }, { id: 2, num: 2 }, { id: 3, num: 3 }, { id: 4, num: 4 },]
+// const numbering = [{ id: 1, num: 1 }, { id: 2, num: 2 }, { id: 3, num: 3 }, { id: 4, num: 4 },]
 
 
 const OrderProduct = ({ route, }) => {
@@ -26,25 +27,14 @@ const OrderProduct = ({ route, }) => {
     const deliveryCharges = data?.deliveryCharges;
     const discount = data?.discount;
 
-    //console.log(data, "hfshdfj")
-
-
-    //    const finalprice=totalPrice-discount+deliveryCharges;
-    //    console.log(finalprice,"price")
-    const [selectedItem, setSelectedItem] = useState(null)
-
-    const onSelect = (item) => {
-        setSelectedItem(item)
-    }
+    // console.log(data, "hfshdfj")
     const navigation = useNavigation();
 
     return (
         <Wrappercontainer>
-            <Header
-                onPress={() => navigation.goBack()}
-                isBackIcon={true}
+            <Header isBackIcon={true}
                 title={strings.ORDER_PRODUCT} />
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.productstyle}>
                         <Image
@@ -63,17 +53,14 @@ const OrderProduct = ({ route, }) => {
                             </View>
                         </View>
                     </View>
-                    <View style={styles.dropdownstyle}>
-                        <Text style={styles.droptxt}>{strings.QTY} </Text>
-                        <Dropdown
-                            value={selectedItem}
-                            data={numbering}
-                            onSelect={onSelect}
+                    <View style={{ marginTop: 15 }}>
+                        <DropdownComponent
                         />
                     </View>
                     <View style={styles.timeview}>
                         <Text style={styles.timestyle}>{strings.DATE_DELIVERY}</Text>
                     </View>
+
                     <View style={styles.removestyle}>
                         <View style={styles.flexstyle}>
                             <View style={styles.saveimgstyle}>
@@ -113,22 +100,22 @@ const OrderProduct = ({ route, }) => {
                             <Text>{strings.DELIVERY_CHARGES}</Text>
                             <Text style={styles.freestyle}>{deliveryCharges}</Text>
                         </View>
-                        <View style={styles.chargeconatiner}></View>
+
                         <View style={styles.totalamount}>
                             <Text style={styles.totalcharge}>{strings.TOTAL_CHARGES}</Text>
+
                             <Text style={styles.amounttxt}>{totalPrice}</Text>
+
                         </View>
                         <View style={styles.messagestyle}>
                             <Text style={styles.messagetxt}>{strings.SAVE}{discount}{strings.ORDER}</Text>
                         </View>
                     </View>
-
                     <View style={styles.buttoncontainer}>
                         <View style={styles.ratebutton}>
                             <Text style={styles.ratebtn}>{totalPrice}</Text>
                             <Text style={styles.pricedesc}>{strings.PRICE_DETAILS}</Text>
                         </View>
-
                         <TouchableOpacity
                             onPress={() => navigation.navigate(navigationStrings.ORDER_SUMMARY)}
                             activeOpacity={0.8}
@@ -138,7 +125,6 @@ const OrderProduct = ({ route, }) => {
                     </View>
                 </View>
             </ScrollView>
-
         </Wrappercontainer>
     );
 };

@@ -16,7 +16,7 @@ import strings from '../../constants/lang';
 const Cart = ({ navigation }) => {
     const userData = useSelector((state) => state?.userStatus?.userData?.user);
     const Uid = userData?.uid
-    const [cart, setCart] = useState();
+    const [cart, setCart] = useState([]);
     const [item, setItem] = useState([]);
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
@@ -39,7 +39,7 @@ const Cart = ({ navigation }) => {
                     .where(firebase.firestore.FieldPath.documentId(), "==", `${productid}`)
                     .get().then((res) => {
 
-                        // console.log(res, "res firebase is>>>>>")
+                        //  console.log(res, "res firebase is>>>>>")
                         res.forEach(doc => {
                             // console.log(doc,"doc doc")
                             const { accessoryType, rating, accoryImage, totalPrice, deliveryCharges,
@@ -58,7 +58,7 @@ const Cart = ({ navigation }) => {
                                 productCategory: productCategory
                             })
                         })
-                        setData([...arr, ...data]);
+                        setData([...arr, ...cart]);
                         // setData([...arr, ...cart]);
                     })
 
@@ -69,13 +69,13 @@ const Cart = ({ navigation }) => {
 
         }
     }
-
+    // console.log(data,"dataaaaa>>>")
     const fetchData = async () => {
         try {
             const list = [];
             await firestore().collection(`Cart${Uid}`).get()
                 .then((res) => {
-                    //console.log("cart res", res)
+                    // console.log("cart res", res)
                     res.forEach(doc => {
                         const { productId, Uid, productName } = doc.data();
                         list.push({
@@ -85,7 +85,7 @@ const Cart = ({ navigation }) => {
                         })
 
                     })
-                    setItem(list)
+                    // setItem(list)
                     // console.log(list, "list++")
                     itemDetails(list)
 
@@ -125,22 +125,15 @@ const Cart = ({ navigation }) => {
                                 discount: discount,
                             })
                             // console.log(productList, "product list isss")
-
                         })
                         setCart(productList)
-
-
                     })
             }
-
-
         } catch (error) {
             console.log(error, "error occurred")
 
         }
     }
-
-
     //..............counting............//
 
     // const Increment = () => {
@@ -184,7 +177,7 @@ const Cart = ({ navigation }) => {
         try {
             await firebase.firestore().collection(`Cart${Uid}`).doc(`${productId}`).delete()
                 .then((res) => {
-                    //console.log(res, "res iss")
+                    console.log(res, "res iss")
                 })
 
         } catch (error) {
@@ -207,6 +200,11 @@ const Cart = ({ navigation }) => {
     //     }
     // }
 
+    const buyItem = (item) => {
+   
+         console.log(item, "item>>>>")
+         navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })
+    }
 
     const renderItem = ({ item }) => {
         // console.log(item,"item details")
@@ -252,7 +250,8 @@ const Cart = ({ navigation }) => {
                     </View> */}
                     <TouchableOpacity
                         activeOpacity={0.7}
-                        onPress={() => navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })}
+                        //  onPress={alert("testing")}
+                        onPress={() => buyItem(item)}
                         style={styles.buystyle}>
                         <Text
 
@@ -270,6 +269,7 @@ const Cart = ({ navigation }) => {
                     title={strings.CART} />
 
             </View>
+            {/* <Text onPress={alert("hey")}>hhhh</Text> */}
             <FlatList
                 showsVerticalScrollIndicator={false}
                 renderItem={renderItem}
