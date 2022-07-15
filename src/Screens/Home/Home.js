@@ -19,17 +19,25 @@ import ElectronicCard from '../../Components/electonicCard';
 import strings from '../../constants/lang';
 import firestore from '@react-native-firebase/firestore';
 import colors from '../../styles/colors';
+// import deviceInfoModule, { DeviceInfo} from 'react-native-device-info';
+import DeviceInfo from 'react-native-device-info';
 const Home = ({ navigation }) => {
     // const { navigation } = props;
     const [products, setproducts] = useState([]);
     const [loading, setloading] = useState(true);
     const [activeSlide, setActiveSlide] = useState();
     const [totalOfferCount, setTotalOfferCount] = useState();
-
+    
+    
     useEffect(() => {
+      DeviceInfo.getUniqueId().then((uniqueId) => {
+        console.log(uniqueId,"unique id++++++++++")
+        });
         fetchData();
+       
 
     }, [])
+   
     const fetchData = async () => {
         try {
             await firestore().collection("offers")
@@ -47,20 +55,20 @@ const Home = ({ navigation }) => {
 
                         if (loading) {
                             setloading(false)
+                           
                         }
                         // console.log(list, "list is")
 
                     })
 
                     setproducts(list);
-
                 })
         } catch (error) {
             console.log(error, "error occurred")
 
         }
     }
-
+ 
     // console.log(Object.keys(data).length, "dhufhsdf")
 
     const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -82,7 +90,7 @@ const Home = ({ navigation }) => {
 
 
     return (
-        <Wrappercontainer >
+        <Wrappercontainer>
             <View style={styles.container}>
                 <TouchableOpacity
                     onPress={() => navigation.openDrawer()}

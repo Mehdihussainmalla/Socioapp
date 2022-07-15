@@ -1,6 +1,6 @@
 //import liraries
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, RefreshControl } from 'react-native';
 import Wrappercontainer from '../../Components/wrappercontainer';
 import Header from '../../Components/Header';
 import firestore from '@react-native-firebase/firestore';
@@ -21,16 +21,12 @@ const Cart = ({ navigation }) => {
     const [item, setItem] = useState([]);
     const [data, setData] = useState([]);
     const [count, setCount] = useState(0);
-
+    const [isLoading, setIsLoading] = useState(true);
+    const [refresh, setRefresh] = useState(false)
     useEffect(() => {
         SubmitData()
         fetchData()
     }, [])
-
-
-
-
-
     const itemDetails = async (item) => {
         var arr = [];
         try {
@@ -59,8 +55,10 @@ const Cart = ({ navigation }) => {
                                 productCategory: productCategory
                             })
                         })
+                        setIsLoading(false)
                         setData([...arr, ...cart]);
                         // setData([...arr, ...cart]);
+
                     })
 
             }
@@ -70,7 +68,6 @@ const Cart = ({ navigation }) => {
 
         }
     }
-    // console.log(data,"dataaaaa>>>")
     const fetchData = async () => {
         try {
             const list = [];
@@ -89,8 +86,6 @@ const Cart = ({ navigation }) => {
                     // setItem(list)
                     // console.log(list, "list++")
                     itemDetails(list)
-
-
                 })
         } catch (error) {
             console.log(error, "error occurred")
@@ -134,6 +129,10 @@ const Cart = ({ navigation }) => {
             console.log(error, "error occurred")
 
         }
+    }
+
+    const onRefresh = () => {
+        setRefresh(false)
     }
     //..............counting............//
 
@@ -202,9 +201,9 @@ const Cart = ({ navigation }) => {
     // }
 
     const buyItem = (item) => {
-   
+
         //  console.log(item, "item>>>>")
-         navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })
+        navigation.navigate(navigationStrings.ORDER_PRODUCT, { item: item })
     }
 
     const renderItem = ({ item }) => {
@@ -263,7 +262,7 @@ const Cart = ({ navigation }) => {
         )
     }
     return (
-        <Wrappercontainer>
+        <Wrappercontainer isLoading={isLoading} withModal={isLoading}>
             <View style={styles.headstyle}>
                 <Header
                     isBackIcon={true}
@@ -275,6 +274,16 @@ const Cart = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
                 renderItem={renderItem}
                 data={data}
+
+                refreshControl={
+                    <RefreshControl
+                    title='refreshing'
+                        refreshing={refresh}
+                        onRefresh={onRefresh}
+                        tintColor={colors.redB}
+                        titleColor={colors.black}
+                    />
+                }
             />
 
 

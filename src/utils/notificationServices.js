@@ -8,21 +8,21 @@ export async function requestUserPermission() {
     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
   if (enabled) {
-    console.log('Authorization status:', authStatus);
+    // console.log('Authorization status:', authStatus);
     getFcmToken();
   }
 }
 
 const getFcmToken = async () => {
   let fcmToken = await AsyncStorage.getItem("fcmToken");
-  console.log(fcmToken, "the old token")
+  // console.log(fcmToken, "the old token")
 
   if (!fcmToken) {
 
     try {
       const fcmToken = await messaging().getToken();
       if (fcmToken) {
-        console.log(fcmToken, "new generated token")
+        // console.log(fcmToken, "new generated token")
         await AsyncStorage.setItem("fcmToken", fcmToken)
       }
 

@@ -19,6 +19,8 @@ target 'Socioapp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
   target 'SocioappTests' do
     inherit! :complete
     # Pods for testing
