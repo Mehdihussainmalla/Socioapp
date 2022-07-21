@@ -1,6 +1,6 @@
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from "@react-native-async-storage/async-storage"
-
+import notifee, { AndroidImportance } from '@notifee/react-native';
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
   const enabled =
@@ -15,14 +15,14 @@ export async function requestUserPermission() {
 
 const getFcmToken = async () => {
   let fcmToken = await AsyncStorage.getItem("fcmToken");
-  // console.log(fcmToken, "the old token")
+  console.log(fcmToken, "the old token")
 
   if (!fcmToken) {
 
     try {
       const fcmToken = await messaging().getToken();
       if (fcmToken) {
-        // console.log(fcmToken, "new generated token")
+        console.log(fcmToken, "new generated token")
         await AsyncStorage.setItem("fcmToken", fcmToken)
       }
 
@@ -41,6 +41,8 @@ export const notificationListner = async () => {
 
   messaging().onMessage(async remoteMessage => {
     console.log(remoteMessage, "receved in foreground")
+    DisplayNotification(remoteMessage);
+
   })
   messaging()
     .getInitialNotification()
@@ -53,4 +55,21 @@ export const notificationListner = async () => {
       }
     });
 
+}
+async function DisplayNotification(remoteMessage) {
+  // Create a channel
+  const channelId = await notifee.createChannel({
+    id: 'default',
+    name: 'Default Channel',
+    importance: AndroidImportance.HIGH,
+  });
+
+  // Display a notification
+  await notifee.displayNotification({
+    title: remoteMessage.notification.title,
+    body: remoteMessage.notification.body,
+    android: {
+      channelId,
+    },
+  });
 }

@@ -8,8 +8,9 @@ import Routes from './src/navigation/Routes';
 import actions from './src/redux/actions';
 import store from './src/redux/store';
 import { getLogin } from './src/utils/utils';
-import SplashScreen from 'react-native-splash-screen'
-import {requestUserPermission,notificationListner} from "./src/utils/notificationServices";
+import SplashScreen from 'react-native-splash-screen';
+import messaging from '@react-native-firebase/messaging';
+import { requestUserPermission, notificationListner } from "./src/utils/notificationServices";
 const App = () => {
 
   useEffect(() => {
@@ -20,19 +21,19 @@ const App = () => {
       //  console.log(res, "res is>>>>>")
       actions.loginData(res);
     })
-    // console.log(res)
+
     setTimeout(() => {
       SplashScreen.hide();
 
     }, 2000);
-  
+
   }, [])
 
   const getLanguage = async () => {
     try {
-       const lng = await AsyncStorage.getItem('language')
+      const lng = await AsyncStorage.getItem('language')
       //  console.log("Language changed", lng)
-       changeLanguage(lng)
+      changeLanguage(lng)
       if (!!lng) {
         changeLanguage(lng)
         // strings.setLanguage(lng)
