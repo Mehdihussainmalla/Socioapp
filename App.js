@@ -11,6 +11,8 @@ import { getLogin } from './src/utils/utils';
 import SplashScreen from 'react-native-splash-screen';
 import messaging from '@react-native-firebase/messaging';
 import { requestUserPermission, notificationListner } from "./src/utils/notificationServices";
+import ForegroundService from './src/utils/ForegroundService';
+
 const App = () => {
 
   useEffect(() => {
@@ -53,6 +55,7 @@ const App = () => {
         duration={2000}
         position="top" />
       <Routes />
+      <ForegroundService/>
     </Provider>
 
 

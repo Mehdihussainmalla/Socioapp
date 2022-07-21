@@ -39,11 +39,11 @@ export const notificationListner = async () => {
     navigation.navigate(remoteMessage.data.type);
   });
 
-  messaging().onMessage(async remoteMessage => {
-    console.log(remoteMessage, "receved in foreground")
-    DisplayNotification(remoteMessage);
+  // messaging().onMessage(async remoteMessage => {
+  //   console.log(remoteMessage, "receved in foreground")
+  //   DisplayNotification(remoteMessage);
 
-  })
+  // })
   messaging()
     .getInitialNotification()
     .then(remoteMessage => {
@@ -56,20 +56,20 @@ export const notificationListner = async () => {
     });
 
 }
-async function DisplayNotification(remoteMessage) {
-  // Create a channel
-  const channelId = await notifee.createChannel({
-    id: 'default',
-    name: 'Default Channel',
-    importance: AndroidImportance.HIGH,
-  });
+// async function DisplayNotification(remoteMessage) {
+//   // Create a channel
+//   const channelId = await notifee.createChannel({
+//     id: 'default',
+//     name: 'Default Channel',
+//     importance: AndroidImportance.HIGH,
+//   });
 
-  // Display a notification
-  await notifee.displayNotification({
-    title: remoteMessage.notification.title,
-    body: remoteMessage.notification.body,
-    android: {
-      channelId,
-    },
-  });
-}
+//   // Display a notification
+//   await notifee.displayNotification({
+//     title: remoteMessage.notification.title,
+//     body: remoteMessage.notification.body,
+//     android: {
+//       channelId,
+//     },
+//   });
+// }
